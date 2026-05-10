@@ -1,24 +1,10 @@
-# NeMeSiS SHARK PRO - GitHub clean ignore
-
-# Python
 __pycache__/
 *.py[cod]
-*.pyo
-*.pyd
-*.egg-info/
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-
-# Environments / secrets
 .env
 .env.*
 !.env.example
 venv/
 .venv/
-env/
-
-# Logs / backups / cache
 logs/
 backups/
 cache/
@@ -28,8 +14,6 @@ temp/
 *.log
 *.tmp
 *.bak
-
-# Local databases / runtime SQLite
 *.sqlite
 *.db
 *.sqlite-wal
@@ -37,15 +21,11 @@ temp/
 *.db-wal
 *.db-shm
 nemesis.db
-
-# Compressed builds
 *.zip
 *.tar
 *.gz
 *.rar
 *.7z
-
-# IDE / OS
 .DS_Store
 Thumbs.db
 .vscode/

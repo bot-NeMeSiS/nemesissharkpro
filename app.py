@@ -7300,3 +7300,13 @@ try:
 except Exception as e:
     print("[V81 Commercial] blueprint warning:", e)
 # -------------------------------------------------------------------
+
+# -------------------------------------------------------------------
+# V82 REAL TIME & TIMEZONE FIX - safe registration
+# -------------------------------------------------------------------
+try:
+    from time_v82.routes import time_v82_bp
+    app.register_blueprint(time_v82_bp)
+except Exception as e:
+    print("[V82 Timezone] blueprint warning:", e)
+# -------------------------------------------------------------------

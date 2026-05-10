@@ -1,0 +1,12 @@
+{
+  "version": "V82.0",
+  "upgrade": "Real Time & Timezone Fix + Safe Env",
+  "based_on": "NeMeSiS_SHARK_PRO_V81_0_GITHUB_ULTRA_CLEAN_FIXED.zip",
+  "patched_app_files": [
+    "app.py"
+  ],
+  "patched_templates": [
+    "base.html"
+  ],
+  "created_at_utc": "2026-05-10T22:26:38.618376+00:00"
+}
