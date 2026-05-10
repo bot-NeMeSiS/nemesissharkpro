@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>V79 SHARK AI Real Evolution - NeMeSiS SHARK PRO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/css/v70_premium_ui.css">
+</head>
+<body>
+<main class="nsp-shell" style="padding:24px 0 40px;">
+  <section class="nsp-hero">
+    <span class="nsp-eyebrow">🧠 V79 SHARK AI Real Evolution</span>
+    <h1 class="nsp-title">SHARK AI empieza a aprender de verdad</h1>
+    <p class="nsp-subtitle">
+      Score adaptativo, memoria de patrones, value/risk score, predicciones interpretables,
+      señales rechazadas y snapshots de evolución del modelo.
+    </p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
+      <a class="nsp-btn" href="/api/shark-ai-v79/rebuild-patterns">Reconstruir patrones</a>
+      <a class="nsp-btn secondary" href="/api/shark-ai-v79/snapshot">Crear snapshot</a>
+      <a class="nsp-btn secondary" href="/api/shark-ai-v79/predict">Test predicción</a>
+    </div>
+  </section>
+
+  <section class="nsp-grid" style="margin-top:18px;">
+    <article class="nsp-card nsp-kpi">
+      <div class="nsp-kpi-label">Estado</div>
+      <div class="nsp-kpi-value" style="font-size:28px;">{{ status.status }}</div>
+      <div class="nsp-kpi-hint">{{ status.model_version }}</div>
+    </article>
+    <article class="nsp-card nsp-kpi">
+      <div class="nsp-kpi-label">AI Evolution Score</div>
+      <div class="nsp-kpi-value">{{ status.ai_evolution_score }}%</div>
+      <div class="nsp-progress"><span style="width: {{ status.ai_evolution_score }}%;"></span></div>
+    </article>
+    <article class="nsp-card nsp-kpi">
+      <div class="nsp-kpi-label">Predicciones</div>
+      <div class="nsp-kpi-value">{{ status.predictions }}</div>
+      <div class="nsp-kpi-hint">{{ status.approved }} aprobadas · {{ status.rejected }} rechazadas</div>
+    </article>
+    <article class="nsp-card nsp-kpi">
+      <div class="nsp-kpi-label">Patrones</div>
+      <div class="nsp-kpi-value">{{ status.patterns }}</div>
+      <div class="nsp-kpi-hint">{{ status.rejected_signals }} señales rechazadas</div>
+    </article>
+  </section>
+
+  <section class="nsp-card" style="margin-top:18px;">
+    <h2>Snapshot del modelo</h2>
+    <table>
+      <thead><tr><th>Métrica</th><th>Valor</th></tr></thead>
+      <tbody>
+        <tr><td>Dataset</td><td>{{ status.snapshot.dataset_size }}</td></tr>
+        <tr><td>Accuracy</td><td>{{ status.snapshot.accuracy }}%</td></tr>
+        <tr><td>ROI</td><td>{{ status.snapshot.roi }}%</td></tr>
+        <tr><td>Reliability</td><td>{{ status.snapshot.reliability_score }}%</td></tr>
+        <tr><td>Mejor patrón</td><td>{{ status.snapshot.best_pattern }}</td></tr>
+        <tr><td>Peor patrón</td><td>{{ status.snapshot.worst_pattern }}</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="nsp-card" style="margin-top:18px;">
+    <h2>Módulos V79</h2>
+    <table>
+      <thead><tr><th>Módulo</th><th>Estado</th></tr></thead>
+      <tbody>
+        {% for item in status.modules %}
+        <tr><td>{{ item.name }}</td><td><span class="nsp-pill ok">{{ item.status }}</span></td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="nsp-card" style="margin-top:18px;">
+    <h2>Top patrones</h2>
+    {% if status.top_patterns %}
+    <table>
+      <thead><tr><th>Patrón</th><th>Muestra</th><th>Win Rate</th><th>ROI</th><th>Reliability</th><th>Ajuste</th></tr></thead>
+      <tbody>
+        {% for p in status.top_patterns %}
+        <tr>
+          <td>{{ p.pattern_key }}</td>
+          <td>{{ p.sample_size }}</td>
+          <td>{{ p.win_rate }}%</td>
+          <td>{{ p.roi }}%</td>
+          <td>{{ p.reliability }}</td>
+          <td>{{ p.score_adjustment }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <p>Aún no hay patrones suficientes. Se generarán al cerrar picks reales.</p>
+    {% endif %}
+  </section>
+
+  <section class="nsp-card" style="margin-top:18px;">
+    <h2>Predicciones recientes</h2>
+    {% if status.recent_predictions %}
+    <table>
+      <thead><tr><th>Partido</th><th>Mercado</th><th>Cuota</th><th>Score</th><th>Confianza</th><th>Decisión</th><th>Prob.</th></tr></thead>
+      <tbody>
+        {% for p in status.recent_predictions %}
+        <tr>
+          <td>{{ p.match_name }}</td>
+          <td>{{ p.market }}</td>
+          <td>{{ p.odds }}</td>
+          <td>{{ p.adaptive_score }}</td>
+          <td>{{ p.confidence_level }}</td>
+          <td>{{ p.prediction_label }}</td>
+          <td>{{ p.prediction_probability }}%</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <p>Aún no hay predicciones registradas.</p>
+    {% endif %}
+  </section>
+</main>
+
+<nav class="nsp-mobile-bottom">
+  <a href="/">Inicio</a>
+  <a href="/live-center">Live</a>
+  <a href="/admin/shark-ai-v79">V79</a>
+  <a href="/admin/launch-candidate">Launch</a>
+</nav>
+
+<script src="/static/js/v70_premium_ui.js"></script>
+</body>
+</html>

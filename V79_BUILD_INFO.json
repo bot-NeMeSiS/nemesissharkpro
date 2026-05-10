@@ -1,0 +1,12 @@
+{
+  "project": "NeMeSiS SHARK PRO",
+  "version": "V79.0",
+  "upgrade": "SHARK AI Real Evolution",
+  "language": "es",
+  "based_on": "NeMeSiS_SHARK_PRO_V78_0_FINAL_PRE_STRIPE_LAUNCH_CANDIDATE_FULL_APP_READY.zip",
+  "patched_app_files": [
+    "app.py"
+  ],
+  "stripe": "not_included",
+  "created_at_utc": "2026-05-10T20:02:42.583669+00:00"
+}

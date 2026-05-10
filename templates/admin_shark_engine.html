@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page-title">
+  <p class="eyebrow">Motor SHARK</p>
+  <h1>Motor automático de picks</h1>
+  <p class="lead">Importa cuotas reales, calcula SHARK SCORE local y guarda picks con valor. Usa caché para reducir llamadas API.</p>
+</section>
+
+<div class="engine-panel-v304">
+  <form method="post">
+    <button class="btn primary" name="force" value="1">Actualizar motor ahora</button>
+  </form>
+  {% if saved is not none %}
+  <div class="success">Picks guardados/actualizados: {{ saved }}</div>
+  {% endif %}
+  <div class="engine-status-v304">
+    <span>Estado: <strong>{{ result.source }}</strong></span>
+    <span>Picks detectados: <strong>{{ result.picks|length if result and result.picks else 0 }}</strong></span>
+  </div>
+</div>
+
+<div class="picks-grid-v30">
+  {% for p in result.picks %}
+  <article class="pick-card-v30">
+    <div class="pick-top-v30"><span>{{ p.league }}</span>{% if p.premium %}<b>Premium</b>{% endif %}</div>
+    <h3>{{ p.title }}</h3>
+    <p>Pick: <strong>{{ p.pick }}</strong></p>
+    <p>Cuota: <strong>{{ p.cuota }}</strong> · EV {{ p.ev }}% · Score {{ p.score }}/100</p>
+    <p>Casa: {{ p.bookmaker }} · Mercado: {{ p.market }}</p>
+  </article>
+  {% else %}
+  <div class="empty-history-v30">
+    <strong>Motor preparado</strong>
+    <span>No hay picks ahora mismo o falta configurar THE_ODDS_API_KEY.</span>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

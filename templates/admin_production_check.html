@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page-title">
+  <p class="eyebrow">Revisión final</p>
+  <h1>Producción casi lista</h1>
+  <p class="lead">Chequeo rápido antes de activar pagos. Todo en esta pantalla es interno para admin.</p>
+  <div class="actions">
+    <a class="btn" href="/admin">Volver al admin</a>
+    <a class="btn primary" href="/api/production-check">Ver JSON técnico</a>
+  </div>
+</section>
+
+<section class="panel qa-hero">
+  <div class="metric big">
+    <span>Puntuación producción</span>
+    <strong>{{ qa.score }}%</strong>
+  </div>
+  <div>
+    <h2>{{ 'Lista para Stripe' if qa.ready else 'Quedan avisos por revisar' }}</h2>
+    <p class="muted">Siguiente paso recomendado: <strong>{{ qa.next_step }}</strong>.</p>
+    <p class="small-note">Hora España/Madrid: {{ qa.time }}</p>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="metric"><span>Usuarios</span><strong>{{ qa.counts.users }}</strong></div>
+  <div class="metric"><span>Premium</span><strong>{{ qa.counts.premium_users }}</strong></div>
+  <div class="metric"><span>Picks activos</span><strong>{{ qa.counts.active_picks }}</strong></div>
+  <div class="metric"><span>Telegram</span><strong>{{ qa.counts.telegram_users }}</strong></div>
+  <div class="metric"><span>Alertas hoy</span><strong>{{ qa.counts.alerts_today }}</strong></div>
+</section>
+
+<section class="panel">
+  <h2>Checklist final</h2>
+  <div class="qa-list">
+    {% for c in qa.checks %}
+      <div class="qa-row {{ 'ok' if c.ok else 'warn' }}">
+        <div class="qa-dot">{{ '✓' if c.ok else '!' }}</div>
+        <div>
+          <strong>{{ c.label }}</strong>
+          <p class="muted">{{ c.detail }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Antes de Stripe</h2>
+  <p class="muted">Prueba desde móvil y PC: login, picks, partidos, alertas, Telegram, push, ROI, admin y expiración de membresías. Si todo está correcto, el siguiente bloque ya será pagos reales.</p>
+</section>
+{% endblock %}

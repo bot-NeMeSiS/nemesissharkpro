@@ -1,0 +1,107 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ APP_NAME }} · Picks, partidos y banca</title>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#050b2b">
+  <meta name="description" content="NeMeSiS SHARK PRO: picks, partidos, banca, ROI y SHARK AI en una experiencia premium.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="NeMeSiS">
+  <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+  <link rel="stylesheet" href="/static/app.css">
+  <script defer src="/static/app.js"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/shark_score_v274.css') }}">
+  <link rel="stylesheet" href="/static/css/v70_premium_ui.css">
+<link rel="stylesheet" href="/static/css/v81_commercial.css">
+</head>
+<body class="{% if current_user %}plan-theme-{{ (current_user.plan or 'FREE')|lower }}{% else %}plan-theme-public{% endif %}">
+  <header class="topbar">
+    <a class="brand" href="{{ '/clientes' if session.get('user') else '/' }}">
+      <span class="brand-icon pro-mark">NS</span>
+      <span>
+        <strong>NeMeSiS</strong>
+        <small>SHARK PRO</small>
+      </span>
+    </a>
+
+    <nav class="nav">
+      <a href="{{ '/clientes' if session.get('user') else '/' }}">Inicio</a>
+      <a href="/picks">Picks</a>
+      <a href="/partidos">Partidos</a>
+      <a href="/clasificaciones">Clasificación</a>
+      <a href="/alertas">Alertas</a>
+      <a href="/favoritos">Favoritos</a>
+      <a href="/ayuda">Ayuda</a>
+      <a href="/clientes">Mi cuenta</a>
+      <a class="ai-link" href="/shark-ai">SHARK AI</a>
+      {% if is_admin %}
+        <a class="admin-nav" href="/admin">Admin</a>
+      {% endif %}
+      {% if current_user %}
+        <a href="/logout">Salir</a>
+      {% endif %}
+    </nav>
+  </header>
+{% if session.get('user') %}
+<nav class="client-app-nav-v308">
+  <a href="/clientes"><span>Inicio</span></a>
+  <a href="/picks"><span>Picks</span></a>
+  <a href="/partidos"><span>Live</span></a>
+  <a href="/clasificaciones"><span>Clasificación</span></a>
+  <a href="/alertas"><span>Alertas</span></a>
+  <a href="/favoritos"><span>Favoritos</span></a>
+  <a href="/clientes#bankroll-v30"><span>Banca</span></a>
+  <button type="button" onclick="document.getElementById('sharkOpen')?.click()"><span>SHARK</span></button>
+</nav>
+{% endif %}
+
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <button id="sharkOpen" class="shark-float shark-bounce" title="Abrir SHARK AI" aria-label="Abrir SHARK AI"><span class="shark-emoji">AI</span><span class="shark-pulse"></span></button>
+
+  <section id="sharkBox" class="shark-box" hidden>
+    <div class="shark-head">
+      <strong>SHARK AI</strong><small id="sharkMode" class="ai-mode">Detectando modo...</small>
+      <button id="sharkClose">×</button>
+    </div>
+    <div class="shark-chips">
+      <button data-prompt="Explícame el mejor pick disponible de forma sencilla">Mejor pick claro</button>
+      <button data-prompt="Muéstrame partidos de hoy y dime cuál mirar primero">Partidos hoy</button>
+      <button data-prompt="Busca partidos de fútbol reales de hoy y próximos días">Fútbol hoy</button>
+      <button data-prompt="Ordena los picks por SHARK SCORE real">Top SHARK</button>
+      <button data-prompt="Analiza mi banca y riesgo pendiente">Mi banca</button>
+      <button data-prompt="Cuál es el mejor pick real ahora mismo">Mejor pick</button>
+    </div>
+    <div id="sharkLog" class="shark-log">
+      <div class="ai">Hola, soy SHARK AI. Pregúntame por picks, partidos, banca o Telegram.</div>
+    </div>
+    <form id="sharkForm">
+      <input id="sharkInput" placeholder="Pregunta a SHARK AI...">
+      <button>Enviar</button>
+    </form>
+  </section>
+<script src="{{ url_for('static', filename='js/shark_score_v274.js') }}"></script>
+<nav class="bottom-mobile-nav-v283">
+  <a href="/clientes"><span>Inicio</span></a>
+  <a href="/picks"><span>Picks</span></a>
+  <a href="/partidos"><span>Live</span></a>
+  <a href="/clasificaciones"><span>Clasificación</span></a>
+  <a href="/alertas"><span>Alertas</span></a>
+  <a href="/favoritos"><span>Favoritos</span></a>
+  <button type="button" onclick="document.getElementById('sharkOpen')?.click()"><span>SHARK</span></button>
+</nav>
+  <script src="/static/js/v70_premium_ui.js"></script>
+<script src="/static/js/v74_retention.js"></script>
+<script src="/static/js/v75_personalization.js"></script>
+<script src="/static/js/v81_commercial.js"></script>
+</body>
+</html>

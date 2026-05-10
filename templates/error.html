@@ -1,0 +1,11 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<section class="auth">
+  <div class="auth-card">
+    <h1>{{ title or "Error" }}</h1>
+    <p>{{ message or "Algo no está disponible." }}</p>
+    <a class="btn primary" href="/">Volver al inicio</a>
+  </div>
+</section>
+{% endblock %}

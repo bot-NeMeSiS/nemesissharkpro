@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="onboarding-v56">
+  <div class="onboarding-card-v56">
+    <span>Primer ajuste</span>
+    <h1>Configura tu experiencia SHARK</h1>
+    <p>Elige cómo quieres ver las señales. Puedes cambiarlo luego desde tu perfil.</p>
+    <form method="post">
+      <label>Tu estilo de riesgo
+        <select name="risk_preference">
+          <option value="conservador">Conservador: prefiero menos riesgo</option>
+          <option value="medio" selected>Medio: equilibrio</option>
+          <option value="agresivo">Agresivo: busco cuotas más altas</option>
+        </select>
+      </label>
+      <label>Deporte principal
+        <select name="favorite_sport">
+          <option value="futbol" selected>Fútbol</option>
+          <option value="basket">Basket</option>
+          <option value="todos">Todos</option>
+        </select>
+      </label>
+      <label>Competición favorita
+        <input name="favorite_competition" placeholder="Ej: LaLiga, Champions, Mundial">
+      </label>
+      <button>Guardar y entrar</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

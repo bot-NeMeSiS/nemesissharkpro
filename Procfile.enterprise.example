@@ -1,0 +1,3 @@
+
+web: gunicorn app:app --workers 2 --threads 4 --timeout 120
+worker: python -m enterprise_v80.worker

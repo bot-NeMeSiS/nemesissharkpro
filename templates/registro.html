@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+{% set plan = selected_plan or 'FREE' %}
+<section class="auth auth-plan plan-{{ plan|lower }}">
+  <div class="auth-card plan-auth-card">
+    <p class="eyebrow">Crear cuenta</p>
+    <h1>{{ plan_info.title }}</h1>
+    <p class="lead">{{ plan_info.desc }}</p>
+
+    <div class="selected-plan-box">
+      <span>Plan seleccionado</span>
+      <strong>{{ plan }}</strong>
+      <small>Tu dashboard se activará con el color y beneficios de esta membresía.</small>
+    </div>
+
+    <div class="plan-switch-row">
+      <a class="{{ 'active' if plan == 'FREE' else '' }}" href="/registro?plan=FREE">FREE</a>
+      <a class="{{ 'active' if plan == 'PRO' else '' }}" href="/registro?plan=PRO">PRO</a>
+      <a class="{{ 'active' if plan == 'ELITE' else '' }}" href="/registro?plan=ELITE">ELITE</a>
+    </div>
+
+    {% if error %}<div class="error">{{ error }}</div>{% endif %}
+    {% if success %}<div class="success">{{ success }}</div>{% endif %}
+
+    <form method="post" class="form" autocomplete="on">
+      <input type="hidden" name="plan" value="{{ plan }}">
+      <input name="username" placeholder="Usuario" required autocomplete="username">
+      <div class="password-wrap">
+        <input name="password" type="password" placeholder="Contraseña" required autocomplete="new-password">
+        <button type="button" class="toggle-password" aria-label="Mostrar contraseña">👁️</button>
+      </div>
+      <button class="btn primary">{{ plan_info.cta }}</button>
+    </form><p class="auth-save-note-v294">💾 Puedes guardar usuario y contraseña en tu navegador.</p>
+
+    <p class="small-link"><a href="/cliente-login">Ya tengo cuenta</a></p>
+  </div>
+</section>
+{% endblock %}

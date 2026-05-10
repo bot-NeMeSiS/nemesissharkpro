@@ -1,0 +1,12 @@
+{
+  "project": "NeMeSiS SHARK PRO",
+  "version": "V80.0",
+  "upgrade": "Enterprise Scale Foundation",
+  "language": "es",
+  "based_on": "NeMeSiS_SHARK_PRO_V79_0_SHARK_AI_REAL_EVOLUTION_FULL_APP_READY.zip",
+  "patched_app_files": [
+    "app.py"
+  ],
+  "stripe": "not_included",
+  "created_at_utc": "2026-05-10T20:06:30.916983+00:00"
+}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page-title admin-memberships-hero-v305">
+  <p class="eyebrow">Gestión admin</p>
+  <h1>Membresías de usuarios</h1>
+  <p class="lead">Cambia usuarios registrados entre FREE, PRO y ELITE. Los cambios se aplican al volver a entrar o al refrescar dashboard.</p>
+</section>
+
+{% if message %}<div class="success">{{ message }}</div>{% endif %}
+{% if error %}<div class="error">{{ error }}</div>{% endif %}
+
+<section class="admin-memberships-grid-v305">
+  {% for u in users %}
+  <article class="admin-user-card-v305 plan-{{ u.plan|lower }} {{ 'is-admin' if u.role == 'admin' else '' }}">
+    <div class="admin-user-head-v305">
+      <div>
+        <span>{{ u.role|upper }}</span>
+        <h2>{{ u.username }}</h2>
+      </div>
+      <strong>{{ u.plan }}</strong>
+    </div>
+
+    <div class="admin-user-meta-v305">
+      <span>ID #{{ u.id }}</span>
+      <span>Banca {{ "%.2f"|format(u.balance or 0) }}€</span>
+      <span>{% if u.membership_source in ['admin_regalo','regalo'] %}Regalada{% elif u.membership_source in ['compra','stripe','paid'] %}Comprada{% else %}{{ u.membership_source or 'Registro' }}{% endif %}</span>
+      <span>{% if u.membership_expires_at %}Caduca: {{ u.membership_expires_at[:10] }}{% else %}Sin caducidad{% endif %}</span>
+      <span>{% if u.telegram_connected %}Telegram conectado{% else %}Sin Telegram{% endif %}</span>
+    </div>
+
+    {% if u.role == 'admin' %}
+      <div class="admin-locked-v305">🛡️ Admin interno: no aparece como membresía pública.</div>
+    {% else %}
+      <form method="post" class="membership-form-v305">
+        <input type="hidden" name="user_id" value="{{ u.id }}">
+        <label>Cambiar membresía</label>
+        <select name="plan">
+          <option value="FREE" {{ 'selected' if u.plan == 'FREE' else '' }}>FREE</option>
+          <option value="PRO" {{ 'selected' if u.plan == 'PRO' else '' }}>PRO</option>
+          <option value="ELITE" {{ 'selected' if u.plan == 'ELITE' else '' }}>ELITE</option>
+        </select>
+        <label>Origen</label>
+        <select name="membership_source">
+          <option value="admin_manual" {{ 'selected' if u.membership_source in ['admin_manual','manual'] else '' }}>Manual</option>
+          <option value="admin_regalo" {{ 'selected' if u.membership_source in ['admin_regalo','regalo'] else '' }}>Regalada / amigo</option>
+          <option value="compra" {{ 'selected' if u.membership_source in ['compra','stripe','paid'] else '' }}>Comprada</option>
+        </select>
+        <label>Duración</label>
+        <select name="months"><option value="1">1 mes</option><option value="2">2 meses</option><option value="3">3 meses</option><option value="12">12 meses</option></select>
+        <label><input type="checkbox" name="auto_expire" value="1" {{ 'checked' if u.membership_auto_expire else '' }}> Volver a FREE cuando caduque</label>
+        <input name="membership_note" value="{{ u.membership_note or '' }}" placeholder="Nota interna">
+        <button class="btn primary">Actualizar</button>
+      </form>
+    {% endif %}
+  </article>
+  {% else %}
+  <div class="empty-history-v30">
+    <strong>No hay usuarios todavía</strong>
+    <span>Cuando se registren aparecerán aquí.</span>
+  </div>
+  {% endfor %}
+</section>
+
+<div class="admin-memberships-actions-v305">
+  <a class="btn" href="/admin">Volver al admin</a>
+  <a class="btn primary" href="/registro?plan=FREE">Crear usuario nuevo</a>
+</div>
+{% endblock %}

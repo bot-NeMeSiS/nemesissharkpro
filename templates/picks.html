@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+{% set user = current_user_fresh() or current_user %}
+{% set plan_clean = ((user.plan if user else 'FREE') or 'FREE')|upper %}
+<section class="pro-app-v33 picks-page-v33">
+  <aside class="pro-side-v33"><div class="pro-brand-v33"><span>NS</span><div><b>NeMeSiS</b><small>SHARK PRO</small></div></div><nav class="pro-menu-v33"><a href="/clientes">Inicio</a><a href="/partidos">Partidos</a><a class="active" href="/picks">Picks</a><a href="/picks?date=today">Hoy</a><a href="/picks?league=world">Mundial</a><a href="/clasificaciones">Clasificaciones</a><button onclick="document.getElementById('sharkOpen')?.click()">SHARK AI</button></nav></aside>
+  <main class="pro-main-v33">
+    <section class="pro-hero-v33 compact"><div><span class="pro-eyebrow-v33">Picks profesionales</span><h1>Apuesta clara, score, EV y riesgo</h1><p>Cada pick indica exactamente a qué apostar, cuota, bookmaker, stake recomendado y motivos a favor/en contra.</p></div><form class="pro-search-v33" method="get" action="/picks"><input name="q" value="{{ q }}" placeholder="Buscar equipo o competición"><button>Buscar</button></form></section>
+    <div class="pro-tabs-v33">{% for item in ui_date_links('/picks', q, league_filter) %}<a class="{{ 'on' if item.key == (date_filter or 'all') else '' }}" href="{{ item.href }}">{{ item.label }}</a>{% endfor %}<a href="/picks?league=world">Mundial</a><a href="/picks?league=champions">Champions</a><a href="/picks?league=liga">LaLiga</a><a href="/picks?league=premier">Premier</a></div>
+    <section class="pro-pick-grid-v33">
+    {% set visible = namespace(value=0) %}
+    {% for p in picks %}
+      {% set visible.value = visible.value + 1 %}{% set sp=smart_pick_profile(p.score,p.ev,p.cuota or p.odds_decimal) %}{% set kt=kickoff_ui_parts(p.kickoff_time) %}{% set teams=team_pair(p.title) %}{% set insight=professional_insight(p) %}{% set stake=stake_recommendation_eur(p, user.balance if user else 0) %}{% set locked=(plan_clean=='FREE' and (p.premium=='1' or p.premium==1)) %}
+      <article class="pro-pick-card-v33 {{ sp.tone }} {{ 'locked' if locked else '' }}">
+        <div class="pro-card-top-v33"><span>{{ competition_badge(p.league,p.sport) }}</span><b>{{ kt.day }} {{ kt.date }} · {{ kt.time }}</b></div>
+        <div class="pro-card-teams-v33">{% set home_logo=team_logo_url(teams.home) %}{% set away_logo=team_logo_url(teams.away) %}<p>{% if home_logo %}<img class="crest-img-v35" src="{{ home_logo }}" alt="{{ teams.home }}">{% else %}<i class="crest-v324 crest-shield-v325" style="--crest-a:{{ team_color(teams.home,0) }};--crest-b:{{ team_color(teams.home,1) }}"><span>{{ team_initials(teams.home) }}</span></i>{% endif %}{{ teams.home }}</p><p>{% if away_logo %}<img class="crest-img-v35" src="{{ away_logo }}" alt="{{ teams.away }}">{% else %}<i class="crest-v324 crest-shield-v325 away" style="--crest-a:{{ team_color(teams.away,0) }};--crest-b:{{ team_color(teams.away,1) }}"><span>{{ team_initials(teams.away) }}</span></i>{% endif %}{{ teams.away }}</p></div>
+        <div class="pro-exact-v33"><small>APUESTA A</small><strong>{{ human_bet_choice(p) }}</strong><em>{{ bet_simple_explanation(p) }}</em></div>
+        <div class="pro-card-metrics-v33"><span><b>{{ sp.score }}</b>SHARK</span><span><b>+{{ sp.ev }}%</b>EV</span><span><b>{{ stake.amount }}€</b>{{ stake.label }}</span></div>
+        <div class="pro-card-reason-v33"><b>{{ insight.headline }}</b><p>{{ why_bet_text(p) }}</p><p class="against-v325">{{ why_not_bet_text(p) }}</p></div>
+        {% if locked %}<a class="pro-primary-v33" href="/registro?plan=PRO">Desbloquear PRO</a>{% else %}<div class="pro-actions-v33"><a href="/partido/{{ p.id }}">Abrir análisis</a><form method="post" action="/guardar-pick/{{ p.id }}"><input name="amount" value="{{ stake.amount }}"><button>Guardar</button></form><form method="post" action="/favorito/{{ p.id }}/toggle"><button type="submit">★ Favorito</button></form></div>{% endif %}
+      </article>
+    {% endfor %}
+    {% if visible.value == 0 %}{% set empty=client_quality_empty_state('picks') %}<div class="pro-empty-v33 empty-premium-v56"><h3>{{ empty.title }}</h3><p>{{ empty.text }}</p><a href="{{ empty.href }}">{{ empty.action }}</a></div>{% endif %}
+    </section>
+  </main>
+</section>
+{% endblock %}

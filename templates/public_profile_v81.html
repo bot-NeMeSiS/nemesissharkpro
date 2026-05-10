@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ payload.profile.display_name }} — Perfil SHARK</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/css/v70_premium_ui.css">
+  <link rel="stylesheet" href="/static/css/v81_commercial.css">
+</head>
+<body>
+<main class="nsp-shell" style="padding:24px 0 40px;">
+  <section class="nsp-hero">
+    <span class="nsp-eyebrow">Perfil público SHARK</span>
+    <h1 class="nsp-title">{{ payload.profile.avatar_emoji }} {{ payload.profile.display_name }}</h1>
+    <p class="nsp-subtitle">{{ payload.profile.bio }}</p>
+  </section>
+
+  <section class="nsp-grid" style="margin-top:18px;">
+    <article class="nsp-card nsp-kpi"><div class="nsp-kpi-label">ROI</div><div class="nsp-kpi-value">{{ payload.profile.public_roi }}%</div></article>
+    <article class="nsp-card nsp-kpi"><div class="nsp-kpi-label">Win Rate</div><div class="nsp-kpi-value">{{ payload.profile.public_win_rate }}%</div></article>
+    <article class="nsp-card nsp-kpi"><div class="nsp-kpi-label">Picks</div><div class="nsp-kpi-value">{{ payload.profile.public_picks }}</div></article>
+    <article class="nsp-card nsp-kpi"><div class="nsp-kpi-label">Reputación</div><div class="nsp-kpi-value">{{ payload.profile.reputation_score }}</div></article>
+  </section>
+
+  <section class="nsp-card" style="margin-top:18px;">
+    <h2>Picks compartidos</h2>
+    {% if payload.shared_picks %}
+    <table>
+      <thead><tr><th>Pick</th><th>Partido</th><th>Mercado</th><th>Cuota</th><th>Score</th><th>Views</th></tr></thead>
+      <tbody>
+        {% for p in payload.shared_picks %}
+        <tr><td><a href="/share/{{ p.share_code }}">{{ p.title }}</a></td><td>{{ p.match_name }}</td><td>{{ p.market }}</td><td>{{ p.odds }}</td><td>{{ p.shark_score }}%</td><td>{{ p.views }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p>Aún no hay picks compartidos.</p>
+    {% endif %}
+  </section>
+</main>
+<nav class="nsp-mobile-bottom"><a href="/">Inicio</a><a href="/premium">Premium</a><a href="/community">Comunidad</a><a href="/beta">Beta</a></nav>
+<script src="/static/js/v70_premium_ui.js"></script>
+</body>
+</html>

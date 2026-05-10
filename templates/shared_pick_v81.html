@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ pick.title }} — NeMeSiS SHARK PRO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="{{ pick.title }}">
+  <meta property="og:description" content="{{ pick.match_name }} · {{ pick.market }} · SHARK Score {{ pick.shark_score }}%">
+  <link rel="stylesheet" href="/static/css/v70_premium_ui.css">
+  <link rel="stylesheet" href="/static/css/v81_commercial.css">
+</head>
+<body>
+<main class="nsp-shell" style="padding:24px 0 40px;">
+  <section class="v81-share-card">
+    <span class="nsp-eyebrow">Pick compartido</span>
+    <h1 class="nsp-title">{{ pick.title }}</h1>
+    <p class="nsp-subtitle">{{ pick.match_name }}</p>
+
+    <section class="nsp-grid" style="margin-top:18px;">
+      <article class="nsp-card nsp-kpi"><div class="nsp-kpi-label">Mercado</div><div class="nsp-kpi-value" style="font-size:30px;">{{ pick.market }}</div></article>
+      <article class="nsp-card nsp-kpi"><div class="nsp-kpi-label">Cuota</div><div class="nsp-kpi-value">{{ pick.odds }}</div></article>
+      <article class="nsp-card nsp-kpi"><div class="nsp-kpi-label">SHARK Score</div><div class="nsp-kpi-value">{{ pick.shark_score }}%</div></article>
+      <article class="nsp-card nsp-kpi"><div class="nsp-kpi-label">Confianza</div><div class="nsp-kpi-value" style="font-size:30px;">{{ pick.confidence }}</div></article>
+    </section>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
+      <a class="nsp-btn" href="/premium">Ver plataforma</a>
+      <a class="nsp-btn secondary" href="/community">Comunidad</a>
+    </div>
+  </section>
+</main>
+<script src="/static/js/v70_premium_ui.js"></script>
+</body>
+</html>
