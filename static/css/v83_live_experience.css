@@ -1,0 +1,225 @@
+
+/* NeMeSiS SHARK PRO V83 — Live Experience Engine */
+
+.v83-live-shell {
+  display: grid;
+  gap: 16px;
+}
+
+.v83-live-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 26px;
+  border: 1px solid rgba(255,255,255,.10);
+  background:
+    radial-gradient(circle at 85% 20%, rgba(0,255,168,.12), transparent 32%),
+    linear-gradient(135deg, rgba(255,255,255,.080), rgba(255,255,255,.035));
+  box-shadow: 0 24px 70px rgba(0,0,0,.32);
+  padding: 20px;
+  transition: transform .22s ease, border-color .22s ease, background .22s ease;
+}
+
+.v83-live-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0,255,168,.30);
+  background:
+    radial-gradient(circle at 85% 20%, rgba(0,255,168,.17), transparent 34%),
+    linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.045));
+}
+
+.v83-live-card.live {
+  border-color: rgba(0,255,168,.38);
+  box-shadow: 0 26px 90px rgba(0,255,168,.10), 0 24px 70px rgba(0,0,0,.36);
+}
+
+.v83-live-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.v83-league {
+  color: #9eaccb;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .11em;
+  font-weight: 900;
+}
+
+.v83-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 8px 11px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .06em;
+}
+
+.v83-status.live {
+  background: rgba(0,255,168,.12);
+  border: 1px solid rgba(0,255,168,.35);
+  color: #00ffa8;
+}
+
+.v83-status.soon {
+  background: rgba(116,167,255,.12);
+  border: 1px solid rgba(116,167,255,.35);
+  color: #74a7ff;
+}
+
+.v83-status.scheduled {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  color: #dce5fb;
+}
+
+.v83-status.finished {
+  background: rgba(255,255,255,.055);
+  border: 1px solid rgba(255,255,255,.10);
+  color: #9eaccb;
+}
+
+.v83-live-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #00ffa8;
+  box-shadow: 0 0 0 8px rgba(0,255,168,.10);
+  animation: v83Pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes v83Pulse {
+  0%,100% { transform: scale(.9); opacity: .75; }
+  50% { transform: scale(1.2); opacity: 1; }
+}
+
+.v83-teams {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.v83-team {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: clamp(19px, 3vw, 28px);
+  font-weight: 950;
+  letter-spacing: -.035em;
+}
+
+.v83-crest {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgba(0,255,168,.18), rgba(116,167,255,.14));
+  border: 1px solid rgba(255,255,255,.10);
+  font-size: 15px;
+}
+
+.v83-match-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.v83-meta-pill {
+  border-radius: 999px;
+  padding: 8px 11px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.06);
+  color: #c8d3ea;
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.v83-meta-pill.hot {
+  border-color: rgba(255,209,102,.30);
+  color: #ffd166;
+  background: rgba(255,209,102,.10);
+}
+
+.v83-meta-pill.ai {
+  border-color: rgba(0,255,168,.30);
+  color: #00ffa8;
+  background: rgba(0,255,168,.10);
+}
+
+.v83-bottom {
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  gap: 14px;
+  align-items: end;
+  margin-top: 16px;
+}
+
+.v83-momentum {
+  padding: 14px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.055);
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.v83-momentum-bar {
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.v83-momentum-bar span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #00ffa8, #74a7ff);
+}
+
+.v83-odd-box {
+  text-align: right;
+  padding: 14px;
+  border-radius: 18px;
+  background: rgba(0,255,168,.08);
+  border: 1px solid rgba(0,255,168,.20);
+}
+
+.v83-odd-label {
+  color: #9eaccb;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: .10em;
+  font-weight: 900;
+}
+
+.v83-odd-value {
+  font-size: 32px;
+  font-weight: 1000;
+  color: #00ffa8;
+  margin-top: 4px;
+}
+
+.v83-refresh-note {
+  color: #9eaccb;
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+@media (max-width: 720px) {
+  .v83-live-card {
+    border-radius: 20px;
+    padding: 16px;
+  }
+  .v83-bottom {
+    grid-template-columns: 1fr;
+  }
+  .v83-odd-box {
+    text-align: left;
+  }
+}

@@ -7310,3 +7310,13 @@ try:
 except Exception as e:
     print("[V82 Timezone] blueprint warning:", e)
 # -------------------------------------------------------------------
+
+# -------------------------------------------------------------------
+# V83 LIVE EXPERIENCE ENGINE - safe registration
+# -------------------------------------------------------------------
+try:
+    from live_experience_v83.routes import live_experience_v83_bp
+    app.register_blueprint(live_experience_v83_bp)
+except Exception as e:
+    print("[V83 Live Experience] blueprint warning:", e)
+# -------------------------------------------------------------------
