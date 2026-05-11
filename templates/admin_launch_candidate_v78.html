@@ -1,6 +1,5 @@
 
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>V78 Launch Candidate</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/static/css/v70_premium_ui.css"><link rel="stylesheet" href="/static/css/v90_real_data_purge.css">
-</head><body>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>V78 Launch Candidate</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/static/css/v70_premium_ui.css"></head><body>
 <main class="nsp-shell" style="padding:24px 0 40px;">
 <section class="nsp-hero"><span class="nsp-eyebrow">🏁 V78 Launch Candidate</span><h1 class="nsp-title">Candidato de lanzamiento</h1><p class="nsp-subtitle">Revisión final antes de beta real. Stripe sigue bloqueado para maximizar calidad antes de cobrar.</p></section>
 <section class="nsp-grid" style="margin-top:18px;">
@@ -11,5 +10,4 @@
 </section>
 <section class="nsp-card" style="margin-top:18px;"><h2>Checklist final</h2><table><thead><tr><th>Área</th><th>Estado</th><th>Detalle</th></tr></thead><tbody>{% for c in status.checks %}<tr><td>{{ c.area }}</td><td>{% if c.status == "OK" %}<span class="nsp-pill ok">OK</span>{% else %}<span class="nsp-pill warn">REVISAR</span>{% endif %}</td><td>{{ c.description }}</td></tr>{% endfor %}</tbody></table></section>
 <section class="nsp-card" style="margin-top:18px;"><h2>Tablas críticas</h2><table><thead><tr><th>Tabla</th><th>Registros</th></tr></thead><tbody>{% for t in status.tables %}<tr><td>{{ t.table }}</td><td>{{ t.count if t.count is not none else "No detectada aún" }}</td></tr>{% endfor %}</tbody></table></section>
-</main><nav class="nsp-mobile-bottom"><a href="/">Inicio</a><a href="/admin/performance">V77</a><a href="/admin/launch-candidate">V78</a><a href="/admin/launch">Beta</a></nav><script src="/static/js/v70_premium_ui.js"></script><script src="/static/js/v90_real_data_purge.js"></script>
-</body></html>
+</main><nav class="nsp-mobile-bottom"><a href="/">Inicio</a><a href="/admin/performance">V77</a><a href="/admin/launch-candidate">V78</a><a href="/admin/launch">Beta</a></nav><script src="/static/js/v70_premium_ui.js"></script></body></html>

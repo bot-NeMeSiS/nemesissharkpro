@@ -3329,14 +3329,10 @@ def send_result_alert(pick_id, status, result_score=""):
     platform["personalized"] = user_result
     return platform
 
-@app.route('/')
-@app.route('/inicio')
-def inicio():
-    from real_data_purge_v90.purge_engine import build_view_model, purge_legacy_db
-    try: purge_legacy_db()
-    except Exception: pass
-    force = request.args.get('force','false').lower() == 'true'
-    return render_template('v90_public_real_only.html', vm=build_view_model('inicio', force=force))
+# V91 disabled legacy route("/")
+def home():
+    return render_template("index.html", commercial_plans=COMMERCIAL_PLANS)
+
 
 @app.route("/version")
 def version():
@@ -3595,7 +3591,7 @@ def get_user_dashboard(user_id):
 
 
 @app.route("/clientes")
-@app.route("/dashboard")
+# V91 disabled legacy route("/dashboard")
 def clientes():
     auto_refresh_real_live_data(force=False)
     auto_settle_and_notify_finished_picks()
@@ -3792,14 +3788,31 @@ def api_live_results():
     return jsonify({"ok": True, "settlement": result, "snapshot": live_results_snapshot(limit=12)})
 
 
-@app.route('/picks')
-@app.route('/picks-hoy')
+# V90 disabled # V91 disabled legacy route("/picks")
 def picks():
-    from real_data_purge_v90.purge_engine import build_view_model, purge_legacy_db
-    try: purge_legacy_db()
-    except Exception: pass
-    force = request.args.get('force','false').lower() == 'true'
-    return render_template('v90_public_real_only.html', vm=build_view_model('picks', force=force))
+    """
+    V89.1: la pantalla pública de picks ya NO lee la tabla antigua de picks.
+    Lee el Real Match Engine. Si The Odds API no devuelve datos reales,
+    no muestra demos ni fallback inventado.
+    """
+    try:
+        from real_match_v89.real_match_engine import get_real_feed
+        force = request.args.get("force", "false").lower() == "true"
+        feed = get_real_feed(force=force)
+        return render_template("real_matches_v89.html", feed=feed, page_mode="picks")
+    except Exception as e:
+        feed = {
+            "ok": False,
+            "source": "none",
+            "message": "No hay picks reales disponibles ahora mismo. No se muestran demos.",
+            "error": str(e),
+            "matches": [],
+            "buckets": {"live": [], "today": [], "upcoming": []},
+            "counts": {"total": 0, "live": 0, "today": 0, "upcoming": 0},
+            "generated_at": datetime.utcnow().isoformat() if "datetime" in globals() else "",
+        }
+        return render_template("real_matches_v89.html", feed=feed, page_mode="picks")
+
 
 @app.route("/clasificaciones")
 def clasificaciones():
@@ -3821,15 +3834,30 @@ def api_standings():
     return jsonify({"ok": True, "status": standings_status(), "refresh": refresh_status, "groups": get_standings_groups(q)})
 
 
-@app.route('/partidos')
-@app.route('/hoy')
-@app.route('/partidos-hoy')
+# V90 disabled # V91 disabled legacy route("/partidos")
 def partidos():
-    from real_data_purge_v90.purge_engine import build_view_model, purge_legacy_db
-    try: purge_legacy_db()
-    except Exception: pass
-    force = request.args.get('force','false').lower() == 'true'
-    return render_template('v90_public_real_only.html', vm=build_view_model('partidos', force=force))
+    """
+    V89.1: la pantalla principal de partidos queda conectada al Real Match Engine.
+    Regla dura: datos reales o pantalla vacía con aviso. Nunca demos.
+    """
+    try:
+        from real_match_v89.real_match_engine import get_real_feed
+        force = request.args.get("force", "false").lower() == "true"
+        feed = get_real_feed(force=force)
+        return render_template("real_matches_v89.html", feed=feed, page_mode="partidos")
+    except Exception as e:
+        feed = {
+            "ok": False,
+            "source": "none",
+            "message": "No hay partidos reales disponibles ahora mismo. No se muestran demos.",
+            "error": str(e),
+            "matches": [],
+            "buckets": {"live": [], "today": [], "upcoming": []},
+            "counts": {"total": 0, "live": 0, "today": 0, "upcoming": 0},
+            "generated_at": datetime.utcnow().isoformat() if "datetime" in globals() else "",
+        }
+        return render_template("real_matches_v89.html", feed=feed, page_mode="partidos")
+
 
 @app.route("/partido/<int:pick_id>")
 def partido_detalle(pick_id):
@@ -7396,17 +7424,134 @@ def api_real_only_proof():
         }), 500
 # -------------------------------------------------------------------
 
+try:
+    from legacy_kill_v90.routes import legacy_kill_v90_bp
+    app.register_blueprint(legacy_kill_v90_bp)
+except Exception as e:
+    print("[V90 Legacy Kill] blueprint warning:", e)
+
+
+# V91 disabled legacy route("/")
+# V91 disabled legacy route("/inicio")
+# V91 disabled legacy route("/dashboard")
+def v90_real_only_home():
+    from legacy_kill_v90.guard import get_real_feed_safe
+    return render_template("real_only_home_v90.html", feed=get_real_feed_safe(False))
+
+# V91 disabled legacy route("/partidos")
+# V91 disabled legacy route("/picks")
+# V91 disabled legacy route("/hoy")
+# V91 disabled legacy route("/partidos-hoy")
+# V91 disabled legacy route("/picks-hoy")
+# V91 disabled legacy route("/en-directo")
+def v90_real_only_list():
+    from legacy_kill_v90.guard import get_real_feed_safe
+    force = request.args.get("force", "false").lower() == "true"
+    return render_template("real_matches_v89.html", feed=get_real_feed_safe(force), page_mode="real_only")
+
+# V91 disabled legacy route("/partido/<match_id>")
+# V91 disabled legacy route("/partido/<int:match_id>")
+# V91 disabled legacy route("/pick/<match_id>")
+# V91 disabled legacy route("/pick/<int:match_id>")
+# V91 disabled legacy route("/analisis/<match_id>")
+# V91 disabled legacy route("/analisis/<int:match_id>")
+def v90_real_only_detail(match_id):
+    from legacy_kill_v90.guard import find_real_match
+    match, feed = find_real_match(match_id)
+    if not match:
+        return render_template("legacy_real_only_empty_v90.html", title="Partido no disponible en feed real", feed=feed), 404
+    return render_template("real_match_detail_v90.html", match=match, feed=feed)
+
+try:
+    from legacy_kill_v90.guard import purge_fake_db
+    purge_fake_db(get_db if "get_db" in globals() else None)
+except Exception as e:
+    print("[V90 startup purge warning]", e)
+
+
 # -------------------------------------------------------------------
-# V90 REAL DATA PURGE - safe registration
+# V91 REAL CORE ENGINE — SINGLE SOURCE OF TRUTH
 # -------------------------------------------------------------------
 try:
-    from real_data_purge_v90.routes import real_data_purge_v90_bp
-    app.register_blueprint(real_data_purge_v90_bp)
+    from core.routes import real_core_v91_bp
+    app.register_blueprint(real_core_v91_bp)
 except Exception as e:
-    print('[V90 Real Data Purge] blueprint warning:', e)
+    print("[V91 Real Core] blueprint warning:", e)
+
+@app.route("/")
+@app.route("/inicio")
+@app.route("/dashboard")
+def v91_home():
+    from core.real_core_engine import RealCoreEngine
+    feed = RealCoreEngine.fetch(force=False)
+    return render_template("real_core_home_v91.html", feed=feed)
+
+@app.route("/partidos")
+@app.route("/hoy")
+@app.route("/partidos-hoy")
+def v91_partidos():
+    from core.real_core_engine import RealCoreEngine
+    force = request.args.get("force", "false").lower() == "true"
+    feed = RealCoreEngine.fetch(force=force)
+    return render_template(
+        "real_core_feed_v91.html",
+        feed=feed,
+        page_mode="partidos",
+        refresh_url="/partidos?force=true"
+    )
+
+@app.route("/picks")
+@app.route("/picks-hoy")
+def v91_picks():
+    from core.real_core_engine import RealCoreEngine
+    force = request.args.get("force", "false").lower() == "true"
+    feed = RealCoreEngine.fetch(force=force)
+    return render_template(
+        "real_core_feed_v91.html",
+        feed=feed,
+        page_mode="picks",
+        refresh_url="/picks?force=true"
+    )
+
+@app.route("/en-directo")
+def v91_live():
+    from core.real_core_engine import RealCoreEngine
+    force = request.args.get("force", "false").lower() == "true"
+    feed = RealCoreEngine.fetch(force=force)
+    live_only = dict(feed)
+    live_only["matches"] = feed.get("buckets", {}).get("live", [])
+    live_only["counts"] = {
+        "total": len(live_only["matches"]),
+        "live": len(live_only["matches"]),
+        "today": 0,
+        "upcoming": 0,
+    }
+    if not live_only["matches"]:
+        live_only["ok"] = False
+        live_only["message"] = "No hay directos reales ahora mismo. No se muestran demos."
+    return render_template(
+        "real_core_feed_v91.html",
+        feed=live_only,
+        page_mode="live",
+        refresh_url="/en-directo?force=true"
+    )
+
+@app.route("/partido/<match_id>")
+@app.route("/partido/<int:match_id>")
+@app.route("/pick/<match_id>")
+@app.route("/pick/<int:match_id>")
+@app.route("/analisis/<match_id>")
+@app.route("/analisis/<int:match_id>")
+def v91_detail(match_id):
+    from core.real_core_engine import RealCoreEngine
+    match, feed = RealCoreEngine.find(match_id, force=False)
+    if not match:
+        return render_template("real_core_empty_v91.html", title="Partido no disponible en feed real", feed=feed), 404
+    return render_template("real_core_detail_v91.html", match=match, feed=feed)
+
 try:
-    from real_data_purge_v90.purge_engine import purge_legacy_db
-    purge_legacy_db()
+    from core.real_core_engine import purge_legacy_db
+    purge_legacy_db(get_db if "get_db" in globals() else None)
 except Exception as e:
-    print('[V90 purge startup warning]', e)
+    print("[V91 purge warning]", e)
 # -------------------------------------------------------------------

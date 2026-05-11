@@ -1,0 +1,36 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>{{ match.home_team }} vs {{ match.away_team }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/css/v70_premium_ui.css">
+  <link rel="stylesheet" href="/static/css/v91_real_core.css">
+</head>
+<body>
+<main class="nsp-shell" style="padding:24px 0 40px;">
+  <a class="nsp-btn secondary" href="/partidos">Volver</a>
+  <section class="v91-detail">
+    <div class="v91-league">{{ match.league }} · {{ match.status }}</div>
+    <div class="v91-detail-date">{{ match.date }} · {{ match.date_full }} · {{ match.time }}</div>
+    <h1>{{ match.home_team }} <span>vs</span> {{ match.away_team }}</h1>
+    <div class="v91-tags">
+      <span>Partido real validado</span>
+      <span>{{ match.provider }}</span>
+      <span>{{ match.bookmaker or "bookmaker pendiente" }}</span>
+    </div>
+
+    <div class="v91-detail-grid">
+      <article><b>Apuesta</b><strong>{{ match.market }}</strong></article>
+      <article><b>Cuota</b><strong>{{ match.odds or "Pendiente" }}</strong></article>
+      <article><b>SHARK Score</b><strong>{{ match.shark_score }}</strong></article>
+      <article><b>Riesgo</b><strong>{{ match.risk }}</strong></article>
+      <article><b>Stake</b><strong>{{ match.stake }}</strong></article>
+      <article><b>Fuente</b><strong>{{ match.source }}</strong></article>
+    </div>
+  </section>
+</main>
+<script src="/static/js/v91_real_core.js"></script>
+</body>
+</html>
