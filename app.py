@@ -2589,9 +2589,7 @@ def send_platform_alert(kind, title, body):
             url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
             payload = {
                 "chat_id": TELEGRAM_CHAT_ID,
-                "text": f"🦈 <b>{title}</b>
-
-{body}",
+                "text": f"🦈 <b>{title}</b>\n\n{body}",
                 "parse_mode": "HTML",
                 "disable_web_page_preview": True,
             }
@@ -2604,8 +2602,7 @@ def send_platform_alert(kind, title, body):
             results.append({"channel": "telegram", "status": "error"})
     if DISCORD_WEBHOOK_URL:
         try:
-            r = requests.post(DISCORD_WEBHOOK_URL, json={"content": f"🦈 **{title}**
-{body}"}, timeout=5)
+            r = requests.post(DISCORD_WEBHOOK_URL, json={"content": f"🦈 **{title}**\n{body}"}, timeout=5)
             status = "ok" if r.ok else f"error_{r.status_code}"
             log_alert(kind, title, body, "discord", status, {"status_code": r.status_code})
             results.append({"channel": "discord", "status": status})
@@ -2838,8 +2835,7 @@ def build_member_pick_message(p, user_row):
         if reasons:
             msg += ["", "📌 <b>Por qué SHARK la ve interesante:</b>"] + [f"• {_html_escape(r)}" for r in reasons[:3]]
     msg += ["", "Recuerda: apuesta solo si lo entiendes claro y respeta tu banca."]
-    return "
-".join(msg)
+    return "\n".join(msg)
 
 
 def build_channel_pick_message(p, plan="PRO"):
@@ -2881,8 +2877,7 @@ def build_channel_pick_message(p, plan="PRO"):
     if plan == "FREE":
         lines += ["", "🔒 En PRO/ELITE verás stake, motivos completos y señales prioritarias."]
     lines += ["", "Juego responsable. Si no lo ves claro, no entres."]
-    return "
-".join(lines)
+    return "\n".join(lines)
 
 
 def send_pick_to_plan_channels(pick_id):
@@ -3054,8 +3049,7 @@ def build_pick_alert_message(p, prefix="Nueva señal SHARK"):
         "",
         "Juego responsable: no subas stake si no entiendes la apuesta.",
     ]
-    return "
-".join(lines)
+    return "\n".join(lines)
 
 
 
@@ -3273,8 +3267,7 @@ def build_result_message(p, status, result_score="", plan="PRO"):
         lines.append("Rojo controlado. Lo importante es seguir la gestión de banca.")
     else:
         lines.append("Apuesta anulada. No cuenta como ganada ni perdida.")
-    return "
-".join(lines)
+    return "\n".join(lines)
 
 
 def send_result_to_plan_channels(pick_id, status, result_score=""):
@@ -5363,8 +5356,7 @@ def admin_alert_test_plan():
         return gate
     plan = normalize_plan(request.form.get("plan", "PRO"), allow_admin=True)
     chat_id = telegram_channel_chat_id(plan) or TELEGRAM_TEST_CHAT_ID or TELEGRAM_CHAT_ID
-    body = "
-".join([
+    body = "\n".join([
         f"🦈 <b>Prueba Telegram {plan}</b>",
         "Este mensaje confirma que el canal de este plan está conectado.",
         "✅ Si lo ves aquí, NeMeSiS ya puede enviar señales automáticamente.",
@@ -5913,8 +5905,7 @@ def api_telegram_test_user():
     if not chat_id:
         return jsonify({"ok": False, "message": "Primero conecta Telegram."})
     plan = normalize_plan(safe_row_get(full, "plan", "FREE"), allow_admin=True)
-    body = "
-".join([
+    body = "\n".join([
         f"🦈 <b>Telegram conectado correctamente</b>",
         f"Tu plan: <b>{plan}</b>",
         "A partir de ahora recibirás señales según tu membresía.",
@@ -6181,19 +6172,15 @@ def local_ai_answer(message, context):
         if filtered_picks:
             p = filtered_picks[0]
             return (
-                "He buscado esa referencia solo dentro de datos reales activos. Coincidencia encontrada:
-"
-                f"🦈 {format_pick_line(p)}
-"
+                "He buscado esa referencia solo dentro de datos reales activos. Coincidencia encontrada:\n"
+                f"🦈 {format_pick_line(p)}\n"
                 "Te abro Picks para revisarlo completo."
             )
         if filtered_matches:
             m = filtered_matches[0]
             return (
-                "He buscado ese partido solo dentro de partidos reales cargados. Coincidencia encontrada:
-"
-                f"⚡ {m.get('title','Partido')} · {m.get('league','')} · {m.get('live_status','PROGRAMADO')} {m.get('live_score','')} {m.get('live_minute','')}
-"
+                "He buscado ese partido solo dentro de partidos reales cargados. Coincidencia encontrada:\n"
+                f"⚡ {m.get('title','Partido')} · {m.get('league','')} · {m.get('live_status','PROGRAMADO')} {m.get('live_score','')} {m.get('live_minute','')}\n"
                 "Te abro Partidos para verlo completo."
             )
         return (
@@ -6211,10 +6198,7 @@ def local_ai_answer(message, context):
             score = f" · {m.get('live_score')}" if m.get("live_score") else ""
             minute = f" · {m.get('live_minute')}" if m.get("live_minute") else ""
             lines.append(f"⚡ {m.get('title','Partido')} · {status}{score}{minute}")
-        return "Partidos reales encontrados:
-" + "
-".join(lines) + "
-Pulsa el botón para abrir el centro live."
+        return "Partidos reales encontrados:\n" + "\n".join(lines) + "\nPulsa el botón para abrir el centro live."
 
     if any(k in text for k in ["top", "score", "shark", "valor", "cuota", "cuotas", "ev", "seguro", "mejor", "recomiendas", "recomendacion", "recomendacion", "pick de hoy", "picks de hoy", "picks"]):
         items = filtered_picks or picks
@@ -6224,18 +6208,12 @@ Pulsa el botón para abrir el centro live."
         stake, pct = recommended_stake(balance, plan, p.get("quality"))
         extra = ""
         if len(items) > 1:
-            extra = "
-Más opciones reales:
-" + "
-".join("• " + format_pick_line(x) for x in items[1:4])
+            extra = "\nMás opciones reales:\n" + "\n".join("• " + format_pick_line(x) for x in items[1:4])
         return (
-            "Mi lectura real ahora mismo:
-"
-            f"🦈 {format_pick_line(p)}
-"
+            "Mi lectura real ahora mismo:\n"
+            f"🦈 {format_pick_line(p)}\n"
             f"Stake sugerido para {plan}: {pct:.2f}% de banca, aprox. {stake:.2f}€."
-            f"{extra}
-No es garantía: es prioridad por valor/riesgo."
+            f"{extra}\nNo es garantía: es prioridad por valor/riesgo."
         )
 
     if any(k in text for k in ["tilt", "ansiedad", "perdidas", "perdida", "recuperar", "all in"]):
@@ -6425,17 +6403,11 @@ def shark_ai_api():
     if not access["can_use_openai"]:
         suffix = ""
         if access["reason"] == "free_local_only":
-            suffix = "
-
-🔒 GPT premium está reservado para PRO y ELITE. Tu respuesta actual está en modo local para no generar coste API."
+            suffix = "\n\n🔒 GPT premium está reservado para PRO y ELITE. Tu respuesta actual está en modo local para no generar coste API."
         elif access["reason"] == "daily_limit_reached":
-            suffix = "
-
-⏳ Has alcanzado tu límite GPT diario del plan PRO. Sigo ayudándote en modo local."
+            suffix = "\n\n⏳ Has alcanzado tu límite GPT diario del plan PRO. Sigo ayudándote en modo local."
         elif access["reason"] == "openai_not_configured":
-            suffix = "
-
-⚙️ OpenAI no está configurado en Render; usando fallback local."
+            suffix = "\n\n⚙️ OpenAI no está configurado en Render; usando fallback local."
         answer_local = fallback + suffix
         save_ai_log(message, answer_local, "local")
         return jsonify({"ok": True, "answer": answer_local, "openai": False, "context_used": True, "ai_access": access, "route_hint": smart_route_hint(message), "snapshot": get_ai_real_snapshot()})
@@ -7030,10 +7002,7 @@ def admin_telegram_test():
     if not is_admin():
         return redirect('/admin-login')
     chat_id = request.form.get('chat_id','').strip() or TELEGRAM_TEST_CHAT_ID or TELEGRAM_CHAT_ID
-    body = "🦈 <b>Prueba NeMeSiS SHARK PRO</b>
-
-✅ Telegram está conectado correctamente.
-Si ves este mensaje, el canal y el bot funcionan."
+    body = "🦈 <b>Prueba NeMeSiS SHARK PRO</b>\n\n✅ Telegram está conectado correctamente.\nSi ves este mensaje, el canal y el bot funcionan."
     send_telegram_message_with_retry(chat_id, body, kind='telegram_test', title='Prueba Telegram', payload={'manual': True})
     return redirect('/admin/telegram')
 
@@ -7644,7 +7613,6 @@ try:
 except Exception as exc:
     print("V98 history blueprint not loaded:", exc)
 
-
 # -------------------------------------------------------------------
 # V99-V104 CONSOLIDATED MODULES
 # -------------------------------------------------------------------
@@ -7686,4 +7654,3 @@ def v103_manifest():
 def v103_service_worker():
     return send_from_directory("public", "sw.js", mimetype="application/javascript")
 # -------------------------------------------------------------------
-
