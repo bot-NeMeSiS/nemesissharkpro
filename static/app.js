@@ -1471,3 +1471,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }catch(e){}
 })();
+
+
+// V89.1_REAL_ONLY_AI_CARDS
+// Evita que el widget AI empuje al usuario a tarjetas antiguas si no hay feed real.
+window.NSP_REAL_ONLY_MODE = true;

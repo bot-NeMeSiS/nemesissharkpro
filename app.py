@@ -3787,43 +3787,31 @@ def api_live_results():
     result = auto_settle_and_notify_finished_picks()
     return jsonify({"ok": True, "settlement": result, "snapshot": live_results_snapshot(limit=12)})
 
+
 @app.route("/picks")
 def picks():
-    auto_refresh_real_live_data(force=False)
-    q = request.args.get("q", "").strip().lower()
-    sport_filter = request.args.get("sport", "football").strip().lower()
-    date_filter = request.args.get("date", "").strip().lower()
-    league_filter = request.args.get("league", "").strip().lower()
-    conn = get_db()
-    cur = conn.cursor()
-    where = " WHERE active=1 " + real_only_clause()
-    params = []
-    if sport_filter not in ("all", "todos") and not any(x in q for x in ["nba", "basket", "basketball"]):
-        where += football_priority_clause(default_only=True)
-    if q:
-        where += " AND (LOWER(title) LIKE ? OR LOWER(league) LIKE ? OR LOWER(pick) LIKE ? OR LOWER(sport) LIKE ?)"
-        like = f"%{q}%"; params += [like, like, like, like]
-    if league_filter:
-        where += " AND (LOWER(league) LIKE ? OR LOWER(sport) LIKE ?)"
-        like = f"%{league_filter}%"; params += [like, like]
-    if date_filter:
-        today = madrid_date_today()
-        if date_filter == "today":
-            where += " AND substr(COALESCE(kickoff_time,''),1,10)=?"; params.append(today.isoformat())
-        elif date_filter == "tomorrow":
-            where += " AND substr(COALESCE(kickoff_time,''),1,10)=?"; params.append((today + timedelta(days=1)).isoformat())
-        elif date_filter in ("dayafter", "pasado"):
-            where += " AND substr(COALESCE(kickoff_time,''),1,10)=?"; params.append((today + timedelta(days=2)).isoformat())
-        elif date_filter in ("week", "7d"):
-            where += " AND substr(COALESCE(kickoff_time,''),1,10) BETWEEN ? AND ?"; params += [today.isoformat(), (today + timedelta(days=7)).isoformat()]
-    sql = "SELECT * FROM picks " + where + " ORDER BY " + football_order_sql() + " CASE UPPER(COALESCE(live_status,'')) WHEN 'EN DIRECTO' THEN 0 WHEN 'LIVE' THEN 0 WHEN 'PROGRAMADO' THEN 1 ELSE 2 END, CASE WHEN COALESCE(kickoff_time,'')='' THEN 1 ELSE 0 END, kickoff_time ASC, CAST(COALESCE(score,0) AS INTEGER) DESC, id DESC LIMIT 120"
-    cur.execute(sql, params)
-    picks = cur.fetchall(); conn.close()
-    if not picks and ODDS_API_KEY:
-        auto_refresh_real_live_data(force=True)
-        conn=get_db(); cur=conn.cursor(); cur.execute(sql, params); picks=cur.fetchall(); conn.close()
-    return render_template("picks.html", picks=picks, q=q, sport_filter=sport_filter, date_filter=date_filter, league_filter=league_filter)
-
+    """
+    V89.1: la pantalla pública de picks ya NO lee la tabla antigua de picks.
+    Lee el Real Match Engine. Si The Odds API no devuelve datos reales,
+    no muestra demos ni fallback inventado.
+    """
+    try:
+        from real_match_v89.real_match_engine import get_real_feed
+        force = request.args.get("force", "false").lower() == "true"
+        feed = get_real_feed(force=force)
+        return render_template("real_matches_v89.html", feed=feed, page_mode="picks")
+    except Exception as e:
+        feed = {
+            "ok": False,
+            "source": "none",
+            "message": "No hay picks reales disponibles ahora mismo. No se muestran demos.",
+            "error": str(e),
+            "matches": [],
+            "buckets": {"live": [], "today": [], "upcoming": []},
+            "counts": {"total": 0, "live": 0, "today": 0, "upcoming": 0},
+            "generated_at": datetime.utcnow().isoformat() if "datetime" in globals() else "",
+        }
+        return render_template("real_matches_v89.html", feed=feed, page_mode="picks")
 
 
 @app.route("/clasificaciones")
@@ -3845,62 +3833,30 @@ def api_standings():
     q = request.args.get("q", "").strip().lower()
     return jsonify({"ok": True, "status": standings_status(), "refresh": refresh_status, "groups": get_standings_groups(q)})
 
+
 @app.route("/partidos")
 def partidos():
-    refresh_status = auto_refresh_real_live_data(force=False)
-    q = request.args.get("q", "").strip().lower()
-    date_filter = request.args.get("date", "").strip().lower()
-    league_filter = request.args.get("league", "").strip().lower()
-    sport_filter = request.args.get("sport", "football").strip().lower()
-    conn = get_db(); cur = conn.cursor()
-    base_where = """
-        WHERE COALESCE(active,1)=1
-          AND COALESCE(title,'')!=''
-    """ + real_only_clause()
-    params = []
-    if sport_filter not in ("all", "todos") and not any(x in q for x in ["nba", "basket", "basketball"]):
-        base_where += football_priority_clause(default_only=True)
-    if q:
-        base_where += """
-          AND (LOWER(title) LIKE ? OR LOWER(league) LIKE ? OR LOWER(pick) LIKE ? OR LOWER(sport) LIKE ? OR LOWER(live_status) LIKE ?)
-        """
-        like = f"%{q}%"; params += [like, like, like, like, like]
-    if league_filter:
-        base_where += " AND (LOWER(league) LIKE ? OR LOWER(sport) LIKE ?)"
-        like = f"%{league_filter}%"; params += [like, like]
-    if date_filter:
-        today = madrid_date_today()
-        if date_filter == "today":
-            base_where += " AND substr(COALESCE(kickoff_time,''),1,10)=?"; params.append(today.isoformat())
-        elif date_filter == "tomorrow":
-            base_where += " AND substr(COALESCE(kickoff_time,''),1,10)=?"; params.append((today + timedelta(days=1)).isoformat())
-        elif date_filter in ("dayafter", "pasado"):
-            base_where += " AND substr(COALESCE(kickoff_time,''),1,10)=?"; params.append((today + timedelta(days=2)).isoformat())
-        elif date_filter in ("week", "7d"):
-            base_where += " AND substr(COALESCE(kickoff_time,''),1,10) BETWEEN ? AND ?"; params += [today.isoformat(), (today + timedelta(days=7)).isoformat()]
-    sql = """
-        SELECT * FROM picks
-    """ + base_where + """
-        ORDER BY
-""" + football_order_sql() + """
-          CASE UPPER(COALESCE(live_status,''))
-            WHEN 'EN DIRECTO' THEN 0
-            WHEN 'LIVE' THEN 0
-            WHEN 'DESCANSO' THEN 1
-            WHEN 'PROGRAMADO' THEN 2
-            ELSE 3
-          END,
-          CASE WHEN COALESCE(kickoff_time,'')='' THEN 1 ELSE 0 END,
-          kickoff_time ASC,
-          id DESC
-        LIMIT 120
     """
-    cur.execute(sql, params); picks = cur.fetchall(); conn.close()
-    if not picks and ODDS_API_KEY:
-        refresh_status = auto_refresh_real_live_data(force=True)
-        conn=get_db(); cur=conn.cursor(); cur.execute(sql, params); picks=cur.fetchall(); conn.close()
-    return render_template("partidos.html", picks=picks, q=q, sport_filter=sport_filter, date_filter=date_filter, league_filter=league_filter, refresh_status=refresh_status)
-
+    V89.1: la pantalla principal de partidos queda conectada al Real Match Engine.
+    Regla dura: datos reales o pantalla vacía con aviso. Nunca demos.
+    """
+    try:
+        from real_match_v89.real_match_engine import get_real_feed
+        force = request.args.get("force", "false").lower() == "true"
+        feed = get_real_feed(force=force)
+        return render_template("real_matches_v89.html", feed=feed, page_mode="partidos")
+    except Exception as e:
+        feed = {
+            "ok": False,
+            "source": "none",
+            "message": "No hay partidos reales disponibles ahora mismo. No se muestran demos.",
+            "error": str(e),
+            "matches": [],
+            "buckets": {"live": [], "today": [], "upcoming": []},
+            "counts": {"total": 0, "live": 0, "today": 0, "upcoming": 0},
+            "generated_at": datetime.utcnow().isoformat() if "datetime" in globals() else "",
+        }
+        return render_template("real_matches_v89.html", feed=feed, page_mode="partidos")
 
 
 @app.route("/partido/<int:pick_id>")
@@ -7375,4 +7331,95 @@ try:
     app.register_blueprint(real_match_v89_bp)
 except Exception as e:
     print("[V89 Real Match] blueprint warning:", e)
+# -------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------
+# V89.1 REAL MATCH FULL INTEGRATION
+# Corta rutas públicas antiguas y limpia demos heredadas de la DB.
+# -------------------------------------------------------------------
+V891_FAKE_TERMS = [
+    "TEAM A", "TEAM B", "DEMO", "TEST", "EXAMPLE",
+    "LIVERPOOL", "CHELSEA", "RAYO VALLECANO", "GIRONA",
+    "TONDELA", "MOREIRENSE", "09/05/2026", "SATURDAY 09/05/2026"
+]
+
+def v891_purge_legacy_fake_picks():
+    """
+    Desactiva registros heredados sospechosos que NO vengan de una fuente real.
+    No borra datos, solo active=0.
+    """
+    try:
+        conn = get_db()
+        cur = conn.cursor()
+        for term in V891_FAKE_TERMS:
+            like = f"%{term}%"
+            cur.execute("""
+                UPDATE picks
+                SET active=0
+                WHERE (
+                    UPPER(COALESCE(title,'')) LIKE ?
+                    OR UPPER(COALESCE(pick,'')) LIKE ?
+                    OR UPPER(COALESCE(league,'')) LIKE ?
+                    OR UPPER(COALESCE(kickoff_time,'')) LIKE ?
+                )
+                AND LOWER(COALESCE(source,'')) NOT IN ('the_odds_api','odds_api','api-football','real')
+            """, (like, like, like, like))
+        # Corta registros manuales/fallback con fecha imposible o demasiado futura.
+        cur.execute("""
+            UPDATE picks
+            SET active=0
+            WHERE LOWER(COALESCE(source,'')) IN ('manual','demo','fallback','mock','')
+              AND (
+                COALESCE(kickoff_time,'') LIKE '%2026%'
+                OR UPPER(COALESCE(title,'')) LIKE '%TEAM %'
+                OR UPPER(COALESCE(league,'')) LIKE '%DEMO%'
+              )
+        """)
+        conn.commit()
+        conn.close()
+        return True
+    except Exception as e:
+        print("[V89.1 purge warning]", e)
+        return False
+
+try:
+    v891_purge_legacy_fake_picks()
+except Exception:
+    pass
+
+@app.route("/admin/real-match-hard-reset", methods=["POST", "GET"])
+def admin_real_match_hard_reset():
+    gate = require_admin() if "require_admin" in globals() else None
+    if gate:
+        return gate
+    ok = v891_purge_legacy_fake_picks()
+    return jsonify({"ok": bool(ok), "message": "Legacy fake picks purged / deactivated", "version": "V89.1"})
+
+@app.route("/api/real-only-proof")
+def api_real_only_proof():
+    """
+    Prueba rápida para confirmar que /partidos y /picks ya usan Real Match Engine.
+    """
+    try:
+        from real_match_v89.real_match_engine import get_real_feed
+        feed = get_real_feed(force=False)
+        return jsonify({
+            "ok": True,
+            "version": "V89.1",
+            "public_routes_connected": ["/partidos", "/picks", "/real-matches"],
+            "no_demo_fallback": True,
+            "feed_ok": feed.get("ok"),
+            "counts": feed.get("counts"),
+            "message": feed.get("message"),
+            "error": feed.get("error"),
+        })
+    except Exception as e:
+        return jsonify({
+            "ok": False,
+            "version": "V89.1",
+            "public_routes_connected": ["/partidos", "/picks"],
+            "no_demo_fallback": True,
+            "error": str(e),
+        }), 500
 # -------------------------------------------------------------------

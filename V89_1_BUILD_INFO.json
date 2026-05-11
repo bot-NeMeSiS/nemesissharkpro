@@ -1,0 +1,13 @@
+{
+  "project": "NeMeSiS SHARK PRO",
+  "version": "V89.1",
+  "upgrade": "Real Match Full Integration",
+  "based_on": "NeMeSiS_SHARK_PRO_V89_0_REAL_MATCH_ENGINE_RENDER_READY.zip",
+  "patched": {
+    "picks_route": true,
+    "partidos_route": true,
+    "legacy_purge": true,
+    "proof_api": true
+  },
+  "created_at_utc": "2026-05-11T17:44:31.496032+00:00"
+}
