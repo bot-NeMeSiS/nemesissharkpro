@@ -1,0 +1,1 @@
+Hotfix V104_2 aplicado: corregido unterminated f-string en app.py
