@@ -1,0 +1,9 @@
+{
+  "project": "NeMeSiS SHARK PRO",
+  "version": "V93.0",
+  "upgrade": "Client PRO Real UX",
+  "based_on": "NeMeSiS_SHARK_PRO_V92_0_CLIENT_PANEL_RECOVERY_PRO_RENDER_READY.zip",
+  "created_at_utc": "2026-05-11T21:51:21.131720+00:00",
+  "real_core_only": true,
+  "no_fake_matches": true
+}

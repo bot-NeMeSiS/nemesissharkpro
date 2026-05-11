@@ -1,0 +1,22 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/static/css/v93_pro.css"><title>Mi cuenta V93</title></head><body><div class="nms-app">
+<aside class="nms-side">
+  <div class="nms-brand"><div class="nms-logo">NS</div><div><b>NeMeSiS</b><span>SHARK PRO</span></div></div>
+  <div class="nms-plan"><span>Tu plan</span><strong>{{ vm.user.plan }}</strong><em>{{ vm.user.status }}</em><small>Banca actual {{ vm.user.bankroll }}</small></div>
+  <nav>
+    <a href="/" class="active">Inicio</a>
+    <a href="/picks">Picks hoy</a>
+    <a href="/partidos">Partidos hoy</a>
+    <a href="/en-directo">En directo</a>
+    <a href="/mi-cuenta">Mi cuenta</a>
+    <a href="/admin/real-core">Admin Core</a>
+  </nav>
+</aside>
+<main class="nms-main">
+<header class="nms-top">
+  <a href="/">Inicio</a><a href="/picks">Picks</a><a href="/partidos">Partidos</a><a href="/en-directo">Directos</a><a href="/mi-cuenta">Mi cuenta</a><a href="/api/v93/status">V93</a>
+</header>
+
+<section class="nms-hero compact"><div><span class="nms-badge">MI CUENTA</span><h1>Banca, ROI y perfil SHARK</h1><p>ROI y winrate solo aparecerán cuando exista historial real cerrado.</p></div></section>
+<section class="nms-kpis"><article><span>ROI</span><strong>{{ vm.user.roi }}</strong><small>Real</small></article><article><span>Winrate</span><strong>{{ vm.user.winrate }}</strong><small>Real</small></article><article><span>Banca</span><strong>{{ vm.user.bankroll }}</strong><small>Configurable</small></article><article><span>Perfil</span><strong>{{ vm.user.risk }}</strong><small>{{ vm.user.sport }}</small></article></section>
+<section class="nms-layout"><div class="nms-card"><div class="nms-card-head"><div><span>Banca</span><h2>Control de stake</h2></div></div><input class="nms-input" value="10.00"><button class="nms-btn">Guardar</button></div><div class="nms-card"><div class="nms-card-head"><div><span>Telegram</span><h2>{{ vm.user.telegram }}</h2></div></div><p class="muted">Conexión pendiente. Sin simulaciones.</p></div></section>
+</main></div></body></html>

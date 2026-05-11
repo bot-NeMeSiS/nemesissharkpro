@@ -7566,3 +7566,14 @@ try:
 except Exception as e:
     print("[V92 Client Panel] blueprint warning:", e)
 # -------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------
+# V93 CLIENT PRO REAL UX
+# -------------------------------------------------------------------
+try:
+    from client_panel_v93.routes import client_panel_v93_bp
+    app.register_blueprint(client_panel_v93_bp)
+except Exception as e:
+    print("[V93 Client PRO] blueprint warning:", e)
+# -------------------------------------------------------------------
