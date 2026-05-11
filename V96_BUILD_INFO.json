@@ -1,0 +1,11 @@
+{
+  "version": "V96.0",
+  "name": "LIVE_CENTER_PRO_SHARK_AI_CONVERSATIONAL",
+  "render_ready": true,
+  "github_ready": true,
+  "real_core_only": true,
+  "no_demo_data": true,
+  "new_visual_routes": ["/live-center-pro", "/shark-ai-pro"],
+  "new_api_routes": ["/api/v96/live-center", "/api/v96/shark-ai", "/api/v96/match/<match_id>/reading"],
+  "next_step": "V97 Admin PRO SaaS Center"
+}

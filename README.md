@@ -51,3 +51,14 @@ Comandos útiles:
 python scripts/check_architecture.py
 python scripts/run_tests.py
 ```
+
+
+## V96 — Live Center PRO + SHARK AI Conversacional
+
+- `/live-center-pro` panel live visual premium.
+- `/shark-ai-pro` asistente SHARK conectado al Real Core.
+- `/api/v96/live-center` feed live estructurado.
+- `/api/v96/shark-ai` respuestas sobre picks reales.
+- `/api/v96/match/<match_id>/reading` lectura PRO por partido.
+
+Sigue la regla REAL CORE ONLY: no demos, no datos inventados.
