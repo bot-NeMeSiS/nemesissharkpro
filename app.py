@@ -7326,3 +7326,13 @@ try:
 except Exception as e:
     print("[V84 Premium] blueprint warning:", e)
 # -------------------------------------------------------------------
+
+# -------------------------------------------------------------------
+# V85 MATCH CARDS PRO - safe registration
+# -------------------------------------------------------------------
+try:
+    from match_cards_v85.routes import match_cards_v85_bp
+    app.register_blueprint(match_cards_v85_bp)
+except Exception as e:
+    print("[V85 Match Cards] blueprint warning:", e)
+# -------------------------------------------------------------------

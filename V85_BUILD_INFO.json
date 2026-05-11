@@ -1,0 +1,13 @@
+{
+  "project": "NeMeSiS SHARK PRO",
+  "version": "V85.0",
+  "upgrade": "Match Cards PRO",
+  "based_on": "NeMeSiS_SHARK_PRO_V84_1_RENDER_REQUIREMENTS_FIXED_GITHUB_CLEAN_READY.zip",
+  "patched_apps": [
+    "app.py"
+  ],
+  "patched_templates": [
+    "base.html"
+  ],
+  "created_at_utc": "2026-05-11T00:32:41.991730+00:00"
+}
