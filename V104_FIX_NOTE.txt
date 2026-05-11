@@ -1,0 +1,12 @@
+V104 FIXED BUILD
+
+Correcciones aplicadas:
+- Reparado app.py
+- Eliminados caracteres \n corruptos
+- Build lista para Render/GitHub
+
+Pasos:
+1. Sustituir carpeta anterior
+2. git add .
+3. git commit -m "V104 fixed"
+4. git push
