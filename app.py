@@ -7356,3 +7356,13 @@ try:
 except Exception as e:
     print("[V87 Shark Quality] blueprint warning:", e)
 # -------------------------------------------------------------------
+
+# -------------------------------------------------------------------
+# V88 ADMIN PRODUCTION CENTER - safe registration
+# -------------------------------------------------------------------
+try:
+    from production_center_v88.routes import production_center_v88_bp
+    app.register_blueprint(production_center_v88_bp)
+except Exception as e:
+    print("[V88 Production Center] blueprint warning:", e)
+# -------------------------------------------------------------------

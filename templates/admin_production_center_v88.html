@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>V88 Production Center - NeMeSiS SHARK PRO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/css/v70_premium_ui.css">
+  <link rel="stylesheet" href="/static/css/v88_production_center.css">
+</head>
+<body>
+<main class="nsp-shell" style="padding:24px 0 40px;">
+  <section class="nsp-hero">
+    <span class="nsp-eyebrow">⚙️ V88 Admin Production Center</span>
+    <h1 class="nsp-title">{{ status.status }}</h1>
+    <p class="nsp-subtitle">
+      Centro de control de producción: Render, DB, APIs, Telegram, variables críticas y health checks.
+    </p>
+    <div class="v88-action-list" style="margin-top:20px;">
+      {% for a in status.quick_actions %}
+      <a class="v88-action" href="{{ a.url }}">{{ a.name }}</a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="v88-grid" style="margin-top:18px;">
+    <article class="v88-card">
+      <div class="v88-label">Production Score</div>
+      <div class="v88-score">{{ status.score.score }}</div>
+      <span class="v88-status" data-v88-status="{{ status.score.label }}">{{ status.score.label }}</span>
+    </article>
+    <article class="v88-card">
+      <div class="v88-label">DB</div>
+      <div style="font-size:24px;font-weight:1000;color:white;">{{ status.db.status }}</div>
+      <p class="v88-muted">{{ status.db.db_path }} · {{ status.db.latency_ms }} ms</p>
+    </article>
+    <article class="v88-card">
+      <div class="v88-label">Tablas DB</div>
+      <div style="font-size:36px;font-weight:1000;color:white;">{{ status.db.tables|length }}</div>
+    </article>
+    <article class="v88-card">
+      <div class="v88-label">Generado</div>
+      <p class="v88-muted">{{ status.generated_at }}</p>
+    </article>
+  </section>
+
+  <section class="nsp-card" style="margin-top:18px;">
+    <h2>Servicios</h2>
+    <div class="v88-table-wrap">
+      <table>
+        <thead><tr><th>Servicio</th><th>Estado</th><th>Descripción</th></tr></thead>
+        <tbody>
+        {% for s in status.services %}
+          <tr>
+            <td>{{ s.service }}</td>
+            <td><span class="v88-status" data-v88-status="{{ s.status }}">{{ s.status }}</span></td>
+            <td>{{ s.description }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="nsp-card" style="margin-top:18px;">
+    <h2>Archivos de deploy</h2>
+    <div class="v88-table-wrap">
+      <table>
+        <thead><tr><th>Archivo</th><th>Estado</th></tr></thead>
+        <tbody>
+        {% for f in status.files %}
+          <tr>
+            <td>{{ f.path }}</td>
+            <td><span class="v88-status" data-v88-status="{{ f.status }}">{{ f.status }}</span></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="nsp-card" style="margin-top:18px;">
+    <h2>Variables críticas</h2>
+    <div class="v88-table-wrap">
+      <table>
+        <thead><tr><th>Variable</th><th>Presente</th><th>Valor</th></tr></thead>
+        <tbody>
+        {% for e in status.env.critical %}
+          <tr>
+            <td>{{ e.key }}</td>
+            <td><span class="v88-status" data-v88-status="{{ e.status }}">{{ e.status }}</span></td>
+            <td>{{ e.masked or "" }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="nsp-card" style="margin-top:18px;">
+    <h2>Feature flags</h2>
+    <div class="v88-table-wrap">
+      <table>
+        <thead><tr><th>Flag</th><th>Valor</th><th>Activo</th></tr></thead>
+        <tbody>
+        {% for f in status.env.feature_flags %}
+          <tr>
+            <td>{{ f.key }}</td>
+            <td>{{ f.value }}</td>
+            <td><span class="v88-status" data-v88-status="{% if f.enabled %}OK{% else %}WARN{% endif %}">{% if f.enabled %}ON{% else %}OFF{% endif %}</span></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+<script src="/static/js/v70_premium_ui.js"></script>
+<script src="/static/js/v88_production_center.js"></script>
+</body>
+</html>

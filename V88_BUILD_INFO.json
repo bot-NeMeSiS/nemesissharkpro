@@ -1,0 +1,13 @@
+{
+  "project": "NeMeSiS SHARK PRO",
+  "version": "V88.0",
+  "upgrade": "Admin Production Center",
+  "based_on": "NeMeSiS_SHARK_PRO_V87_0_SHARK_AI_PICK_QUALITY_RENDER_READY.zip",
+  "patched_apps": [
+    "app.py"
+  ],
+  "patched_templates": [
+    "base.html"
+  ],
+  "created_at_utc": "2026-05-11T00:45:05.510776+00:00"
+}
