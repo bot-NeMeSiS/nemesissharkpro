@@ -1,0 +1,38 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="v105-page">
+  <section class="v105-hero">
+    <div>
+      <p class="v105-kicker">V105 · AUTO ALERTS ENGINE</p>
+      <h1>SHARK Auto Alerts Engine</h1>
+      <p>Convierte candidatos del Auto Pick Engine en alertas premium listas para admin, Telegram, dashboard y futuras push notifications.</p>
+    </div>
+    <div class="v105-badge">APPROVAL READY</div>
+  </section>
+
+  <section class="v105-grid">
+    <article class="v105-card">
+      <h2>🚨 Prioridades</h2>
+      <p>Clasifica alertas como CRITICAL, HIGH, MEDIUM o LOW según score, tier y riesgo.</p>
+    </article>
+
+    <article class="v105-card">
+      <h2>🛡️ Control admin</h2>
+      <p>Las alertas fuertes quedan preparadas para aprobación antes de enviarse a usuarios premium.</p>
+    </article>
+
+    <article class="v105-card">
+      <h2>📲 Canales</h2>
+      <p>Preparado para Telegram, dashboard y push cuando activemos permisos reales.</p>
+    </article>
+  </section>
+
+  <section class="v105-api">
+    <h2>API V105</h2>
+    <code>GET /api/v105/alerts/health</code>
+    <code>POST /api/v105/alerts/build</code>
+    <code>POST /api/v105/alerts/batch</code>
+  </section>
+</div>
+{% endblock %}

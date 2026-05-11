@@ -1,0 +1,12 @@
+
+.v105-page{padding:28px;max-width:1180px;margin:0 auto;color:#fff}
+.v105-hero{display:flex;justify-content:space-between;gap:18px;align-items:center;background:linear-gradient(135deg,#100b1f,#101827);border:1px solid rgba(255,183,3,.32);border-radius:24px;padding:28px;box-shadow:0 0 35px rgba(255,183,3,.10)}
+.v105-kicker{color:#ffb703;font-weight:900;letter-spacing:.08em;font-size:12px}
+.v105-hero h1{font-size:38px;margin:8px 0}
+.v105-hero p{opacity:.78;max-width:780px}
+.v105-badge{background:rgba(255,183,3,.13);border:1px solid rgba(255,183,3,.35);border-radius:999px;padding:12px 16px;font-weight:900;color:#ffb703}
+.v105-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+.v105-card,.v105-api{background:#0f172a;border:1px solid rgba(255,255,255,.07);border-radius:22px;padding:22px}
+.v105-api{margin-top:22px;display:flex;flex-direction:column;gap:10px}
+.v105-api code{display:block;background:#070b14;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;color:#ffb703}
+@media(max-width:800px){.v105-hero{flex-direction:column;align-items:flex-start}.v105-grid{grid-template-columns:1fr}.v105-hero h1{font-size:30px}.v105-page{padding:16px}}

@@ -25,7 +25,8 @@
 <link rel="stylesheet" href="/static/css/v87_shark_quality.css">
 <link rel="stylesheet" href="/static/css/v88_production_center.css">
 <link rel="stylesheet" href="/static/css/v89_real_match_engine.css">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/v104_auto_pick.css') }}">\n  <link rel="manifest" href="/manifest.webmanifest">\n  <meta name="theme-color" content="#00d084">\n</head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v104_auto_pick.css') }}">\n  <link rel="manifest" href="/manifest.webmanifest">\n  <meta name="theme-color" content="#00d084">\n  <link rel="stylesheet" href="{{ url_for('static', filename='css/v105_auto_alerts.css') }}">
+</head>
 <body class="{% if current_user %}plan-theme-{{ (current_user.plan or 'FREE')|lower }}{% else %}plan-theme-public{% endif %}">
   <header class="topbar">
     <a class="brand" href="{{ '/clientes' if session.get('user') else '/' }}">

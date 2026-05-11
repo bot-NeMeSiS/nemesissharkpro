@@ -1,0 +1,6 @@
+{
+  "version": "V105_FULL_CLEAN",
+  "base": "V104_9_FINAL_FIXED",
+  "compile_checked": true,
+  "stripe": "deferred"
+}

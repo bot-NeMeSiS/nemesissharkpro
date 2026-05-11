@@ -7654,3 +7654,15 @@ def v103_manifest():
 def v103_service_worker():
     return send_from_directory("public", "sw.js", mimetype="application/javascript")
 # -------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------
+# V105 AUTO ALERTS ENGINE
+# -------------------------------------------------------------------
+try:
+    from auto_alerts_v105.routes import auto_alerts_v105_bp
+    app.register_blueprint(auto_alerts_v105_bp)
+except Exception as exc:
+    print("V105 auto alerts blueprint not loaded:", exc)
+# -------------------------------------------------------------------
+
