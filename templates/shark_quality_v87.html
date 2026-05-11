@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>SHARK Quality - NeMeSiS SHARK PRO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/css/v70_premium_ui.css">
+  <link rel="stylesheet" href="/static/css/v87_shark_quality.css">
+</head>
+<body>
+<main class="nsp-shell" style="padding:24px 0 40px;">
+  <section class="nsp-hero">
+    <span class="nsp-eyebrow">Pick Quality</span>
+    <h1 class="nsp-title">SHARK AI explica mejor cada pick</h1>
+    <p class="nsp-subtitle">Riesgo, stake, confianza y motivo humano para que el cliente entienda por qué entra.</p>
+  </section>
+
+  <section class="v87-quality-grid" style="margin-top:20px;">
+    {% for p in picks %}
+    <article class="v87-pick-card">
+      <div class="v87-top">
+        <div>
+          <div class="v87-league">{{ p.league }}</div>
+          <div class="v87-match">{{ p.home_team }} vs {{ p.away_team }}</div>
+        </div>
+        <span class="v87-confidence">{{ p.v87_confidence }}</span>
+      </div>
+
+      <div class="v87-market">
+        <div class="v87-market-label">Apuesta recomendada</div>
+        <div class="v87-market-title">{{ p.market }}</div>
+      </div>
+
+      <div class="v87-metrics">
+        <div class="v87-metric"><strong data-v87-score="{{ p.v87_score }}">{{ p.v87_score }}</strong><span>Score</span></div>
+        <div class="v87-metric"><strong>{{ p.odds }}</strong><span>Cuota</span></div>
+        <div class="v87-metric"><strong>{{ p.v87_risk }}</strong><span>Riesgo</span></div>
+        <div class="v87-metric"><strong>{{ p.v87_stake }}</strong><span>Stake</span></div>
+      </div>
+
+      <div class="v87-reason">{{ p.v87_reason }}</div>
+    </article>
+    {% endfor %}
+  </section>
+</main>
+<nav class="nsp-mobile-bottom">
+  <a href="/">Inicio</a>
+  <a href="/picks">Picks</a>
+  <a href="/shark-quality">V87</a>
+  <a href="/shark-ai">AI</a>
+</nav>
+<script src="/static/js/v70_premium_ui.js"></script>
+<script src="/static/js/v87_shark_quality.js"></script>
+</body>
+</html>

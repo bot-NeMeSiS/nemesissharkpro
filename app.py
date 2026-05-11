@@ -7336,3 +7336,23 @@ try:
 except Exception as e:
     print("[V85 Match Cards] blueprint warning:", e)
 # -------------------------------------------------------------------
+
+# -------------------------------------------------------------------
+# V86 LIVE DATA REAL ENGINE - safe registration
+# -------------------------------------------------------------------
+try:
+    from live_data_v86.routes import live_data_v86_bp
+    app.register_blueprint(live_data_v86_bp)
+except Exception as e:
+    print("[V86 Live Data] blueprint warning:", e)
+# -------------------------------------------------------------------
+
+# -------------------------------------------------------------------
+# V87 SHARK AI PICK QUALITY ENGINE - safe registration
+# -------------------------------------------------------------------
+try:
+    from shark_quality_v87.routes import shark_quality_v87_bp
+    app.register_blueprint(shark_quality_v87_bp)
+except Exception as e:
+    print("[V87 Shark Quality] blueprint warning:", e)
+# -------------------------------------------------------------------

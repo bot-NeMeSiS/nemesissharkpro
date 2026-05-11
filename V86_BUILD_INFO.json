@@ -1,0 +1,13 @@
+{
+  "project": "NeMeSiS SHARK PRO",
+  "version": "V86.0",
+  "upgrade": "Live/Data Real Engine",
+  "based_on": "NeMeSiS_SHARK_PRO_V85_0_MATCH_CARDS_PRO_RENDER_READY.zip",
+  "patched_apps": [
+    "app.py"
+  ],
+  "patched_templates": [
+    "base.html"
+  ],
+  "created_at_utc": "2026-05-11T00:39:05.925816+00:00"
+}

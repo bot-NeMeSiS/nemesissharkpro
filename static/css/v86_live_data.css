@@ -1,0 +1,120 @@
+
+/* NeMeSiS SHARK PRO V86 — Live/Data Real Engine */
+
+.v86-quality-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
+}
+
+.v86-quality-card {
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.055);
+  padding: 18px;
+}
+
+.v86-quality-value {
+  font-size: 34px;
+  font-weight: 1000;
+  color: #fff;
+  line-height: 1;
+}
+
+.v86-quality-label {
+  color: #9eb2e7;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.v86-match-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 100px 130px;
+  gap: 14px;
+  align-items: center;
+  border-radius: 20px;
+  padding: 14px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.055);
+  margin-bottom: 10px;
+}
+
+.v86-time-box {
+  text-align: center;
+  border-radius: 16px;
+  padding: 10px;
+  background: rgba(0,224,255,.10);
+  border: 1px solid rgba(0,224,255,.20);
+}
+
+.v86-date {
+  font-weight: 1000;
+  color: #fff;
+  font-size: 13px;
+}
+
+.v86-time {
+  margin-top: 4px;
+  font-size: 22px;
+  font-weight: 1000;
+  color: #7ff5ff;
+}
+
+.v86-teams {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 1000;
+}
+
+.v86-league {
+  font-size: 12px;
+  color: #9eb2e7;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.v86-status-pill {
+  display: inline-flex;
+  padding: 7px 10px;
+  border-radius: 999px;
+  font-weight: 1000;
+  font-size: 12px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+}
+
+.v86-status-pill.ok {
+  color: #00ffa8;
+  background: rgba(0,255,168,.10);
+  border-color: rgba(0,255,168,.22);
+}
+
+.v86-status-pill.warn {
+  color: #ffd166;
+  background: rgba(255,209,102,.10);
+  border-color: rgba(255,209,102,.22);
+}
+
+.v86-status-pill.bad {
+  color: #ff6b6b;
+  background: rgba(255,107,107,.10);
+  border-color: rgba(255,107,107,.22);
+}
+
+.v86-reasons {
+  font-size: 12px;
+  color: #9eb2e7;
+  margin-top: 4px;
+}
+
+@media (max-width: 760px) {
+  .v86-match-row {
+    grid-template-columns: 1fr;
+  }
+  .v86-time-box {
+    text-align: left;
+  }
+}

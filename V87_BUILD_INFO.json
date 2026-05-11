@@ -1,0 +1,13 @@
+{
+  "project": "NeMeSiS SHARK PRO",
+  "version": "V87.0",
+  "upgrade": "SHARK AI Pick Quality Engine",
+  "based_on": "NeMeSiS_SHARK_PRO_V86_0_LIVE_DATA_REAL_ENGINE_RENDER_READY.zip",
+  "patched_apps": [
+    "app.py"
+  ],
+  "patched_templates": [
+    "base.html"
+  ],
+  "created_at_utc": "2026-05-11T00:41:49.718836+00:00"
+}
