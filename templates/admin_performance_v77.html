@@ -1,5 +1,6 @@
 
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>V77 Performance</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/static/css/v70_premium_ui.css"></head><body>
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>V77 Performance</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/static/css/v70_premium_ui.css"><link rel="stylesheet" href="/static/css/v90_real_data_purge.css">
+</head><body>
 <main class="nsp-shell" style="padding:24px 0 40px;">
 <section class="nsp-hero"><span class="nsp-eyebrow">⚡ V77 Performance</span><h1 class="nsp-title">Optimización final</h1><p class="nsp-subtitle">SQLite, cache, índices, Render Safe Mode y rendimiento antes de Launch Candidate.</p><div style="margin-top:20px;"><a class="nsp-btn" href="/api/performance/optimize">Optimizar SQLite</a></div></section>
 <section class="nsp-grid" style="margin-top:18px;">
@@ -9,4 +10,5 @@
 <article class="nsp-card nsp-kpi"><div class="nsp-kpi-label">Cache Items</div><div class="nsp-kpi-value">{{ status.cache_items }}</div></article>
 </section>
 <section class="nsp-card" style="margin-top:18px;"><h2>Módulos</h2><table><thead><tr><th>Módulo</th><th>Estado</th></tr></thead><tbody>{% for m in status.modules %}<tr><td>{{ m.name }}</td><td><span class="nsp-pill ok">{{ m.status }}</span></td></tr>{% endfor %}</tbody></table></section>
-</main><nav class="nsp-mobile-bottom"><a href="/">Inicio</a><a href="/admin/community">V76</a><a href="/admin/performance">V77</a><a href="/admin/launch-candidate">V78</a></nav><script src="/static/js/v70_premium_ui.js"></script></body></html>
+</main><nav class="nsp-mobile-bottom"><a href="/">Inicio</a><a href="/admin/community">V76</a><a href="/admin/performance">V77</a><a href="/admin/launch-candidate">V78</a></nav><script src="/static/js/v70_premium_ui.js"></script><script src="/static/js/v90_real_data_purge.js"></script>
+</body></html>

@@ -3329,10 +3329,14 @@ def send_result_alert(pick_id, status, result_score=""):
     platform["personalized"] = user_result
     return platform
 
-@app.route("/")
-def home():
-    return render_template("index.html", commercial_plans=COMMERCIAL_PLANS)
-
+@app.route('/')
+@app.route('/inicio')
+def inicio():
+    from real_data_purge_v90.purge_engine import build_view_model, purge_legacy_db
+    try: purge_legacy_db()
+    except Exception: pass
+    force = request.args.get('force','false').lower() == 'true'
+    return render_template('v90_public_real_only.html', vm=build_view_model('inicio', force=force))
 
 @app.route("/version")
 def version():
@@ -3788,31 +3792,14 @@ def api_live_results():
     return jsonify({"ok": True, "settlement": result, "snapshot": live_results_snapshot(limit=12)})
 
 
-@app.route("/picks")
+@app.route('/picks')
+@app.route('/picks-hoy')
 def picks():
-    """
-    V89.1: la pantalla pública de picks ya NO lee la tabla antigua de picks.
-    Lee el Real Match Engine. Si The Odds API no devuelve datos reales,
-    no muestra demos ni fallback inventado.
-    """
-    try:
-        from real_match_v89.real_match_engine import get_real_feed
-        force = request.args.get("force", "false").lower() == "true"
-        feed = get_real_feed(force=force)
-        return render_template("real_matches_v89.html", feed=feed, page_mode="picks")
-    except Exception as e:
-        feed = {
-            "ok": False,
-            "source": "none",
-            "message": "No hay picks reales disponibles ahora mismo. No se muestran demos.",
-            "error": str(e),
-            "matches": [],
-            "buckets": {"live": [], "today": [], "upcoming": []},
-            "counts": {"total": 0, "live": 0, "today": 0, "upcoming": 0},
-            "generated_at": datetime.utcnow().isoformat() if "datetime" in globals() else "",
-        }
-        return render_template("real_matches_v89.html", feed=feed, page_mode="picks")
-
+    from real_data_purge_v90.purge_engine import build_view_model, purge_legacy_db
+    try: purge_legacy_db()
+    except Exception: pass
+    force = request.args.get('force','false').lower() == 'true'
+    return render_template('v90_public_real_only.html', vm=build_view_model('picks', force=force))
 
 @app.route("/clasificaciones")
 def clasificaciones():
@@ -3834,30 +3821,15 @@ def api_standings():
     return jsonify({"ok": True, "status": standings_status(), "refresh": refresh_status, "groups": get_standings_groups(q)})
 
 
-@app.route("/partidos")
+@app.route('/partidos')
+@app.route('/hoy')
+@app.route('/partidos-hoy')
 def partidos():
-    """
-    V89.1: la pantalla principal de partidos queda conectada al Real Match Engine.
-    Regla dura: datos reales o pantalla vacía con aviso. Nunca demos.
-    """
-    try:
-        from real_match_v89.real_match_engine import get_real_feed
-        force = request.args.get("force", "false").lower() == "true"
-        feed = get_real_feed(force=force)
-        return render_template("real_matches_v89.html", feed=feed, page_mode="partidos")
-    except Exception as e:
-        feed = {
-            "ok": False,
-            "source": "none",
-            "message": "No hay partidos reales disponibles ahora mismo. No se muestran demos.",
-            "error": str(e),
-            "matches": [],
-            "buckets": {"live": [], "today": [], "upcoming": []},
-            "counts": {"total": 0, "live": 0, "today": 0, "upcoming": 0},
-            "generated_at": datetime.utcnow().isoformat() if "datetime" in globals() else "",
-        }
-        return render_template("real_matches_v89.html", feed=feed, page_mode="partidos")
-
+    from real_data_purge_v90.purge_engine import build_view_model, purge_legacy_db
+    try: purge_legacy_db()
+    except Exception: pass
+    force = request.args.get('force','false').lower() == 'true'
+    return render_template('v90_public_real_only.html', vm=build_view_model('partidos', force=force))
 
 @app.route("/partido/<int:pick_id>")
 def partido_detalle(pick_id):
@@ -7422,4 +7394,19 @@ def api_real_only_proof():
             "no_demo_fallback": True,
             "error": str(e),
         }), 500
+# -------------------------------------------------------------------
+
+# -------------------------------------------------------------------
+# V90 REAL DATA PURGE - safe registration
+# -------------------------------------------------------------------
+try:
+    from real_data_purge_v90.routes import real_data_purge_v90_bp
+    app.register_blueprint(real_data_purge_v90_bp)
+except Exception as e:
+    print('[V90 Real Data Purge] blueprint warning:', e)
+try:
+    from real_data_purge_v90.purge_engine import purge_legacy_db
+    purge_legacy_db()
+except Exception as e:
+    print('[V90 purge startup warning]', e)
 # -------------------------------------------------------------------
