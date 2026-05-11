@@ -1,0 +1,14 @@
+{
+  "version": "V104_FULL_CLEAN",
+  "base": "V98_FULL_STABLE",
+  "included": [
+    "V99",
+    "V100",
+    "V101",
+    "V102",
+    "V103",
+    "V104"
+  ],
+  "mode": "full_clean_render_ready",
+  "stripe": "deferred"
+}

@@ -1,0 +1,20 @@
+@media (max-width: 768px) {
+  body {
+    background: #070b14;
+    overscroll-behavior-y: none;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-only {
+    display: none !important;
+  }
+}

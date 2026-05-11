@@ -7611,4 +7611,47 @@ try:
     from history_v98.routes import history_v98_bp
     app.register_blueprint(history_v98_bp)
 except Exception as exc:
-    print("V98 history blueprint not loaded:", exc)
+    print("V98 history blueprint not loaded:", exc)\n
+
+# -------------------------------------------------------------------
+# V99-V104 CONSOLIDATED MODULES
+# -------------------------------------------------------------------
+try:
+    from backend.routes.membership_routes import membership_bp
+    app.register_blueprint(membership_bp)
+except Exception as exc:
+    print("V99 membership blueprint not loaded:", exc)
+
+try:
+    from backend.routes.shark_ai_ultra_routes import shark_ai_ultra_bp
+    app.register_blueprint(shark_ai_ultra_bp)
+except Exception as exc:
+    print("V100 shark ai ultra blueprint not loaded:", exc)
+
+try:
+    from backend.routes.live_trading_routes import live_trading_bp
+    app.register_blueprint(live_trading_bp)
+except Exception as exc:
+    print("V101 live trading blueprint not loaded:", exc)
+
+try:
+    from backend.routes.analytics_pro_routes import analytics_pro_bp
+    app.register_blueprint(analytics_pro_bp)
+except Exception as exc:
+    print("V102 analytics pro blueprint not loaded:", exc)
+
+try:
+    from auto_pick_v104.routes import auto_pick_v104_bp
+    app.register_blueprint(auto_pick_v104_bp)
+except Exception as exc:
+    print("V104 auto pick blueprint not loaded:", exc)
+
+@app.route("/manifest.webmanifest")
+def v103_manifest():
+    return send_from_directory("public", "manifest.webmanifest")
+
+@app.route("/sw.js")
+def v103_service_worker():
+    return send_from_directory("public", "sw.js", mimetype="application/javascript")
+# -------------------------------------------------------------------
+\n
