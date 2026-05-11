@@ -7312,11 +7312,17 @@ except Exception as e:
 # -------------------------------------------------------------------
 
 # -------------------------------------------------------------------
-# V83 LIVE EXPERIENCE ENGINE - safe registration
+# V84 PREMIUM ENGAGEMENT EXPERIENCE - safe registration
 # -------------------------------------------------------------------
 try:
-    from live_experience_v83.routes import live_experience_v83_bp
-    app.register_blueprint(live_experience_v83_bp)
+    from premium_v84.premium_schema import init_premium_v84_tables
+    init_premium_v84_tables()
 except Exception as e:
-    print("[V83 Live Experience] blueprint warning:", e)
+    print("[V84 Premium] init warning:", e)
+
+try:
+    from premium_v84.routes import premium_v84_bp
+    app.register_blueprint(premium_v84_bp)
+except Exception as e:
+    print("[V84 Premium] blueprint warning:", e)
 # -------------------------------------------------------------------
