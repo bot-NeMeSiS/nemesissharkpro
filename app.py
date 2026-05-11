@@ -7577,3 +7577,38 @@ try:
 except Exception as e:
     print("[V93 Client PRO] blueprint warning:", e)
 # -------------------------------------------------------------------
+
+
+# V95 TELEGRAM REAL
+try:
+    from telegram_v95.routes import telegram_v95_bp
+    app.register_blueprint(telegram_v95_bp)
+except Exception as e:
+    print(f"V95 Telegram module error: {e}")
+
+# -------------------------------------------------------------------
+# V96 LIVE CENTER PRO + SHARK AI CONVERSACIONAL REAL CORE
+# -------------------------------------------------------------------
+try:
+    from shark_ai_v96.routes import shark_ai_v96_bp
+    app.register_blueprint(shark_ai_v96_bp)
+except Exception as e:
+    print(f"V96 SHARK AI module error: {e}")
+# -------------------------------------------------------------------
+
+# -------------------------------------------------------------------
+# V97 ADMIN PRO SAAS CENTER
+# -------------------------------------------------------------------
+try:
+    from admin_v97.routes import admin_v97_bp
+    app.register_blueprint(admin_v97_bp)
+except Exception as e:
+    print(f"V97 Admin SaaS module error: {e}")
+# -------------------------------------------------------------------
+
+# V98 Historial Real ROI / Winrate
+try:
+    from history_v98.routes import history_v98_bp
+    app.register_blueprint(history_v98_bp)
+except Exception as exc:
+    print("V98 history blueprint not loaded:", exc)
