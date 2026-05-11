@@ -1,0 +1,13 @@
+{
+  "project": "NeMeSiS SHARK PRO",
+  "version": "V89.0",
+  "upgrade": "Real Match Engine",
+  "based_on": "NeMeSiS_SHARK_PRO_V88_0_ADMIN_PRODUCTION_CENTER_RENDER_READY.zip",
+  "patched_apps": [
+    "app.py"
+  ],
+  "patched_templates": [
+    "base.html"
+  ],
+  "created_at_utc": "2026-05-11T17:36:46.344088+00:00"
+}

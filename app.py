@@ -7366,3 +7366,13 @@ try:
 except Exception as e:
     print("[V88 Production Center] blueprint warning:", e)
 # -------------------------------------------------------------------
+
+# -------------------------------------------------------------------
+# V89 REAL MATCH ENGINE - safe registration
+# -------------------------------------------------------------------
+try:
+    from real_match_v89.routes import real_match_v89_bp
+    app.register_blueprint(real_match_v89_bp)
+except Exception as e:
+    print("[V89 Real Match] blueprint warning:", e)
+# -------------------------------------------------------------------
