@@ -7595,3 +7595,20 @@ try:
 except Exception as e:
     print(f"V96 SHARK AI module error: {e}")
 # -------------------------------------------------------------------
+
+# -------------------------------------------------------------------
+# V97 ADMIN PRO SAAS CENTER
+# -------------------------------------------------------------------
+try:
+    from admin_v97.routes import admin_v97_bp
+    app.register_blueprint(admin_v97_bp)
+except Exception as e:
+    print(f"V97 Admin SaaS module error: {e}")
+# -------------------------------------------------------------------
+
+# V98 Historial Real ROI / Winrate
+try:
+    from history_v98.routes import history_v98_bp
+    app.register_blueprint(history_v98_bp)
+except Exception as exc:
+    print("V98 history blueprint not loaded:", exc)

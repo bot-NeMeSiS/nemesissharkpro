@@ -1,0 +1,14 @@
+{
+  "version": "V97.0",
+  "name": "ADMIN_PRO_SAAS_CENTER",
+  "render_ready": true,
+  "github_ready": true,
+  "real_core_only": true,
+  "no_fake_data": true,
+  "added_routes": [
+    "/admin-pro-saas",
+    "/v97/admin",
+    "/api/v97/admin/center"
+  ],
+  "next": "V98_HISTORIAL_REAL_ROI_WINRATE"
+}
