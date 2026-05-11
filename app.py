@@ -7484,7 +7484,7 @@ except Exception as e:
 def v91_home():
     from core.real_core_engine import RealCoreEngine
     feed = RealCoreEngine.fetch(force=False)
-    return render_template("real_core_home_v91.html", feed=feed)
+    return render_template("client_panel_v92.html", vm=__import__("client_panel_v92.engine", fromlist=["build_client_dashboard"]).build_client_dashboard(force=False))
 
 @app.route("/partidos")
 @app.route("/hoy")
@@ -7554,4 +7554,15 @@ try:
     purge_legacy_db(get_db if "get_db" in globals() else None)
 except Exception as e:
     print("[V91 purge warning]", e)
+# -------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------
+# V92 CLIENT PANEL RECOVERY PRO
+# -------------------------------------------------------------------
+try:
+    from client_panel_v92.routes import client_panel_v92_bp
+    app.register_blueprint(client_panel_v92_bp)
+except Exception as e:
+    print("[V92 Client Panel] blueprint warning:", e)
 # -------------------------------------------------------------------

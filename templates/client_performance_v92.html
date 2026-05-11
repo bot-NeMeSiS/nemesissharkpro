@@ -1,0 +1,12 @@
+
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/static/css/v92_client_panel.css"><title>Rendimiento</title></head><body><div class="v92-app">
+<aside class="v92-sidebar">
+  <div class="v92-brand"><div class="v92-logo">NS</div><div><strong>NeMeSiS</strong><span>SHARK PRO</span></div></div>
+  <div class="v92-plan"><small>Tu plan</small><strong>{{ vm.user.plan }}</strong><span>{{ vm.user.plan_status }}</span><em>Banca actual {{ vm.user.bankroll }}</em></div>
+  <nav><a href="/cliente">Inicio</a><a href="/cliente/picks">Picks hoy</a><a href="/cliente/partidos">Partidos</a><a href="/en-directo">En directo</a><a href="/cliente/rendimiento">Rendimiento</a><a href="/admin/real-core">Core</a></nav>
+</aside>
+<main class="v92-main"><header class="v92-topbar"><a href="/cliente">Inicio</a><a href="/cliente/picks">Picks</a><a href="/cliente/partidos">Partidos</a><a href="/cliente/rendimiento">Mi cuenta</a><a href="/api/client-panel/status">Status</a></header>
+<section class="v92-hero compact"><div><span class="v92-pill">MI CUENTA</span><h1>Rendimiento y banca</h1><p>Sin historial cerrado no se inventa ROI ni winrate.</p></div></section>
+<section class="v92-stats"><article><span>ROI</span><strong>{{ vm.user.roi }}</strong><small>Historial real</small></article><article><span>Winrate</span><strong>{{ vm.user.winrate }}</strong><small>Picks cerrados</small></article><article><span>Banca</span><strong>{{ vm.user.bankroll }}</strong><small>Configurable</small></article><article><span>Cerrados</span><strong>{{ vm.user.closed_picks }}</strong><small>Resultados reales</small></article></section>
+<section class="v92-grid"><div class="v92-panel"><div class="v92-panel-head"><div><span>Banca</span><h2>Control de dinero</h2></div></div><input class="v92-input" value="{{ vm.user.bankroll.replace('€','') }}"><button class="v92-button">Guardar</button></div><div class="v92-panel"><div class="v92-panel-head"><div><span>Perfil SHARK</span><h2>Ajustes</h2></div></div><p class="v92-muted">Riesgo: {{ vm.user.risk_profile }} · Deporte: {{ vm.user.sport }} · Liga: {{ vm.user.favorite_league }}</p></div></section>
+</main></div></body></html>
