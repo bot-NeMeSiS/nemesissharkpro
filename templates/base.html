@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="/static/css/v87_shark_quality.css">
 <link rel="stylesheet" href="/static/css/v88_production_center.css">
 <link rel="stylesheet" href="/static/css/v89_real_match_engine.css">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/v104_auto_pick.css') }}">\n  <link rel="manifest" href="/manifest.webmanifest">\n  <meta name="theme-color" content="#00d084">\n  <link rel="stylesheet" href="{{ url_for('static', filename='css/v105_auto_alerts.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v104_auto_pick.css') }}">\n  <link rel="manifest" href="/manifest.webmanifest">\n  <meta name="theme-color" content="#00d084">\n  <link rel="stylesheet" href="{{ url_for('static', filename='css/v105_admin_center.css') }}">
 </head>
 <body class="{% if current_user %}plan-theme-{{ (current_user.plan or 'FREE')|lower }}{% else %}plan-theme-public{% endif %}">
   <header class="topbar">
@@ -117,5 +117,6 @@
 <script src="/static/js/v87_shark_quality.js"></script>
 <script src="/static/js/v88_production_center.js"></script>
 <script src="/static/js/v89_real_match_engine.js"></script>
-  <script src="{{ url_for('static', filename='js/v104_auto_pick.js') }}"></script>\n</body>
+  <script src="{{ url_for('static', filename='js/v104_auto_pick.js') }}"></script>\n  <script src="{{ url_for('static', filename='js/v105_admin_center.js') }}"></script>
+</body>
 </html>

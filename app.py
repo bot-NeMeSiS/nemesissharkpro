@@ -7613,6 +7613,7 @@ try:
 except Exception as exc:
     print("V98 history blueprint not loaded:", exc)
 
+
 # -------------------------------------------------------------------
 # V99-V104 CONSOLIDATED MODULES
 # -------------------------------------------------------------------
@@ -7657,12 +7658,12 @@ def v103_service_worker():
 
 
 # -------------------------------------------------------------------
-# V105 AUTO ALERTS ENGINE
+# V105 ADMIN PRO CENTER
 # -------------------------------------------------------------------
 try:
-    from auto_alerts_v105.routes import auto_alerts_v105_bp
-    app.register_blueprint(auto_alerts_v105_bp)
+    from admin_center_v105.routes import admin_center_v105_bp
+    app.register_blueprint(admin_center_v105_bp)
 except Exception as exc:
-    print("V105 auto alerts blueprint not loaded:", exc)
+    print("V105 admin center blueprint not loaded:", exc)
 # -------------------------------------------------------------------
 

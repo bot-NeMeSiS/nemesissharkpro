@@ -1,6 +1,6 @@
 {
-  "version": "V105_FULL_CLEAN",
-  "base": "V104_9_FINAL_FIXED",
-  "compile_checked": true,
+  "version": "V105_ADMIN_PRO_CENTER_FULL_CLEAN",
+  "base": "V104_2_HOTFIX_RENDER_READY",
+  "focus": "admin_panel_recovery_and_polish",
   "stripe": "deferred"
 }
