@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Match Center PRO · NeMeSiS SHARK PRO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/css/v70_premium_ui.css">
+  <link rel="stylesheet" href="/static/css/v155_match_center_pro.css">
+  <link rel="stylesheet" href="/static/css/v156_shark_contextual_match_ai.css">
+  <link rel="stylesheet" href="/static/css/v157_mobile_app_feel.css">
+</head>
+<body>
+<header class="v155-topbar">
+  <a class="brand" href="/"><span>NS</span><b>NeMeSiS<br><small>SHARK PRO</small></b></a>
+  <nav><a href="/cliente/pro">Inicio</a><a href="/partidos">Partidos</a><a href="/home-live-real">Live</a><a href="/favorites-pro">Favoritos</a><a href="/cuenta">Mi cuenta</a></nav>
+</header>
+<main class="v155-shell">
+  <a class="v155-back" href="/partidos">← Volver a partidos reales</a>
+  {% if data.ok %}
+  {% set m = data.match %}
+  <section class="v155-hero">
+    <div class="v155-league"><span class="pulse {% if data.is_live %}on{% endif %}"></span>{{ m.league }} · {{ m.status }} · {{ m.date }} {{ m.time }}</div>
+    <div class="v155-scoreboard">
+      <div class="team"><div class="crest">{{ data.home_initials }}</div><h1>{{ m.home_team }}</h1><small>Local</small></div>
+      <div class="score"><strong>{{ data.score_label }}</strong><span>{% if data.is_live %}EN DIRECTO{% else %}MATCH CENTER{% endif %}</span></div>
+      <div class="team"><div class="crest away">{{ data.away_initials }}</div><h1>{{ m.away_team }}</h1><small>Visitante</small></div>
+    </div>
+    <div class="v155-actions"><a href="/favorites-pro">☆ Guardar favorito</a><a href="#shark-ai">Preguntar a SHARK</a><a href="/api/v156/match-center-pro?match_id={{ m.id }}">API real V156</a></div>
+  </section>
+
+  <section class="v155-grid four">
+    <article><span>SHARK Score</span><strong>{{ m.shark_score }}</strong><small>calidad validada</small></article>
+    <article><span>Riesgo</span><strong>{{ m.risk }}</strong><small>gestión banca</small></article>
+    <article><span>Stake</span><strong>{{ m.stake }}</strong><small>recomendado</small></article>
+    <article><span>Cuota</span><strong>{{ m.odds or 'Pendiente' }}</strong><small>{{ m.bookmaker or 'bookmaker pendiente' }}</small></article>
+  </section>
+
+  <section class="v155-layout">
+    <div class="v155-panel big">
+      <div class="panel-head"><h2>Momentum SHARK</h2><span>{{ data.momentum }}%</span></div>
+      <div class="momentum"><i style="width: {{ data.momentum }}%"></i></div>
+      <p>{{ data.reading }}</p>
+      <div class="mini-pitch"><div class="mid"></div><div class="ball" style="left: {{ data.momentum }}%"></div></div>
+    </div>
+    <div class="v155-panel v156-ai" id="shark-ai" data-match-id="{{ m.id }}">
+      <div class="v156-kicker">V156 · SHARK AI contextual</div>
+      <h2>🦈 Análisis SHARK del partido</h2>
+      <p>Lectura conectada al partido real seleccionado. No inventa goles, cuotas ni estadísticas.</p>
+      {% if data.shark_context %}
+      <div class="v156-context-card">
+        <span>Lectura</span>
+        <strong>{{ data.shark_context.value_label }}</strong>
+        <p>{{ data.shark_context.value_detail }}</p>
+      </div>
+      <div class="v156-ai-grid">
+        <div><b>{{ data.shark_context.confidence }}%</b><small>Confianza</small></div>
+        <div><b>{{ data.shark_context.risk }}</b><small>Riesgo</small></div>
+        <div><b>{{ data.shark_context.stake }}</b><small>Stake</small></div>
+      </div>
+      <div class="v156-ai-warning">{{ data.shark_context.caution }}</div>
+      <div class="v156-avoid"><b>Evitar ahora:</b>{% for item in data.shark_context.avoid %}<span>{{ item }}</span>{% endfor %}</div>
+      {% endif %}
+      <div class="quick v156-quick">
+        <button data-q="valor">¿Hay valor?</button>
+        <button data-q="stake">Stake</button>
+        <button data-q="riesgo">Riesgo</button>
+        <button data-q="evitar">Qué evitar</button>
+      </div>
+      <div class="v156-answer" id="v156-answer">Toca una pregunta rápida para recibir una lectura contextual real del partido.</div>
+    </div>
+  </section>
+
+  <section class="v155-layout">
+    <div class="v155-panel"><h2>Timeline real</h2>{% for e in data.events %}<div class="event"><b>{{ e.minute }}</b><span>{{ e.text }}</span></div>{% else %}<div class="empty">Sin eventos reales cargados todavía. Cuando lleguen goles, tarjetas o cambios reales aparecerán aquí.</div>{% endfor %}</div>
+    <div class="v155-panel"><h2>Estadísticas reales</h2>{% for s in data.stats %}<div class="stat"><span>{{ s.name }}</span><b>{{ s.home }} - {{ s.away }}</b></div>{% else %}<div class="empty">Sin estadísticas reales cargadas todavía. Pantalla vacía premium antes que datos inventados.</div>{% endfor %}</div>
+  </section>
+
+  <section class="v155-panel"><div class="panel-head"><h2>Pick relacionado</h2><a href="/picks">Ver picks</a></div>{% for p in data.related_picks %}<div class="pick"><b>{{ p.market }}</b><span>Cuota {{ p.odds }}</span><span>Riesgo {{ p.risk }}</span><span>Stake {{ p.stake }}</span><strong>{{ p.score }} SHARK</strong></div>{% endfor %}</section>
+  {% else %}
+  <section class="v155-empty"><h1>Match Center PRO</h1><p>{{ data.message }}</p><a href="/partidos">Ver partidos reales</a></section>
+  {% endif %}
+</main>
+<script src="/static/js/v155_match_center_pro.js"></script>
+<script src="/static/js/v156_shark_contextual_match_ai.js"></script>
+<script src="/static/js/v157_mobile_app_feel.js"></script>
+</body>
+</html>

@@ -7977,3 +7977,15 @@ try:
 except Exception as exc:
     print("live_visual_v154 error", exc)
 
+try:
+    from match_center_v155.routes import match_center_v155_bp
+    app.register_blueprint(match_center_v155_bp)
+except Exception as exc:
+    print("match_center_v155 error", exc)
+
+
+try:
+    from mobile_app_feel_v157.routes import mobile_app_feel_v157_bp
+    app.register_blueprint(mobile_app_feel_v157_bp)
+except Exception as exc:
+    print("mobile_app_feel_v157 error", exc)

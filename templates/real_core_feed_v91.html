@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/static/css/v70_premium_ui.css">
   <link rel="stylesheet" href="/static/css/v91_real_core.css">
+  <style>.v91-match-card{position:relative;overflow:hidden}.v91-match-card:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(50,230,255,.08),transparent 45%,rgba(255,217,90,.06));pointer-events:none}.v91-score a{box-shadow:0 0 18px rgba(50,230,255,.25)}</style>
 </head>
 <body>
 <main class="nsp-shell" style="padding:24px 0 40px;">
@@ -58,7 +59,7 @@
         <strong>{{ m.shark_score }}</strong>
         <span>SHARK</span>
         <small>{{ m.risk }} · {{ m.stake }}</small>
-        <a href="/partido/{{ m.id }}">Abrir</a>
+        <a href="/partido-pro/{{ m.id }}">Abrir</a>
       </div>
     </article>
     {% endfor %}

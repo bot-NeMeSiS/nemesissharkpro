@@ -50,6 +50,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v150_favorites_home.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v151_client_identity.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v153_login_onboarding_account.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v157_mobile_app_feel.css') }}">
 </head>
 <body class="{% if current_user %}plan-theme-{{ (current_user.plan or 'FREE')|lower }}{% else %}plan-theme-public{% endif %}">
   <header class="topbar">
@@ -160,5 +161,6 @@
 <script src="{{ url_for('static', filename='js/pwa_install_v148.js') }}"></script>
   <script src="{{ url_for('static', filename='js/v151_client_cleanup.js') }}"></script>
   <script src="{{ url_for('static', filename='js/v153_login_onboarding_account.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/v157_mobile_app_feel.js') }}"></script>
 </body>
 </html>
