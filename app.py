@@ -8570,3 +8570,30 @@ try:
     app.register_blueprint(analytics_business_v181_bp)
 except Exception as exc:
     print("analytics_business_v181 error", exc)
+
+
+# --- V182 PUSH REAL VAPID FOUNDATION ---
+try:
+    from push_real_v182.routes import bp_push_real_v182
+    app.register_blueprint(bp_push_real_v182)
+except Exception as e:
+    print("[V182] Push Real blueprint no cargado:", e)
+
+
+
+# NeMeSiS V183 session hardening
+try:
+    import os as _os_v183
+    app.config.setdefault("SESSION_COOKIE_HTTPONLY", True)
+    app.config.setdefault("SESSION_COOKIE_SAMESITE", "Lax")
+    if str(_os_v183.environ.get("SESSION_COOKIE_SECURE", "")).lower() in ("1","true","yes","on"):
+        app.config["SESSION_COOKIE_SECURE"] = True
+except Exception as _e_v183:
+    print("[V183] Session hardening aviso:", _e_v183)
+
+# --- V183 SECURITY FINAL PRO ---
+try:
+    from security_final_v183.routes import bp_security_final_v183
+    app.register_blueprint(bp_security_final_v183)
+except Exception as e:
+    print("[V183] Security Final blueprint no cargado:", e)

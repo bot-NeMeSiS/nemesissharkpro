@@ -44,3 +44,30 @@ self.addEventListener('notificationclick', function(event) {
   const url = (event.notification && event.notification.data && event.notification.data.url) || '/cliente/pro';
   event.waitUntil(clients.openWindow(url));
 });
+
+
+/* NeMeSiS SHARK PRO V182 · Push real foundation */
+self.addEventListener('push', function(event) {
+  let data = {};
+  try { data = event.data ? event.data.json() : {}; } catch(e) { data = {title:'NeMeSiS SHARK PRO', body: event.data ? event.data.text() : 'Nueva alerta SHARK'}; }
+  const title = data.title || '🦈 NeMeSiS SHARK PRO';
+  const options = {
+    body: data.body || 'Nueva alerta premium disponible.',
+    icon: data.icon || '/static/icons/icon-192.png',
+    badge: data.badge || '/static/icons/icon-192.png',
+    data: { url: data.url || '/cliente/pro' },
+    requireInteraction: false
+  };
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+
+self.addEventListener('notificationclick', function(event) {
+  event.notification.close();
+  const url = (event.notification.data && event.notification.data.url) || '/cliente/pro';
+  event.waitUntil(clients.matchAll({type:'window', includeUncontrolled:true}).then(function(clientList) {
+    for (const client of clientList) {
+      if ('focus' in client) return client.focus();
+    }
+    if (clients.openWindow) return clients.openWindow(url);
+  }));
+});
