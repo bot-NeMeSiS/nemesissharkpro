@@ -7832,3 +7832,10 @@ try:
     app.register_blueprint(ux_mobile_v138_bp)
 except Exception as exc:
     print("ux_mobile_v138 error", exc)
+
+
+try:
+    from smart_ux_v139.routes import smart_ux_v139_bp
+    app.register_blueprint(smart_ux_v139_bp)
+except Exception as exc:
+    print("smart_ux_v139 error", exc)
