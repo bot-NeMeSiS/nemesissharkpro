@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v104_auto_pick.css') }}">\n  <link rel="manifest" href="/manifest.webmanifest">\n  <meta name="theme-color" content="#00d084">\n  <link rel="stylesheet" href="{{ url_for('static', filename='css/v105_admin_center.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v106_live_ops.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v107_membership_visual_pro.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v108_client_ux_recovery.css') }}">
 </head>
 <body class="{% if current_user %}plan-theme-{{ (current_user.plan or 'FREE')|lower }}{% else %}plan-theme-public{% endif %}">
   <header class="topbar">
@@ -122,5 +123,6 @@
   <script src="{{ url_for('static', filename='js/v104_auto_pick.js') }}"></script>\n  <script src="{{ url_for('static', filename='js/v105_admin_center.js') }}"></script>
   <script src="{{ url_for('static', filename='js/v106_live_ops.js') }}"></script>
   <script src="{{ url_for('static', filename='js/v107_membership_visual_pro.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/v108_client_ux_recovery.js') }}"></script>
 </body>
 </html>

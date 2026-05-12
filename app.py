@@ -7689,3 +7689,14 @@ except Exception as exc:
     print("V107 membership visual blueprint not loaded:", exc)
 # -------------------------------------------------------------------
 
+
+# -------------------------------------------------------------------
+# V108 CLIENT UX RECOVERY PRO
+# -------------------------------------------------------------------
+try:
+    from client_ux_v108.routes.client_ux_routes import client_ux_v108_bp
+    app.register_blueprint(client_ux_v108_bp)
+except Exception as exc:
+    print("V108 client ux blueprint not loaded:", exc)
+# -------------------------------------------------------------------
+

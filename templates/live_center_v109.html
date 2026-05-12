@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>V109 Live Center PRO</title>
+<link rel="stylesheet" href="/static/css/v109_live.css">
+</head>
+<body>
+<div class="wrap">
+    <h1>🦈 LIVE CENTER PRO</h1>
+    <p>Momentum, señales live y SHARK AI.</p>
+
+    <div class="grid">
+    {% for signal in signals %}
+        <div class="card">
+            <h2>{{ signal.match }}</h2>
+            <div class="pill">{{ signal.minute }}'</div>
+            <p><strong>Momentum:</strong> {{ signal.momentum }}</p>
+            <p><strong>SHARK Score:</strong> {{ signal.shark_score }}</p>
+            <p><strong>Señal:</strong> {{ signal.signal }}</p>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+</body>
+</html>
