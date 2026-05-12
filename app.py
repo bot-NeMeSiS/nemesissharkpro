@@ -7819,3 +7819,9 @@ try:
     app.register_blueprint(enterprise_v136_bp)
 except Exception as exc:
     print("enterprise_v136 error", exc)
+
+try:
+    from quality_v137.routes import quality_v137_bp
+    app.register_blueprint(quality_v137_bp)
+except Exception as exc:
+    print("quality_v137 error", exc)
