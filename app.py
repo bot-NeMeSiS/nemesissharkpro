@@ -7989,3 +7989,10 @@ try:
     app.register_blueprint(mobile_app_feel_v157_bp)
 except Exception as exc:
     print("mobile_app_feel_v157 error", exc)
+
+
+try:
+    from live_ecosystem_v159.routes import live_ecosystem_v159_bp
+    app.register_blueprint(live_ecosystem_v159_bp)
+except Exception as exc:
+    print("live_ecosystem_v159 error", exc)
