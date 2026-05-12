@@ -8003,3 +8003,10 @@ try:
     app.register_blueprint(admin_business_v160_bp)
 except Exception as exc:
     print("admin_business_v160 error", exc)
+
+
+try:
+    from telegram_live_v162.routes import telegram_live_v162_bp
+    app.register_blueprint(telegram_live_v162_bp)
+except Exception as exc:
+    print("telegram_live_v162 error", exc)
