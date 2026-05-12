@@ -7667,3 +7667,25 @@ except Exception as exc:
     print("V105 admin center blueprint not loaded:", exc)
 # -------------------------------------------------------------------
 
+
+# -------------------------------------------------------------------
+# V106 UNIFIED LIVE OPERATIONS
+# -------------------------------------------------------------------
+try:
+    from live_ops_v106.routes.live_ops_routes import live_ops_v106_bp
+    app.register_blueprint(live_ops_v106_bp)
+except Exception as exc:
+    print("V106 live ops blueprint not loaded:", exc)
+# -------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------
+# V107 MEMBERSHIP VISUAL PRO
+# -------------------------------------------------------------------
+try:
+    from membership_visual_v107.routes.theme_routes import membership_visual_v107_bp
+    app.register_blueprint(membership_visual_v107_bp)
+except Exception as exc:
+    print("V107 membership visual blueprint not loaded:", exc)
+# -------------------------------------------------------------------
+

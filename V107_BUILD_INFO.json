@@ -1,0 +1,12 @@
+{
+  "version": "V107_MEMBERSHIP_VISUAL_PRO_FULL_CLEAN",
+  "base": "V106_UNIFIED_LIVE_OPERATIONS",
+  "focus": "membership_colors_global_visual_polish",
+  "plans": [
+    "FREE",
+    "PRO",
+    "ELITE",
+    "ADMIN"
+  ],
+  "stripe": "deferred"
+}
