@@ -8511,3 +8511,10 @@ try:
     app.register_blueprint(telegram_auto_v173_bp)
 except Exception as exc:
     print("telegram_auto_v173 error", exc)
+
+# --- V174 TELEGRAM ADMIN HANDSHAKE + CONTROL TOWER ---
+try:
+    from admin_telegram_control_v174.routes import admin_telegram_control_v174_bp
+    app.register_blueprint(admin_telegram_control_v174_bp)
+except Exception as exc:
+    print("admin_telegram_control_v174 error", exc)
