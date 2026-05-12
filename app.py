@@ -7717,3 +7717,14 @@ except Exception as exc:
     print("V110 architecture blueprint not loaded:", exc)
 # -------------------------------------------------------------------
 
+
+# -------------------------------------------------------------------
+# V112 + V113 + V114 COMBINED PRO
+# -------------------------------------------------------------------
+try:
+    from combined_v114.routes.combined_routes import combined_v114_bp
+    app.register_blueprint(combined_v114_bp)
+except Exception as exc:
+    print("V114 combined blueprint not loaded:", exc)
+# -------------------------------------------------------------------
+

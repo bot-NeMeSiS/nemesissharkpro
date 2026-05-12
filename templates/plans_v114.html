@@ -1,0 +1,30 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="v114-home">
+  <section class="v114-hero-main compact">
+    <div>
+      <p class="v114-kicker">PLANES</p>
+      <h1>Membresías SHARK PRO</h1>
+      <p>FREE, PRO y ELITE recuperados con colores premium y preparados para Stripe al final.</p>
+    </div>
+    <a class="v114-top-link" href="/">Volver al inicio</a>
+  </section>
+
+  <section class="v114-plans big">
+    {% for key, plan in plans.items() %}
+    <article class="v114-plan {{ plan.color }}">
+      <span>{{ plan.title }}</span>
+      <h3>{{ plan.price }}</h3>
+      <p>{{ plan.description }}</p>
+      <ul>
+        {% for f in plan.features %}
+        <li>{{ f }}</li>
+        {% endfor %}
+      </ul>
+      <a href="/cliente">Acceder</a>
+    </article>
+    {% endfor %}
+  </section>
+</div>
+{% endblock %}
