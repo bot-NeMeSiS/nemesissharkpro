@@ -7850,3 +7850,9 @@ try:
 except Exception as exc:
     print("match_ecosystem_v145 error", exc)
 # -------------------------------------------------------------------
+
+try:
+    from fixtures_connector_v146.routes import fixtures_connector_v146_bp
+    app.register_blueprint(fixtures_connector_v146_bp)
+except Exception as exc:
+    print("fixtures_connector_v146 error", exc)

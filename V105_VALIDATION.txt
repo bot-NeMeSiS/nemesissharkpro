@@ -1,2 +1,0 @@
-Errores de sintaxis Python: 0
-OK - 0 errores

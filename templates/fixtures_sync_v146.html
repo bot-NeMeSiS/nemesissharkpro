@@ -1,0 +1,9 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="v146-wrap">
+<section class="v146-hero"><div><p class="v146-kicker">V146 · FIXTURES SYNC ADMIN</p><h1>Sincronización de partidos</h1><p>Control de caché de partidos reales. Para cargar datos usa POST /api/v146/fixtures/sync.</p></div><div class="v146-badge">{{ status.total }} fixtures</div></section>
+<section class="v146-grid"><article><span>Hoy</span><strong>{{ status.today }}</strong></article><article><span>Live</span><strong>{{ status.live }}</strong></article><article><span>Próximos</span><strong>{{ status.upcoming }}</strong></article><article><span>Finalizados</span><strong>{{ status.finished }}</strong></article></section>
+<section class="v146-panel"><h2>Logs</h2>{% for log in logs %}<div class="v146-row"><span>{{ log.created_at }} · {{ log.source }}</span><strong>{{ log.status }}</strong></div>{% else %}<p>No hay sincronizaciones todavía.</p>{% endfor %}</section>
+</div>
+{% endblock %}

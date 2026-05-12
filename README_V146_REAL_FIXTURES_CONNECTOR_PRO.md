@@ -1,0 +1,1 @@
+# V146 Real Fixtures Connector PRO\n\nRutas: /fixtures/today-pro, /admin/fixtures-sync\nAPIs: /api/v146/fixtures/status, /api/v146/fixtures/list, /api/v146/fixtures/sync\n

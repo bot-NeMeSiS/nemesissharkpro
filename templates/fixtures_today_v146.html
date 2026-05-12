@@ -1,0 +1,12 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="v146-wrap">
+<section class="v146-hero"><div><p class="v146-kicker">V146 · REAL FIXTURES CONNECTOR PRO</p><h1>Partidos reales</h1><p>Hoy, live, próximos y finalizados desde caché/Real Core. No se muestran partidos inventados.</p><div class="v146-tabs"><a href="/fixtures/today-pro?filter=today">Hoy</a><a href="/fixtures/today-pro?filter=live">Live</a><a href="/fixtures/today-pro?filter=upcoming">Próximos</a><a href="/fixtures/today-pro?filter=finished">Finalizados</a><a href="/fixtures/today-pro?filter=all">Todos</a></div></div><div class="v146-badge">{{ status.total }} cacheados</div></section>
+{% if fixtures %}
+<section class="v146-list">{% for f in fixtures %}<article class="v146-match"><div><span>{{ f.league or "Liga" }}</span><h2>{{ f.home_team }} vs {{ f.away_team }}</h2><p>{{ f.kickoff or "Hora pendiente" }} · {{ f.status }}</p></div><div class="v146-score">{{ f.score }}</div></article>{% endfor %}</section>
+{% else %}
+<section class="v146-empty"><h2>No hay partidos reales para este filtro</h2><p>Cuando el Real Core/API sincronice fixtures reales, aparecerán aquí. No se inventan partidos ni marcadores.</p><a href="/admin/fixtures-sync">Ver sincronización</a></section>
+{% endif %}
+</div>
+{% endblock %}
