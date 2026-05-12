@@ -1,0 +1,22 @@
+
+.v116-wrap{max-width:1220px;margin:0 auto;padding:28px;color:#fff}
+.v116-hero{display:flex;justify-content:space-between;align-items:center;gap:20px;background:radial-gradient(circle at 12% 12%,rgba(0,208,132,.22),transparent 30%),linear-gradient(135deg,#070b14,#101827);border:1px solid rgba(0,208,132,.28);border-radius:30px;padding:32px;box-shadow:0 0 44px rgba(0,208,132,.10)}
+.v116-kicker{margin:0 0 8px;color:#6fffc5;font-size:12px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+.v116-hero h1{margin:0 0 10px;font-size:42px;line-height:1}
+.v116-hero p{opacity:.76;max-width:820px}
+.v116-badge{border-radius:999px;padding:13px 16px;background:rgba(0,208,132,.13);border:1px solid rgba(0,208,132,.38);color:#6fffc5;font-weight:900}
+.v116-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:20px}
+.v116-grid article,.v116-panel{background:rgba(15,23,42,.92);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:22px;box-shadow:0 16px 34px rgba(0,0,0,.22)}
+.v116-grid span{display:block;font-size:12px;opacity:.62}
+.v116-grid strong{display:block;font-size:30px;margin-top:6px}
+.v116-grid small{opacity:.58;word-break:break-word}
+.v116-panel{margin-top:20px}
+.v116-warning{margin-top:8px;padding:12px;border-radius:14px;background:rgba(255,233,134,.10);border:1px solid rgba(255,233,134,.22);color:#ffe986}
+.v116-policy{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.v116-policy div,.v116-row{background:rgba(255,255,255,.045);border-radius:16px;padding:14px}
+.v116-empty{text-align:center;padding:30px}
+.v116-loader{width:48px;height:48px;margin:0 auto 16px;border-radius:50%;border:4px solid rgba(255,255,255,.12);border-top-color:#00d084;animation:v116spin 1s linear infinite}
+@keyframes v116spin{to{transform:rotate(360deg)}}
+.v116-row{display:flex;justify-content:space-between;gap:12px;margin-top:8px}
+pre{white-space:pre-wrap;background:#070b14;border-radius:16px;padding:16px;overflow:auto}
+@media(max-width:920px){.v116-hero{flex-direction:column;align-items:flex-start}.v116-grid,.v116-policy{grid-template-columns:1fr}.v116-wrap{padding:16px}.v116-hero h1{font-size:34px}}

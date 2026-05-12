@@ -7728,3 +7728,25 @@ except Exception as exc:
     print("V114 combined blueprint not loaded:", exc)
 # -------------------------------------------------------------------
 
+
+# -------------------------------------------------------------------
+# V115 CLIENT EXPERIENCE OVERHAUL
+# -------------------------------------------------------------------
+try:
+    from client_experience_v115.routes.client_experience_routes import client_experience_v115_bp
+    app.register_blueprint(client_experience_v115_bp)
+except Exception as exc:
+    print("V115 client experience blueprint not loaded:", exc)
+# -------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------
+# V116 REAL DATA SYNCHRONIZATION
+# -------------------------------------------------------------------
+try:
+    from real_data_v116.routes.real_data_routes import real_data_v116_bp
+    app.register_blueprint(real_data_v116_bp)
+except Exception as exc:
+    print("V116 real data blueprint not loaded:", exc)
+# -------------------------------------------------------------------
+
