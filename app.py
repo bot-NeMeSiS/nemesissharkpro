@@ -8613,3 +8613,11 @@ try:
     app.register_blueprint(bp_sports_visual_v185)
 except Exception as e:
     print("[V185] Sports Visual blueprint no cargado:", e)
+
+
+# --- V186 DATA VISUAL RICHNESS PRO ---
+try:
+    from data_visual_richness_v186.routes import bp_data_visual_richness_v186
+    app.register_blueprint(bp_data_visual_richness_v186)
+except Exception as e:
+    print("[V186] Data Visual Richness blueprint no cargado:", e)
