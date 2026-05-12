@@ -7996,3 +7996,10 @@ try:
     app.register_blueprint(live_ecosystem_v159_bp)
 except Exception as exc:
     print("live_ecosystem_v159 error", exc)
+
+
+try:
+    from admin_business_v160.routes import admin_business_v160_bp
+    app.register_blueprint(admin_business_v160_bp)
+except Exception as exc:
+    print("admin_business_v160 error", exc)

@@ -52,6 +52,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v153_login_onboarding_account.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v157_mobile_app_feel.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v159_live_ecosystem.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v160_admin_business.css') }}">
 </head>
 <body class="{% if current_user %}plan-theme-{{ (current_user.plan or 'FREE')|lower }}{% else %}plan-theme-public{% endif %}">
   <header class="topbar">
@@ -164,5 +165,6 @@
   <script src="{{ url_for('static', filename='js/v153_login_onboarding_account.js') }}"></script>
   <script src="{{ url_for('static', filename='js/v157_mobile_app_feel.js') }}"></script>
   <script src="{{ url_for('static', filename='js/v159_live_ecosystem.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/v160_admin_business.js') }}"></script>
 </body>
 </html>
