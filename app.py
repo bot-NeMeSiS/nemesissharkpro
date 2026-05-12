@@ -8024,3 +8024,9 @@ try:
     app.register_blueprint(push_notifications_v164_bp)
 except Exception as exc:
     print("push_notifications_v164 error", exc)
+
+try:
+    from ux_polish_v165.routes import ux_polish_v165_bp
+    app.register_blueprint(ux_polish_v165_bp)
+except Exception as exc:
+    print("ux_polish_v165 error", exc)
