@@ -7874,3 +7874,9 @@ try:
     app.register_blueprint(favorites_home_v150_bp)
 except Exception as exc:
     print("favorites_home_v150 error", exc)
+
+try:
+    from client_identity_v151.routes import client_identity_v151_bp
+    app.register_blueprint(client_identity_v151_bp)
+except Exception as exc:
+    print("client_identity_v151 error", exc)
