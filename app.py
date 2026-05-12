@@ -8518,3 +8518,19 @@ try:
     app.register_blueprint(admin_telegram_control_v174_bp)
 except Exception as exc:
     print("admin_telegram_control_v174 error", exc)
+
+
+# --- V175 ADMIN INTELLIGENCE + BUSINESS CONTROL PRO ---
+try:
+    from admin_intelligence_v175.routes import admin_intelligence_v175_bp
+    app.register_blueprint(admin_intelligence_v175_bp)
+except Exception as exc:
+    print("admin_intelligence_v175 error", exc)
+
+# --- V176 LIVE EVENTS ULTRA + MATCH INTELLIGENCE ---
+try:
+    from live_events_ultra_v176.routes import live_events_ultra_v176_bp
+    app.register_blueprint(live_events_ultra_v176_bp)
+except Exception as exc:
+    print("live_events_ultra_v176 error", exc)
+
