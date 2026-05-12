@@ -1,0 +1,55 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="v110-wrap">
+  <section class="v110-hero">
+    <div>
+      <p class="v110-kicker">V110 · PRO ARCHITECTURE</p>
+      <h1>Arquitectura y diagnóstico</h1>
+      <p>Panel interno para ver estado de módulos, Render, variables y salud arquitectónica.</p>
+    </div>
+    <div class="v110-score">
+      <span>Score</span>
+      <strong>{{ status.architecture_score }}</strong>
+      <small>/100</small>
+    </div>
+  </section>
+
+  <section class="v110-grid">
+    <article class="v110-card">
+      <span>app.py</span>
+      <strong>{{ status.app_py_lines }}</strong>
+      <small>líneas detectadas</small>
+    </article>
+    <article class="v110-card">
+      <span>Módulos</span>
+      <strong>{{ status.modules|length }}</strong>
+      <small>registrados</small>
+    </article>
+    <article class="v110-card">
+      <span>API</span>
+      <strong>OK</strong>
+      <small>/api/v110/architecture/status</small>
+    </article>
+  </section>
+
+  <section class="v110-panel">
+    <h2>Módulos</h2>
+    <div class="v110-list">
+      {% for m in status.modules %}
+      <div class="v110-row">
+        <span>{{ m.module }}</span>
+        <strong class="{{ 'ok' if m.exists else 'bad' }}">{{ m.status }}</strong>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="v110-panel">
+    <h2>Recomendaciones</h2>
+    {% for rec in status.recommendations %}
+    <div class="v110-rec">{{ rec }}</div>
+    {% endfor %}
+  </section>
+</div>
+{% endblock %}

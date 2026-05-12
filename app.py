@@ -7700,3 +7700,20 @@ except Exception as exc:
     print("V108 client ux blueprint not loaded:", exc)
 # -------------------------------------------------------------------
 
+
+# -------------------------------------------------------------------
+# V109 REAL LIVE INTELLIGENCE + V110 PRO ARCHITECTURE
+# -------------------------------------------------------------------
+try:
+    from live_intelligence_v109.routes import live_intelligence_v109_bp
+    app.register_blueprint(live_intelligence_v109_bp)
+except Exception as exc:
+    print("V109 live intelligence blueprint not loaded:", exc)
+
+try:
+    from pro_architecture_v110.routes.architecture_routes import pro_architecture_v110_bp
+    app.register_blueprint(pro_architecture_v110_bp)
+except Exception as exc:
+    print("V110 architecture blueprint not loaded:", exc)
+# -------------------------------------------------------------------
+
