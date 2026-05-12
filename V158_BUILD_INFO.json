@@ -1,0 +1,14 @@
+{
+  "version": "V158_MATCH_CENTER_VISUAL_FULL_AND_EVENT_FLOW",
+  "base": "V157_MOBILE_APP_FEEL_AND_LIVE_POLISH_PRO",
+  "stripe": false,
+  "real_only_policy": true,
+  "routes": [
+    "/match-center-pro",
+    "/partido-pro/<id>",
+    "/api/v158/match-center-pro",
+    "/api/v158/match-events",
+    "/api/v158/match-momentum"
+  ],
+  "notes": "Match Center visual full, event flow y señales premium sin datos fake."
+}

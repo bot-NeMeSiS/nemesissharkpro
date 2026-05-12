@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/static/css/v155_match_center_pro.css">
   <link rel="stylesheet" href="/static/css/v156_shark_contextual_match_ai.css">
   <link rel="stylesheet" href="/static/css/v157_mobile_app_feel.css">
+  <link rel="stylesheet" href="/static/css/v158_match_center_visual_full.css">
 </head>
 <body>
 <header class="v155-topbar">
@@ -25,7 +26,9 @@
       <div class="score"><strong>{{ data.score_label }}</strong><span>{% if data.is_live %}EN DIRECTO{% else %}MATCH CENTER{% endif %}</span></div>
       <div class="team"><div class="crest away">{{ data.away_initials }}</div><h1>{{ m.away_team }}</h1><small>Visitante</small></div>
     </div>
-    <div class="v155-actions"><a href="/favorites-pro">☆ Guardar favorito</a><a href="#shark-ai">Preguntar a SHARK</a><a href="/api/v156/match-center-pro?match_id={{ m.id }}">API real V156</a></div>
+    <div class="v155-actions"><button class="v158-fav-btn" data-v158-fav="{{ m.id }}">☆ Favorito</button><a href="#shark-ai">Preguntar a SHARK</a><a href="/api/v158/match-center-pro?match_id={{ m.id }}">API real V158</a></div>
+    <div class="v158-live-ribbon" data-v158-refresh><div class="v158-live-dot"></div><b>Centro vivo PRO</b><span>Eventos reales cuando el proveedor los entregue</span><span>Actualizado · ahora</span></div>
+    <div class="v158-hero-extra"><div class="v158-hero-chip"><small>Estado</small><b>{{ m.status or 'Pendiente' }}</b></div><div class="v158-hero-chip"><small>Liga</small><b>{{ m.league or 'Real Core' }}</b></div><div class="v158-hero-chip"><small>Bookmaker</small><b>{{ m.bookmaker or 'Pendiente' }}</b></div><div class="v158-hero-chip"><small>Política</small><b>Real only</b></div></div>
   </section>
 
   <section class="v155-grid four">
@@ -70,18 +73,26 @@
     </div>
   </section>
 
+  <section class="v155-panel">
+    <div class="panel-head"><h2>SHARK Signals V158</h2><a href="/api/v158/match-momentum?match_id={{ m.id }}">API momentum</a></div>
+    <div class="v158-signal-grid">{% for s in data.v158_signals %}<div class="v158-signal {{ s.tone }}"><small>{{ s.label }}</small><b>{{ s.value }}</b></div>{% endfor %}</div>
+    <p class="v158-pro-note">Señales calculadas sobre datos reales presentes. Si faltan eventos o stats, se muestra estado vacío premium.</p>
+  </section>
+
   <section class="v155-layout">
-    <div class="v155-panel"><h2>Timeline real</h2>{% for e in data.events %}<div class="event"><b>{{ e.minute }}</b><span>{{ e.text }}</span></div>{% else %}<div class="empty">Sin eventos reales cargados todavía. Cuando lleguen goles, tarjetas o cambios reales aparecerán aquí.</div>{% endfor %}</div>
-    <div class="v155-panel"><h2>Estadísticas reales</h2>{% for s in data.stats %}<div class="stat"><span>{{ s.name }}</span><b>{{ s.home }} - {{ s.away }}</b></div>{% else %}<div class="empty">Sin estadísticas reales cargadas todavía. Pantalla vacía premium antes que datos inventados.</div>{% endfor %}</div>
+    <div class="v155-panel"><div class="panel-head"><h2>Event Flow real</h2><a href="/api/v158/match-events?match_id={{ m.id }}">API eventos</a></div><div class="v158-event-flow">{% for e in data.events %}<div class="v158-event"><b>{{ e.minute }}'</b><span>{{ e.text }}</span>{% if e.team %}<small>{{ e.team }}</small>{% endif %}</div>{% else %}<div class="v158-empty-flow"><b>Sin eventos reales todavía</b>Cuando lleguen goles, tarjetas, cambios o incidencias reales aparecerán aquí. Mejor vacío premium que datos inventados.<div class="ghost-bars"><i></i><i></i><i></i></div></div>{% endfor %}</div></div>
+    <div class="v155-panel"><h2>Estadísticas visuales reales</h2>{% if data.stats %}<div class="v158-stat-visual">{% for s in data.stats %}<div class="v158-stat-row"><span>{{ s.home }}</span><div class="v158-stat-bar"><i style="width: {{ s.home_pct }}%"></i></div><span>{{ s.away }}</span><div class="v158-stat-label">{{ s.name }}</div></div>{% endfor %}</div>{% else %}<div class="v158-empty-flow"><b>Sin estadísticas reales todavía</b>La zona queda preparada para posesión, tiros, corners, tarjetas y presión cuando el proveedor lo entregue.<div class="ghost-bars"><i></i><i></i><i></i></div></div>{% endif %}</div>
   </section>
 
   <section class="v155-panel"><div class="panel-head"><h2>Pick relacionado</h2><a href="/picks">Ver picks</a></div>{% for p in data.related_picks %}<div class="pick"><b>{{ p.market }}</b><span>Cuota {{ p.odds }}</span><span>Riesgo {{ p.risk }}</span><span>Stake {{ p.stake }}</span><strong>{{ p.score }} SHARK</strong></div>{% endfor %}</section>
   {% else %}
   <section class="v155-empty"><h1>Match Center PRO</h1><p>{{ data.message }}</p><a href="/partidos">Ver partidos reales</a></section>
   {% endif %}
+<div class="v158-bottom-safe"></div>
 </main>
 <script src="/static/js/v155_match_center_pro.js"></script>
 <script src="/static/js/v156_shark_contextual_match_ai.js"></script>
 <script src="/static/js/v157_mobile_app_feel.js"></script>
+<script src="/static/js/v158_match_center_visual_full.js"></script>
 </body>
 </html>

@@ -114,16 +114,82 @@ def build_shark_context(match):
     }
 
 
+
+def _safe_int(value, default=0):
+    try:
+        return int(float(str(value).replace(',', '.')))
+    except Exception:
+        return default
+
+
+def build_v158_event_flow(match):
+    """V158: event flow real-only. Lee eventos si el feed los trae; si no, devuelve vacío premium."""
+    raw_events = match.get('events') or match.get('timeline') or match.get('incidents') or []
+    events = []
+    if isinstance(raw_events, list):
+        for idx, ev in enumerate(raw_events[:18]):
+            if not isinstance(ev, dict):
+                continue
+            minute = ev.get('minute') or ev.get('time') or ev.get('match_time') or '—'
+            text = ev.get('text') or ev.get('description') or ev.get('type') or ev.get('event') or 'Evento real'
+            team = ev.get('team') or ev.get('side') or ''
+            kind = str(ev.get('type') or ev.get('kind') or '').lower()
+            events.append({'minute': minute, 'text': text, 'team': team, 'type': kind or 'real', 'order': idx})
+    return events
+
+
+def build_v158_stats_visual(match):
+    """V158: stats visuales solo cuando existen datos reales en el match."""
+    raw = match.get('stats') or match.get('statistics') or []
+    rows = []
+    if isinstance(raw, dict):
+        raw = [{'name': k, **(v if isinstance(v, dict) else {'home': None, 'away': None})} for k, v in raw.items()]
+    if isinstance(raw, list):
+        for st in raw[:12]:
+            if not isinstance(st, dict):
+                continue
+            name = st.get('name') or st.get('type') or st.get('label') or 'Estadística'
+            home = st.get('home') or st.get('home_value') or st.get('local')
+            away = st.get('away') or st.get('away_value') or st.get('visitor')
+            if home is None and away is None:
+                continue
+            hi = _safe_int(str(home).replace('%',''), 0)
+            ai = _safe_int(str(away).replace('%',''), 0)
+            total = max(hi + ai, 1)
+            pct = max(5, min(95, int((hi / total) * 100))) if (hi or ai) else 50
+            rows.append({'name': name, 'home': home, 'away': away, 'home_pct': pct})
+    return rows
+
+
+def build_v158_signals(match, context, momentum):
+    risk = (context or {}).get('risk') or _normalize_risk(match.get('risk'))
+    odds = match.get('odds') or None
+    status = str(match.get('status') or '').upper()
+    live = any(x in status for x in ['LIVE', 'DIRECTO', 'IN PLAY', 'EN JUEGO'])
+    strength = 'Fuerte' if momentum >= 78 and risk != 'Alto' else ('Media' if momentum >= 62 else 'Esperar')
+    caution_level = 'Alta' if risk == 'Alto' else ('Media' if risk == 'Medio' else 'Controlada')
+    price_state = 'Cuota cargada' if odds else 'Cuota pendiente'
+    rhythm = 'Lectura live' if live else 'Prepartido'
+    return [
+        {'label': 'Señal SHARK', 'value': strength, 'tone': 'good' if strength == 'Fuerte' else ('warn' if strength == 'Media' else 'danger')},
+        {'label': 'Prudencia', 'value': caution_level, 'tone': 'danger' if caution_level == 'Alta' else ('warn' if caution_level == 'Media' else 'good')},
+        {'label': 'Mercado', 'value': price_state, 'tone': 'good' if odds else 'warn'},
+        {'label': 'Ritmo', 'value': rhythm, 'tone': 'good' if live else 'warn'},
+        {'label': 'Favoritos', 'value': 'Disponible', 'tone': 'good'},
+        {'label': 'Fake policy', 'value': 'Real only', 'tone': 'good'},
+    ]
+
 def build_match_center(match_id=None):
     match, feed = _find_real_core_match(match_id)
     if not match:
         return {
             'ok': False,
-            'version': 'V156_SHARK_CONTEXTUAL_MATCH_AI_PRO',
+            'version': 'V158_MATCH_CENTER_VISUAL_FULL_AND_EVENT_FLOW',
             'message': 'No hay partido real seleccionado. Se mantiene pantalla vacía premium sin inventar datos.',
             'feed_ok': bool(feed.get('ok')) if isinstance(feed, dict) else False,
             'events': [],
             'stats': [],
+            'v158_signals': [],
             'related_picks': [],
             'shark_context': None,
             'now': datetime.utcnow().isoformat() + 'Z',
@@ -144,6 +210,9 @@ def build_match_center(match_id=None):
         momentum = 50
 
     context = build_shark_context(match)
+    v158_events = build_v158_event_flow(match)
+    v158_stats = build_v158_stats_visual(match)
+    v158_signals = build_v158_signals(match, context, momentum)
 
     reading = 'Partido real validado por Real Core. No hay timeline ni estadísticas live cargadas todavía.'
     if is_live:
@@ -153,7 +222,7 @@ def build_match_center(match_id=None):
 
     return {
         'ok': True,
-        'version': 'V156_SHARK_CONTEXTUAL_MATCH_AI_PRO',
+        'version': 'V158_MATCH_CENTER_VISUAL_FULL_AND_EVENT_FLOW',
         'match': match,
         'home_initials': _team_initials(match.get('home_team')),
         'away_initials': _team_initials(match.get('away_team')),
@@ -161,8 +230,9 @@ def build_match_center(match_id=None):
         'is_live': is_live,
         'momentum': momentum,
         'reading': reading,
-        'events': [],
-        'stats': [],
+        'events': v158_events,
+        'stats': v158_stats,
+        'v158_signals': v158_signals,
         'shark_context': context,
         'related_picks': [{
             'market': context['market'],
@@ -178,6 +248,7 @@ def build_match_center(match_id=None):
 
 @match_center_v155_bp.route('/api/v155/match-center-pro')
 @match_center_v155_bp.route('/api/v156/match-center-pro')
+@match_center_v155_bp.route('/api/v158/match-center-pro')
 def api_match_center_pro():
     match_id = request.args.get('match_id') or request.args.get('id')
     return jsonify(build_match_center(match_id))
@@ -208,6 +279,36 @@ def api_shark_context():
         'no_fake_policy': True,
     })
 
+
+
+@match_center_v155_bp.route('/api/v158/match-events')
+def api_v158_match_events():
+    match_id = request.args.get('match_id') or request.args.get('id')
+    data = build_match_center(match_id)
+    return jsonify({
+        'ok': bool(data.get('ok')),
+        'version': 'V158_MATCH_CENTER_VISUAL_FULL_AND_EVENT_FLOW',
+        'match_id': ((data.get('match') or {}).get('id') if data.get('match') else match_id),
+        'events': data.get('events') or [],
+        'empty_state': 'Sin eventos reales cargados todavía' if not data.get('events') else None,
+        'real_only': True,
+        'no_fake_policy': True,
+    })
+
+
+@match_center_v155_bp.route('/api/v158/match-momentum')
+def api_v158_match_momentum():
+    match_id = request.args.get('match_id') or request.args.get('id')
+    data = build_match_center(match_id)
+    return jsonify({
+        'ok': bool(data.get('ok')),
+        'version': 'V158_MATCH_CENTER_VISUAL_FULL_AND_EVENT_FLOW',
+        'match_id': ((data.get('match') or {}).get('id') if data.get('match') else match_id),
+        'momentum': data.get('momentum', 50),
+        'signals': data.get('v158_signals') or [],
+        'real_only': True,
+        'no_fake_policy': True,
+    })
 
 @match_center_v155_bp.route('/match-center-pro')
 @match_center_v155_bp.route('/cliente/match-center-pro')
