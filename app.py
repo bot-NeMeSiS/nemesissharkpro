@@ -7839,3 +7839,14 @@ try:
     app.register_blueprint(smart_ux_v139_bp)
 except Exception as exc:
     print("smart_ux_v139 error", exc)
+
+
+# -------------------------------------------------------------------
+# V140-V145 MATCH ECOSYSTEM ULTRA
+# -------------------------------------------------------------------
+try:
+    from match_ecosystem_v145.routes import match_ecosystem_v145_bp
+    app.register_blueprint(match_ecosystem_v145_bp)
+except Exception as exc:
+    print("match_ecosystem_v145 error", exc)
+# -------------------------------------------------------------------
