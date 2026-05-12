@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='v167/admin-command.css') }}">
+<section class="v167-shell">
+  <div class="v167-hero">
+    <div>
+      <p class="v167-kicker">V167 · ADMIN COMMAND CENTER PRO</p>
+      <h1>Centro de mando NeMeSiS</h1>
+      <p class="v167-muted">Vista ejecutiva para controlar negocio, sistema, Real Core, Telegram, Push, Billing y actividad sin mostrar datos inventados.</p>
+      <div class="v167-actions">
+        <a href="/admin/business-center">Business Center</a>
+        <a href="/admin/fixtures-sync">Sync partidos</a>
+        <a href="/admin/push-center">Push Center</a>
+        <a href="/admin/billing-center">Billing</a>
+      </div>
+    </div>
+    <div class="v167-health-card">
+      <span>Health Score</span>
+      <strong>{{ data.health_score }}</strong>
+      <small>/100 · {{ data.version }}</small>
+      <div class="v167-meter"><i style="width: {{ data.health_score }}%"></i></div>
+    </div>
+  </div>
+
+  <div class="v167-grid v167-grid-6">
+    {% for k in data.kpis %}
+    <article class="v167-kpi tone-{{ k.tone }}">
+      <span>{{ k.label }}</span>
+      <strong>{{ k.value }}</strong>
+      <small>{{ k.hint }}</small>
+    </article>
+    {% endfor %}
+  </div>
+
+  <div class="v167-grid v167-grid-3">
+    <article class="v167-panel">
+      <p class="v167-kicker">MEMBRESÍAS</p>
+      <h2>Distribución cliente</h2>
+      <div class="v167-memberships">
+        {% for m in data.memberships %}
+        <div class="v167-membership {{ m.class }}"><span>{{ m.label }}</span><strong>{{ m.value }}</strong></div>
+        {% endfor %}
+      </div>
+      <p class="v167-muted small">Lectura real si la tabla de usuarios tiene membership/tier/plan.</p>
+    </article>
+
+    <article class="v167-panel">
+      <p class="v167-kicker">SISTEMA</p>
+      <h2>Estado técnico</h2>
+      <div class="v167-row"><span>Base de datos</span><strong class="{{ 'ok' if data.database.detected else 'bad' }}">{{ data.database.path }}</strong></div>
+      <div class="v167-row"><span>Tamaño DB</span><strong>{{ data.database.size }}</strong></div>
+      <div class="v167-row"><span>Tablas</span><strong>{{ data.database.tables }}</strong></div>
+      <div class="v167-row"><span>Render</span><strong class="{{ 'ok' if data.runtime.render else '' }}">{{ 'OK' if data.runtime.render else 'LOCAL/NO DETECTADO' }}</strong></div>
+    </article>
+
+    <article class="v167-panel">
+      <p class="v167-kicker">CHECKLIST DE HOY</p>
+      <h2>Qué revisar</h2>
+      {% for item in data.daily_checklist %}
+      <a class="v167-task" href="{{ item.href }}"><span>{{ item.label }}</span><em>{{ item.status }}</em></a>
+      {% endfor %}
+    </article>
+  </div>
+
+  {% if data.critical %}
+  <section class="v167-panel v167-critical">
+    <p class="v167-kicker">ALERTAS CRÍTICAS</p>
+    <h2>Necesita atención</h2>
+    {% for c in data.critical %}<div class="v167-alert">{{ c }}</div>{% endfor %}
+  </section>
+  {% endif %}
+
+  <div class="v167-grid v167-grid-2">
+    <article class="v167-panel">
+      <p class="v167-kicker">CONFIGURACIÓN</p>
+      <h2>Entorno y APIs</h2>
+      {% for e in data.env %}
+      <div class="v167-row"><span>{{ e.name }}</span><strong class="{{ 'ok' if e.configured else 'bad' }}">{{ e.label }}</strong></div>
+      {% endfor %}
+      <div class="v167-note">{{ data.billing_note }}</div>
+    </article>
+
+    <article class="v167-panel">
+      <p class="v167-kicker">ACCESOS RÁPIDOS</p>
+      <h2>Operación PRO</h2>
+      <div class="v167-link-grid">
+        {% for link in data.quick_links %}<a href="{{ link.href }}">{{ link.label }}</a>{% endfor %}
+      </div>
+    </article>
+  </div>
+
+  <div class="v167-grid v167-grid-4">
+    <article class="v167-panel">
+      <p class="v167-kicker">USUARIOS</p><h2>Últimos</h2>
+      {% for r in data.recent.users %}<div class="v167-mini"><strong>{{ r.title }}</strong><small>{{ r.badge }} · {{ r.meta }}</small></div>{% else %}<div class="v167-empty">Sin lectura real disponible.</div>{% endfor %}
+    </article>
+    <article class="v167-panel">
+      <p class="v167-kicker">PARTIDOS</p><h2>Últimos fixtures</h2>
+      {% for r in data.recent.fixtures %}<div class="v167-mini"><strong>{{ r.title }}</strong><small>{{ r.badge }} · {{ r.meta }}</small></div>{% else %}<div class="v167-empty">No se inventan partidos. Ejecuta sync real.</div>{% endfor %}
+    </article>
+    <article class="v167-panel">
+      <p class="v167-kicker">PICKS</p><h2>Actividad</h2>
+      {% for r in data.recent.picks %}<div class="v167-mini"><strong>{{ r.title }}</strong><small>{{ r.badge }} · {{ r.meta }}</small></div>{% else %}<div class="v167-empty">Sin picks reales recientes.</div>{% endfor %}
+    </article>
+    <article class="v167-panel">
+      <p class="v167-kicker">ALERTAS</p><h2>Cola reciente</h2>
+      {% for r in data.recent.alerts %}<div class="v167-mini"><strong>{{ r.title }}</strong><small>{{ r.badge }} · {{ r.meta }}</small></div>{% else %}<div class="v167-empty">Sin alertas reales en cola.</div>{% endfor %}
+    </article>
+  </div>
+
+  <section class="v167-policy">
+    <strong>Real Core activo</strong>
+    <span>NO fake matches · NO fake picks · NO fake scores · estados vacíos premium cuando falten datos reales</span>
+  </section>
+</section>
+{% endblock %}

@@ -8037,3 +8037,17 @@ try:
     app.register_blueprint(billing_v166_bp)
 except Exception as exc:
     print("billing_v166 error", exc)
+
+try:
+    from admin_command_v167.routes import admin_command_v167_bp
+    app.register_blueprint(admin_command_v167_bp)
+except Exception as exc:
+    print("admin_command_v167 error", exc)
+
+
+
+try:
+    from match_center_ultra_v168.routes import match_center_ultra_v168_bp
+    app.register_blueprint(match_center_ultra_v168_bp)
+except Exception as exc:
+    print("match_center_ultra_v168 error", exc)
