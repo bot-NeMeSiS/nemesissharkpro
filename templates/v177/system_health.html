@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>V177 System Health · NeMeSiS SHARK PRO</title>
+  <link rel="stylesheet" href="/static/v177/system_health.css">
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">NeMeSiS SHARK PRO · V177</p>
+        <h1>System Health, Hardening & Performance</h1>
+        <p class="sub">Centro admin para revisar salud del sistema, Telegram, base de datos, seguridad básica y rendimiento sin mostrar datos fake.</p>
+      </div>
+      <div class="score {{ data.status }}">
+        <span>{{ data.score }}</span>
+        <small>/100</small>
+        <b>{{ data.status|upper }}</b>
+      </div>
+    </section>
+
+    <section class="grid cards">
+      <article class="card"><span>DB</span><strong>{{ data.database.size_mb }} MB</strong><small>{{ data.database.path or 'No detectada' }}</small></article>
+      <article class="card"><span>Uptime</span><strong>{{ data.uptime_seconds }}s</strong><small>Proceso actual</small></article>
+      <article class="card"><span>Checks OK</span><strong>{{ data.checks|selectattr('ok')|list|length }}/{{ data.checks|length }}</strong><small>Configuración esencial</small></article>
+      <article class="card"><span>Errores recientes</span><strong>{{ data.recent_errors|length }}</strong><small>Logs detectados</small></article>
+    </section>
+
+    <section class="panel">
+      <h2>Checks críticos</h2>
+      <div class="checks">
+        {% for c in data.checks %}
+        <div class="check {{ 'ok' if c.ok else 'warn' }}"><b>{{ c.label }}</b><span>{{ c.detail }}</span></div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="panel">
+        <h2>Tablas / datos</h2>
+        {% for k,v in data.tables.items() %}
+          <div class="row"><span>{{ k }}</span><b>{{ v if v is not none else '—' }}</b></div>
+        {% endfor %}
+      </div>
+      <div class="panel">
+        <h2>Rendimiento</h2>
+        {% for k,v in data.performance.items() %}
+          <div class="row"><span>{{ k }}</span><b>{{ v }}</b></div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Seguridad / hardening</h2>
+      {% for k,v in data.security.items() %}
+        <div class="row"><span>{{ k }}</span><b>{{ v }}</b></div>
+      {% endfor %}
+    </section>
+
+    <section class="panel">
+      <h2>Últimos errores/logs</h2>
+      {% if data.recent_errors %}
+        {% for e in data.recent_errors %}
+          <div class="log"><b>{{ e.source }} · {{ e.level }}</b><span>{{ e.message }}</span><small>{{ e.created_at }}</small></div>
+        {% endfor %}
+      {% else %}
+        <div class="empty">Sin errores recientes detectados en tablas conocidas.</div>
+      {% endif %}
+    </section>
+  </main>
+</body>
+</html>

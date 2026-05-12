@@ -8534,3 +8534,11 @@ try:
 except Exception as exc:
     print("live_events_ultra_v176 error", exc)
 
+
+# --- V177 HARDENING + PERFORMANCE + SYSTEM HEALTH ---
+try:
+    from system_health_v177.routes import system_health_v177_bp
+    app.register_blueprint(system_health_v177_bp)
+except Exception as exc:
+    print("system_health_v177 error", exc)
+
