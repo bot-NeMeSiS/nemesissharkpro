@@ -19,7 +19,7 @@ from zoneinfo import ZoneInfo
 
 from flask import Flask, render_template, request, redirect, session, jsonify, send_from_directory, Response
 
-APP_VERSION = "NeMeSiS_SHARK_PRO_V153_0_LOGIN_ONBOARDING_ACCOUNT_PRO"
+APP_VERSION = "NeMeSiS_SHARK_PRO_V180_0_BACKUP_RECOVERY_PRODUCTION_HARDENING"
 APP_NAME = "NeMeSiS SHARK PRO"
 
 
@@ -8542,3 +8542,31 @@ try:
 except Exception as exc:
     print("system_health_v177 error", exc)
 
+
+# --- V178 AUTOMATION ENGINE PRO ---
+try:
+    from automation_engine_v178.routes import automation_engine_v178_bp
+    app.register_blueprint(automation_engine_v178_bp)
+except Exception as exc:
+    print("automation_engine_v178 error", exc)
+
+
+# --- V179 PWA INSTALL RELIABILITY + PUSH FULL FOUNDATION ---
+try:
+    from pwa_reliability_v179.routes import pwa_reliability_v179_bp
+    app.register_blueprint(pwa_reliability_v179_bp)
+except Exception as exc:
+    print("pwa_reliability_v179 error", exc)
+
+try:
+    from backup_recovery_v180.routes import backup_recovery_v180_bp
+    app.register_blueprint(backup_recovery_v180_bp)
+except Exception as exc:
+    print("backup_recovery_v180 error", exc)
+
+# --- V181 ANALYTICS BUSINESS PRO ---
+try:
+    from analytics_business_v181.routes import analytics_business_v181_bp
+    app.register_blueprint(analytics_business_v181_bp)
+except Exception as exc:
+    print("analytics_business_v181 error", exc)

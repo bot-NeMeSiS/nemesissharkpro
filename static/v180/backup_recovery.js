@@ -1,0 +1,2 @@
+async function createBackup(){const out=document.getElementById('out');out.textContent='Creando backup...';const r=await fetch('/api/v180/backup/create?label=manual_admin',{method:'POST'});out.textContent=JSON.stringify(await r.json(),null,2)}
+async function cleanupBackups(){const out=document.getElementById('out');out.textContent='Limpiando backups antiguos...';const r=await fetch('/api/v180/backup/cleanup?keep=10',{method:'POST'});out.textContent=JSON.stringify(await r.json(),null,2)}

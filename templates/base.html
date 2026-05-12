@@ -54,6 +54,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v159_live_ecosystem.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v160_admin_business.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v170_pwa_telegram_fix.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v179_pwa_install_reliability.css') }}">
 </head>
 <body class="{% if current_user %}plan-theme-{{ (current_user.plan or 'FREE')|lower }}{% else %}plan-theme-public{% endif %}">
   <header class="topbar">
@@ -178,5 +179,6 @@
   <script src="{{ url_for('static', filename='js/v159_live_ecosystem.js') }}"></script>
   <script src="{{ url_for('static', filename='js/v160_admin_business.js') }}"></script>
   <script src="{{ url_for('static', filename='js/v170_pwa_smart_install.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/v179_pwa_install_reliability.js') }}"></script>
 </body>
 </html>
