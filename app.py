@@ -8504,3 +8504,10 @@ try:
     app.register_blueprint(telegram_membership_v172_bp)
 except Exception as exc:
     print("telegram_membership_v172 error", exc)
+
+# --- V173 TELEGRAM AUTO DELIVERY REAL ---
+try:
+    from telegram_auto_v173.routes import telegram_auto_v173_bp
+    app.register_blueprint(telegram_auto_v173_bp)
+except Exception as exc:
+    print("telegram_auto_v173 error", exc)
