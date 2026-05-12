@@ -1,0 +1,16 @@
+{
+  "version": "V125_MEGA_SAFE_RELEASE",
+  "base": "V119_PRODUCT_CONTROL_CENTER",
+  "included": [
+    "V120",
+    "V121",
+    "V122",
+    "V123",
+    "V124",
+    "V125"
+  ],
+  "render_ready": true,
+  "github_ready": true,
+  "safe_mode": true,
+  "no_fake_data": true
+}

@@ -1,0 +1,34 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="v125-wrap">
+  <section class="v125-hero">
+    <div>
+      <p class="v125-kicker">V120-V125 · MEGA SAFE RELEASE</p>
+      <h1>Centro Mega PRO</h1>
+      <p>Arquitectura, resultados, momentum live, SHARK AI real, mobile app feel y SaaS safe-mode unidos sin romper lo actual.</p>
+    </div>
+    <div class="v125-badge">SAFE RELEASE</div>
+  </section>
+
+  <section class="v125-grid">
+    <a href="/api/v120/architecture/split">V120 Arquitectura Split</a>
+    <a href="/api/v121/results/report">V121 Result Engine</a>
+    <a href="/api/v122/live/momentum">V122 Live Momentum</a>
+    <a href="/api/v123/shark-ai">V123 SHARK AI Real</a>
+    <a href="/api/v124/mobile">V124 Mobile Feel</a>
+    <a href="/api/v125/saas/status">V125 SaaS Safe</a>
+  </section>
+
+  <section class="v125-panel">
+    <h2>Estado SaaS</h2>
+    <pre>{{ saas|tojson(indent=2) }}</pre>
+  </section>
+
+  <section class="v125-panel">
+    <h2>Arquitectura</h2>
+    <p>app.py líneas: {{ split.app_py_lines }}</p>
+    <p>Modo seguro: no se eliminan rutas legacy que funcionan.</p>
+  </section>
+</div>
+{% endblock %}

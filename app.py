@@ -7779,3 +7779,25 @@ except Exception as exc:
     print("V119 product control blueprint not loaded:", exc)
 # -------------------------------------------------------------------
 
+
+# -------------------------------------------------------------------
+# V120-V125 MEGA SAFE RELEASE
+# -------------------------------------------------------------------
+try:
+    from mega_v125.routes.mega_routes import mega_v125_bp
+    app.register_blueprint(mega_v125_bp)
+except Exception as exc:
+    print("V125 mega safe blueprint not loaded:", exc)
+# -------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------
+# V126 CLOSING PICKS PRO
+# -------------------------------------------------------------------
+try:
+    from closing_picks_v126.routes.closing_routes import closing_picks_v126_bp
+    app.register_blueprint(closing_picks_v126_bp)
+except Exception as exc:
+    print("V126 closing picks blueprint not loaded:", exc)
+# -------------------------------------------------------------------
+
