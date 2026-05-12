@@ -1,0 +1,13 @@
+{
+  "version": "V130_ULTRA_EVOLUTION_FULL_CLEAN",
+  "base": "V126_CLOSING_PICKS_PRO",
+  "included": [
+    "V127",
+    "V128",
+    "V129",
+    "V130"
+  ],
+  "render_ready": true,
+  "github_ready": true,
+  "no_fake_data": true
+}

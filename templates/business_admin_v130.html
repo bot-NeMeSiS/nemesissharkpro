@@ -1,0 +1,22 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="v130-wrap">
+  <section class="v130-hero admin">
+    <div>
+      <p class="v130-kicker">V130 · BUSINESS ADMIN CENTER</p>
+      <h1>Centro de negocio</h1>
+      <p>Usuarios, membresías, picks, Telegram, APIs, Real Data y control operativo en un solo lugar.</p>
+    </div>
+    <div class="v130-score">{{ data.business_score }}/100</div>
+  </section>
+  <section class="v130-grid">
+    {% for module in data.modules %}
+      <a class="v130-card-link" href="{{ module.href }}">
+        <strong>{{ module.name }}</strong>
+        <span>{{ module.status }}</span>
+      </a>
+    {% endfor %}
+  </section>
+</div>
+{% endblock %}

@@ -7801,3 +7801,21 @@ except Exception as exc:
     print("V126 closing picks blueprint not loaded:", exc)
 # -------------------------------------------------------------------
 
+
+# -------------------------------------------------------------------
+# V127-V130 ULTRA EVOLUTION
+# -------------------------------------------------------------------
+try:
+    from ultra_v130.routes.ultra_routes import ultra_v130_bp
+    app.register_blueprint(ultra_v130_bp)
+except Exception as exc:
+    print("V130 ultra evolution blueprint not loaded:", exc)
+# -------------------------------------------------------------------
+
+
+
+try:
+    from enterprise_v136.routes import enterprise_v136_bp
+    app.register_blueprint(enterprise_v136_bp)
+except Exception as exc:
+    print("enterprise_v136 error", exc)

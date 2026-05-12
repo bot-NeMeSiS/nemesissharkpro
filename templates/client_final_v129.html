@@ -1,0 +1,28 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="v129-app">
+  <aside class="v129-side">
+    <div class="v129-brand">🦈 <strong>SHARK PRO</strong></div>
+    {% for item in payload.navigation %}
+      <a href="{{ item.href }}">{{ item.icon }} {{ item.label }}</a>
+    {% endfor %}
+    <a class="danger" href="/logout">🚪 Salir</a>
+  </aside>
+  <main class="v129-main">
+    <section class="v130-hero">
+      <div>
+        <p class="v130-kicker">V129 · CLIENT EXPERIENCE FINAL</p>
+        <h1>Tu centro SHARK premium</h1>
+        <p>Picks reales, live, SHARK AI, cuenta y rendimiento en una experiencia más limpia.</p>
+      </div>
+      <div class="v130-badge">{{ payload.plan }}</div>
+    </section>
+    <section class="v130-grid">
+      {% for action in payload.quick_actions %}
+        <a class="v130-card-link" href="{{ action.href }}">{{ action.label }}</a>
+      {% endfor %}
+    </section>
+  </main>
+</div>
+{% endblock %}
