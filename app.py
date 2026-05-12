@@ -8597,3 +8597,19 @@ try:
     app.register_blueprint(bp_security_final_v183)
 except Exception as e:
     print("[V183] Security Final blueprint no cargado:", e)
+
+
+# --- V184 MATCH CENTER STATS ANALYTICS AUTOMATIONS PRO ---
+try:
+    from match_stats_automation_v184.routes import bp_match_stats_automation_v184
+    app.register_blueprint(bp_match_stats_automation_v184)
+except Exception as e:
+    print("[V184] Match Stats Automation blueprint no cargado:", e)
+
+
+# --- V185 REAL SPORTS VISUAL SYSTEM ---
+try:
+    from sports_visual_v185.routes import bp_sports_visual_v185
+    app.register_blueprint(bp_sports_visual_v185)
+except Exception as e:
+    print("[V185] Sports Visual blueprint no cargado:", e)
