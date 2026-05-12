@@ -7761,3 +7761,9 @@ except Exception as exc:
     print("V117 telegram pro blueprint not loaded:", exc)
 # -------------------------------------------------------------------
 
+
+
+@app.route('/v118/preview')
+@app.route('/premium-visual')
+def v118_visual_preview():
+    return render_template('v118_visual_preview.html')
