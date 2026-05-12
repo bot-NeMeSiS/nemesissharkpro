@@ -8010,3 +8010,17 @@ try:
     app.register_blueprint(telegram_live_v162_bp)
 except Exception as exc:
     print("telegram_live_v162 error", exc)
+
+
+try:
+    from smart_live_v163.routes import smart_live_v163_bp
+    app.register_blueprint(smart_live_v163_bp)
+except Exception as exc:
+    print("smart_live_v163 error", exc)
+
+
+try:
+    from push_notifications_v164.routes import push_notifications_v164_bp
+    app.register_blueprint(push_notifications_v164_bp)
+except Exception as exc:
+    print("push_notifications_v164 error", exc)
