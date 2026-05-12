@@ -19,7 +19,7 @@ from zoneinfo import ZoneInfo
 
 from flask import Flask, render_template, request, redirect, session, jsonify, send_from_directory, Response
 
-APP_VERSION = "NeMeSiS_SHARK_PRO_V59_0_BACKEND_SPLIT_SECURITY_PRO"
+APP_VERSION = "NeMeSiS_SHARK_PRO_V152_0_PUBLIC_LANDING_MEMBERSHIP_RESTORE"
 APP_NAME = "NeMeSiS SHARK PRO"
 
 
@@ -7480,11 +7480,31 @@ except Exception as e:
 
 @app.route("/")
 @app.route("/inicio")
+def public_landing_v152():
+    """V152: landing pública comercial.
+
+    La home vuelve a ser pública aunque exista sesión. Si el usuario está logueado
+    se muestran accesos directos a su panel y a salir de la cuenta, pero no se
+    fuerza el panel cliente. Esto recupera el flujo comercial FREE/PRO/ELITE.
+    """
+    current = session.get("user") if session else None
+    return render_template("public_landing_v152.html", current=current)
+
+@app.route("/planes")
+@app.route("/membresias")
+@app.route("/pricing")
+def public_plans_v152():
+    current = session.get("user") if session else None
+    return render_template("public_landing_v152.html", current=current, focus_plans=True)
+
 @app.route("/dashboard")
-def v91_home():
-    from core.real_core_engine import RealCoreEngine
-    feed = RealCoreEngine.fetch(force=False)
-    return render_template("client_panel_v92.html", vm=__import__("client_panel_v92.engine", fromlist=["build_client_dashboard"]).build_client_dashboard(force=False))
+def dashboard_router_v152():
+    user = session.get("user") if session else None
+    if user and user.get("role") == "admin":
+        return redirect("/admin")
+    if user:
+        return redirect("/cliente/pro")
+    return redirect("/")
 
 @app.route("/partidos")
 @app.route("/hoy")

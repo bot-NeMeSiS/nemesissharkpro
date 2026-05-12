@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NeMeSiS SHARK PRO · Picks deportivos, partidos reales y SHARK AI</title>
+  <meta name="description" content="Plataforma premium de picks deportivos, partidos reales, live center, favoritos, Telegram, ROI, winrate y SHARK AI.">
+  <meta name="theme-color" content="#06122f">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+  <link rel="stylesheet" href="/static/css/v152_public_landing.css">
+</head>
+<body class="v152-public {% if current %}is-logged{% endif %}">
+  <header class="v152-topbar">
+    <a class="v152-brand" href="/" aria-label="NeMeSiS SHARK PRO inicio">
+      <span class="v152-logo">NS</span>
+      <span><strong>NeMeSiS</strong><small>SHARK PRO</small></span>
+    </a>
+    <nav class="v152-nav" aria-label="Navegación principal">
+      <a href="#planes">Planes</a>
+      <a href="/partidos">Partidos</a>
+      <a href="/home-live-real">Live</a>
+      <a href="/match-center-real">Match Center</a>
+      {% if current %}
+        <a class="v152-nav-user" href="/cliente/pro">Panel cliente</a>
+        <a class="v152-nav-exit" href="/logout">Salir</a>
+      {% else %}
+        <a href="/cliente-login">Entrar</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  <main>
+    <section class="v152-hero">
+      <div class="v152-hero-copy">
+        <span class="v152-kicker">Real Core · No fake policy · PWA</span>
+        <h1>Picks deportivos, partidos reales y SHARK AI en una experiencia premium.</h1>
+        <p>NeMeSiS SHARK PRO une señales, live center, favoritos, Telegram, ROI y winrate en una plataforma clara para cliente y potente para negocio.</p>
+        <div class="v152-actions">
+          {% if current %}
+            <a class="v152-btn v152-primary" href="/cliente/pro">Acceder a mi panel</a>
+            <a class="v152-btn v152-ghost" href="/logout">Salir de cuenta</a>
+          {% else %}
+            <a class="v152-btn v152-primary" href="/cliente-login">Entrar / iniciar sesión</a>
+            <a class="v152-btn v152-ghost" href="#planes">Ver planes</a>
+          {% endif %}
+          <button class="v152-btn v152-install" id="nemesis-pwa-install" type="button">Instalar app</button>
+        </div>
+        {% if current %}
+          <div class="v152-session-card">Sesión activa: <strong>{{ current.username }}</strong> · Plan <strong>{{ current.plan or 'FREE' }}</strong></div>
+        {% else %}
+          <div class="v152-session-card">Crea tu cuenta o entra para guardar favoritos, banca y estadísticas.</div>
+        {% endif %}
+      </div>
+      <aside class="v152-hero-panel" aria-label="Resumen de producto">
+        <div><small>Partidos</small><strong>Reales</strong><span>Si no hay feed real, estado vacío premium.</span></div>
+        <div><small>Picks</small><strong>Sin demos</strong><span>Política limpia: nada inventado para cliente.</span></div>
+        <div><small>SHARK AI</small><strong>PRO</strong><span>Ayuda contextual para picks, banca y partidos.</span></div>
+      </aside>
+    </section>
+
+    <section class="v152-strip" aria-label="Accesos rápidos">
+      <a href="/partidos">Partidos reales</a>
+      <a href="/home-live-real">Home live</a>
+      <a href="/favorites-pro">Favoritos</a>
+      <a href="/match-center-real">Match Center</a>
+      <a href="/shark-ai">SHARK AI</a>
+      <a href="/cuenta">Cuenta</a>
+    </section>
+
+    <section id="planes" class="v152-plans {% if focus_plans %}v152-focus{% endif %}">
+      <div class="v152-section-head">
+        <span>MEMBRESÍAS</span>
+        <h2>Elige tu nivel SHARK</h2>
+        <p>Tres accesos claros para crecer desde prueba gratuita hasta experiencia ELITE.</p>
+      </div>
+      <div class="v152-plan-grid">
+        <article class="v152-plan free">
+          <span class="v152-plan-badge">FREE</span>
+          <h3>FREE</h3>
+          <p>Entrada básica para explorar la plataforma, ver accesos y empezar con banca inicial.</p>
+          <ul><li>Cuenta cliente</li><li>Acceso básico</li><li>Estados reales sin demos</li></ul>
+          <a href="/registro?plan=FREE">Crear FREE</a>
+        </article>
+        <article class="v152-plan pro featured">
+          <span class="v152-plan-badge">PRO</span>
+          <h3>PRO</h3>
+          <p>El plan principal para picks, métricas, favoritos, Telegram y experiencia premium diaria.</p>
+          <ul><li>Picks y partidos reales</li><li>ROI / winrate / banca</li><li>Favoritos y Telegram</li></ul>
+          <a href="/registro?plan=PRO">Empezar PRO</a>
+        </article>
+        <article class="v152-plan elite">
+          <span class="v152-plan-badge">ELITE</span>
+          <h3>ELITE</h3>
+          <p>Máximo nivel con SHARK AI premium, prioridad y experiencia completa de alto valor.</p>
+          <ul><li>Todo PRO</li><li>SHARK AI avanzado</li><li>Prioridad premium</li></ul>
+          <a href="/registro?plan=ELITE">Subir a ELITE</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div id="nemesis-pwa-banner" class="v152-pwa-banner" aria-live="polite">
+    <div><strong>Instalar NeMeSiS SHARK PRO</strong><small>Úsala como app en móvil o PC.</small></div>
+    <button id="nemesis-pwa-banner-install" type="button">Instalar</button>
+    <button id="nemesis-pwa-close" type="button" aria-label="Cerrar">×</button>
+  </div>
+  <script src="/static/js/pwa_install_v148.js"></script>
+  <script src="/static/js/v152_public_landing.js"></script>
+</body>
+</html>
