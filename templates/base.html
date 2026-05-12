@@ -53,6 +53,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v157_mobile_app_feel.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v159_live_ecosystem.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v160_admin_business.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v170_pwa_telegram_fix.css') }}">
 </head>
 <body class="{% if current_user %}plan-theme-{{ (current_user.plan or 'FREE')|lower }}{% else %}plan-theme-public{% endif %}">
   <header class="topbar">
@@ -97,6 +98,16 @@
 
 
   <main class="container">
+    <section class="v170-pwa-card is-hidden" data-v170-install-card>
+      <div>
+        <strong>Instalar NeMeSiS SHARK PRO</strong>
+        <small>Disponible para PC y móvil. Si ya la tienes instalada, este aviso desaparece solo.</small>
+      </div>
+      <div class="v170-actions">
+        <button type="button" class="v170-install-btn" data-v170-install>Instalar app</button>
+        <button type="button" class="v170-install-btn" data-v170-install-close>Ocultar</button>
+      </div>
+    </section>
     {% block content %}{% endblock %}
   </main>
 
@@ -166,5 +177,6 @@
   <script src="{{ url_for('static', filename='js/v157_mobile_app_feel.js') }}"></script>
   <script src="{{ url_for('static', filename='js/v159_live_ecosystem.js') }}"></script>
   <script src="{{ url_for('static', filename='js/v160_admin_business.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/v170_pwa_smart_install.js') }}"></script>
 </body>
 </html>

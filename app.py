@@ -7118,6 +7118,175 @@ def admin_telegram_send_pending():
     return redirect('/admin/telegram')
 # =================== END V60 TELEGRAM DELIVERY ENGINE + DEBUG CENTER ===================
 
+
+
+# =================== V170 PWA SMART INSTALL + TELEGRAM REAL DELIVERY FIX ===================
+# Release objetivo: que instalar la app se vea en landing y cliente, pero desaparezca si ya está instalada,
+# y que Telegram tenga diagnóstico real + envío manual de partidos/picks sin datos fake.
+
+@app.route('/api/v170/pwa-status')
+def api_v170_pwa_status():
+    return jsonify({
+        'ok': True,
+        'version': 'V170_PWA_TELEGRAM_REAL_FIX',
+        'manifest': bool(os.path.exists(os.path.join(app.root_path, 'manifest.json')) or os.path.exists(os.path.join(app.root_path, 'static', 'manifest.json'))),
+        'service_worker': bool(os.path.exists(os.path.join(app.root_path, 'service-worker.js'))),
+        'policy': {'show_install_when_not_installed': True, 'hide_when_installed': True, 'no_fake': True}
+    })
+
+
+def v170_real_fixtures_for_telegram(limit=12, filter_name='today'):
+    """Lee partidos reales cacheados por V146. Si no existen, devuelve vacío premium."""
+    try:
+        from fixtures_connector_v146.core import list_fixtures, ensure_schema
+        ensure_schema()
+        rows = list_fixtures(filter_name or 'today', limit=int(limit or 12))
+        if not rows and filter_name == 'today':
+            rows = list_fixtures('upcoming', limit=int(limit or 12))
+        return rows[:int(limit or 12)]
+    except Exception:
+        return []
+
+
+def v170_format_fixture_for_telegram(f):
+    league = _html_escape(f.get('league') or 'Competición')
+    home = _html_escape(f.get('home_team') or 'Local')
+    away = _html_escape(f.get('away_team') or 'Visitante')
+    kickoff = _html_escape(f.get('kickoff') or 'Horario pendiente')
+    status = _html_escape(f.get('status') or 'upcoming')
+    score = f.get('score') or ''
+    minute = f.get('minute') or ''
+    live = ' 🔴 LIVE' if str(status).lower() in ('live','inplay','in_play','1h','2h','ht') else ''
+    score_txt = f" · {score}" if score and score != 'N/A' else ''
+    minute_txt = f" · {minute}" if minute else ''
+    return f"• <b>{home} vs {away}</b>{live}\n  🏆 {league}\n  🕒 {kickoff}{score_txt}{minute_txt}"
+
+
+def v170_build_fixtures_message(filter_name='today', limit=8):
+    fixtures = v170_real_fixtures_for_telegram(limit=limit, filter_name=filter_name)
+    if not fixtures:
+        return None, []
+    title = 'Partidos de hoy' if filter_name == 'today' else ('Partidos LIVE' if filter_name == 'live' else 'Próximos partidos')
+    lines = [
+        f"🦈 <b>NeMeSiS SHARK PRO · {title}</b>",
+        "Partidos reales guardados en el Real Core. Sin demos ni marcadores inventados.",
+        "",
+    ]
+    for f in fixtures[:int(limit or 8)]:
+        lines.append(v170_format_fixture_for_telegram(f))
+        lines.append('')
+    lines.append('Abre la app para ver Match Center, favoritos y señales SHARK.')
+    return '\n'.join(lines).strip(), fixtures
+
+
+def v170_telegram_targets():
+    targets = []
+    seen = set()
+    for label, chat_id in [
+        ('general', TELEGRAM_CHAT_ID),
+        ('free', TELEGRAM_FREE_CHAT_ID),
+        ('pro', TELEGRAM_PRO_CHAT_ID),
+        ('elite', TELEGRAM_ELITE_CHAT_ID),
+        ('test', TELEGRAM_TEST_CHAT_ID),
+    ]:
+        chat_id = str(chat_id or '').strip()
+        if chat_id and chat_id not in seen:
+            targets.append({'label': label, 'chat_id': chat_id})
+            seen.add(chat_id)
+    return targets
+
+
+def v170_send_fixtures_to_telegram(filter_name='today', limit=8, target='auto'):
+    if not ENABLE_PRO_ALERTS or not TELEGRAM_BOT_TOKEN:
+        log_alert('v170_fixtures', 'Telegram no listo', 'Falta ENABLE_PRO_ALERTS o TELEGRAM_BOT_TOKEN.', 'telegram', 'blocked', {'filter': filter_name})
+        return {'ok': False, 'reason': 'telegram_token_or_alerts_missing', 'sent': 0}
+    body, fixtures = v170_build_fixtures_message(filter_name=filter_name, limit=limit)
+    if not body:
+        log_alert('v170_fixtures', 'Sin partidos reales', 'No hay fixtures reales cacheados para enviar.', 'telegram', 'empty', {'filter': filter_name})
+        return {'ok': False, 'reason': 'no_real_fixtures_cached', 'sent': 0, 'fixtures': 0}
+    targets = v170_telegram_targets()
+    if target and target != 'auto':
+        targets = [t for t in targets if t['label'] == target]
+    if not targets:
+        log_alert('v170_fixtures', 'Sin destino Telegram', 'Configura TELEGRAM_CHAT_ID o canales por plan.', 'telegram', 'blocked', {'filter': filter_name})
+        return {'ok': False, 'reason': 'no_chat_target', 'sent': 0, 'fixtures': len(fixtures)}
+    sent = 0; results = []
+    for t in targets:
+        res = send_telegram_message_with_retry(t['chat_id'], body, kind='v170_fixtures', title='Partidos reales Telegram', payload={'filter': filter_name, 'target': t['label'], 'fixtures': len(fixtures)}) if 'send_telegram_message_with_retry' in globals() else send_telegram_message(t['chat_id'], body, kind='v170_fixtures', title='Partidos reales Telegram', payload={'filter': filter_name, 'target': t['label'], 'fixtures': len(fixtures)})
+        results.append({'target': t['label'], **(res or {})})
+        if res and res.get('ok'):
+            sent += 1
+    return {'ok': sent > 0, 'sent': sent, 'fixtures': len(fixtures), 'results': results}
+
+
+@app.route('/api/v170/telegram/diagnostic')
+def api_v170_telegram_diagnostic():
+    if not is_admin():
+        return jsonify({'ok': False, 'error': 'admin_required'}), 403
+    targets = v170_telegram_targets()
+    fixtures_today = len(v170_real_fixtures_for_telegram(20, 'today'))
+    fixtures_live = len(v170_real_fixtures_for_telegram(20, 'live'))
+    fixtures_upcoming = len(v170_real_fixtures_for_telegram(20, 'upcoming'))
+    return jsonify({
+        'ok': True,
+        'version': 'V170_PWA_TELEGRAM_REAL_FIX',
+        'telegram': telegram_debug_summary() if 'telegram_debug_summary' in globals() else telegram_config_status(),
+        'targets_count': len(targets),
+        'targets': [{'label': t['label'], 'chat_id_preview': (str(t['chat_id'])[:6] + '…' + str(t['chat_id'])[-4:])} for t in targets],
+        'fixtures': {'today': fixtures_today, 'live': fixtures_live, 'upcoming': fixtures_upcoming},
+        'common_blockers': [
+            'Falta TELEGRAM_BOT_TOKEN en Render' if not TELEGRAM_BOT_TOKEN else '',
+            'Falta TELEGRAM_CHAT_ID/plan channel/test chat id' if not targets else '',
+            'ENABLE_PRO_ALERTS está desactivado' if not ENABLE_PRO_ALERTS else '',
+            'No hay partidos reales cacheados; sincroniza /admin/fixtures-sync' if not (fixtures_today or fixtures_live or fixtures_upcoming) else '',
+        ],
+        'policy': {'no_fake_matches': True, 'manual_send_available': True}
+    })
+
+
+@app.route('/api/v170/telegram/send-fixtures', methods=['POST'])
+def api_v170_telegram_send_fixtures():
+    if not is_admin():
+        return jsonify({'ok': False, 'error': 'admin_required'}), 403
+    payload = request.get_json(silent=True) or request.form or {}
+    filter_name = str(payload.get('filter') or payload.get('filter_name') or 'today').lower()
+    target = str(payload.get('target') or 'auto').lower()
+    try:
+        limit = int(payload.get('limit') or 8)
+    except Exception:
+        limit = 8
+    return jsonify(v170_send_fixtures_to_telegram(filter_name=filter_name, limit=limit, target=target))
+
+
+@app.route('/admin/telegram-real-fix')
+@app.route('/admin/telegram-diagnostico')
+def admin_v170_telegram_real_fix():
+    if not is_admin():
+        return redirect('/admin-login')
+    diag = {
+        'targets': v170_telegram_targets(),
+        'today': v170_real_fixtures_for_telegram(8, 'today'),
+        'live': v170_real_fixtures_for_telegram(8, 'live'),
+        'upcoming': v170_real_fixtures_for_telegram(8, 'upcoming'),
+        'telegram': telegram_debug_summary() if 'telegram_debug_summary' in globals() else telegram_config_status(),
+        'logs': telegram_last_logs(20) if 'telegram_last_logs' in globals() else [],
+    }
+    return render_template('telegram_real_fix_v170.html', diag=diag)
+
+
+@app.route('/admin/telegram-real-fix/send-fixtures', methods=['POST'])
+def admin_v170_send_fixtures_page():
+    if not is_admin():
+        return redirect('/admin-login')
+    filter_name = request.form.get('filter', 'today')
+    target = request.form.get('target', 'auto')
+    limit = request.form.get('limit', '8')
+    try: limit = int(limit)
+    except Exception: limit = 8
+    v170_send_fixtures_to_telegram(filter_name=filter_name, limit=limit, target=target)
+    return redirect('/admin/telegram-real-fix')
+# =================== END V170 PWA SMART INSTALL + TELEGRAM REAL DELIVERY FIX ===================
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))
 
