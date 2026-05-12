@@ -1,0 +1,11 @@
+{
+  "version": "V110_PRO_ARCHITECTURE_FULL_CLEAN",
+  "base": "V108_CLIENT_UX_RECOVERY_PRO",
+  "integrated": [
+    "V109_REAL_LIVE_INTELLIGENCE",
+    "V110_PRO_ARCHITECTURE"
+  ],
+  "render_ready": true,
+  "github_ready": true,
+  "stripe": "deferred"
+}

@@ -1,0 +1,26 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/static/css/v93_pro.css"><title>Análisis PRO V94 · NeMeSiS SHARK</title></head><body>
+<div class="nms-app">
+<aside class="nms-side">
+  <div class="nms-brand"><div class="nms-logo">NS</div><div><b>NeMeSiS</b><span>SHARK PRO</span></div></div>
+  <div class="nms-plan"><span>V94</span><strong>PRO</strong><em>Detalle real</em><small>Sin demos · Sin inventar EV</small></div>
+  <nav><a href="/">Inicio</a><a href="/picks">Picks hoy</a><a href="/partidos">Partidos hoy</a><a href="/en-directo">En directo</a><a href="/mi-cuenta">Mi cuenta</a><a href="/admin/real-core">Admin Core</a></nav>
+</aside>
+<main class="nms-main">
+<header class="nms-top"><a href="/">Inicio</a><a href="/picks">Picks</a><a href="/partidos">Partidos</a><a href="/api/v94/analysis/{{ analysis.card.id }}">API V94</a></header>
+<section class="nms-hero compact">
+ <div><span class="nms-badge">V94 MATCH DETAIL PRO</span><h1>{{ analysis.card.home }} <small>vs</small> {{ analysis.card.away }}</h1><p>{{ analysis.card.league }} · {{ analysis.card.date_full or analysis.card.date }} · {{ analysis.card.time }} h Madrid · {{ analysis.card.status }}</p></div>
+ <div class="nms-verdict"><span>{{ analysis.verdict }}</span><strong>{{ analysis.score }}</strong><small>{{ analysis.action }}</small></div>
+</section>
+<section class="nms-kpis">
+ <article><span>SHARK score</span><strong>{{ analysis.score }}</strong><small>{{ analysis.card.quality }}</small></article>
+ <article><span>Cuota</span><strong>{{ analysis.card.odds }}</strong><small>{{ analysis.card.bookmaker }}</small></article>
+ <article><span>Riesgo</span><strong>{{ analysis.card.risk }}</strong><small>Control de varianza</small></article>
+ <article><span>Stake</span><strong>{{ analysis.card.stake }}</strong><small>Gestión banca</small></article>
+</section>
+<section class="nms-detail-grid">
+ <article class="nms-card"><div class="nms-card-head"><div><span>Lectura SHARK</span><h2>Resumen claro</h2></div></div><p class="nms-reading">{{ analysis.reading }}</p><div class="betbox"><span>Mercado detectado</span><b>{{ analysis.card.market }}</b><p>Fuente: {{ analysis.raw.provider or analysis.raw.source }} · ID real: {{ analysis.card.id }}</p></div></article>
+ <article class="nms-card"><div class="nms-card-head"><div><span>Por qué entrar</span><h2>Argumentos a favor</h2></div></div><ul class="nms-pro-list">{% for item in analysis.why_enter %}<li>{{ item }}</li>{% endfor %}</ul></article>
+ <article class="nms-card"><div class="nms-card-head"><div><span>Por qué NO entrar</span><h2>Alertas y control</h2></div></div><ul class="nms-pro-list danger">{% for item in analysis.why_not %}<li>{{ item }}</li>{% endfor %}</ul></article>
+ <article class="nms-card"><div class="nms-card-head"><div><span>Momentum</span><h2>{{ analysis.momentum }}</h2></div></div><p class="muted">{{ analysis.data_warning }}</p><a class="nms-btn" href="/partidos?force=true">Actualizar feed real</a></article>
+</section>
+</main><a class="nms-ai" href="/picks">AI</a></div></body></html>

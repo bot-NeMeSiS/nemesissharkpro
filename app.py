@@ -7612,3 +7612,108 @@ try:
     app.register_blueprint(history_v98_bp)
 except Exception as exc:
     print("V98 history blueprint not loaded:", exc)
+
+
+# -------------------------------------------------------------------
+# V99-V104 CONSOLIDATED MODULES
+# -------------------------------------------------------------------
+try:
+    from backend.routes.membership_routes import membership_bp
+    app.register_blueprint(membership_bp)
+except Exception as exc:
+    print("V99 membership blueprint not loaded:", exc)
+
+try:
+    from backend.routes.shark_ai_ultra_routes import shark_ai_ultra_bp
+    app.register_blueprint(shark_ai_ultra_bp)
+except Exception as exc:
+    print("V100 shark ai ultra blueprint not loaded:", exc)
+
+try:
+    from backend.routes.live_trading_routes import live_trading_bp
+    app.register_blueprint(live_trading_bp)
+except Exception as exc:
+    print("V101 live trading blueprint not loaded:", exc)
+
+try:
+    from backend.routes.analytics_pro_routes import analytics_pro_bp
+    app.register_blueprint(analytics_pro_bp)
+except Exception as exc:
+    print("V102 analytics pro blueprint not loaded:", exc)
+
+try:
+    from auto_pick_v104.routes import auto_pick_v104_bp
+    app.register_blueprint(auto_pick_v104_bp)
+except Exception as exc:
+    print("V104 auto pick blueprint not loaded:", exc)
+
+@app.route("/manifest.webmanifest")
+def v103_manifest():
+    return send_from_directory("public", "manifest.webmanifest")
+
+@app.route("/sw.js")
+def v103_service_worker():
+    return send_from_directory("public", "sw.js", mimetype="application/javascript")
+# -------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------
+# V105 ADMIN PRO CENTER
+# -------------------------------------------------------------------
+try:
+    from admin_center_v105.routes import admin_center_v105_bp
+    app.register_blueprint(admin_center_v105_bp)
+except Exception as exc:
+    print("V105 admin center blueprint not loaded:", exc)
+# -------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------
+# V106 UNIFIED LIVE OPERATIONS
+# -------------------------------------------------------------------
+try:
+    from live_ops_v106.routes.live_ops_routes import live_ops_v106_bp
+    app.register_blueprint(live_ops_v106_bp)
+except Exception as exc:
+    print("V106 live ops blueprint not loaded:", exc)
+# -------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------
+# V107 MEMBERSHIP VISUAL PRO
+# -------------------------------------------------------------------
+try:
+    from membership_visual_v107.routes.theme_routes import membership_visual_v107_bp
+    app.register_blueprint(membership_visual_v107_bp)
+except Exception as exc:
+    print("V107 membership visual blueprint not loaded:", exc)
+# -------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------
+# V108 CLIENT UX RECOVERY PRO
+# -------------------------------------------------------------------
+try:
+    from client_ux_v108.routes.client_ux_routes import client_ux_v108_bp
+    app.register_blueprint(client_ux_v108_bp)
+except Exception as exc:
+    print("V108 client ux blueprint not loaded:", exc)
+# -------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------
+# V109 REAL LIVE INTELLIGENCE + V110 PRO ARCHITECTURE
+# -------------------------------------------------------------------
+try:
+    from live_intelligence_v109.routes import live_intelligence_v109_bp
+    app.register_blueprint(live_intelligence_v109_bp)
+except Exception as exc:
+    print("V109 live intelligence blueprint not loaded:", exc)
+
+try:
+    from pro_architecture_v110.routes.architecture_routes import pro_architecture_v110_bp
+    app.register_blueprint(pro_architecture_v110_bp)
+except Exception as exc:
+    print("V110 architecture blueprint not loaded:", exc)
+# -------------------------------------------------------------------
+

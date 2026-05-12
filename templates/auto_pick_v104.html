@@ -1,0 +1,51 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="v104-page">
+  <section class="v104-hero">
+    <div>
+      <p class="v104-kicker">V104 · AUTO PICK ENGINE</p>
+      <h1>SHARK Auto Pick Engine</h1>
+      <p>Scanner premium para detectar candidatos fuertes, value picks y watchlist usando solo datos reales del Real Core.</p>
+    </div>
+    <div class="v104-badge">REAL CORE ONLY</div>
+  </section>
+
+  <section class="v104-grid">
+    <article class="v104-card">
+      <h2>🎯 Auto Pick Scanner</h2>
+      <p>Filtra partidos por score, value, riesgo, cuota, momentum y presión ofensiva.</p>
+      <ul>
+        <li>AUTO_PICK_STRONG</li>
+        <li>AUTO_PICK_VALUE</li>
+        <li>WATCHLIST</li>
+        <li>REJECTED</li>
+      </ul>
+    </article>
+
+    <article class="v104-card">
+      <h2>🦈 SHARK Rules</h2>
+      <p>No inventa datos. Solo interpreta campos que ya existan en el feed real.</p>
+      <ul>
+        <li>SHARK Score</li>
+        <li>EV</li>
+        <li>Risk</li>
+        <li>Odds</li>
+        <li>Momentum</li>
+      </ul>
+    </article>
+
+    <article class="v104-card">
+      <h2>⚡ Próximo salto</h2>
+      <p>La V105 debería conectar el scanner con automatización real: colas, alertas Telegram y aprobación admin.</p>
+    </article>
+  </section>
+
+  <section class="v104-api">
+    <h2>API V104</h2>
+    <code>GET /api/v104/auto-pick/health</code>
+    <code>POST /api/v104/auto-pick/scan</code>
+    <code>POST /api/v104/auto-pick/analyze</code>
+  </section>
+</div>
+{% endblock %}

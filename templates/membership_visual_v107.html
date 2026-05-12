@@ -1,0 +1,44 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="v107-wrap">
+  <section class="v107-hero">
+    <div>
+      <p class="v107-kicker">V107 · MEMBERSHIP VISUAL PRO</p>
+      <h1>Colores premium por membresía</h1>
+      <p>FREE, PRO, ELITE y ADMIN unificados en badges, cards, paneles, navegación y estados visuales.</p>
+    </div>
+    <div class="v107-badge elite">ELITE READY</div>
+  </section>
+
+  <section class="v107-plans">
+    {% for name, theme in payload.themes.items() %}
+    <article class="v107-plan v107-plan-{{ name|lower }}">
+      <div class="v107-plan-top">
+        <span>{{ theme.label }}</span>
+        <strong>{{ theme.title }}</strong>
+      </div>
+      <p>{{ theme.description }}</p>
+      <ul>
+        {% for feature in theme.features %}
+        <li>{{ feature }}</li>
+        {% endfor %}
+      </ul>
+    </article>
+    {% endfor %}
+  </section>
+
+  <section class="v107-panel">
+    <p class="v107-kicker">APLICACIÓN GLOBAL</p>
+    <h2>Qué corrige esta versión</h2>
+    <div class="v107-grid">
+      <div>✅ Badges de membresía consistentes</div>
+      <div>✅ Cards cliente con color por plan</div>
+      <div>✅ Admin con color interno</div>
+      <div>✅ Variables CSS globales</div>
+      <div>✅ VIP redirigido a PRO</div>
+      <div>✅ Base preparada para Stripe final</div>
+    </div>
+  </section>
+</div>
+{% endblock %}

@@ -1,6 +1,15 @@
 
 {% extends 'base.html' %}
 {% block content %}
+
+<div class="v108-client-quickbar" style="display:flex;gap:10px;flex-wrap:wrap;margin:14px 0;">
+  <a class="membership-badge badge-pro" href="/cliente/menu">Menú cliente</a>
+  <a class="membership-badge badge-pro" href="/cliente/cuenta">Mi cuenta</a>
+  <a class="membership-badge badge-free" href="/cliente/partidos?filtro=hoy">Partidos de hoy</a>
+  <a class="membership-badge badge-elite" href="/en-directo">Live</a>
+  <a class="membership-badge badge-admin" href="/logout">Cerrar sesión</a>
+</div>
+
 <section class="auth">
   <div class="auth-card">
     <p class="eyebrow">Acceso cliente</p>
