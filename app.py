@@ -7750,3 +7750,14 @@ except Exception as exc:
     print("V116 real data blueprint not loaded:", exc)
 # -------------------------------------------------------------------
 
+
+# -------------------------------------------------------------------
+# V117 TELEGRAM PRO REAL
+# -------------------------------------------------------------------
+try:
+    from telegram_pro_v117.routes.telegram_routes import telegram_pro_v117_bp
+    app.register_blueprint(telegram_pro_v117_bp)
+except Exception as exc:
+    print("V117 telegram pro blueprint not loaded:", exc)
+# -------------------------------------------------------------------
+

@@ -1,0 +1,57 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="v117-wrap">
+  <section class="v117-hero">
+    <div>
+      <p class="v117-kicker">V117 · TELEGRAM PRO REAL</p>
+      <h1>Alertas Telegram premium</h1>
+      <p>Envío manual, test, picks, señales live, anti-spam y logs. Siempre conectado a datos reales/control admin.</p>
+    </div>
+    <div class="v117-badge">{{ "READY" if data.config.ready else "CONFIG FALTA" }}</div>
+  </section>
+
+  <section class="v117-grid">
+    <article><span>Token</span><strong>{{ "OK" if data.config.bot_token_configured else "FALTA" }}</strong></article>
+    <article><span>Chat ID</span><strong>{{ "OK" if data.config.chat_id_configured else "FALTA" }}</strong></article>
+    <article><span>Enviadas</span><strong>{{ data.summary.sent }}</strong></article>
+    <article><span>Errores</span><strong>{{ data.summary.errors }}</strong></article>
+  </section>
+
+  <section class="v117-panel">
+    <h2>Acciones rápidas</h2>
+    <div class="v117-actions">
+      <a href="/api/v117/telegram/test">Enviar test</a>
+      <a href="/api/v117/telegram/dashboard">Dashboard API</a>
+      <a href="/api/v117/telegram/logs">Logs API</a>
+      <a href="/admin/live-ops">Live Ops</a>
+      <a href="/admin/picks-manager">Picks Manager</a>
+    </div>
+  </section>
+
+  <section class="v117-panel">
+    <h2>Política</h2>
+    <div class="v117-policy">
+      <div>✅ No alertas fake</div>
+      <div>✅ Anti-spam</div>
+      <div>✅ Formato premium</div>
+      <div>✅ Control admin</div>
+    </div>
+  </section>
+
+  <section class="v117-panel">
+    <h2>Logs recientes</h2>
+    {% for log in data.logs %}
+      <div class="v117-row">
+        <div>
+          <strong>{{ log.title }}</strong>
+          <small>{{ log.created_at }} · {{ log.alert_type }} · {{ log.plan }}</small>
+        </div>
+        <span>{{ log.status }}</span>
+      </div>
+    {% else %}
+      <p>No hay alertas todavía.</p>
+    {% endfor %}
+  </section>
+</div>
+{% endblock %}
