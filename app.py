@@ -8030,3 +8030,10 @@ try:
     app.register_blueprint(ux_polish_v165_bp)
 except Exception as exc:
     print("ux_polish_v165 error", exc)
+
+
+try:
+    from billing_v166.routes import billing_v166_bp
+    app.register_blueprint(billing_v166_bp)
+except Exception as exc:
+    print("billing_v166 error", exc)
