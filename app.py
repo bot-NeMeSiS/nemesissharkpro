@@ -8497,3 +8497,10 @@ try:
     app.register_blueprint(shark_ai_ux_v169_bp)
 except Exception as exc:
     print("shark_ai_ux_v169 error", exc)
+
+# --- V172 TELEGRAM MEMBERSHIP DELIVERY PRO ---
+try:
+    from telegram_membership_v172.routes import telegram_membership_v172_bp
+    app.register_blueprint(telegram_membership_v172_bp)
+except Exception as exc:
+    print("telegram_membership_v172 error", exc)
