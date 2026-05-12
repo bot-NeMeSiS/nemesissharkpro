@@ -1,0 +1,35 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="v147-wrap">
+<section class="v147-hero">
+<div>
+<p class="v147-kicker">V147 · REAL MATCH CENTER CONNECTOR</p>
+{% if data.fixture %}
+<h1>{{ data.fixture.home_team }} vs {{ data.fixture.away_team }}</h1>
+<p>{{ data.fixture.league or "Liga" }} · {{ data.fixture.kickoff or "Hora pendiente" }} · {{ data.fixture.status }}</p>
+{% else %}
+<h1>Match Center Real</h1>
+<p>{{ data.message }}</p>
+{% endif %}
+</div>
+<div class="v147-score">{{ data.fixture.score if data.fixture else "N/A" }}</div>
+</section>
+
+{% if data.fixture %}
+<section class="v147-grid">
+<article><span>Estado</span><strong>{{ data.fixture.status }}</strong></article>
+<article><span>Minuto</span><strong>{{ data.fixture.minute or "N/A" }}</strong></article>
+<article><span>Eventos</span><strong>{{ data.events|length }}</strong></article>
+<article><span>Stats</span><strong>{{ data.stats|length }}</strong></article>
+</section>
+<section class="v147-panel"><h2>🦈 Lectura SHARK</h2><p>{{ data.shark_reading }}</p></section>
+<section class="v147-columns">
+<div class="v147-panel"><h2>Timeline real</h2>{% for e in data.events %}<div class="v147-row"><span>{{ e.event_minute }} · {{ e.event_type }}</span><strong>{{ e.text }}</strong></div>{% else %}<p>No hay eventos reales cargados todavía.</p>{% endfor %}</div>
+<div class="v147-panel"><h2>Stats reales</h2>{% for s in data.stats %}<div class="v147-row"><span>{{ s.stat_key }}</span><strong>{{ s.home_value }} - {{ s.away_value }}</strong></div>{% else %}<p>No hay estadísticas reales cargadas todavía.</p>{% endfor %}</div>
+</section>
+{% else %}
+<section class="v147-empty"><h2>Abre un partido desde fixtures</h2><p>No se inventa marcador, timeline ni estadísticas.</p><a href="/fixtures/today-pro">Ver partidos reales</a></section>
+{% endif %}
+</div>
+{% endblock %}

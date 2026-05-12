@@ -7856,3 +7856,9 @@ try:
     app.register_blueprint(fixtures_connector_v146_bp)
 except Exception as exc:
     print("fixtures_connector_v146 error", exc)
+
+try:
+    from match_center_v147.routes import match_center_v147_bp
+    app.register_blueprint(match_center_v147_bp)
+except Exception as exc:
+    print("match_center_v147 error", exc)
