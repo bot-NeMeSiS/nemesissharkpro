@@ -8051,3 +8051,9 @@ try:
     app.register_blueprint(match_center_ultra_v168_bp)
 except Exception as exc:
     print("match_center_ultra_v168 error", exc)
+
+try:
+    from shark_ai_ux_v169.routes import shark_ai_ux_v169_bp
+    app.register_blueprint(shark_ai_ux_v169_bp)
+except Exception as exc:
+    print("shark_ai_ux_v169 error", exc)

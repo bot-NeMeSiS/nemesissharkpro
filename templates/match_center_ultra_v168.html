@@ -2,12 +2,13 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Match Center ULTRA PRO · NeMeSiS SHARK PRO</title>
+  <title>Centro del partido · NeMeSiS SHARK PRO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/static/css/v70_premium_ui.css">
   <link rel="stylesheet" href="/static/css/v155_match_center_pro.css">
   <link rel="stylesheet" href="/static/css/v158_match_center_visual_full.css">
   <link rel="stylesheet" href="/static/v168/match-center-ultra.css">
+  <link rel="stylesheet" href="/static/v169/shark-ai-dock.css">
 </head>
 <body class="v168-body">
 <header class="v168-topbar">
@@ -20,19 +21,19 @@
   {% set m = data.match %}
   <section class="v168-hero">
     <div class="v168-hero-main">
-      <div class="v168-kicker">V168 · MATCH CENTER ULTRA PRO</div>
+      <div class="v168-kicker">Centro del partido</div>
       <div class="v168-meta"><span class="v168-dot {% if data.is_live %}on{% endif %}"></span>{{ m.league or 'Liga pendiente' }} · {{ m.status or 'Pendiente' }} · {{ m.date or '' }} {{ m.time or '' }}</div>
       <div class="v168-scoreboard">
         <div class="v168-team"><div class="v168-crest">{{ data.home_initials }}</div><h1>{{ m.home_team }}</h1><small>Local</small></div>
-        <div class="v168-score"><strong>{{ data.score_label }}</strong><span>{% if data.is_live %}EN DIRECTO{% else %}MATCH CENTER{% endif %}</span></div>
+        <div class="v168-score"><strong>{{ data.score_label }}</strong><span>{% if data.is_live %}EN DIRECTO{% else %}PREPARTIDO{% endif %}</span></div>
         <div class="v168-team"><div class="v168-crest away">{{ data.away_initials }}</div><h1>{{ m.away_team }}</h1><small>Visitante</small></div>
       </div>
       <div class="v168-badges">{% for b in data.ultra.badges %}<span>{{ b }}</span>{% endfor %}</div>
     </div>
     <aside class="v168-action-card">
-      <h2>Acciones rápidas</h2>
+      <h2>Qué puedes hacer</h2>
       {% for a in data.ultra.actions %}<a class="tone-{{ a.tone }}" href="{{ a.href }}">{{ a.label }}</a>{% endfor %}
-      <p>Acciones preparadas de forma segura. No se inventan resultados ni eventos.</p>
+      <p>Herramientas pensadas para moverte rápido por el partido sin saturar la pantalla.</p>
     </aside>
   </section>
 
@@ -49,7 +50,7 @@
     </article>
 
     <article class="v168-panel shark">
-      <div class="v168-panel-head"><h2>SHARK AI integrada</h2><a href="/api/v168/shark-live-analysis?match_id={{ m.id }}">API</a></div>
+      <div class="v168-panel-head"><h2>Lectura SHARK</h2><span>Asistente</span></div>
       {% if data.shark_context %}
       <div class="v168-shark-core"><span>Lectura</span><strong>{{ data.shark_context.value_label }}</strong><p>{{ data.shark_context.value_detail }}</p></div>
       <div class="v168-mini-grid"><div><b>{{ data.shark_context.confidence }}%</b><small>Confianza</small></div><div><b>{{ data.shark_context.risk }}</b><small>Riesgo</small></div><div><b>{{ data.shark_context.stake }}</b><small>Stake</small></div></div>
@@ -62,25 +63,46 @@
 
   <section class="v168-layout">
     <article class="v168-panel">
-      <div class="v168-panel-head"><h2>Timeline premium</h2><a href="/api/v158/match-events?match_id={{ m.id }}">Eventos</a></div>
+      <div class="v168-panel-head"><h2>Timeline del partido</h2><span>Eventos reales</span></div>
       <div class="v168-timeline">
         {% for e in data.events %}<div class="v168-event"><b>{{ e.minute }}'</b><span>{{ e.text }}</span>{% if e.team %}<small>{{ e.team }}</small>{% endif %}</div>{% else %}<div class="v168-empty"><b>Sin eventos reales todavía</b><span>{{ data.ultra.empty_help }}</span><i></i><i></i><i></i></div>{% endfor %}
       </div>
     </article>
     <article class="v168-panel">
-      <div class="v168-panel-head"><h2>Stats visuales</h2><span>Real only</span></div>
+      <div class="v168-panel-head"><h2>Estadísticas</h2><span>Datos reales</span></div>
       {% if data.stats %}<div class="v168-stats">{% for s in data.stats %}<div class="v168-stat"><div><b>{{ s.home }}</b><span>{{ s.name }}</span><b>{{ s.away }}</b></div><em><i style="width: {{ s.home_pct }}%"></i></em></div>{% endfor %}</div>{% else %}<div class="v168-empty"><b>Sin estadísticas reales todavía</b><span>Zona lista para posesión, tiros, corners, tarjetas y presión cuando el feed lo entregue.</span><i></i><i></i><i></i></div>{% endif %}
     </article>
   </section>
 
   <section class="v168-panel">
-    <div class="v168-panel-head"><h2>Señales por mercado</h2><a href="/picks">Ver picks</a></div>
+    <div class="v168-panel-head"><h2>Señales SHARK</h2><a href="/picks">Ver picks</a></div>
     <div class="v168-market-grid">{% for s in data.ultra.market_signals %}<div><small>{{ s.market }}</small><b>{{ s.signal }}</b><span>Riesgo: {{ s.risk }}</span><em>Stake: {{ s.stake }}</em></div>{% endfor %}</div>
   </section>
   {% else %}
   <section class="v168-empty-page"><h1>Match Center ULTRA PRO</h1><p>{{ data.message }}</p><a href="/partidos">Ver partidos reales</a></section>
   {% endif %}
 </main>
+
+<div class="v169-shark-dock" id="v169SharkDock" data-state="open">
+  <div class="v169-dock-head" id="v169DockHead">
+    <div><span>🦈</span><b>SHARK AI</b><small>Asistente del partido</small></div>
+    <button type="button" data-v169-min title="Minimizar">—</button>
+    <button type="button" data-v169-close title="Cerrar">×</button>
+  </div>
+  <div class="v169-dock-body">
+    <p>Pregunta sin perder de vista el partido. Puedes mover, minimizar o cerrar esta ventana.</p>
+    <div class="v169-quick-prompts">
+      <button type="button">¿Hay valor?</button>
+      <button type="button">Riesgo actual</button>
+      <button type="button">Stake recomendado</button>
+      <button type="button">Qué evitar</button>
+    </div>
+    <a href="/shark-ai">Abrir SHARK completo</a>
+  </div>
+</div>
+<button class="v169-shark-bubble" id="v169SharkBubble" type="button">🦈</button>
+
 <script src="/static/v168/match-center-ultra.js"></script>
+<script src="/static/v169/shark-ai-dock.js"></script>
 </body>
 </html>

@@ -1,0 +1,22 @@
+(function(){
+  const dock=document.getElementById('v169SharkDock');
+  const bubble=document.getElementById('v169SharkBubble');
+  if(!dock||!bubble)return;
+  const saved=localStorage.getItem('v169SharkDockState')||'open';
+  const setState=(s)=>{dock.dataset.state=s;localStorage.setItem('v169SharkDockState',s);bubble.classList.toggle('show',s==='closed');};
+  setState(saved);
+  dock.querySelector('[data-v169-min]')?.addEventListener('click',()=>setState(dock.dataset.state==='min'?'open':'min'));
+  dock.querySelector('[data-v169-close]')?.addEventListener('click',()=>setState('closed'));
+  bubble.addEventListener('click',()=>setState('open'));
+  let sx=0,sy=0,ox=0,oy=0,drag=false;
+  const head=document.getElementById('v169DockHead');
+  const start=(e)=>{const p=e.touches?e.touches[0]:e;drag=true;sx=p.clientX;sy=p.clientY;const r=dock.getBoundingClientRect();ox=r.left;oy=r.top;dock.style.left=r.left+'px';dock.style.top=r.top+'px';dock.style.right='auto';dock.style.bottom='auto';};
+  const move=(e)=>{if(!drag)return;const p=e.touches?e.touches[0]:e;const nx=Math.max(8,Math.min(window.innerWidth-dock.offsetWidth-8,ox+p.clientX-sx));const ny=Math.max(8,Math.min(window.innerHeight-dock.offsetHeight-8,oy+p.clientY-sy));dock.style.left=nx+'px';dock.style.top=ny+'px';};
+  const end=()=>{drag=false};
+  head?.addEventListener('mousedown',start); head?.addEventListener('touchstart',start,{passive:true});
+  window.addEventListener('mousemove',move); window.addEventListener('touchmove',move,{passive:true});
+  window.addEventListener('mouseup',end); window.addEventListener('touchend',end);
+  let last=window.scrollY;
+  window.addEventListener('scroll',()=>{ if(Math.abs(window.scrollY-last)>80 && window.innerWidth<760 && dock.dataset.state==='open') setState('min'); last=window.scrollY; },{passive:true});
+  fetch('/api/v169/shark-ai-ui-state?mode=match').catch(()=>{});
+})();
