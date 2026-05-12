@@ -7287,6 +7287,277 @@ def admin_v170_send_fixtures_page():
     return redirect('/admin/telegram-real-fix')
 # =================== END V170 PWA SMART INSTALL + TELEGRAM REAL DELIVERY FIX ===================
 
+
+
+# =================== V171 TELEGRAM REAL DELIVERY + CLIENT PREMIUM EXPERIENCE ===================
+# Objetivo: arreglar diagnóstico real de Telegram (token/chat_id/webhook/canal) y reforzar experiencia cliente premium.
+# Política: no inventar partidos ni picks; si no hay datos reales, devolver estado vacío premium.
+
+V171_VERSION = "V171_TELEGRAM_REAL_DELIVERY_CLIENT_PREMIUM"
+
+
+def v171_mask(value):
+    value = str(value or "")
+    if not value:
+        return ""
+    if len(value) <= 8:
+        return value[:2] + "…"
+    return value[:6] + "…" + value[-4:]
+
+
+def v171_telegram_raw(method, payload=None, timeout=8):
+    """Llamada segura a Telegram Bot API. No expone token completo."""
+    if not TELEGRAM_BOT_TOKEN:
+        return {"ok": False, "error": "missing_token", "hint": "Falta TELEGRAM_BOT_TOKEN en Render"}
+    try:
+        url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/{method}"
+        if payload is None:
+            r = requests.get(url, timeout=timeout)
+        else:
+            r = requests.post(url, json=payload, timeout=timeout)
+        try:
+            data = r.json()
+        except Exception:
+            data = {"ok": False, "raw": (r.text or "")[:500]}
+        data["http_status"] = r.status_code
+        return data
+    except Exception as exc:
+        return {"ok": False, "error": "request_exception", "detail": str(exc)[:300]}
+
+
+def v171_getme():
+    return v171_telegram_raw("getMe")
+
+
+def v171_get_webhook_info():
+    return v171_telegram_raw("getWebhookInfo")
+
+
+def v171_get_updates(limit=10):
+    return v171_telegram_raw("getUpdates", {"limit": int(limit or 10), "allowed_updates": ["message", "channel_post", "my_chat_member"]})
+
+
+def v171_get_chat(chat_id=None):
+    cid = str(chat_id or TELEGRAM_CHAT_ID or TELEGRAM_TEST_CHAT_ID or "").strip()
+    if not cid:
+        return {"ok": False, "error": "missing_chat_id", "hint": "Configura TELEGRAM_CHAT_ID. En canales privados suele empezar por -100."}
+    return v171_telegram_raw("getChat", {"chat_id": cid})
+
+
+def v171_chat_member(chat_id=None):
+    cid = str(chat_id or TELEGRAM_CHAT_ID or TELEGRAM_TEST_CHAT_ID or "").strip()
+    if not cid:
+        return {"ok": False, "error": "missing_chat_id"}
+    me = v171_getme()
+    bot_id = ((me.get("result") or {}).get("id") if isinstance(me, dict) else None)
+    if not bot_id:
+        return {"ok": False, "error": "bot_identity_failed", "getme": me}
+    return v171_telegram_raw("getChatMember", {"chat_id": cid, "user_id": bot_id})
+
+
+def v171_detect_chat_ids_from_updates():
+    updates = v171_get_updates(30)
+    found = []
+    if updates.get("ok"):
+        for u in updates.get("result", []) or []:
+            for key in ("message", "channel_post", "my_chat_member"):
+                obj = u.get(key) or {}
+                chat = obj.get("chat") or {}
+                if chat.get("id"):
+                    found.append({
+                        "id": str(chat.get("id")),
+                        "type": chat.get("type", ""),
+                        "title": chat.get("title") or chat.get("username") or chat.get("first_name") or "Telegram",
+                    })
+    # dedupe
+    seen=set(); clean=[]
+    for f in found:
+        if f["id"] not in seen:
+            clean.append(f); seen.add(f["id"])
+    return clean[:20]
+
+
+def v171_telegram_deep_diagnostic(chat_id=None):
+    targets = v170_telegram_targets() if 'v170_telegram_targets' in globals() else []
+    cid = str(chat_id or TELEGRAM_CHAT_ID or TELEGRAM_TEST_CHAT_ID or "").strip()
+    getme = v171_getme()
+    webhook = v171_get_webhook_info()
+    chat = v171_get_chat(cid) if cid else {"ok": False, "error": "no_chat_id"}
+    member = v171_chat_member(cid) if cid else {"ok": False, "error": "no_chat_id"}
+    discovered = v171_detect_chat_ids_from_updates()
+    blockers = []
+    tips = []
+    if not TELEGRAM_BOT_TOKEN:
+        blockers.append("Falta TELEGRAM_BOT_TOKEN en Render.")
+    if getme.get("ok") is False:
+        blockers.append("El token no responde a getMe: token incorrecto o mal copiado.")
+    if not cid and not targets:
+        blockers.append("No hay TELEGRAM_CHAT_ID ni canales por plan configurados.")
+    if cid and not str(cid).startswith("-100") and not str(cid).startswith("@"):
+        tips.append("Si es un canal privado, el CHAT_ID normalmente empieza por -100. Si es público, puedes usar @usuario_del_canal.")
+    if chat.get("ok") is False and cid:
+        blockers.append("Telegram no reconoce el chat_id configurado o el bot no tiene acceso al canal/grupo.")
+    status = (((member.get("result") or {}).get("status")) if member.get("ok") else "")
+    if member.get("ok") and status not in ("administrator", "creator", "member"):
+        blockers.append(f"El bot no aparece como miembro/admin del destino: estado {status}.")
+    if ENABLE_PRO_ALERTS is False:
+        blockers.append("ENABLE_PRO_ALERTS está desactivado.")
+    if not blockers:
+        tips.append("Telegram parece listo. Si no llegan mensajes, prueba Enviar test real y revisa logs.")
+    return {
+        "ok": len(blockers) == 0,
+        "version": V171_VERSION,
+        "enabled_alerts": bool(ENABLE_PRO_ALERTS),
+        "token_set": bool(TELEGRAM_BOT_TOKEN),
+        "token_preview": v171_mask(TELEGRAM_BOT_TOKEN),
+        "chat_id": cid,
+        "chat_id_preview": v171_mask(cid),
+        "targets": targets,
+        "targets_count": len(targets),
+        "getme": getme,
+        "webhook": webhook,
+        "chat": chat,
+        "member": member,
+        "discovered_chats": discovered,
+        "blockers": blockers,
+        "tips": tips,
+        "last_logs": telegram_last_logs(30) if 'telegram_last_logs' in globals() else [],
+        "fixtures_today": len(v170_real_fixtures_for_telegram(20, 'today')) if 'v170_real_fixtures_for_telegram' in globals() else 0,
+        "fixtures_live": len(v170_real_fixtures_for_telegram(20, 'live')) if 'v170_real_fixtures_for_telegram' in globals() else 0,
+        "fixtures_upcoming": len(v170_real_fixtures_for_telegram(20, 'upcoming')) if 'v170_real_fixtures_for_telegram' in globals() else 0,
+    }
+
+
+def v171_send_direct_test(chat_id=None):
+    cid = str(chat_id or TELEGRAM_CHAT_ID or TELEGRAM_TEST_CHAT_ID or "").strip()
+    if not cid:
+        return {"ok": False, "reason": "missing_chat_id", "hint": "Configura TELEGRAM_CHAT_ID o prueba con un chat_id manual."}
+    body = "🦈 <b>NeMeSiS SHARK PRO · Test real V171</b>\n\n✅ Si recibes esto, el token, el destino y los permisos funcionan.\n\nAhora ya podemos enviar partidos/picks reales sin datos inventados."
+    if 'send_telegram_message_with_retry' in globals():
+        return send_telegram_message_with_retry(cid, body, kind='v171_telegram_test', title='Test real Telegram V171', payload={'source': 'v171', 'chat_id': cid})
+    return send_telegram_message(cid, body, kind='v171_telegram_test', title='Test real Telegram V171', payload={'source': 'v171', 'chat_id': cid})
+
+
+def v171_client_premium_snapshot():
+    user = current_user() if 'current_user' in globals() else None
+    user_id = user.get('id') if isinstance(user, dict) else None
+    plan = (user.get('membership') or user.get('plan') or 'FREE') if isinstance(user, dict) else 'FREE'
+    name = (user.get('name') or user.get('username') or 'cliente') if isinstance(user, dict) else 'cliente'
+    try:
+        favorites = len(v150_get_user_favorites(user_id)) if user_id and 'v150_get_user_favorites' in globals() else 0
+    except Exception:
+        favorites = 0
+    fixtures_today = len(v170_real_fixtures_for_telegram(12, 'today')) if 'v170_real_fixtures_for_telegram' in globals() else 0
+    fixtures_live = len(v170_real_fixtures_for_telegram(12, 'live')) if 'v170_real_fixtures_for_telegram' in globals() else 0
+    try:
+        stats = v161_client_stats_payload(user_id) if user_id and 'v161_client_stats_payload' in globals() else {}
+    except Exception:
+        stats = {}
+    telegram_connected = False
+    try:
+        full = user_full_from_db(user_id) if user_id and 'user_full_from_db' in globals() else None
+        telegram_connected = bool(full and (full['telegram_chat_id'] if 'telegram_chat_id' in full.keys() else None))
+    except Exception:
+        telegram_connected = False
+    return {
+        'ok': True,
+        'version': V171_VERSION,
+        'name': name,
+        'plan': plan,
+        'favorites': favorites,
+        'fixtures_today': fixtures_today,
+        'fixtures_live': fixtures_live,
+        'telegram_connected': telegram_connected,
+        'pwa_smart_install': True,
+        'stats': stats or {},
+        'quick_actions': [
+            {'label': 'Partidos de hoy', 'url': '/partidos'},
+            {'label': 'Home live', 'url': '/home-live-real'},
+            {'label': 'Match Center', 'url': '/match-center-pro'},
+            {'label': 'Telegram', 'url': '/cliente/telegram-live'},
+            {'label': 'Mi cuenta', 'url': '/cuenta'},
+        ],
+    }
+
+
+@app.route('/api/v171/telegram/diagnostic')
+def api_v171_telegram_diagnostic():
+    if not is_admin():
+        return jsonify({'ok': False, 'error': 'admin_required'}), 403
+    return jsonify(v171_telegram_deep_diagnostic(request.args.get('chat_id')))
+
+
+@app.route('/api/v171/telegram/send-test', methods=['POST'])
+def api_v171_telegram_send_test():
+    if not is_admin():
+        return jsonify({'ok': False, 'error': 'admin_required'}), 403
+    data = request.get_json(silent=True) or request.form or {}
+    return jsonify(v171_send_direct_test(data.get('chat_id')))
+
+
+@app.route('/api/v171/telegram/send-fixtures', methods=['POST'])
+def api_v171_telegram_send_fixtures():
+    if not is_admin():
+        return jsonify({'ok': False, 'error': 'admin_required'}), 403
+    data = request.get_json(silent=True) or request.form or {}
+    filter_name = data.get('filter') or data.get('filter_name') or 'today'
+    target = data.get('target') or 'auto'
+    try:
+        limit = int(data.get('limit') or 8)
+    except Exception:
+        limit = 8
+    if 'v170_send_fixtures_to_telegram' in globals():
+        return jsonify(v170_send_fixtures_to_telegram(filter_name=filter_name, limit=limit, target=target))
+    return jsonify({'ok': False, 'reason': 'v170_send_engine_missing'})
+
+
+@app.route('/api/v171/client-premium')
+def api_v171_client_premium():
+    if not current_user():
+        return jsonify({'ok': False, 'error': 'login_required'}), 401
+    return jsonify(v171_client_premium_snapshot())
+
+
+@app.route('/admin/telegram-delivery-fix')
+@app.route('/admin/telegram-v171')
+def admin_v171_telegram_delivery_fix():
+    if not is_admin():
+        return redirect('/admin-login')
+    diag = v171_telegram_deep_diagnostic()
+    return render_template('telegram_delivery_fix_v171.html', diag=diag)
+
+
+@app.route('/admin/telegram-v171/send-test', methods=['POST'])
+def admin_v171_telegram_send_test_page():
+    if not is_admin():
+        return redirect('/admin-login')
+    v171_send_direct_test(request.form.get('chat_id'))
+    return redirect('/admin/telegram-delivery-fix')
+
+
+@app.route('/admin/telegram-v171/send-fixtures', methods=['POST'])
+def admin_v171_telegram_send_fixtures_page():
+    if not is_admin():
+        return redirect('/admin-login')
+    if 'v170_send_fixtures_to_telegram' in globals():
+        try:
+            limit = int(request.form.get('limit') or 8)
+        except Exception:
+            limit = 8
+        v170_send_fixtures_to_telegram(filter_name=request.form.get('filter') or 'today', limit=limit, target=request.form.get('target') or 'auto')
+    return redirect('/admin/telegram-delivery-fix')
+
+
+@app.route('/cliente/premium-full')
+@app.route('/cliente/experiencia-premium')
+def cliente_v171_premium_full():
+    if not current_user():
+        return redirect('/cliente-login')
+    snap = v171_client_premium_snapshot()
+    return render_template('client_premium_v171.html', snap=snap)
+
+# =================== END V171 TELEGRAM REAL DELIVERY + CLIENT PREMIUM EXPERIENCE ===================
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))
 

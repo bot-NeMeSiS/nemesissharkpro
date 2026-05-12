@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="/static/css/v171_telegram_client.css">
+<section class="v171-shell v171-client">
+  <div class="v171-hero">
+    <div>
+      <p class="v171-kicker">V171 · CLIENT PREMIUM EXPERIENCE</p>
+      <h1>Hola, {{ snap.name }} 🦈</h1>
+      <p>Tu zona premium: live, favoritos, SHARK AI, Telegram y rendimiento en un solo sitio.</p>
+    </div>
+    <div class="v171-status ok"><span>Plan</span><strong>{{ snap.plan }}</strong><small>{{ 'Telegram conectado' if snap.telegram_connected else 'Telegram pendiente' }}</small></div>
+  </div>
+  <div class="v171-grid v171-kpis">
+    <article><span>Favoritos</span><strong>{{ snap.favorites }}</strong><small>partidos guardados</small></article>
+    <article><span>Live</span><strong>{{ snap.fixtures_live }}</strong><small>partidos reales</small></article>
+    <article><span>Hoy</span><strong>{{ snap.fixtures_today }}</strong><small>fixtures reales</small></article>
+    <article><span>PWA</span><strong>SMART</strong><small>se oculta si instalada</small></article>
+  </div>
+  <section class="v171-panel">
+    <h2>Accesos rápidos</h2>
+    <div class="v171-actions big">
+      {% for a in snap.quick_actions %}<a href="{{ a.url }}">{{ a.label }}</a>{% endfor %}
+    </div>
+  </section>
+  <div class="v171-grid v171-two">
+    <section class="v171-panel"><h2>Recomendaciones SHARK</h2><div class="v171-empty"><b>Motor real-only activo</b><p>Cuando haya actividad real de tus favoritos o picks cerrados, aparecerá aquí con prioridad por tu plan.</p></div></section>
+    <section class="v171-panel"><h2>Estado de conexión</h2><p>Telegram: <b>{{ 'Conectado' if snap.telegram_connected else 'Pendiente de conectar' }}</b></p><p>PWA: <b>Instalación inteligente activa</b></p><p>Datos: <b>sin fake visible</b></p></section>
+  </div>
+</section>
+{% endblock %}
