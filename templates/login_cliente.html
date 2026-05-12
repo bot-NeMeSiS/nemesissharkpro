@@ -1,27 +1,32 @@
-
 {% extends 'base.html' %}
 {% block content %}
-
-<div class="v108-client-quickbar" style="display:flex;gap:10px;flex-wrap:wrap;margin:14px 0;">
-  <a class="membership-badge badge-pro" href="/cliente/menu">Menú cliente</a>
-  <a class="membership-badge badge-pro" href="/cliente/cuenta">Mi cuenta</a>
-  <a class="membership-badge badge-free" href="/cliente/partidos?filtro=hoy">Partidos de hoy</a>
-  <a class="membership-badge badge-elite" href="/en-directo">Live</a>
-  <a class="membership-badge badge-admin" href="/logout">Cerrar sesión</a>
-</div>
-
-<section class="auth">
-  <div class="auth-card">
-    <p class="eyebrow">Acceso cliente</p>
-    <h1>Entrar a NeMeSiS</h1>
-    <p class="lead">Accede a tus picks, SHARK AI y herramientas premium.</p>
-    {% if error %}<div class="error">{{ error }}</div>{% endif %}
-    <form method="post" class="form">
-      <input name="username" placeholder="Usuario" required>
-      <input name="password" type="password" placeholder="Contraseña" required>
-      <button class="btn primary">Entrar</button>
+<section class="v153-auth-page">
+  <div class="v153-auth-copy">
+    <span>Acceso cliente</span>
+    <h1>Entra a tu panel SHARK</h1>
+    <p>Continúa con tus picks, favoritos, banca, ROI, winrate y SHARK AI. Sin demos visibles: solo datos reales o estados vacíos premium.</p>
+    <div class="v153-auth-points">
+      <b>Panel cliente premium</b>
+      <b>Live center + favoritos</b>
+      <b>Telegram + métricas</b>
+    </div>
+  </div>
+  <div class="v153-auth-card">
+    <div class="v153-auth-head">
+      <span>NeMeSiS SHARK PRO</span>
+      <h2>Iniciar sesión</h2>
+      <p>Accede con tu usuario y contraseña.</p>
+    </div>
+    {% if error %}<div class="v153-error">{{ error }}</div>{% endif %}
+    <form method="post" class="v153-form" autocomplete="on">
+      <input type="hidden" name="next" value="{{ next_url or '' }}">
+      <label>Usuario<input name="username" placeholder="Tu usuario" required autocomplete="username"></label>
+      <label>Contraseña
+        <div class="v153-password"><input id="loginPasswordV153" name="password" type="password" placeholder="Tu contraseña" required autocomplete="current-password"><button type="button" data-toggle-password="#loginPasswordV153">👁</button></div>
+      </label>
+      <button class="v153-primary">Entrar al panel</button>
     </form>
-    <p class="small-link"><a href="/registro">Crear cuenta</a></p>
+    <div class="v153-auth-links"><a href="/registro">Crear cuenta</a><a href="/">Volver a landing</a></div>
   </div>
 </section>
 {% endblock %}

@@ -1,30 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="onboarding-v56">
-  <div class="onboarding-card-v56">
-    <span>Primer ajuste</span>
+<section class="v153-onboarding">
+  <div class="v153-onboarding-head">
+    <span>Onboarding cliente</span>
     <h1>Configura tu experiencia SHARK</h1>
-    <p>Elige cómo quieres ver las señales. Puedes cambiarlo luego desde tu perfil.</p>
-    <form method="post">
-      <label>Tu estilo de riesgo
-        <select name="risk_preference">
-          <option value="conservador">Conservador: prefiero menos riesgo</option>
-          <option value="medio" selected>Medio: equilibrio</option>
-          <option value="agresivo">Agresivo: busco cuotas más altas</option>
-        </select>
-      </label>
-      <label>Deporte principal
-        <select name="favorite_sport">
-          <option value="futbol" selected>Fútbol</option>
-          <option value="basket">Basket</option>
-          <option value="todos">Todos</option>
-        </select>
-      </label>
-      <label>Competición favorita
-        <input name="favorite_competition" placeholder="Ej: LaLiga, Champions, Mundial">
-      </label>
-      <button>Guardar y entrar</button>
-    </form>
+    <p>Esto ajusta cómo ves señales, riesgo, favoritos y avisos. Sin datos inventados: si no hay feed real, verás estado vacío premium.</p>
   </div>
+  <form method="post" class="v153-onboarding-grid">
+    <label class="v153-choice"><span>1</span><strong>Riesgo</strong><select name="risk_preference"><option value="conservador">Conservador · menos exposición</option><option value="medio" selected>Medio · equilibrio</option><option value="agresivo">Agresivo · cuotas más altas</option></select></label>
+    <label class="v153-choice"><span>2</span><strong>Deporte principal</strong><select name="favorite_sport"><option value="futbol" selected>Fútbol</option><option value="basket">Basket</option><option value="todos">Todos</option></select></label>
+    <label class="v153-choice"><span>3</span><strong>Competición favorita</strong><input name="favorite_competition" placeholder="Ej: LaLiga, Champions, Mundial"></label>
+    <div class="v153-onboarding-actions"><a href="/cliente/pro">Saltar por ahora</a><button>Guardar y entrar al panel</button></div>
+  </form>
 </section>
 {% endblock %}

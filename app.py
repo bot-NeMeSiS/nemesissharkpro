@@ -19,7 +19,7 @@ from zoneinfo import ZoneInfo
 
 from flask import Flask, render_template, request, redirect, session, jsonify, send_from_directory, Response
 
-APP_VERSION = "NeMeSiS_SHARK_PRO_V152_0_PUBLIC_LANDING_MEMBERSHIP_RESTORE"
+APP_VERSION = "NeMeSiS_SHARK_PRO_V153_0_LOGIN_ONBOARDING_ACCOUNT_PRO"
 APP_NAME = "NeMeSiS SHARK PRO"
 
 
@@ -1462,7 +1462,7 @@ def fresh_user_from_db():
     try:
         conn = get_db()
         cur = conn.cursor()
-        cur.execute("SELECT id, username, role, plan, balance FROM users WHERE id=?", (u["id"],))
+        cur.execute("SELECT id, username, role, plan, balance, onboarding_completed_at, risk_preference, favorite_sport, favorite_competition, membership_source, membership_started_at, membership_expires_at, telegram_chat_id, telegram_username, telegram_alerts_enabled FROM users WHERE id=?", (u["id"],))
         row = cur.fetchone()
         conn.close()
         if not row:
@@ -1474,7 +1474,17 @@ def fresh_user_from_db():
             "username": row["username"],
             "role": row["role"],
             "plan": plan,
-            "balance": row["balance"]
+            "balance": row["balance"],
+            "onboarding_completed_at": safe_row_get(row, "onboarding_completed_at", ""),
+            "risk_preference": safe_row_get(row, "risk_preference", "medio"),
+            "favorite_sport": safe_row_get(row, "favorite_sport", "futbol"),
+            "favorite_competition": safe_row_get(row, "favorite_competition", ""),
+            "membership_source": safe_row_get(row, "membership_source", "registro"),
+            "membership_started_at": safe_row_get(row, "membership_started_at", ""),
+            "membership_expires_at": safe_row_get(row, "membership_expires_at", ""),
+            "telegram_connected": bool(str(safe_row_get(row, "telegram_chat_id", "") or "").strip()),
+            "telegram_username": safe_row_get(row, "telegram_username", ""),
+            "telegram_alerts_enabled": safe_row_get(row, "telegram_alerts_enabled", 0),
         }
         session["user"] = fresh
         session.modified = True
@@ -3477,7 +3487,7 @@ def registro():
                     "balance": 100
                 }
                 session.modified = True
-                return redirect(f"/clientes?welcome={selected_plan}")
+                return redirect(f"/onboarding?welcome={selected_plan}")
             except sqlite3.IntegrityError:
                 error = "Ese usuario ya existe. Prueba a iniciar sesión."
             except Exception:
@@ -3524,11 +3534,16 @@ def cliente_login():
                 "plan": user["plan"],
                 "balance": user["balance"]
             }
-            return redirect("/clientes")
+            next_url = (request.args.get("next") or request.form.get("next") or "").strip()
+            if not safe_row_get(user, "onboarding_completed_at", ""):
+                return redirect("/onboarding?from=login")
+            if next_url.startswith("/") and not next_url.startswith("//"):
+                return redirect(next_url)
+            return redirect("/cliente/pro")
 
         error = "Usuario o contraseña incorrectos."
 
-    return render_template("login_cliente.html", error=error)
+    return render_template("login_cliente.html", error=error, next_url=request.args.get("next", ""))
 
 
 @app.route("/logout")
@@ -5967,6 +5982,61 @@ def onboarding():
         return redirect("/clientes?onboarding=ok")
     return render_template("onboarding.html", user=user)
 
+
+
+# -------------------------------------------------------------------
+# V153 LOGIN + ONBOARDING + ACCOUNT PRO
+# -------------------------------------------------------------------
+def build_account_v153(user):
+    try:
+        _, saved, stats = get_user_dashboard(user["id"])
+    except Exception:
+        saved, stats = [], {"roi": 0, "winrate": 0, "profit": 0, "total": 0, "wins": 0, "losses": 0}
+    plan = normalize_plan(user.get("plan") or "FREE", allow_admin=False)
+    benefits = {
+        "FREE": ["Acceso básico", "Banca inicial", "Estado real sin demos"],
+        "PRO": ["Picks premium", "Favoritos", "Telegram y métricas completas"],
+        "ELITE": ["Todo PRO", "SHARK AI avanzado", "Prioridad premium"],
+    }.get(plan, [])
+    expires = user.get("membership_expires_at") or ""
+    return {
+        "user": user,
+        "plan": plan,
+        "balance": user.get("balance") or 0,
+        "risk": user.get("risk_preference") or "medio",
+        "sport": user.get("favorite_sport") or "futbol",
+        "competition": user.get("favorite_competition") or "Sin competición fijada",
+        "source": membership_badge_text(user),
+        "started": user.get("membership_started_at") or "Pendiente",
+        "expires": expires or "Sin caducidad activa",
+        "telegram": "Conectado" if user.get("telegram_connected") else "Pendiente",
+        "telegram_user": user.get("telegram_username") or "",
+        "onboarding_done": bool(user.get("onboarding_completed_at")),
+        "stats": stats,
+        "saved_count": len(saved or []),
+        "benefits": benefits,
+    }
+
+@app.route("/cuenta")
+@app.route("/mi-cuenta")
+@app.route("/cliente/cuenta")
+def account_v153():
+    gate = require_user()
+    if gate:
+        return gate
+    user = current_user()
+    return render_template("account_v153.html", vm=build_account_v153(user), user=user)
+
+@app.route("/api/v153/client/session")
+def api_v153_client_session():
+    user = current_user()
+    return jsonify({
+        "ok": bool(user),
+        "version": APP_VERSION,
+        "user": user if user else None,
+        "next": next_client_action(user) if user else {"title":"Crea tu cuenta", "href":"/registro", "cta":"Registrarme"}
+    })
+
 @app.route("/favorito/<int:pick_id>/toggle", methods=["POST"])
 def toggle_favorite(pick_id):
     gate = require_user()
@@ -7900,3 +7970,10 @@ try:
     app.register_blueprint(client_identity_v151_bp)
 except Exception as exc:
     print("client_identity_v151 error", exc)
+
+try:
+    from live_visual_v154.routes import live_visual_v154_bp
+    app.register_blueprint(live_visual_v154_bp)
+except Exception as exc:
+    print("live_visual_v154 error", exc)
+
