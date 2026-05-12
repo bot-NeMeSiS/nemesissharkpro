@@ -7767,3 +7767,15 @@ except Exception as exc:
 @app.route('/premium-visual')
 def v118_visual_preview():
     return render_template('v118_visual_preview.html')
+
+
+# -------------------------------------------------------------------
+# V119 PRODUCT CONTROL CENTER
+# -------------------------------------------------------------------
+try:
+    from product_control_v119.routes.product_control_routes import product_control_v119_bp
+    app.register_blueprint(product_control_v119_bp)
+except Exception as exc:
+    print("V119 product control blueprint not loaded:", exc)
+# -------------------------------------------------------------------
+
