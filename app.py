@@ -7825,3 +7825,10 @@ try:
     app.register_blueprint(quality_v137_bp)
 except Exception as exc:
     print("quality_v137 error", exc)
+
+
+try:
+    from ux_mobile_v138.routes import ux_mobile_v138_bp
+    app.register_blueprint(ux_mobile_v138_bp)
+except Exception as exc:
+    print("ux_mobile_v138 error", exc)
