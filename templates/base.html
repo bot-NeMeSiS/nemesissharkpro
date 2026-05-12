@@ -46,6 +46,8 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v145_match_ecosystem.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v146_fixtures_connector.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v147_match_center.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v148_app_audit_pwa.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v150_favorites_home.css') }}">
 </head>
 <body class="{% if current_user %}plan-theme-{{ (current_user.plan or 'FREE')|lower }}{% else %}plan-theme-public{% endif %}">
   <header class="topbar">
@@ -144,5 +146,15 @@
   <script src="{{ url_for('static', filename='js/v114_combined_pro.js') }}"></script>
   <script src="{{ url_for('static', filename='js/v115_client_experience.js') }}"></script>
   <script src="{{ url_for('static', filename='js/v116_real_data_sync.js') }}"></script>
+
+<div id="nemesis-pwa-banner">
+  <div>
+    <strong>Instalar NeMeSiS SHARK PRO</strong>
+    <small>Accede como app en tu móvil o PC.</small>
+  </div>
+  <button id="nemesis-pwa-install">Instalar</button>
+  <button id="nemesis-pwa-close" aria-label="Cerrar">×</button>
+</div>
+<script src="{{ url_for('static', filename='js/pwa_install_v148.js') }}"></script>
 </body>
 </html>

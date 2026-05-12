@@ -7862,3 +7862,15 @@ try:
     app.register_blueprint(match_center_v147_bp)
 except Exception as exc:
     print("match_center_v147 error", exc)
+
+try:
+    from app_audit_v148.routes import app_audit_v148_bp
+    app.register_blueprint(app_audit_v148_bp)
+except Exception as exc:
+    print("app_audit_v148 error", exc)
+
+try:
+    from favorites_home_v150.routes import favorites_home_v150_bp
+    app.register_blueprint(favorites_home_v150_bp)
+except Exception as exc:
+    print("favorites_home_v150 error", exc)
