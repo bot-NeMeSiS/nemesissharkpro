@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<style>.v212-wrap{padding:18px;max-width:1120px;margin:0 auto;color:#f8fafc}.v212-hero,.v212-card{border:1px solid rgba(34,211,238,.2);background:rgba(15,23,42,.82);border-radius:24px;padding:18px}.v212-hero h1{margin:4px 0;font-size:clamp(1.7rem,7vw,2.8rem)}.v212-feed{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}.v212-tag{display:inline-block;border:1px solid rgba(34,211,238,.25);border-radius:999px;padding:4px 9px;color:#67e8f9;font-size:.76rem}.v212-card h3{margin:8px 0}.v212-card p{color:#cbd5e1}.v212-card a{color:#22d3ee;font-weight:900;text-decoration:none}@media(max-width:760px){.v212-wrap{padding:12px}.v212-feed{grid-template-columns:1fr}}</style>
+<section class="v212-wrap">
+  <div class="v212-hero"><span class="v212-tag">Feed personalizado</span><h1>Contenido más relevante para ti</h1><p>Priorizado por tus favoritos y actividad. Si aún no hay coincidencias, se muestran datos reales disponibles sin rellenar con demos.</p></div>
+  <div class="v212-feed">
+    {% for item in data.feed %}
+      <article class="v212-card"><span class="v212-tag">{{ item.tipo }}</span><h3>{{ item.titulo }}</h3><p>{{ item.subtitulo }} · {{ item.detalle }}</p><small>Relevancia {{ item.relevancia }}</small><br><a href="{{ item.url }}">Abrir</a></article>
+    {% else %}
+      <article class="v212-card"><h3>Aún no hay feed suficiente</h3><p>Guarda equipos, ligas o mercados favoritos para que la app pueda ordenar mejor el contenido real disponible.</p><a href="/cliente/personalizacion">Configurar preferencias</a></article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

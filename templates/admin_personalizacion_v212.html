@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<style>.v212-wrap{padding:18px;max-width:1100px;margin:0 auto;color:#f8fafc}.v212-hero{border:1px solid rgba(250,204,21,.24);background:linear-gradient(135deg,rgba(15,23,42,.95),rgba(30,20,4,.65));border-radius:26px;padding:22px}.v212-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}.v212-card{background:rgba(15,23,42,.8);border:1px solid rgba(148,163,184,.18);border-radius:22px;padding:16px}.v212-card span{color:#94a3b8}.v212-card strong{display:block;font-size:2rem}@media(max-width:760px){.v212-grid{grid-template-columns:1fr}}</style>
+<section class="v212-wrap">
+  <div class="v212-hero"><p>ADMIN · V212</p><h1>Motor de personalización</h1><p>Control de preferencias, actividad y feed personalizado. No inventa datos: solo ordena y prioriza información real existente.</p></div>
+  <div class="v212-grid">
+    <article class="v212-card"><span>Usuarios con preferencias</span><strong>{{ stats.usuarios_con_preferencias }}</strong></article>
+    <article class="v212-card"><span>Preferencias guardadas</span><strong>{{ stats.preferencias }}</strong></article>
+    <article class="v212-card"><span>Eventos de actividad</span><strong>{{ stats.actividad }}</strong></article>
+  </div>
+</section>
+{% endblock %}

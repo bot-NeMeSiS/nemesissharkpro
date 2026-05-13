@@ -8788,3 +8788,10 @@ try:
     app.register_blueprint(bp_design_system_v211)
 except Exception as e:
     print('[V211] Design System blueprint no cargado:', e)
+
+# --- V212 USER PERSONALIZATION ENGINE PRO ---
+try:
+    from personalization_v212.routes import bp_personalization_v212
+    app.register_blueprint(bp_personalization_v212)
+except Exception as e:
+    print('[V212] User Personalization blueprint no cargado:', e)

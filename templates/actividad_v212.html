@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<style>.v212-wrap{padding:18px;max-width:920px;margin:0 auto;color:#f8fafc}.v212-hero,.v212-row{border:1px solid rgba(148,163,184,.18);background:rgba(15,23,42,.82);border-radius:22px;padding:16px;margin-bottom:12px}.v212-hero h1{margin:4px 0;font-size:clamp(1.6rem,7vw,2.7rem)}.v212-row small{color:#94a3b8}</style>
+<section class="v212-wrap">
+  <div class="v212-hero"><h1>Continúa viendo</h1><p>Actividad reciente guardada para retomar picks, partidos o preferencias sin perder el hilo.</p></div>
+  {% for a in data.actividad %}
+    <div class="v212-row"><strong>{{ a.label or a.activity_type }}</strong><br><small>{{ a.entity_type }} · {{ a.created_at }}</small></div>
+  {% else %}
+    <div class="v212-row"><strong>Sin actividad reciente</strong><br><small>Cuando explores partidos, picks o favoritos aparecerán aquí.</small></div>
+  {% endfor %}
+</section>
+{% endblock %}

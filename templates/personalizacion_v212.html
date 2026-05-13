@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+.v212-wrap{padding:18px;max-width:1120px;margin:0 auto;color:#f8fafc}.v212-hero{border:1px solid rgba(34,211,238,.25);background:linear-gradient(135deg,rgba(15,23,42,.96),rgba(8,13,30,.98));border-radius:26px;padding:22px;box-shadow:0 18px 60px rgba(0,0,0,.35)}.v212-eyebrow{color:#22d3ee;text-transform:uppercase;letter-spacing:.13em;font-size:.75rem;font-weight:800}.v212-hero h1{margin:6px 0 8px;font-size:clamp(1.7rem,7vw,3rem);line-height:1}.v212-hero p{color:#cbd5e1;margin:0;max-width:760px}.v212-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:16px}.v212-card{border:1px solid rgba(148,163,184,.2);background:rgba(15,23,42,.78);border-radius:22px;padding:16px}.v212-card span{display:block;color:#94a3b8;font-size:.82rem}.v212-card strong{display:block;font-size:1.45rem;margin-top:6px}.v212-actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:16px}.v212-action{border:1px solid rgba(34,211,238,.22);background:rgba(8,145,178,.12);color:#e0f2fe;border-radius:18px;padding:14px;text-decoration:none;font-weight:800;text-align:center}.v212-form{display:grid;grid-template-columns:1fr 2fr auto;gap:10px;margin-top:16px}.v212-form select,.v212-form input{background:#020617;border:1px solid rgba(148,163,184,.25);color:#fff;border-radius:16px;padding:12px}.v212-form button{border:0;border-radius:16px;background:#22d3ee;color:#03101a;font-weight:900;padding:12px 16px}.v212-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}.v212-item{border:1px solid rgba(148,163,184,.16);background:rgba(2,6,23,.55);border-radius:18px;padding:14px}.v212-item small{color:#94a3b8}.v212-empty{color:#94a3b8;border:1px dashed rgba(148,163,184,.24);border-radius:18px;padding:16px;margin-top:12px}@media(max-width:760px){.v212-wrap{padding:12px}.v212-grid,.v212-actions,.v212-list{grid-template-columns:1fr}.v212-form{grid-template-columns:1fr}.v212-hero{padding:18px;border-radius:22px}}
+</style>
+<section class="v212-wrap">
+  <div class="v212-hero">
+    <div class="v212-eyebrow">Personalización SHARK</div>
+    <h1>Tu app empieza a adaptarse a ti</h1>
+    <p>Guarda equipos, ligas, mercados o picks favoritos para crear un feed más útil. Todo se basa en datos reales existentes, sin inventar partidos ni señales.</p>
+  </div>
+  <div class="v212-grid">
+    <article class="v212-card"><span>Preferencias</span><strong>{{ data.metricas.preferencias }}</strong></article>
+    <article class="v212-card"><span>Actividad reciente</span><strong>{{ data.metricas.actividad_reciente }}</strong></article>
+    <article class="v212-card"><span>Feed personal</span><strong>{{ data.metricas.items_feed }}</strong></article>
+  </div>
+  <div class="v212-actions">
+    <a class="v212-action" href="/cliente/mi-feed">Mi feed</a>
+    <a class="v212-action" href="/cliente/actividad">Continúa viendo</a>
+    <a class="v212-action" href="/cliente/favoritos">Favoritos</a>
+    <a class="v212-action" href="/cliente/shark-copilot">SHARK AI</a>
+  </div>
+  <form class="v212-form" method="post" action="/api/v212/personalization" onsubmit="event.preventDefault();fetch(this.action,{method:'POST',body:new FormData(this)}).then(()=>location.reload())">
+    <select name="pref_type"><option value="equipo">Equipo</option><option value="liga">Liga</option><option value="mercado">Mercado</option><option value="pick">Pick</option></select>
+    <input name="pref_value" placeholder="Ejemplo: Real Madrid, Premier League, Over 2.5..." required>
+    <button>Guardar</button>
+  </form>
+  <div class="v212-list">
+    {% for tipo, items in data.preferencias.items() %}
+      <article class="v212-item"><strong>{{ tipo|capitalize }}</strong><br>{% if items %}{% for it in items[:5] %}<small>{{ it.pref_value }} · peso {{ it.weight }}</small><br>{% endfor %}{% else %}<small>Sin preferencias todavía.</small>{% endif %}</article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
