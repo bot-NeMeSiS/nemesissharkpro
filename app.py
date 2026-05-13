@@ -8696,3 +8696,31 @@ try:
     app.register_blueprint(bp_search_discover_v198)
 except Exception as e:
     print('[V198] Search + Discover blueprint no cargado:', e)
+
+# --- V199 SHARK AI REAL EXPERIENCE PRO ---
+try:
+    from shark_ai_real_v199_routes import bp_shark_ai_real_v199
+    app.register_blueprint(bp_shark_ai_real_v199)
+except Exception as e:
+    print('[V199] Shark AI Real Experience blueprint no cargado:', e)
+
+# --- V200 REAL ML PIPELINE PRO ---
+try:
+    from ml_pipeline_v200.routes import bp_ml_pipeline_v200
+    app.register_blueprint(bp_ml_pipeline_v200)
+except Exception as e:
+    print('[V200] Real ML Pipeline blueprint no cargado:', e)
+
+# --- V201 ML EXPLAINABILITY + AUDIT PRO ---
+try:
+    from ml_explainability_v201.routes import bp_ml_explainability_v201
+    app.register_blueprint(bp_ml_explainability_v201)
+except Exception as e:
+    print('[V201] ML Explainability blueprint no cargado:', e)
+
+# --- V202 SMART PRODUCT CONTROL CENTER PRO ---
+try:
+    from product_control_center_v202.routes import bp_product_control_center_v202
+    app.register_blueprint(bp_product_control_center_v202)
+except Exception as e:
+    print('[V202] Product Control Center blueprint no cargado:', e)
