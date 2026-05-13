@@ -1,0 +1,9 @@
+{
+  "version": "V206_ADVANCED_ODDS_MOVEMENT_ENGINE_PRO",
+  "base": "V205_SMART_NOTIFICATIONS_ENGINE_PRO",
+  "real_only": true,
+  "language": "es",
+  "render_ready": true,
+  "github_ready": true,
+  "includes_requirements_txt": true
+}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}Movimiento de cuotas · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<style>
+.v206-shell{max-width:1180px;margin:0 auto;padding:18px 14px 90px;color:#eef7ff}.v206-hero{border:1px solid rgba(77,209,255,.22);background:linear-gradient(135deg,rgba(8,19,42,.96),rgba(6,34,54,.88));border-radius:24px;padding:20px;box-shadow:0 18px 60px rgba(0,0,0,.35)}.v206-eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:#7bdfff;font-weight:800}.v206-title{font-size:clamp(26px,6vw,46px);line-height:1;margin:8px 0 10px;font-weight:950}.v206-sub{color:#a8c2d8;max-width:820px}.v206-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0}.v206-kpi{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.055);border-radius:18px;padding:14px}.v206-kpi b{display:block;font-size:26px}.v206-kpi span{font-size:12px;color:#a9bfd3}.v206-panel{border:1px solid rgba(255,255,255,.1);background:rgba(6,14,32,.84);border-radius:22px;padding:16px;margin-top:14px}.v206-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);border-radius:16px;padding:13px;margin-top:10px}.v206-badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:900;border:1px solid rgba(255,255,255,.14);background:rgba(123,223,255,.10)}.heat-fuerte{background:rgba(255,71,87,.18);color:#ffb8c0}.heat-caliente{background:rgba(255,176,32,.16);color:#ffd48a}.heat-moderado{background:rgba(84,255,170,.13);color:#a9ffd4}.v206-empty{padding:24px;border:1px dashed rgba(123,223,255,.28);border-radius:18px;color:#b8c9d9;background:rgba(123,223,255,.05)}.v206-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.v206-btn{border:1px solid rgba(123,223,255,.25);background:rgba(123,223,255,.10);color:#eef7ff;border-radius:14px;padding:10px 12px;text-decoration:none;font-weight:800}.v206-mini{font-size:12px;color:#9fb7c9}@media(max-width:760px){.v206-grid{grid-template-columns:repeat(2,1fr)}.v206-row{grid-template-columns:1fr}.v206-hero{padding:17px}.v206-shell{padding:12px 10px 100px}}
+</style>
+<div class="v206-shell">
+  <section class="v206-hero">
+    <div class="v206-eyebrow">V206 · Motor avanzado de cuotas</div>
+    <h1 class="v206-title">Movimiento de cuotas</h1>
+    <p class="v206-sub">Lectura premium de subidas, bajadas e intensidad del mercado usando solo cuotas reales guardadas por el sistema. No se inventan probabilidades ni oportunidades.</p>
+    <div class="v206-actions">
+      <a class="v206-btn" href="javascript:history.back()">← Atrás</a>
+      <a class="v206-btn" href="/cliente/live-command">Centro live</a>
+      <a class="v206-btn" href="/cliente/notificaciones">Alertas</a>
+      {% if admin %}<a class="v206-btn" href="/admin/data-engine">Datos</a>{% endif %}
+    </div>
+  </section>
+
+  <div class="v206-grid">
+    <div class="v206-kpi"><b>{{ data.resumen.cuotas_detectadas }}</b><span>Cuotas reales detectadas</span></div>
+    <div class="v206-kpi"><b>{{ data.resumen.snapshots_v206 }}</b><span>Snapshots V206</span></div>
+    <div class="v206-kpi"><b>{{ data.resumen.mercados_calientes }}</b><span>Mercados calientes</span></div>
+    <div class="v206-kpi"><b>{{ data.resumen.estado }}</b><span>Estado del motor</span></div>
+  </div>
+
+  <section class="v206-panel">
+    <h2>Mercado detectado</h2>
+    <p class="v206-mini">{{ data.resumen.nota }}</p>
+    {% if data.movimientos_guardados %}
+      {% for item in data.movimientos_guardados %}
+      <div class="v206-row">
+        <div>
+          <strong>{{ item.home_team or 'Equipo local' }} vs {{ item.away_team or 'Equipo visitante' }}</strong><br>
+          <span class="v206-mini">{{ item.market or 'Mercado' }} · {{ item.selection or 'Selección' }} · {{ item.captured_at }}</span>
+        </div>
+        <div>
+          <span class="v206-badge {% if item.heat_level == 'movimiento fuerte' %}heat-fuerte{% elif item.heat_level == 'mercado caliente' %}heat-caliente{% else %}heat-moderado{% endif %}">{{ item.heat_level }}</span>
+          <span class="v206-badge">Cuota {{ item.odd_value }}</span>
+          {% if item.movement_pct is not none %}<span class="v206-badge">{{ item.movement_pct }}%</span>{% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    {% elif data.cuotas_reales_detectadas %}
+      {% for item in data.cuotas_reales_detectadas %}
+      <div class="v206-row">
+        <div>
+          <strong>{{ item.partido or ((item.equipo_local or 'Partido') ~ ' ' ~ (item.equipo_visitante or '')) }}</strong><br>
+          <span class="v206-mini">Origen real: {{ item.origen_tabla }} · {{ item.fecha or 'sin fecha visible' }}</span>
+        </div>
+        <div><span class="v206-badge">Cuota {{ item.cuota }}</span><span class="v206-badge">Historial pendiente</span></div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="v206-empty">{{ data.mensaje_vacio }}</div>
+    {% endif %}
+  </section>
+
+  <section class="v206-panel">
+    <h2>Cómo leerlo</h2>
+    <div class="v206-row"><div><strong>Movimiento fuerte</strong><br><span class="v206-mini">La cuota ha cambiado con intensidad suficiente para revisarla. No significa apuesta segura.</span></div><span class="v206-badge heat-fuerte">Riesgo alto</span></div>
+    <div class="v206-row"><div><strong>Mercado caliente</strong><br><span class="v206-mini">Hay actividad relevante en el mercado y puede merecer seguimiento.</span></div><span class="v206-badge heat-caliente">Atención</span></div>
+    <div class="v206-row"><div><strong>Posible valor</strong><br><span class="v206-mini">Señal prudente para revisar junto a picks, live, estadísticas y explicación SHARK.</span></div><span class="v206-badge heat-moderado">Revisar</span></div>
+  </section>
+</div>
+{% endblock %}

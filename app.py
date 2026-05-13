@@ -8745,3 +8745,10 @@ try:
     app.register_blueprint(bp_smart_notifications_v205)
 except Exception as e:
     print('[V205] Smart Notifications blueprint no cargado:', e)
+
+# --- V206 ADVANCED ODDS MOVEMENT ENGINE PRO ---
+try:
+    from odds_movement_v206.routes import bp_odds_movement_v206
+    app.register_blueprint(bp_odds_movement_v206)
+except Exception as e:
+    print('[V206] Odds Movement blueprint no cargado:', e)
