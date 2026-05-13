@@ -8773,25 +8773,3 @@ try:
     app.register_blueprint(bp_live_score_incidents_v209)
 except Exception as e:
     print('[V209] Live Score Incidents blueprint no cargado:', e)
-
-
-# --- V210 REAL PERFORMANCE OPTIMIZATION PRO ---
-try:
-    from performance_v210.routes import bp_performance_v210
-    app.register_blueprint(bp_performance_v210)
-except Exception as e:
-    print('[V210] Performance Optimization blueprint no cargado:', e)
-
-# --- V211 DESIGN SYSTEM SHARK PRO ---
-try:
-    from design_system_v211.routes import bp_design_system_v211
-    app.register_blueprint(bp_design_system_v211)
-except Exception as e:
-    print('[V211] Design System blueprint no cargado:', e)
-
-# --- V212 USER PERSONALIZATION ENGINE PRO ---
-try:
-    from personalization_v212.routes import bp_personalization_v212
-    app.register_blueprint(bp_personalization_v212)
-except Exception as e:
-    print('[V212] User Personalization blueprint no cargado:', e)
