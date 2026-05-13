@@ -1,0 +1,13 @@
+{
+  "version": "V211",
+  "name": "DESIGN SYSTEM SHARK PRO",
+  "base": "V210",
+  "render_ready": true,
+  "real_only": true,
+  "added": [
+    "design_system_v211",
+    "static/css/v211_design_system.css",
+    "templates/design_system_v211_admin.html",
+    "templates/design_system_v211_client.html"
+  ]
+}
