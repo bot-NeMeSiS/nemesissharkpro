@@ -8738,3 +8738,10 @@ try:
     app.register_blueprint(bp_live_command_v204)
 except Exception as e:
     print('[V204] Live Command Center blueprint no cargado:', e)
+
+# --- V205 SMART NOTIFICATIONS ENGINE PRO ---
+try:
+    from smart_notifications_v205.routes import bp_smart_notifications_v205
+    app.register_blueprint(bp_smart_notifications_v205)
+except Exception as e:
+    print('[V205] Smart Notifications blueprint no cargado:', e)
