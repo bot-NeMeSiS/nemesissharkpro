@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="/static/css/v163_smart_live.css">
+<section class="v163-shell">
+  <div class="v163-hero">
+    <div>
+      <span class="v163-kicker">V163 · AUTOMATIONS & SMART LIVE SYSTEM</span>
+      <h1>SHARK Smart Live</h1>
+      <p>Sistema inteligente para señales live, alertas, smart home y tracking real. Sin partidos fake, sin scores inventados y sin picks demo visibles.</p>
+      <div class="v163-actions">
+        <a href="/live-ecosystem">Live ecosystem</a>
+        <a href="/telegram-live">Telegram Live</a>
+        <a href="/cliente/pro">Panel cliente</a>
+        <a href="/admin/business">Business Center</a>
+      </div>
+    </div>
+    <div class="v163-score"><b>{{ data.smart_score }}</b><span>SMART SCORE</span></div>
+  </div>
+
+  <div class="v163-grid v163-kpis">
+    <article><span>Live reales</span><b>{{ data.counts.live_matches }}</b></article>
+    <article><span>Partidos calientes</span><b>{{ data.counts.hot_matches }}</b></article>
+    <article><span>Picks activos</span><b>{{ data.counts.picks_active }}</b></article>
+    <article><span>Alertas pendientes</span><b>{{ data.counts.pending_alerts }}</b></article>
+  </div>
+
+  <div class="v163-grid">
+    <section class="v163-panel v163-wide">
+      <div class="v163-head"><h2>🦈 Smart Signals</h2><a href="/api/v163/smart-signals">API</a></div>
+      <div class="v163-signals">
+        {% for s in data.signals %}
+        <a class="v163-signal {{ s.level }}" href="{{ s.action }}"><b>{{ s.title }}</b><span>{{ s.text }}</span></a>
+        {% endfor %}
+      </div>
+    </section>
+
+    <aside class="v163-panel">
+      <h2>⚙️ Alert Engine</h2>
+      <div class="v163-status {{ data.alert_engine.status|lower }}">{{ data.alert_engine.status }}</div>
+      {% for rule in data.alert_engine.rules %}<p class="v163-rule">{{ rule }}</p>{% endfor %}
+    </aside>
+  </div>
+
+  <div class="v163-grid">
+    <section class="v163-panel">
+      <h2>🏠 Smart Home</h2>
+      <p class="v163-muted">{{ data.smart_home.headline }}</p>
+      {% for m in data.smart_home.hot_matches[:6] %}
+      <a class="v163-row" href="{{ m.href }}"><span>{{ m.status }}</span><b>{{ m.home_team }} {{ m.score }} {{ m.away_team }}</b></a>
+      {% else %}
+      <div class="v163-empty">No hay partidos reales suficientes ahora. Estado premium sin fake.</div>
+      {% endfor %}
+    </section>
+
+    <section class="v163-panel">
+      <h2>🧭 Activity tracking</h2>
+      {% for item in data.activity_tracking[:8] %}
+      <div class="v163-row"><span>{{ item.source }}</span><b>{{ item.title }}</b></div>
+      {% else %}
+      <div class="v163-empty">Cuando el usuario vea picks, favoritos o alertas reales, aparecerán aquí.</div>
+      {% endfor %}
+    </section>
+  </div>
+
+  <section class="v163-panel">
+    <h2>✅ Política Real Core</h2>
+    <div class="v163-policy">
+      <span>No fake matches</span><span>No fake scores</span><span>No fake picks</span><span>Stripe desactivado</span><span>Push ready base</span>
+    </div>
+  </section>
+</section>
+{% endblock %}

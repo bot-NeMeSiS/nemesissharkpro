@@ -1,0 +1,17 @@
+{
+  "version": "V156_0_SHARK_CONTEXTUAL_MATCH_AI_PRO",
+  "base": "V155_0_MATCH_CENTER_REAL_FULL_PRO",
+  "status": "Render/GitHub ready",
+  "stripe": false,
+  "real_only": true,
+  "new_routes": [
+    "/api/v156/shark-context",
+    "/api/v156/match-center-pro"
+  ],
+  "safe_routes_kept": [
+    "/partido-pro/<id>",
+    "/match-center-pro",
+    "/cliente/partido-pro/<id>",
+    "/api/v155/match-center-pro"
+  ]
+}

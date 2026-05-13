@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V96 SHARK Live Center PRO</title>
+<link rel="stylesheet" href="/static/css/v96_live_center.css">
+</head>
+<body>
+<main class="shell">
+  <section class="hero">
+    <div>
+      <p class="eyebrow">NeMeSiS SHARK PRO · V96</p>
+      <h1>Live Center PRO</h1>
+      <p class="sub">Panel trading deportivo conectado al Real Core. Sin demos, sin partidos inventados.</p>
+    </div>
+    <div class="status-card">
+      <span class="pulse"></span>
+      <strong>{{ 'REAL CORE ACTIVO' if center.real_core_ok else 'SIN FEED REAL' }}</strong>
+      <small>{{ center.generated_at }}</small>
+    </div>
+  </section>
+
+  <section class="metrics">
+    <article><span>Total</span><strong>{{ center.counts.total or 0 }}</strong></article>
+    <article><span>Live</span><strong>{{ center.counts.live or 0 }}</strong></article>
+    <article><span>Hoy</span><strong>{{ center.counts.today or 0 }}</strong></article>
+    <article><span>Próximos</span><strong>{{ center.counts.upcoming or 0 }}</strong></article>
+  </section>
+
+  <section class="alerts">
+    {% for alert in center.alerts %}
+    <div class="alert {{ 'on' if alert.active else '' }}">
+      <span>{{ alert.type }}</span>
+      <strong>{{ alert.title }}</strong>
+      <em>{{ alert.value }}</em>
+    </div>
+    {% endfor %}
+  </section>
+
+  {% if not center.cards %}
+  <section class="empty">
+    <h2>No hay partidos reales válidos ahora mismo</h2>
+    <p>{{ center.error or center.message }}</p>
+    <a href="/live-center-pro?force=true">Refrescar Real Core</a>
+  </section>
+  {% endif %}
+
+  <section class="grid">
+    {% for card in center.cards %}
+    <article class="match-card">
+      <div class="topline">
+        <span>{{ card.league }}</span>
+        <b>{{ card.state }}</b>
+      </div>
+      <h2>{{ card.home_team }} <small>vs</small> {{ card.away_team }}</h2>
+      <p class="time">{{ card.status }} · {{ card.date }} · {{ card.time }}</p>
+      <div class="pickbox">
+        <span>Pick</span>
+        <strong>{{ card.selection or 'Mercado pendiente' }}</strong>
+      </div>
+      <div class="numbers">
+        <div><span>SHARK</span><strong>{{ card.shark_score }}</strong></div>
+        <div><span>Stake</span><strong>{{ card.stake }}</strong></div>
+        <div><span>Riesgo</span><strong>{{ card.risk }}</strong></div>
+        <div><span>Cuota</span><strong>{{ card.odds or '—' }}</strong></div>
+      </div>
+      <a class="btn" href="{{ card.detail_url }}">Ver análisis PRO</a>
+    </article>
+    {% endfor %}
+  </section>
+</main>
+<nav class="bottom-nav">
+  <a href="/cliente/pro">Inicio</a>
+  <a href="/live-center-pro">Live</a>
+  <a href="/shark-ai-pro">SHARK AI</a>
+  <a href="/picks">Picks</a>
+</nav>
+</body>
+</html>

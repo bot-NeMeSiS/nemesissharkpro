@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NeMeSiS SHARK PRO · V165 App Flow</title>
+  <link rel="stylesheet" href="/static/app.css">
+  <link rel="stylesheet" href="/static/v165/ux_polish_v165.css">
+</head>
+<body class="v165-body">
+  <main class="v165-shell">
+    <section class="v165-hero">
+      <div>
+        <p class="v165-kicker">V165 · Final UX Polish & App Flow</p>
+        <h1>NeMeSiS SHARK PRO más fluida, viva y preparada para app real.</h1>
+        <p>Centro de pulido visual, navegación y salud UX. Real Core primero: sin partidos, picks ni resultados inventados.</p>
+        <div class="v165-actions">
+          <a href="/cliente/pro">Panel cliente</a>
+          <a href="/home-live-pro">Home Live</a>
+          <a href="/cliente/notificaciones">Notificaciones</a>
+          <a href="/logout" class="ghost">Salir</a>
+        </div>
+      </div>
+      <div class="v165-score-card">
+        <span>Salud UX</span>
+        <strong>{{ data.health_score }}/100</strong>
+        <small>PWA · navegación · estados premium · real-only</small>
+      </div>
+    </section>
+
+    <section class="v165-grid">
+      <article class="v165-card"><span>Live items</span><strong>{{ data.counts.live_items }}</strong><small>Desde V159</small></article>
+      <article class="v165-card"><span>Partidos calientes</span><strong>{{ data.counts.hot_matches }}</strong><small>Real-only</small></article>
+      <article class="v165-card"><span>Push pendientes</span><strong>{{ data.counts.push_pending }}</strong><small>Desde V164</small></article>
+      <article class="v165-card"><span>Favoritos detectados</span><strong>{{ data.counts.favorites_detected }}</strong><small>SQLite si existe</small></article>
+    </section>
+
+    <section class="v165-panel">
+      <h2>Flujo app reforzado</h2>
+      <div class="v165-flow">
+        {% for item in nav.items %}
+        <a href="{{ item.href }}"><b>{{ item.icon }}</b><span>{{ item.label }}</span></a>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="v165-grid two">
+      <article class="v165-panel">
+        <h2>Señales SHARK</h2>
+        {% if data.live_preview.signals %}
+          {% for s in data.live_preview.signals %}
+          <div class="v165-row"><b>{{ s.title }}</b><span>{{ s.text }}</span></div>
+          {% endfor %}
+        {% else %}
+          <div class="v165-empty">No hay señales reales suficientes todavía. Estado premium sin fake.</div>
+        {% endif %}
+      </article>
+      <article class="v165-panel">
+        <h2>Checklist UX</h2>
+        {% for key, val in data.ux.items() %}
+        <div class="v165-check"><span>{{ key.replace('_',' ') }}</span><b>{{ 'OK' if val else 'PENDIENTE' }}</b></div>
+        {% endfor %}
+      </article>
+    </section>
+  </main>
+  <nav class="v165-bottom-nav">
+    <a href="/cliente/pro">Inicio</a><a href="/home-live-pro">Live</a><a href="/fixtures/today-pro">Partidos</a><a href="/shark-ai">SHARK</a><a href="/cuenta">Cuenta</a>
+  </nav>
+  <script src="/static/v165/ux_polish_v165.js"></script>
+</body>
+</html>

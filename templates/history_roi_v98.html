@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/v98_history_roi.css') }}">
+<section class="v98-wrap">
+  <div class="v98-hero">
+    <div>
+      <p class="v98-kicker">V98 · REAL PERFORMANCE CENTER</p>
+      <h1>Historial real ROI / Winrate</h1>
+      <p>{{ center.message }}</p>
+    </div>
+    <div class="v98-badge">{{ center.version }}</div>
+  </div>
+
+  <div class="v98-grid v98-stats">
+    <article><span>ROI</span><strong>{{ center.stats.roi }}%</strong><small>{{ center.stats.profit_units }}u profit</small></article>
+    <article><span>Winrate</span><strong>{{ center.stats.winrate }}%</strong><small>{{ center.stats.wins }}W / {{ center.stats.losses }}L</small></article>
+    <article><span>Picks cerrados</span><strong>{{ center.stats.closed }}</strong><small>{{ center.stats.voids }} nulos</small></article>
+    <article><span>Cuota media</span><strong>{{ center.stats.avg_odds }}</strong><small>{{ center.stats.stake_units }}u stake</small></article>
+  </div>
+
+  <div class="v98-grid v98-two">
+    <section class="v98-card">
+      <div class="v98-card-head"><h2>Últimos picks cerrados</h2><a href="/api/v98/history">API</a></div>
+      {% if center.recent_closed %}
+      <div class="v98-table">
+        <div class="v98-row v98-header"><span>Partido</span><span>Pick</span><span>Resultado</span><span>P/L</span></div>
+        {% for p in center.recent_closed %}
+        <div class="v98-row">
+          <span><b>{{ p.title }}</b><small>{{ p.league }}</small></span>
+          <span>{{ p.pick }}<small>Score {{ p.shark_score }} · Stake {{ p.stake }}</small></span>
+          <span class="res res-{{ p.result|lower }}">{{ p.result }}</span>
+          <span class="profit">{{ p.profit_units }}u</span>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="v98-empty">Todavía no hay picks cerrados reales. Cuando cierres resultados, aquí aparecerán ROI, winrate y profit/loss.</div>
+      {% endif %}
+    </section>
+
+    <section class="v98-card">
+      <div class="v98-card-head"><h2>Rendimiento por liga</h2></div>
+      {% if center.by_league %}
+      {% for l in center.by_league %}
+      <div class="v98-league">
+        <div><b>{{ l.league }}</b><small>{{ l.picks }} picks · {{ l.winrate }}% WR</small></div>
+        <strong>{{ l.roi }}%</strong>
+      </div>
+      {% endfor %}
+      {% else %}
+      <div class="v98-empty">Sin ligas con picks cerrados reales todavía.</div>
+      {% endif %}
+
+      <div class="v98-card-head v98-mt"><h2>Pendientes</h2></div>
+      {% if center.pending %}
+        {% for p in center.pending[:8] %}
+        <div class="v98-pending"><span>{{ p.title }}</span><b>{{ p.pick }}</b></div>
+        {% endfor %}
+      {% else %}
+        <div class="v98-empty">No hay picks pendientes cargados.</div>
+      {% endif %}
+    </section>
+  </div>
+
+  <section class="v98-card v98-system">
+    <h2>Estado de datos</h2>
+    <p><b>DB:</b> {{ center.db.db_path }}</p>
+    <p><b>Tabla:</b> {{ center.db.table if center.db.table else 'No detectada' }}</p>
+    <p><b>Siguiente:</b> {{ center.next_step }}</p>
+  </section>
+</section>
+<script src="{{ url_for('static', filename='js/v98_history_roi.js') }}"></script>
+{% endblock %}

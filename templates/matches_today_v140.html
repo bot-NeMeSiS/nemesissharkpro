@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="v145-wrap">
+  <section class="v145-hero compact">
+    <div>
+      <p class="v145-kicker">V140 · TODAY MATCHES ULTRA</p>
+      <h1>Partidos de hoy</h1>
+      <p>Vista tipo Flashscore/Sofascore preparada para partidos reales: hoy, live, próximos, finalizados, favoritos y filtros.</p>
+    </div>
+    <div class="v145-badge">REAL CORE</div>
+  </section>
+  <section class="v145-tabs">
+    <a href="/matches/today">Hoy</a><a href="/matches/today?filter=live">En directo</a><a href="/matches/today?filter=upcoming">Próximos</a><a href="/matches/today?filter=finished">Finalizados</a>
+  </section>
+  <section class="v145-empty">
+    <div class="v145-orb"></div>
+    <h2>{{ data.message }}</h2>
+    <p>Cuando tu Real Core/API cargue partidos reales, aparecerán aquí con hora, liga, escudos, estado y señales SHARK.</p>
+  </section>
+</div>
+
+{% endblock %}

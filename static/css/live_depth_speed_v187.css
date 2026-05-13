@@ -1,0 +1,7 @@
+
+/* V187 Live Depth + Speed Optimization */
+.nms-live-depth-card{border:1px solid rgba(34,211,238,.18);border-radius:22px;background:linear-gradient(135deg,rgba(34,211,238,.08),rgba(255,209,102,.05));padding:14px;content-visibility:auto;contain-intrinsic-size:260px}
+.nms-live-depth-bar{height:10px;border-radius:999px;background:#071526;overflow:hidden}
+.nms-live-depth-bar span{display:block;height:100%;width:var(--w);background:linear-gradient(90deg,#22d3ee,#35f0a1)}
+.nms-live-pulse{animation:nmsLivePulse 1.6s infinite}
+@keyframes nmsLivePulse{50%{filter:brightness(1.28);box-shadow:0 0 22px rgba(255,91,122,.18)}}

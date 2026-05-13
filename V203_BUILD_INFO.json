@@ -1,0 +1,13 @@
+{
+  "version": "V203_SESSION_FIX_MOBILE_UX_REBUILD_PRO",
+  "base": "V202_SMART_PRODUCT_CONTROL_CENTER_PRO",
+  "render_ready": true,
+  "github_ready": true,
+  "real_only": true,
+  "language": "es",
+  "notes": [
+    "Session identity fix",
+    "Mobile UX rebuild base",
+    "Setup pending panel"
+  ]
+}

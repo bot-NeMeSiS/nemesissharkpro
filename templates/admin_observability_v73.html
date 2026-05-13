@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>V73 Observability - NeMeSiS SHARK PRO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/css/v70_premium_ui.css">
+</head>
+<body>
+  <main class="nsp-shell" style="padding:24px 0 40px;">
+    <section class="nsp-hero">
+      <span class="nsp-eyebrow">📡 V73 Observability Pro</span>
+      <h1 class="nsp-title">Centro de monitorización</h1>
+      <p class="nsp-subtitle">
+        Errores, salud, rendimiento, colas, base de datos y eventos críticos en un panel de producción.
+      </p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
+        <a class="nsp-btn" href="/api/observability/snapshot">Crear snapshot</a>
+        <a class="nsp-btn secondary" href="/api/observability-status">Ver API</a>
+      </div>
+    </section>
+
+    <section class="nsp-grid" style="margin-top:18px;">
+      <article class="nsp-card nsp-kpi">
+        <div class="nsp-kpi-label">Estado</div>
+        <div class="nsp-kpi-value" style="font-size:28px;">{{ status.status }}</div>
+        <div class="nsp-kpi-hint">Monitorización general</div>
+      </article>
+      <article class="nsp-card nsp-kpi">
+        <div class="nsp-kpi-label">Observability Score</div>
+        <div class="nsp-kpi-value" data-nsp-counter="{{ status.observability_score }}" data-nsp-suffix="%">{{ status.observability_score }}%</div>
+        <div class="nsp-progress"><span style="width: {{ status.observability_score }}%;"></span></div>
+      </article>
+      <article class="nsp-card nsp-kpi">
+        <div class="nsp-kpi-label">Errores 24h</div>
+        <div class="nsp-kpi-value">{{ status.errors_24h }}</div>
+        <div class="nsp-kpi-hint">Fallos registrados</div>
+      </article>
+    </section>
+
+    <section class="nsp-card" style="margin-top:18px;">
+      <h2>Checks críticos</h2>
+      <table>
+        <thead><tr><th>Área</th><th>Estado</th><th>Detalle</th></tr></thead>
+        <tbody>
+          {% for item in status.checks %}
+          <tr>
+            <td>{{ item.area }}</td>
+            <td>
+              {% if item.status == "OK" %}
+                <span class="nsp-pill ok">{{ item.status }}</span>
+              {% else %}
+                <span class="nsp-pill warn">{{ item.status }}</span>
+              {% endif %}
+            </td>
+            <td>{{ item.description }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+
+    <section class="nsp-card" style="margin-top:18px;">
+      <h2>Últimos errores</h2>
+      {% if status.recent_errors %}
+      <table>
+        <thead><tr><th>Tipo</th><th>Endpoint</th><th>Código</th><th>Mensaje</th><th>Fecha</th></tr></thead>
+        <tbody>
+          {% for err in status.recent_errors %}
+          <tr>
+            <td>{{ err.error_type }}</td>
+            <td>{{ err.endpoint }}</td>
+            <td>{{ err.status_code }}</td>
+            <td>{{ err.message }}</td>
+            <td>{{ err.created_at }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p>No hay errores registrados. Estado limpio.</p>
+      {% endif %}
+    </section>
+  </main>
+
+  <nav class="nsp-mobile-bottom">
+    <a href="/">Inicio</a>
+    <a href="/live-center">Live</a>
+    <a href="/admin/launch">V72</a>
+    <a href="/admin/observability">V73</a>
+  </nav>
+
+  <script src="/static/js/v70_premium_ui.js"></script>
+</body>
+</html>

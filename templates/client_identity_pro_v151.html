@@ -1,0 +1,57 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="v203-mobile-shell client-only">
+
+  <section class="v203-mobile-hero">
+  <div>
+    <p class="v203-kicker">Panel cliente</p>
+    <h1>{{ client.greeting }}</h1>
+    <p>{{ client.subtitle }}: picks, live, favoritos y SHARK AI en una experiencia limpia.</p>
+  </div>
+  <div class="v203-profile-chip">
+    <span class="v203-avatar">🦈</span>
+    <div><strong>{{ client.name }}</strong><br><span class="v203-plan">{{ client.plan }}</span></div>
+  </div>
+</section>
+
+<main>
+    <section class="v203-quick-grid">
+      {% for action in client.quick_actions %}
+      <a class="v203-quick-card" href="{{ action.href }}">
+        <span>{{ action.icon }}</span>
+        <strong>{{ action.label }}</strong>
+        <small>Entrar</small>
+      </a>
+      {% endfor %}
+    </section>
+
+    <section class="v203-panel-grid">
+      <article class="v203-panel">
+        <div class="v151-panel-head">
+          <h2>⭐ Mis favoritos</h2>
+          <a href="/cliente/favoritos">Ver</a>
+        </div>
+        <p>Equipos, ligas y partidos que sigues aparecerán aquí con prioridad.</p>
+      </article>
+
+      <article class="v203-panel">
+        <div class="v151-panel-head">
+          <h2>📡 Actividad live</h2>
+          <a href="/cliente/home-live-real">Ver</a>
+        </div>
+        <p>Aquí aparecerán señales, goles, momentum y alertas cuando estén disponibles.</p>
+      </article>
+    </section>
+  </main>
+
+  <a class="v203-ai-float" href="/cliente/shark-ai-real" aria-label="Abrir SHARK AI">AI</a>
+  <nav class="v203-bottom-nav" aria-label="Navegación móvil cliente">
+    <a href="/cliente/pro"><i>🏠</i><span>Inicio</span></a>
+    <a href="/picks"><i>🎯</i><span>Picks</span></a>
+    <a href="/cliente/home-live-real"><i>🔥</i><span>Live</span></a>
+    <a href="/cliente/favoritos"><i>⭐</i><span>Favs</span></a>
+    <a href="/cuenta"><i>👤</i><span>Cuenta</span></a>
+  </nav>
+</div>
+{% endblock %}

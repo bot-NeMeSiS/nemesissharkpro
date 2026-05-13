@@ -1,0 +1,130 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="v105-admin">
+  <section class="v105-hero">
+    <div>
+      <p class="v105-kicker">V105 · ADMIN PRO CENTER</p>
+      <h1>Panel Admin PRO</h1>
+      <p>Centro de control único para Real Core, usuarios, APIs, Telegram, módulos SaaS y estado del sistema.</p>
+    </div>
+    <div class="v105-health">
+      <span>Health</span>
+      <strong>{{ status.health_score }}</strong>
+      <small>/100</small>
+    </div>
+  </section>
+
+  {% if status.warnings %}
+  <section class="v105-warnings">
+    <h2>⚠️ Avisos importantes</h2>
+    {% for warning in status.warnings %}
+      <div class="v105-warning">{{ warning }}</div>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  <section class="v105-grid v105-grid-4">
+    <article class="v105-card">
+      <span>Base de datos</span>
+      <strong>{{ "OK" if status.database.detected else "NO DETECTADA" }}</strong>
+      <small>{{ status.database.path }}</small>
+    </article>
+    <article class="v105-card">
+      <span>Usuarios</span>
+      <strong>{{ status.database.users_count }}</strong>
+      <small>lectura real si tabla disponible</small>
+    </article>
+    <article class="v105-card">
+      <span>Real Core</span>
+      <strong>ACTIVO</strong>
+      <small>partidos/picks reales</small>
+    </article>
+    <article class="v105-card">
+      <span>Telegram</span>
+      <strong>
+        {% set tg = status.env | selectattr("name","equalto","TELEGRAM_BOT_TOKEN") | list %}
+        {{ "ON" if tg and tg[0].configured else "OFF" }}
+      </strong>
+      <small>alertas premium</small>
+    </article>
+  </section>
+
+  <section class="v105-panel">
+    <div class="v105-panel-head">
+      <div>
+        <p class="v105-kicker">ACCESOS RÁPIDOS</p>
+        <h2>Control operativo</h2>
+      </div>
+    </div>
+    <div class="v105-actions">
+      {% for link in status.quick_links %}
+        <a href="{{ link.href }}">{{ link.label }}</a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="v105-grid v105-grid-2">
+    <article class="v105-panel">
+      <p class="v105-kicker">MÓDULOS</p>
+      <h2>Estado de la plataforma</h2>
+      <div class="v105-table">
+        {% for module in status.modules %}
+        <a class="v105-row" href="{{ module.route }}">
+          <span>{{ module.name }}</span>
+          <strong>{{ module.status }}</strong>
+        </a>
+        {% endfor %}
+      </div>
+    </article>
+
+    <article class="v105-panel">
+      <p class="v105-kicker">VARIABLES RENDER</p>
+      <h2>Configuración sensible</h2>
+      <div class="v105-table">
+        {% for env in status.env %}
+        <div class="v105-row">
+          <span>{{ env.name }}</span>
+          <strong class="{{ 'ok' if env.configured else 'bad' }}">{{ env.preview }}</strong>
+        </div>
+        {% endfor %}
+      </div>
+    </article>
+  </section>
+
+  <section class="v105-panel">
+    <p class="v105-kicker">SIGUIENTE NIVEL</p>
+    <h2>V106 recomendado</h2>
+    <p>Unificar botones de admin en la interfaz, crear gestión visual de usuarios/membresías, test Telegram desde panel, control de picks y monitor de API credits.</p>
+  
+  <section class="v107-panel">
+    <p class="v107-kicker">MEMBRESÍAS VISUALES</p>
+    <h2>FREE / PRO / ELITE / ADMIN</h2>
+    <p>Accede al nuevo sistema visual premium de membresías.</p>
+    <a class="v106-primary" href="/membership-visual-pro">Ver Membership Visual PRO</a>
+  </section>
+</div>
+
+<section class="v114-panel">
+  <p class="v114-kicker">V114 ACCESOS PRO</p>
+  <h2>Nuevos controles</h2>
+  <div class="v114-actions">
+    <a href="/planes">Planes</a>
+    <a href="/cuenta">Mi cuenta</a>
+    <a href="/admin/picks-manager">Picks Manager</a>
+    <a href="/live-ultra">Live Ultra</a>
+    <a href="/admin/system-guard">System Guard</a>
+  </div>
+</section>
+
+
+<section class="v117-panel">
+  <h2>Telegram PRO REAL</h2>
+  <div class="v117-actions">
+    <a href="/admin/telegram-pro">Panel Telegram</a>
+    <a href="/api/v117/telegram/test">Test Telegram</a>
+    <a href="/api/v117/telegram/status">Estado</a>
+  </div>
+</section>
+
+{% endblock %}

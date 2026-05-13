@@ -1,0 +1,199 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ APP_NAME }} · Picks, partidos y banca</title>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#050b2b">
+  <meta name="description" content="NeMeSiS SHARK PRO: picks, partidos, banca, ROI y SHARK AI en una experiencia premium.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="NeMeSiS">
+  <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
+  <link rel="stylesheet" href="/static/app.css">
+  <script defer src="/static/app.js"></script>
+  <script defer src="{{ url_for('static', filename='js/v194_navigation_identity_polish.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/shark_score_v274.css') }}">
+  <link rel="stylesheet" href="/static/css/v70_premium_ui.css">
+<link rel="stylesheet" href="/static/css/v81_commercial.css">
+<link rel="stylesheet" href="/static/css/v84_premium_experience.css">
+<link rel="stylesheet" href="/static/css/v85_match_cards.css">
+<link rel="stylesheet" href="/static/css/v86_live_data.css">
+<link rel="stylesheet" href="/static/css/v87_shark_quality.css">
+<link rel="stylesheet" href="/static/css/v88_production_center.css">
+<link rel="stylesheet" href="/static/css/v89_real_match_engine.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v104_auto_pick.css') }}">\n  <link rel="manifest" href="/manifest.webmanifest">\n  <meta name="theme-color" content="#00d084">\n  <link rel="stylesheet" href="{{ url_for('static', filename='css/v105_admin_center.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v106_live_ops.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v107_membership_visual_pro.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v108_client_ux_recovery.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v109_live_intelligence.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v110_architecture.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v114_combined_pro.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v115_client_experience.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v116_real_data_sync.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v117_telegram_pro.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v119_product_control.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v125_mega_safe.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v126_closing_picks.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v130_ultra_evolution.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v136_enterprise.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v137_quality.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v138_mobile_ultra.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v139_smart_ux.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v145_match_ecosystem.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v146_fixtures_connector.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v147_match_center.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v148_app_audit_pwa.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v150_favorites_home.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v151_client_identity.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v153_login_onboarding_account.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v157_mobile_app_feel.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v159_live_ecosystem.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v160_admin_business.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v170_pwa_telegram_fix.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v179_pwa_install_reliability.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v193_app_feel_ultra_premium.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v194_navigation_identity_polish.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v203_session_mobile_rebuild.css') }}">
+</head>
+{% set public_clean_paths = ['/', '/inicio', '/planes', '/membresias', '/pricing', '/cliente-login', '/registro', '/admin-login'] %}
+{% set is_public_clean = request.path in public_clean_paths %}
+<body class="{% if current_user and not is_public_clean %}plan-theme-{{ (current_user.plan or 'FREE')|lower }}{% else %}plan-theme-public{% endif %}">
+  <header class="topbar">
+    <a class="brand" href="{{ '/' if is_public_clean else ('/clientes' if session.get('user') else '/') }}">
+      <span class="brand-icon pro-mark">NS</span>
+      <span>
+        <strong>NeMeSiS</strong>
+        <small>SHARK PRO</small>
+      </span>
+    </a>
+
+    <nav class="nav">
+      <a href="{{ '/' if is_public_clean else ('/clientes' if session.get('user') else '/') }}">Inicio</a>
+      <a href="/picks">Picks</a>
+      <a href="/partidos">Partidos</a>
+      <a href="/clasificaciones">Clasificación</a>
+      <a href="/alertas">Alertas</a>
+      <a href="/favoritos">Favoritos</a>
+      <a href="/ayuda">Ayuda</a>
+      <a href="/clientes">Mi cuenta</a>
+      <a class="ai-link" href="/shark-ai">SHARK AI</a>
+      {% if is_admin %}
+        <a class="admin-nav" href="/admin">Admin</a>
+      {% endif %}
+      {% if current_user and not is_public_clean %}
+        <a href="/logout">Salir</a>
+      {% endif %}
+    </nav>
+  </header>
+{% if session.get('user') and not is_public_clean %}
+<nav class="client-app-nav-v308">
+  <a href="/clientes"><span>Inicio</span></a>
+  <a href="/picks"><span>Picks</span></a>
+  <a href="/partidos"><span>Live</span></a>
+  <a href="/clasificaciones"><span>Clasificación</span></a>
+  <a href="/alertas"><span>Alertas</span></a>
+  <a href="/favoritos"><span>Favoritos</span></a>
+  <a href="/clientes#bankroll-v30"><span>Banca</span></a>
+  <button type="button" onclick="document.getElementById('sharkOpen')?.click()"><span>SHARK</span></button>
+</nav>
+{% endif %}
+
+
+  {% if session.get('user') and not is_public_clean %}
+  <div class="v194-history-nav" aria-label="Navegación de historial">
+    <button type="button" class="v194-history-btn" data-v194-back aria-label="Volver a la página anterior">← Atrás</button>
+    <button type="button" class="v194-history-btn" data-v194-forward aria-label="Ir a la página siguiente">Adelante →</button>
+  </div>
+  {% endif %}
+
+  <main class="container">
+    <section class="v170-pwa-card is-hidden" data-v170-install-card>
+      <div>
+        <strong>Instalar NeMeSiS SHARK PRO</strong>
+        <small>Disponible para PC y móvil. Si ya la tienes instalada, este aviso desaparece solo.</small>
+      </div>
+      <div class="v170-actions">
+        <button type="button" class="v170-install-btn" data-v170-install>Instalar app</button>
+        <button type="button" class="v170-install-btn" data-v170-install-close>Ocultar</button>
+      </div>
+    </section>
+    {% block content %}{% endblock %}
+  </main>
+
+  <button id="sharkOpen" class="shark-float shark-bounce" title="Abrir SHARK AI" aria-label="Abrir SHARK AI"><span class="shark-emoji">AI</span><span class="shark-pulse"></span></button>
+
+  <section id="sharkBox" class="shark-box" hidden>
+    <div class="shark-head">
+      <strong>SHARK AI</strong><small id="sharkMode" class="ai-mode">Detectando modo...</small>
+      <button id="sharkClose">×</button>
+    </div>
+    <div class="shark-chips">
+      <button data-prompt="Explícame el mejor pick disponible de forma sencilla">Mejor pick claro</button>
+      <button data-prompt="Muéstrame partidos de hoy y dime cuál mirar primero">Partidos hoy</button>
+      <button data-prompt="Busca partidos de fútbol reales de hoy y próximos días">Fútbol hoy</button>
+      <button data-prompt="Ordena los picks por SHARK SCORE real">Top SHARK</button>
+      <button data-prompt="Analiza mi banca y riesgo pendiente">Mi banca</button>
+      <button data-prompt="Cuál es el mejor pick real ahora mismo">Mejor pick</button>
+    </div>
+    <div id="sharkLog" class="shark-log">
+      <div class="ai">Hola, soy SHARK AI. Pregúntame por picks, partidos, banca o Telegram.</div>
+    </div>
+    <form id="sharkForm">
+      <input id="sharkInput" placeholder="Pregunta a SHARK AI...">
+      <button>Enviar</button>
+    </form>
+  </section>
+<script src="{{ url_for('static', filename='js/shark_score_v274.js') }}"></script>
+<nav class="bottom-mobile-nav-v283">
+  <a href="/clientes"><span>Inicio</span></a>
+  <a href="/picks"><span>Picks</span></a>
+  <a href="/partidos"><span>Live</span></a>
+  <a href="/clasificaciones"><span>Clasificación</span></a>
+  <a href="/alertas"><span>Alertas</span></a>
+  <a href="/favoritos"><span>Favoritos</span></a>
+  <button type="button" onclick="document.getElementById('sharkOpen')?.click()"><span>SHARK</span></button>
+</nav>
+  <script src="/static/js/v70_premium_ui.js"></script>
+<script src="/static/js/v74_retention.js"></script>
+<script src="/static/js/v75_personalization.js"></script>
+<script src="/static/js/v81_commercial.js"></script>
+<script src="/static/js/v82_timezone_fix.js"></script>
+<script src="/static/js/v84_premium_experience.js"></script>
+<script src="/static/js/v85_match_cards.js"></script>
+<script src="/static/js/v86_live_data.js"></script>
+<script src="/static/js/v87_shark_quality.js"></script>
+<script src="/static/js/v88_production_center.js"></script>
+<script src="/static/js/v89_real_match_engine.js"></script>
+  <script src="{{ url_for('static', filename='js/v104_auto_pick.js') }}"></script>\n  <script src="{{ url_for('static', filename='js/v105_admin_center.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/v106_live_ops.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/v107_membership_visual_pro.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/v108_client_ux_recovery.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/v114_combined_pro.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/v115_client_experience.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/v116_real_data_sync.js') }}"></script>
+
+<div id="nemesis-pwa-banner">
+  <div>
+    <strong>Instalar NeMeSiS SHARK PRO</strong>
+    <small>Accede como app en tu móvil o PC.</small>
+  </div>
+  <button id="nemesis-pwa-install">Instalar</button>
+  <button id="nemesis-pwa-close" aria-label="Cerrar">×</button>
+</div>
+<script src="{{ url_for('static', filename='js/pwa_install_v148.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/v151_client_cleanup.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/v153_login_onboarding_account.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/v157_mobile_app_feel.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/v159_live_ecosystem.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/v160_admin_business.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/v170_pwa_smart_install.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/v179_pwa_install_reliability.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/v193_app_feel_ultra_premium.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/v203_session_mobile_rebuild.js') }}"></script>
+</body>
+</html>

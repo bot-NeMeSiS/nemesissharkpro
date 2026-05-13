@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+{% set user = current_user_fresh() or current_user %}
+<section class="favorites-v56">
+  <div class="fav-head-v56"><span>Favoritos</span><h1>Tus señales guardadas</h1><p>Guarda picks o partidos que quieras revisar rápido.</p></div>
+  <section class="pro-pick-grid-v33 fav-grid-v56">
+  {% for p in picks %}
+    {% set sp=smart_pick_profile(p.score,p.ev,p.cuota or p.odds_decimal) %}{% set kt=kickoff_ui_parts(p.kickoff_time) %}{% set teams=team_pair(p.title) %}{% set stake=stake_recommendation_eur(p, user.balance if user else 0) %}
+    <article class="pro-pick-card-v33 {{ sp.tone }}">
+      <div class="pro-card-top-v33"><span>{{ competition_badge(p.league,p.sport) }}</span><b>{{ kt.day }} {{ kt.date }} · {{ kt.time }}</b></div>
+      <div class="pro-card-teams-v33"><p><img class="crest-img-v35" src="{{ display_team_logo(teams.home) }}" alt="{{ teams.home }}">{{ teams.home }}</p><p><img class="crest-img-v35" src="{{ display_team_logo(teams.away) }}" alt="{{ teams.away }}">{{ teams.away }}</p></div>
+      <div class="pro-exact-v33"><small>APUESTA A</small><strong>{{ human_bet_choice(p) }}</strong><em>{{ bet_simple_explanation(p) }}</em></div>
+      <div class="pro-card-metrics-v33"><span><b>{{ sp.score }}</b>SHARK</span><span><b>{{ p.cuota or p.odds_decimal or '-' }}</b>Cuota</span><span><b>{{ stake.label }}</b>Stake</span></div>
+      <div class="pro-actions-v33"><a href="/partido/{{ p.id }}">Abrir análisis</a><form method="post" action="/favorito/{{ p.id }}/toggle"><button>Quitar favorito</button></form></div>
+    </article>
+  {% else %}
+    {% set empty=client_quality_empty_state('favoritos') %}
+    <div class="pro-empty-v33 empty-premium-v56"><h3>{{ empty.title }}</h3><p>{{ empty.text }}</p><a href="{{ empty.href }}">{{ empty.action }}</a></div>
+  {% endfor %}
+  </section>
+</section>
+{% endblock %}

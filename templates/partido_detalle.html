@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+{% set user = current_user_fresh() or current_user %}
+{% set plan_clean = ((user.plan if user else 'FREE') or 'FREE')|upper %}
+{% set teams = team_pair(p.title) %}{% set kt=kickoff_ui_parts(p.kickoff_time) %}{% set sp=smart_pick_profile(p.score,p.ev,p.cuota or p.odds_decimal) %}{% set livep=match_time_status(p) %}{% set insight=professional_insight(p) %}{% set stake=stake_recommendation_eur(p, user.balance if user else 0) %}{% set result = pick_result_badge(p) %}
+<section class="match-pro-detail-v33">
+  <a class="back-v325" href="/partidos">Volver al calendario</a>
+  <article class="pro-detail-hero-v33 {{ livep.tone }}">
+    <div class="pro-date-v33 big"><b>{{ kt.day }}</b><span>{{ kt.date }}</span><strong>{{ kt.time }}</strong><em>{{ kt.full }}</em></div>
+    <div class="pro-detail-teams-v33"><small>{{ competition_badge(p.league,p.sport) }} · {{ livep.label }}</small>{% set home_logo=display_team_logo(teams.home) %}{% set away_logo=display_team_logo(teams.away) %}<h1>{% if home_logo %}<img class="crest-img-v35 big" src="{{ home_logo }}" alt="{{ teams.home }}">{% else %}<i class="crest-v324 crest-shield-v325" style="--crest-a:{{ team_color(teams.home,0) }};--crest-b:{{ team_color(teams.home,1) }}"><span>{{ team_initials(teams.home) }}</span></i>{% endif %}{{ teams.home }}</h1><b>VS</b><h1>{% if away_logo %}<img class="crest-img-v35 big" src="{{ away_logo }}" alt="{{ teams.away }}">{% else %}<i class="crest-v324 crest-shield-v325 away" style="--crest-a:{{ team_color(teams.away,0) }};--crest-b:{{ team_color(teams.away,1) }}"><span>{{ team_initials(teams.away) }}</span></i>{% endif %}{{ teams.away }}</h1></div>
+    <div class="pro-score-v33 xl"><strong>{{ sp.score }}</strong><span>SHARK SCORE</span><small>Riesgo {{ sp.risk }} · EV +{{ sp.ev }}%</small><em class="result-badge-v34 {{ result.tone }}">{{ result.label }}</em></div>
+  </article>
+  <section class="pro-detail-grid-v33">
+    <article class="pro-detail-main-v33 clarity-bet-v361 final-bet-v411"><span>Apuesta fácil</span><h2>✅ {{ clear_bet_text(p) }}</h2><p class="simple-explain-v361"><b>Qué significa:</b> {{ bet_simple_explanation(p) }}</p><div class="chips-v325"><b>Cuota {{ p.cuota or p.odds_decimal or '-' }}</b><b>{{ p.odds_bookmaker or 'Casa disponible' }}</b><b>{{ insight.market_label }}</b><b>Stake {{ stake.amount }}€ · {{ stake.label }}</b></div><form method="post" action="/guardar-pick/{{ p.id }}"><input name="amount" value="{{ stake.amount }}"><button>Guardar pick</button></form></article>
+    <article><h3>Por qué apostarle</h3><ul>{% for x in insight.bullets_for %}<li>{{ x }}</li>{% endfor %}</ul><p>{{ why_bet_text(p) }}</p></article>
+    <article><h3>Por qué NO apostarle</h3><ul>{% for x in insight.bullets_against %}<li>{{ x }}</li>{% endfor %}</ul><p>{{ why_not_bet_text(p) }}</p></article>
+    <article><h3>Seguimiento SHARK</h3>{% for item in match_timeline(p) %}<p class="timeline-v33"><b>{{ item.label }}</b><span>{{ item.text }}</span></p>{% endfor %}</article>
+    <article><h3>Datos del partido</h3><p><b>Liga:</b> {{ p.league or p.sport or 'Fútbol' }}</p><p><b>Tipo de apuesta:</b> {{ pick_market_label(p.odds_market) }}</p><p><b>Estado:</b> {{ livep.label }}{% if livep.score %} · {{ livep.score }}{% endif %}</p><p><b>Resultado:</b> {{ result.label }}{% if p.result_score %} · {{ p.result_score }}{% endif %}</p></article>
+    <article><h3>Control ROI</h3><p><b>Si gana:</b> beneficio estimado {{ '%.2f'|format(stake.amount * ((p.cuota or p.odds_decimal or 1)|float - 1)) }}€</p><p><b>Si pierde:</b> pérdida máxima {{ '%.2f'|format(stake.amount) }}€</p><p><b>Estado tracking:</b> {{ result.label }}</p></article>
+    <article><h3>Plan de entrada</h3><p><b>Entrada recomendada:</b> {{ stake.amount }}€</p><p><b>Máximo recomendado:</b> no superar {{ stake.pct }}% de tu banca.</p><p><b>Consejo:</b> si la cuota cae fuerte, revisa valor antes de apostar.</p></article>
+  </section>
+</section>
+{% endblock %}

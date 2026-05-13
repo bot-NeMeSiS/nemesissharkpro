@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Telegram Auto Delivery REAL · V173</title>
+  <link rel="stylesheet" href="/static/v173/telegram_auto_v173.css">
+</head>
+<body>
+  <main class="v173-wrap">
+    <header class="v173-hero">
+      <div>
+        <span class="v173-pill">V173 · Telegram Auto Delivery REAL</span>
+        <h1>Automatización Telegram por membresía</h1>
+        <p>Admin recibe modo máximo. Clientes FREE / PRO / ELITE reciben señales reales según su plan, con anti-repetidos y sin datos fake.</p>
+      </div>
+      <nav>
+        <a href="/admin/telegram-delivery-fix">Diagnóstico</a>
+        <a href="/admin/telegram-membership-delivery">V172 membresías</a>
+        <a href="/admin/business">Business</a>
+      </nav>
+    </header>
+
+    {% if data.warnings %}
+    <section class="v173-warnings">
+      {% for w in data.warnings %}<article>{{ w }}</article>{% endfor %}
+    </section>
+    {% endif %}
+
+    <section class="v173-grid v173-kpis">
+      <article><span>Token bot</span><strong>{{ 'OK' if data.env.token else 'FALTA' }}</strong><small>TELEGRAM_BOT_TOKEN</small></article>
+      <article><span>Admin destino</span><strong>{{ 'OK' if data.env.targets.ADMIN else 'FALTA' }}</strong><small>TELEGRAM_ADMIN_CHAT_ID o TELEGRAM_CHAT_ID</small></article>
+      <article><span>Auto delivery</span><strong>{{ 'ON' if data.auto.enabled else 'OFF' }}</strong><small>TELEGRAM_AUTO_DELIVERY_ENABLED</small></article>
+      <article><span>Anti repetidos</span><strong>{{ data.auto.anti_repeat_hours }}h</strong><small>{{ data.dedupe_count }} registros</small></article>
+      <article><span>Clientes vinculados</span><strong>{{ data.users.linked }}</strong><small>{{ data.users.total }} usuarios</small></article>
+      <article><span>Señales reales</span><strong>{{ data.real_items.total }}</strong><small>cache SQLite</small></article>
+    </section>
+
+    {% if admin %}
+    <section class="v173-panel v173-admin">
+      <div>
+        <h2>Ejecutar envío automático ahora</h2>
+        <p>Usa la misma lógica que el cron: admin + canales por plan + clientes vinculados. No repite señales recientes salvo que marques forzar.</p>
+      </div>
+      <form method="post" action="/admin/telegram-v173/run" class="v173-form">
+        <label>Plan
+          <select name="plan">
+            <option value="ALL">Todos</option>
+            <option value="FREE">FREE</option>
+            <option value="PRO">PRO</option>
+            <option value="ELITE">ELITE</option>
+          </select>
+        </label>
+        <label class="v173-check"><input type="checkbox" name="force" value="1"> Forzar prueba aunque ya se haya enviado</label>
+        <button type="submit">Lanzar auto delivery real</button>
+      </form>
+    </section>
+
+    <section class="v173-grid v173-actions">
+      <article>
+        <h3>Detectar mi chat admin</h3>
+        <p>Abre el bot en privado, manda <b>/start</b> y pulsa aquí. Luego copia el chat_id a Render como <code>TELEGRAM_ADMIN_CHAT_ID</code>.</p>
+        <form method="post" action="/admin/telegram-v173/discover"><button>Buscar chat_id admin</button></form>
+      </article>
+      <article>
+        <h3>Cron externo</h3>
+        <p>Configura un cron GET/POST contra:</p>
+        <code>{{ data.cron_urls.all }}</code>
+        <small>Protegido por TELEGRAM_CRON_SECRET si lo configuras.</small>
+      </article>
+    </section>
+    {% endif %}
+
+    <section class="v173-grid v173-plans">
+      {% for p in ['FREE','PRO','ELITE','ADMIN'] %}
+      <article class="plan-{{ p|lower }}">
+        <span>{{ data.rules[p].emoji }} {{ p }}</span>
+        <h3>{{ data.real_items.by_plan[p] }} señales</h3>
+        <p>Máximo {{ data.rules[p].limit }} · score mínimo {{ data.rules[p].min_score }}</p>
+        <ul>{% for f in data.rules[p].features %}<li>{{ f }}</li>{% endfor %}</ul>
+      </article>
+      {% endfor %}
+    </section>
+
+    <section class="v173-panel">
+      <h2>Admin chat detectados</h2>
+      {% if data.admin_contacts %}
+        <div class="v173-log">
+          {% for c in data.admin_contacts %}
+            <article><b>{{ c.chat_id }}</b><span>@{{ c.username }} {{ c.first_name }} {{ c.last_name }}</span><small>{{ c.updated_at }}</small></article>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="v173-empty">Aún no hay chat privado detectado. Manda /start al bot y pulsa “Buscar chat_id admin”.</div>
+      {% endif %}
+    </section>
+
+    <section class="v173-panel">
+      <h2>Última ejecución automática</h2>
+      <div class="v173-status">
+        <div><span>Último run</span><strong>{{ data.last_auto_run or 'Sin ejecutar' }}</strong></div>
+        <div><span>Resumen</span><strong>{{ data.last_auto_summary or 'Sin resumen' }}</strong></div>
+      </div>
+    </section>
+
+    <section class="v173-panel">
+      <h2>Previsualización por plan</h2>
+      <div class="v173-preview-grid">
+        {% for p in ['FREE','PRO','ELITE','ADMIN'] %}
+        <article><h3>{{ p }}</h3><pre>{{ data.previews[p] }}</pre></article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="v173-panel">
+      <h2>Últimos envíos</h2>
+      {% if data.logs %}
+        <div class="v173-log">
+        {% for l in data.logs %}
+          <article><b>{{ l.status }}</b><span>{{ l.target_plan }} · {{ l.mode }} · {{ l.created_at }}</span><small>{{ l.error or l.message_preview }}</small></article>
+        {% endfor %}
+        </div>
+      {% else %}
+        <div class="v173-empty">Aún no hay envíos registrados.</div>
+      {% endif %}
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "version": "V196_DATA_LIVE_EVENTS_REAL_EXPANSION_PRO",
+  "name": "NeMeSiS SHARK PRO V196 Live Events Real Expansion Pro",
+  "real_only": true,
+  "language": "es",
+  "render_ready": true,
+  "github_ready": true,
+  "base": "V195_CLIENT_POLISH_CONFIDENCE_CLEANUP"
+}

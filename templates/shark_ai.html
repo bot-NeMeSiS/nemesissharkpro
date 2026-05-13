@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page-title">
+  <p class="eyebrow">SHARK AI V31.4 · SMART ENGINE</p>
+  <h1>Copiloto inteligente de picks y partidos reales</h1>
+  <p class="lead">Busca partidos por nombre, detecta intención, muestra cards reales y te lleva directo a Picks, Live o Mi banca sin inventar datos.</p>
+</section>
+
+<section class="grid two">
+  <div class="panel shark-ai-panel">
+    <h2>Centro inteligente SHARK</h2>
+    <p class="muted">Botones directos para navegar por lo importante sin inventar partidos ni picks.</p>
+    <div class="actions ai-quick-grid">
+      <button class="btn primary" data-prompt="Dime los picks de valor reales disponibles ahora">🎯 Picks de valor</button>
+      <button class="btn" data-prompt="Muéstrame partidos reales de hoy o en directo">⚡ Partidos de hoy</button>
+      <button class="btn" data-prompt="Ordena los picks por SHARK SCORE real">🦈 Top SHARK</button>
+      <button class="btn" data-prompt="Analiza mi banca y riesgo pendiente">🏦 Mi banca</button>
+      <button class="btn" data-prompt="Cuál es el mejor pick real ahora mismo">⭐ Mejor pick</button>
+      <button class="btn" data-prompt="Busca partidos de fútbol reales de hoy y próximos días">⚽ Fútbol hoy</button>
+      <button class="btn" data-prompt="Busca madrid barsa en datos reales">Madrid Barça</button>
+      <button class="btn" data-prompt="Qué datos reales faltan para que la app funcione al 100%">Estado real</button>
+    </div>
+    <div id="pageSharkLog" class="shark-log page-log">
+      <div class="ai">Estoy conectado a SQLite y al motor real. Si no hay datos reales, te lo diré claro en vez de inventar partidos.</div>
+    </div>
+    <form id="pageSharkForm" class="ai-form">
+      <input id="pageSharkInput" placeholder="Ej: llévame al mejor pick real de hoy...">
+      <button class="btn primary">Enviar</button>
+    </form>
+  </div>
+
+  <aside class="panel">
+    <h2>Estado del motor</h2>
+    <div id="openaiStatus" class="ai-status">Comprobando SHARK AI...</div>
+    <div id="aiInsights" class="mini-insights">Cargando datos reales...</div>
+    <ul class="clean-list">
+      <li>✅ Lee picks reales activos.</li>
+      <li>✅ Lee partidos y picks reales activos.</li>
+      <li>✅ Recomienda sección interna con botón directo.</li>
+      <li>✅ Usa banca, ROI e historial del usuario.</li>
+      <li>✅ Fallback local si no hay OpenAI.</li>
+      <li>✅ PRO/ELITE pueden usar GPT con límite.</li>
+      <li>✅ No inventa cuotas, marcadores ni partidos.</li>
+    </ul>
+  </aside>
+</section>
+{% endblock %}

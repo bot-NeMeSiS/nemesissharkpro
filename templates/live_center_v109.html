@@ -1,0 +1,44 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="v109-live-wrap">
+  <section class="v109-hero">
+    <div>
+      <p class="v109-kicker">V109 · REAL LIVE INTELLIGENCE</p>
+      <h1>Live Center PRO</h1>
+      <p>Momentum, presión, señales live, lectura SHARK y oportunidades en directo usando datos del Real Core.</p>
+    </div>
+    <div class="v109-live-badge">LIVE INTELLIGENCE</div>
+  </section>
+
+  <section class="v109-panel">
+    <p class="v109-kicker">ESTADO</p>
+    <h2>Centro live preparado</h2>
+    <p>Conecta esta pantalla al feed live real para pintar momentum, señales y picks live dinámicos.</p>
+    <div class="v109-actions">
+      <a href="/api/v109/live-intelligence/health">Health</a>
+      <a href="/api/v109/live-intelligence">API</a>
+      <a href="/admin/live-ops">Admin Live Ops</a>
+      <a href="/cliente">Panel cliente</a>
+    </div>
+  </section>
+
+  <section class="v109-cards">
+    <article class="v109-card">
+      <span>📡</span>
+      <h3>Momentum</h3>
+      <p>Detecta presión y dominio cuando el feed trae datos live.</p>
+    </article>
+    <article class="v109-card">
+      <span>🎯</span>
+      <h3>Señales</h3>
+      <p>LIVE_STRONG_SIGNAL, LIVE_VALUE_WATCH o NO_LIVE_ENTRY.</p>
+    </article>
+    <article class="v109-card">
+      <span>🦈</span>
+      <h3>SHARK Reading</h3>
+      <p>Lectura natural para entender si entrar, esperar o descartar.</p>
+    </article>
+  </section>
+</div>
+{% endblock %}

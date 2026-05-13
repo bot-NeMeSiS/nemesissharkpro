@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="/static/css/v171_telegram_client.css">
+<section class="v171-shell">
+  <div class="v171-hero">
+    <div>
+      <p class="v171-kicker">V171 · TELEGRAM REAL DELIVERY FIX</p>
+      <h1>Telegram real: diagnóstico, permisos y envío</h1>
+      <p>Comprueba token, chat_id, webhook, permisos del bot y envía partidos reales al canal. Sin partidos inventados.</p>
+    </div>
+    <div class="v171-status {{ 'ok' if diag.ok else 'warn' }}">
+      <span>Estado</span>
+      <strong>{{ 'LISTO' if diag.ok else 'REVISAR' }}</strong>
+      <small>{{ diag.chat_id_preview or 'Sin chat_id' }}</small>
+    </div>
+  </div>
+
+  <div class="v171-grid v171-kpis">
+    <article><span>Token</span><strong>{{ 'OK' if diag.token_set else 'FALTA' }}</strong><small>{{ diag.token_preview or 'TELEGRAM_BOT_TOKEN' }}</small></article>
+    <article><span>Bot</span><strong>{{ 'OK' if diag.getme.ok else 'ERROR' }}</strong><small>{{ diag.getme.result.username if diag.getme.ok and diag.getme.result else 'getMe' }}</small></article>
+    <article><span>Chat</span><strong>{{ 'OK' if diag.chat.ok else 'ERROR' }}</strong><small>{{ diag.chat.result.title if diag.chat.ok and diag.chat.result else diag.chat_id_preview }}</small></article>
+    <article><span>Permisos</span><strong>{{ diag.member.result.status if diag.member.ok and diag.member.result else 'REVISAR' }}</strong><small>getChatMember</small></article>
+    <article><span>Partidos hoy</span><strong>{{ diag.fixtures_today }}</strong><small>cache real</small></article>
+  </div>
+
+  {% if diag.blockers %}
+  <section class="v171-panel v171-alert">
+    <h2>Bloqueos detectados</h2>
+    {% for b in diag.blockers %}<p>⚠️ {{ b }}</p>{% endfor %}
+  </section>
+  {% endif %}
+
+  <div class="v171-grid v171-two">
+    <section class="v171-panel">
+      <h2>Test real de Telegram</h2>
+      <p>Usa el chat_id de Render o pega uno manual. Para canal privado normalmente empieza por <b>-100</b>.</p>
+      <form method="post" action="/admin/telegram-v171/send-test" class="v171-form">
+        <label>Chat ID manual opcional
+          <input name="chat_id" placeholder="-1001234567890 o @canal_publico">
+        </label>
+        <button type="submit">Enviar test real ahora</button>
+      </form>
+    </section>
+
+    <section class="v171-panel">
+      <h2>Enviar partidos reales</h2>
+      <p>Solo envía fixtures reales cacheados. Si no hay datos, no manda fake.</p>
+      <form method="post" action="/admin/telegram-v171/send-fixtures" class="v171-form">
+        <label>Filtro
+          <select name="filter"><option value="today">Hoy</option><option value="live">Live</option><option value="upcoming">Próximos</option></select>
+        </label>
+        <label>Destino
+          <select name="target"><option value="auto">Auto</option><option value="general">General</option><option value="free">FREE</option><option value="pro">PRO</option><option value="elite">ELITE</option><option value="test">Test</option></select>
+        </label>
+        <label>Límite <input type="number" name="limit" value="8" min="1" max="20"></label>
+        <button type="submit">Enviar partidos reales</button>
+      </form>
+    </section>
+  </div>
+
+  <div class="v171-grid v171-two">
+    <section class="v171-panel">
+      <h2>Chats detectados por updates</h2>
+      {% if diag.discovered_chats %}
+        <div class="v171-list">
+        {% for c in diag.discovered_chats %}<div><b>{{ c.title }}</b><span>{{ c.type }} · {{ c.id }}</span></div>{% endfor %}
+        </div>
+      {% else %}
+        <div class="v171-empty"><b>No hay updates útiles</b><p>Escribe al bot o publica algo en el canal. Si el bot ya está en canal privado, usa getChat con TELEGRAM_CHAT_ID correcto.</p></div>
+      {% endif %}
+    </section>
+
+    <section class="v171-panel">
+      <h2>Qué debes tener en Render</h2>
+      <div class="v171-code">TELEGRAM_BOT_TOKEN=token de @BotFather<br>TELEGRAM_CHAT_ID=-100... o @canal<br>ENABLE_PRO_ALERTS=true</div>
+      {% if diag.tips %}{% for t in diag.tips %}<p class="v171-tip">✅ {{ t }}</p>{% endfor %}{% endif %}
+      <div class="v171-actions"><a href="/admin/telegram-real-fix">V170 Telegram</a><a href="/admin/fixtures-sync">Sincronizar fixtures</a><a href="/api/v171/telegram/diagnostic">API diagnóstico</a></div>
+    </section>
+  </div>
+
+  <section class="v171-panel">
+    <h2>Últimos logs Telegram</h2>
+    {% if diag.last_logs %}
+      <div class="v171-log">{% for log in diag.last_logs[:20] %}<div><span>{{ log.status }}</span><b>{{ log.title }}</b><small>{{ log.created_at }} · {{ log.kind }}</small></div>{% endfor %}</div>
+    {% else %}
+      <div class="v171-empty"><b>Sin logs</b><p>Cuando pruebes envío aparecerá aquí el resultado real.</p></div>
+    {% endif %}
+  </section>
+</section>
+{% endblock %}

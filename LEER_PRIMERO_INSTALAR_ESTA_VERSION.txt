@@ -1,0 +1,24 @@
+============================================================
+INSTALAR ESTA VERSION - NeMeSiS SHARK PRO V204 FINAL FIX
+============================================================
+
+USA ESTE ZIP COMPLETO.
+
+PASOS:
+1) En GitHub Desktop pulsa Abort merge si aparece conflicto.
+2) Cierra GitHub Desktop.
+3) Borra TODO el contenido de la carpeta local del proyecto.
+4) Descomprime este ZIP.
+5) Copia TODO lo descomprimido dentro de la carpeta del proyecto.
+6) Comprueba que en la raiz existe requirements.txt.
+7) Abre GitHub Desktop.
+8) Commit: V204 final fix con requirements.
+9) Push.
+10) En Render: Manual Deploy.
+
+NO MEZCLAR con carpetas antiguas.
+NO pulsar Continue merge.
+NO dejar archivos viejos dentro.
+
+Este paquete incluye requirements.txt en la raiz para que Render pueda instalar dependencias.
+============================================================

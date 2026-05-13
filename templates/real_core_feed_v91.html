@@ -1,0 +1,74 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>NeMeSiS SHARK PRO - Partidos y picks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/css/v70_premium_ui.css">
+  <link rel="stylesheet" href="/static/css/v91_real_core.css">
+  <style>.v91-match-card{position:relative;overflow:hidden}.v91-match-card:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(50,230,255,.08),transparent 45%,rgba(255,217,90,.06));pointer-events:none}.v91-score a{box-shadow:0 0 18px rgba(50,230,255,.25)}</style>
+</head>
+<body>
+<main class="nsp-shell" style="padding:24px 0 40px;">
+  <section class="nsp-hero">
+    <span class="nsp-eyebrow">🦈 Datos reales verificados</span>
+    <h1 class="nsp-title">{% if page_mode == "picks" %}Picks de hoy{% elif page_mode == "live" %}En directo{% else %}Partidos de hoy{% endif %}</h1>
+    <p class="nsp-subtitle">Solo mostramos datos reales disponibles. Si no hay señal fiable, la pantalla queda vacía sin demos.</p>
+    <div class="v91-actions">
+      <a class="nsp-btn" href="{{ refresh_url or '/partidos?force=true' }}">Actualizar</a>
+      <button class="nsp-btn secondary" type="button" onclick="history.back()">← Atrás</button>
+      <button class="nsp-btn secondary" type="button" onclick="history.forward()">Adelante →</button>
+      {% if session.get('user', {}).get('role') == 'admin' %}
+      <a class="nsp-btn secondary" href="/admin/real-core">Panel admin</a>
+      <a class="nsp-btn secondary" href="/api/core-feed?force=true">API interna</a>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="v91-count-grid" style="margin-top:18px;">
+    <article><span>Total</span><strong>{{ feed.counts.total }}</strong></article>
+    <article><span>Live</span><strong>{{ feed.counts.live }}</strong></article>
+    <article><span>Hoy</span><strong>{{ feed.counts.today }}</strong></article>
+    <article><span>Próximos</span><strong>{{ feed.counts.upcoming }}</strong></article>
+  </section>
+
+  {% if not feed.ok %}
+  <section class="v91-empty">
+    <strong>No hay datos reales para mostrar ahora mismo.</strong>
+    <p>No se muestran demos ni partidos inventados. Vuelve a actualizar más tarde o revisa la configuración desde el panel admin.</p>
+    {% if feed.error %}<small>{{ feed.error }}</small>{% endif %}
+  </section>
+  {% endif %}
+
+  <section class="v91-card-list">
+    {% for m in feed.matches %}
+    <article class="v91-match-card">
+      <div class="v91-time-box">
+        <b>{{ m.date }}</b>
+        <strong>{{ m.time }}</strong>
+        <small>{{ m.relative }}</small>
+      </div>
+      <div class="v91-main">
+        <div class="v91-league">{{ m.league }} · {{ m.status }}</div>
+        <h2>{{ m.home_team }} <span>vs</span> {{ m.away_team }}</h2>
+        <p>{{ m.market }}{% if m.odds %} · cuota {{ m.odds }}{% endif %}</p>
+        <div class="v91-tags">
+          <span>Datos reales</span>
+          <span>Cuota verificada</span>
+          <span>{{ m.bookmaker or "Casa pendiente" }}</span>
+        </div>
+      </div>
+      <div class="v91-score">
+        <strong>{{ m.confidence_score or m.shark_score }}</strong>
+        <span>Confianza</span>
+        <small>Riesgo {{ m.risk }} · stake {{ m.stake }}</small>
+        <a href="/partido-pro/{{ m.id }}">Abrir</a>
+      </div>
+    </article>
+    {% endfor %}
+  </section>
+</main>
+<script src="/static/js/v91_real_core.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "version": "V166_0_BILLING_STRIPE_READY_FOUNDATION",
+  "base": "V165_1_FINAL_UX_POLISH_AND_APP_FLOW_FULL",
+  "safe_without_stripe_keys": true,
+  "no_fake_payments": true
+}

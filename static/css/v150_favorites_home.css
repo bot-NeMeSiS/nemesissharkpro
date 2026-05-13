@@ -1,0 +1,17 @@
+
+.v150-wrap{max-width:1280px;margin:0 auto;padding:28px;color:#fff}
+.v150-hero{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:38px;border-radius:36px;background:radial-gradient(circle at 10% 10%,rgba(57,208,255,.18),transparent 30%),linear-gradient(135deg,#070b14,#111d35);border:1px solid rgba(57,208,255,.24)}
+.v150-hero.live{border-color:rgba(0,255,140,.25)}
+.v150-kicker{color:#39d0ff;font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin:0 0 8px}
+.v150-hero h1{font-size:52px;line-height:1;margin:0 0 12px}.v150-hero p{opacity:.74;max-width:830px}
+.v150-badge,.v150-live{padding:18px 24px;border-radius:999px;background:rgba(57,208,255,.12);border:1px solid rgba(57,208,255,.34);color:#39d0ff;font-weight:900}
+.v150-live{color:#00ff8c;background:rgba(0,255,140,.10);border-color:rgba(0,255,140,.30);animation:v150pulse 1.4s infinite}
+@keyframes v150pulse{50%{box-shadow:0 0 28px rgba(0,255,140,.28)}}
+.v150-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.v150-actions a,.v150-empty a{padding:12px 16px;border-radius:999px;background:#ffe986;color:#101827;text-decoration:none;font-weight:900}
+.v150-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:22px}.v150-grid article,.v150-panel,.v150-item,.v150-empty{background:#0f172a;border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:24px}
+.v150-grid span{opacity:.62}.v150-grid strong{display:block;font-size:30px}
+.v150-list{display:flex;flex-direction:column;gap:12px;margin-top:22px}.v150-item{display:flex;justify-content:space-between;align-items:center}.v150-item span{color:#39d0ff;font-weight:900;text-transform:uppercase;font-size:12px}
+.v150-columns{display:grid;grid-template-columns:1fr 1fr;gap:18px}.v150-panel{margin-top:22px}
+.v150-row{display:flex;justify-content:space-between;gap:12px;padding:12px;border-radius:14px;background:rgba(255,255,255,.05);margin-top:8px;color:#fff;text-decoration:none}.v150-row span{opacity:.64}
+.v150-empty{text-align:center;margin-top:22px}.v150-empty.small{padding:24px}.v150-orb{width:64px;height:64px;margin:0 auto 18px;border-radius:50%;background:radial-gradient(circle,#39d0ff,#0f172a);box-shadow:0 0 36px rgba(57,208,255,.28)}
+@media(max-width:920px){.v150-hero{flex-direction:column;align-items:flex-start}.v150-hero h1{font-size:36px}.v150-grid,.v150-columns{grid-template-columns:1fr}.v150-wrap{padding:16px}}

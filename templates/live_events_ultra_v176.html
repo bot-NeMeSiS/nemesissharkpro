@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Live Events Ultra · NeMeSiS SHARK PRO</title>
+  <link rel="stylesheet" href="/static/live_events_ultra_v176.css">
+</head>
+<body class="v176-body">
+  <main class="v176-shell">
+    <section class="v176-hero">
+      <div>
+        <p class="v176-kicker">V176 · REAL CORE · NO FAKE</p>
+        <h1>Live Events Ultra + Match Intelligence</h1>
+        <p>Timeline vivo, presión SHARK, picks relacionados y lectura de partido sin inventar goles, cuotas ni eventos.</p>
+      </div>
+      <div class="v176-score-ring">
+        <span>{{ (data.selected_match.intelligence.score if data.selected_match and data.selected_match.intelligence else 0) }}</span>
+        <small>SHARK</small>
+      </div>
+    </section>
+
+    <section class="v176-signals">
+      {% for s in data.signals %}
+      <article class="v176-signal {{ s.tone }}"><small>{{ s.label }}</small><strong>{{ s.value }}</strong></article>
+      {% endfor %}
+    </section>
+
+    {% if data.empty_state %}
+      <section class="v176-empty">
+        <h2>Estado real vacío</h2>
+        <p>{{ data.empty_message }}</p>
+        <a href="/fixtures/today-pro">Sincronizar partidos reales</a>
+      </section>
+    {% else %}
+      <section class="v176-grid">
+        <aside class="v176-card v176-list-card">
+          <div class="v176-card-head"><h2>Partidos reales</h2><span>{{ data.counts.matches }}</span></div>
+          <div class="v176-match-list">
+          {% for m in data.matches[:12] %}
+            <a class="v176-match {{ m.heat }}" href="/partido-intelligence/{{ m.id }}">
+              <div><strong>{{ m.home }}</strong><small>{{ m.league }}</small></div>
+              <div class="v176-vs">vs</div>
+              <div><strong>{{ m.away }}</strong><small>{{ m.status }}</small></div>
+              <span class="v176-mini-score">{{ m.momentum }}%</span>
+            </a>
+          {% endfor %}
+          </div>
+        </aside>
+
+        <section class="v176-card v176-main-card">
+          {% set m = data.selected_match %}
+          <div class="v176-card-head"><h2>{{ m.title }}</h2><span class="{{ m.heat }}">{{ m.status }}</span></div>
+          <div class="v176-scoreboard">
+            <div><b>{{ m.home }}</b><small>Local</small></div>
+            <div class="v176-score">
+              {% if m.score.home is not none or m.score.away is not none %}
+                {{ m.score.home or 0 }} - {{ m.score.away or 0 }}
+              {% else %}
+                <span>vs</span>
+              {% endif %}
+              <small>{{ m.minute or m.kickoff }}</small>
+            </div>
+            <div><b>{{ m.away }}</b><small>Visitante</small></div>
+          </div>
+
+          <div class="v176-momentum"><span style="width: {{ m.momentum }}%"></span></div>
+          <div class="v176-intel">
+            <article><small>Acción</small><strong>{{ m.intelligence.action }}</strong></article>
+            <article><small>Riesgo</small><strong>{{ m.intelligence.risk|upper }}</strong></article>
+            <article><small>Stake</small><strong>{{ m.intelligence.stake }}</strong></article>
+          </div>
+        </section>
+
+        <section class="v176-card">
+          <div class="v176-card-head"><h2>Event Flow</h2><span>Real only</span></div>
+          <div class="v176-timeline">
+            {% for ev in data.timeline %}
+            <div class="v176-event {{ ev.tone }}"><b>{{ ev.minute }}</b><div><strong>{{ ev.title }}</strong><p>{{ ev.text }}</p></div></div>
+            {% endfor %}
+          </div>
+        </section>
+
+        <section class="v176-card">
+          <div class="v176-card-head"><h2>Por qué entrar / evitar</h2><span>SHARK</span></div>
+          <div class="v176-columns">
+            <div><h3>Entrar si...</h3>{% for w in data.selected_match.intelligence.why_enter %}<p>✅ {{ w }}</p>{% endfor %}</div>
+            <div><h3>Evitar</h3>{% for w in data.selected_match.intelligence.why_avoid %}<p>⚠️ {{ w }}</p>{% endfor %}</div>
+          </div>
+        </section>
+
+        <section class="v176-card v176-picks">
+          <div class="v176-card-head"><h2>Picks relacionados</h2><span>{{ data.related_picks|length }}</span></div>
+          {% if data.related_picks %}
+            {% for p in data.related_picks[:6] %}
+            <article><strong>{{ p.title }}</strong><small>{{ p.market }} · {{ p.status }} {% if p.odds %}· cuota {{ p.odds }}{% endif %}</small></article>
+            {% endfor %}
+          {% else %}
+            <p class="v176-muted">No hay picks reales relacionados suficientes todavía.</p>
+          {% endif %}
+        </section>
+      </section>
+    {% endif %}
+  </main>
+  <script src="/static/live_events_ultra_v176.js"></script>
+</body>
+</html>

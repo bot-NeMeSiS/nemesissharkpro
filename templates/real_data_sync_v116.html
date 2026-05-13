@@ -1,0 +1,82 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="v116-wrap">
+  <section class="v116-hero">
+    <div>
+      <p class="v116-kicker">V116 · REAL DATA SYNCHRONIZATION</p>
+      <h1>Sincronización de datos reales</h1>
+      <p>Control para asegurar que cliente/live/picks usan datos reales, cache válido y Real Core. Si no hay datos, se muestra estado vacío premium.</p>
+    </div>
+    <div class="v116-badge">NO FAKE DATA</div>
+  </section>
+
+  <section class="v116-grid">
+    <article>
+      <span>Cache total</span>
+      <strong>{{ status.cache_items }}</strong>
+      <small>registros</small>
+    </article>
+    <article>
+      <span>Cache válido</span>
+      <strong>{{ status.valid_cache_items }}</strong>
+      <small>no expirado</small>
+    </article>
+    <article>
+      <span>Tablas reales</span>
+      <strong>{{ status.real_tables_detected|length }}</strong>
+      <small>{{ status.real_tables_detected|join(", ") }}</small>
+    </article>
+    <article>
+      <span>The Odds API</span>
+      <strong>{{ "OK" if status.sources.the_odds_api else "FALTA" }}</strong>
+      <small>variable Render</small>
+    </article>
+  </section>
+
+  {% if status.warnings %}
+  <section class="v116-panel">
+    <h2>⚠️ Avisos</h2>
+    {% for w in status.warnings %}
+    <div class="v116-warning">{{ w }}</div>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  <section class="v116-panel">
+    <h2>Política de datos</h2>
+    <div class="v116-policy">
+      <div>✅ No partidos inventados</div>
+      <div>✅ No picks fake</div>
+      <div>✅ No demos para cliente</div>
+      <div>✅ Estado vacío si no hay datos reales</div>
+      <div>✅ Real Core primero</div>
+    </div>
+  </section>
+
+  <section class="v116-panel">
+    <h2>Feed cliente real</h2>
+    {% if feed.empty_state %}
+      <div class="v116-empty">
+        <div class="v116-loader"></div>
+        <strong>Sin datos reales activos ahora mismo</strong>
+        <p>Cuando entren partidos/picks del Real Core o cache real, aparecerán aquí. No se muestran partidos inventados.</p>
+      </div>
+    {% else %}
+      <pre>{{ feed|tojson(indent=2) }}</pre>
+    {% endif %}
+  </section>
+
+  <section class="v116-panel">
+    <h2>Logs de sincronización</h2>
+    {% for log in logs %}
+      <div class="v116-row">
+        <span>{{ log.created_at }} · {{ log.source }} · {{ log.data_type }}</span>
+        <strong>{{ log.status }}</strong>
+      </div>
+    {% else %}
+      <p>No hay logs todavía.</p>
+    {% endfor %}
+  </section>
+</div>
+{% endblock %}

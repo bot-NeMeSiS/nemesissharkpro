@@ -1,0 +1,15 @@
+
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+ENV PYTHONUNBUFFERED=1
+ENV PERFORMANCE_SAFE_MODE=true
+ENV STABILITY_HARD_MODE=true
+
+CMD ["gunicorn", "app:app", "--workers", "2", "--threads", "4", "--timeout", "120"]

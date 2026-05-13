@@ -1,0 +1,28 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>NeMeSiS SHARK PRO - Real Only</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/css/v70_premium_ui.css">
+  <link rel="stylesheet" href="/static/css/v91_real_core.css">
+</head>
+<body>
+<main class="nsp-shell" style="padding:24px 0 40px;">
+  <section class="nsp-hero">
+    <span class="nsp-eyebrow">🛡️ Real-only</span>
+    <h1 class="nsp-title">{{ title or "No disponible en feed real" }}</h1>
+    <p class="nsp-subtitle">Este contenido no existe en el núcleo real. No se muestra demo ni fallback inventado.</p>
+    <div class="v91-empty">
+      <strong>Bloqueado por Real Core Engine.</strong>
+      <p>Si The Odds API no devuelve este partido, la app no lo inventa.</p>
+    </div>
+    <div class="v91-actions">
+      <a class="nsp-btn" href="/partidos?force=true">Partidos reales</a>
+      <a class="nsp-btn secondary" href="/api/real-core/status">Check V91</a>
+    </div>
+  </section>
+</main>
+</body>
+</html>

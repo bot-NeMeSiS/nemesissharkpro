@@ -1,0 +1,61 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div style="max-width:1280px;margin:12px auto 0;padding:0 16px"><a href="/cliente/pro" style="display:inline-flex;padding:10px 14px;border-radius:999px;background:#ffe986;color:#101827;text-decoration:none;font-weight:900">✨ Nuevo panel cliente PRO</a></div>
+
+<div class="v150-wrap">
+  <section class="v150-hero live">
+    <div>
+      <p class="v150-kicker">V150 · HOME LIVE FEED REAL</p>
+      <h1>Home viva SHARK</h1>
+      <p>Favoritos, partidos live, próximos partidos, señales y actividad real. Sin feed inventado.</p>
+      <div class="v150-actions">
+        <a href="/fixtures/today-pro">Partidos</a>
+        <a href="/favorites-pro">Favoritos</a>
+        <a href="/match-center-real">Match Center</a>
+        <a href="/admin/home-feed">Admin feed</a>
+      </div>
+    </div>
+    <div class="v150-live">● LIVE</div>
+  </section>
+
+  <section class="v150-grid">
+    <article><span>Favoritos</span><strong>{{ data.favorites|length }}</strong></article>
+    <article><span>Live</span><strong>{{ data.live_matches|length }}</strong></article>
+    <article><span>Próximos</span><strong>{{ data.upcoming_matches|length }}</strong></article>
+    <article><span>Feed</span><strong>{{ data.feed|length }}</strong></article>
+  </section>
+
+  <section class="v150-columns">
+    <div class="v150-panel">
+      <h2>⭐ Tus partidos favoritos</h2>
+      {% for m in data.favorite_matches %}
+      <a class="v150-row" href="/match-center-real?fixture_id={{ m.id }}"><span>{{ m.league }}</span><strong>{{ m.home_team }} vs {{ m.away_team }}</strong></a>
+      {% else %}
+      <p>No hay partidos favoritos reales activos.</p>
+      {% endfor %}
+    </div>
+
+    <div class="v150-panel">
+      <h2>📡 En directo</h2>
+      {% for m in data.live_matches %}
+      <a class="v150-row" href="/match-center-real?fixture_id={{ m.id }}"><span>{{ m.minute or "LIVE" }}</span><strong>{{ m.home_team }} vs {{ m.away_team }}</strong></a>
+      {% else %}
+      <p>No hay directos reales ahora mismo.</p>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="v150-panel">
+    <h2>🔥 Actividad real</h2>
+    {% for item in data.feed %}
+    <a class="v150-row" href="{{ item.href or '#' }}"><span>{{ item.feed_type }}</span><strong>{{ item.title }}</strong></a>
+    {% else %}
+    <div class="v150-empty small">
+      <h2>Esperando actividad real</h2>
+      <p>Cuando entren eventos, señales o alertas reales, aparecerán aquí.</p>
+    </div>
+    {% endfor %}
+  </section>
+</div>
+{% endblock %}

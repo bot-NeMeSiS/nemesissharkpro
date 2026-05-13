@@ -1,0 +1,19 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><title>Admin Comunidad SHARK</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/static/css/v70_premium_ui.css"></head>
+<body>
+<main class="nsp-shell" style="padding:24px 0 40px;">
+<section class="nsp-hero"><span class="nsp-eyebrow">🌍 V76 Community</span><h1 class="nsp-title">Admin Comunidad SHARK</h1><p class="nsp-subtitle">Picks populares, ranking y actividad pública para dar sensación de plataforma viva.</p></section>
+<section class="nsp-grid" style="margin-top:18px;">
+<article class="nsp-card nsp-kpi"><div class="nsp-kpi-label">Estado</div><div class="nsp-kpi-value" style="font-size:28px;">{{ status.status }}</div></article>
+<article class="nsp-card nsp-kpi"><div class="nsp-kpi-label">Community Score</div><div class="nsp-kpi-value">{{ status.community_score }}%</div></article>
+<article class="nsp-card nsp-kpi"><div class="nsp-kpi-label">Picks populares</div><div class="nsp-kpi-value">{{ status.total_popular_picks }}</div></article>
+<article class="nsp-card nsp-kpi"><div class="nsp-kpi-label">Ranking</div><div class="nsp-kpi-value">{{ status.leaderboard_users }}</div></article>
+</section>
+<section class="nsp-card" style="margin-top:18px;"><h2>Ranking SHARK</h2>{% if status.leaderboard %}<table><thead><tr><th>Usuario</th><th>ROI</th><th>Win Rate</th><th>Picks</th><th>Racha</th></tr></thead><tbody>{% for u in status.leaderboard %}<tr><td>{{ u.display_name }}</td><td>{{ u.roi }}%</td><td>{{ u.win_rate }}%</td><td>{{ u.picks_count }}</td><td>{{ u.streak }}</td></tr>{% endfor %}</tbody></table>{% else %}<p>Aún no hay ranking.</p>{% endif %}</section>
+<section class="nsp-card" style="margin-top:18px;"><h2>Picks populares</h2>{% if status.popular %}<table><thead><tr><th>Partido</th><th>Mercado</th><th>Views</th><th>Favoritos</th><th>Heat</th></tr></thead><tbody>{% for p in status.popular %}<tr><td>{{ p.match_name }}</td><td>{{ p.market }}</td><td>{{ p.views }}</td><td>{{ p.favorites }}</td><td>{{ p.heat_score }}</td></tr>{% endfor %}</tbody></table>{% else %}<p>Aún no hay picks populares.</p>{% endif %}</section>
+</main>
+<nav class="nsp-mobile-bottom"><a href="/">Inicio</a><a href="/live-center">Live</a><a href="/community">Comunidad</a><a href="/admin/community">V76</a></nav>
+<script src="/static/js/v70_premium_ui.js"></script>
+</body></html>

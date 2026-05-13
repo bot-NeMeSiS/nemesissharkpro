@@ -1,0 +1,15 @@
+{
+  "version": "V179_0_PWA_INSTALL_RELIABILITY_PUSH_FULL_FOUNDATION",
+  "base": "V178_0_AUTOMATION_ENGINE_PRO",
+  "created_at": "2026-05-12T23:02:57.767240Z",
+  "features": [
+    "PWA Chrome PC fix",
+    "PWA mobile fix",
+    "root manifest",
+    "service worker reliable",
+    "admin pwa install health",
+    "push foundation polish"
+  ],
+  "no_fake_policy": true,
+  "stripe_disabled": true
+}

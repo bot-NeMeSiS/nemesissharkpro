@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="/static/css/v170_pwa_telegram_fix.css">
+<section class="v170-shell">
+  <div class="v170-hero">
+    <div>
+      <p class="v170-kicker">V170 · TELEGRAM REAL FIX</p>
+      <h1>Diagnóstico real de Telegram y partidos</h1>
+      <p>Comprueba bot, chats destino, fixtures reales cacheados y envía partidos sin inventar datos.</p>
+    </div>
+    <div class="v170-status-card">
+      <span>Estado Telegram</span>
+      <strong>{{ 'LISTO' if diag.telegram.ready else 'REVISAR' }}</strong>
+      <small>{{ diag.targets|length }} destino(s) configurado(s)</small>
+    </div>
+  </div>
+
+  <div class="v170-grid v170-kpis">
+    <article><span>Bot token</span><strong>{{ 'OK' if diag.telegram.bot_token_set or diag.telegram.bot_token else 'FALTA' }}</strong><small>TELEGRAM_BOT_TOKEN</small></article>
+    <article><span>Destinos</span><strong>{{ diag.targets|length }}</strong><small>general / planes / test</small></article>
+    <article><span>Hoy</span><strong>{{ diag.today|length }}</strong><small>fixtures reales</small></article>
+    <article><span>Live</span><strong>{{ diag.live|length }}</strong><small>fixtures reales</small></article>
+    <article><span>Próximos</span><strong>{{ diag.upcoming|length }}</strong><small>fixtures reales</small></article>
+  </div>
+
+  <div class="v170-grid v170-two">
+    <section class="v170-panel">
+      <h2>Enviar partidos reales a Telegram</h2>
+      <p class="v170-muted">Esto manda solo fixtures reales guardados por el conector V146. Si no hay datos, no inventa nada.</p>
+      <form method="post" action="/admin/telegram-real-fix/send-fixtures" class="v170-form">
+        <label>Filtro
+          <select name="filter">
+            <option value="today">Hoy</option>
+            <option value="live">Live</option>
+            <option value="upcoming">Próximos</option>
+          </select>
+        </label>
+        <label>Destino
+          <select name="target">
+            <option value="auto">Auto: todos los destinos configurados</option>
+            <option value="general">General</option>
+            <option value="free">FREE</option>
+            <option value="pro">PRO</option>
+            <option value="elite">ELITE</option>
+            <option value="test">Test</option>
+          </select>
+        </label>
+        <label>Límite
+          <input name="limit" type="number" value="8" min="1" max="20">
+        </label>
+        <button type="submit">Enviar a Telegram</button>
+      </form>
+      <div class="v170-actions">
+        <a href="/admin/telegram">Centro Telegram clásico</a>
+        <a href="/admin/fixtures-sync">Sincronizar fixtures</a>
+        <a href="/api/v170/telegram/diagnostic">API diagnóstico</a>
+      </div>
+    </section>
+
+    <section class="v170-panel">
+      <h2>Destinos detectados</h2>
+      {% if diag.targets %}
+        <div class="v170-list">
+        {% for t in diag.targets %}
+          <div><b>{{ t.label|upper }}</b><span>{{ t.chat_id[:6] }}…{{ t.chat_id[-4:] }}</span></div>
+        {% endfor %}
+        </div>
+      {% else %}
+        <div class="v170-empty"><b>Sin destino Telegram</b><p>Configura TELEGRAM_CHAT_ID o TELEGRAM_PRO_CHAT_ID / ELITE / FREE en Render.</p></div>
+      {% endif %}
+    </section>
+  </div>
+
+  <section class="v170-panel">
+    <h2>Vista previa de partidos reales</h2>
+    {% set sample = diag.live if diag.live else (diag.today if diag.today else diag.upcoming) %}
+    {% if sample %}
+      <div class="v170-fixtures">
+      {% for f in sample[:10] %}
+        <article>
+          <span>{{ f.status or 'upcoming' }}</span>
+          <b>{{ f.home_team }} vs {{ f.away_team }}</b>
+          <small>{{ f.league or 'Competición' }} · {{ f.kickoff or 'Horario pendiente' }}</small>
+        </article>
+      {% endfor %}
+      </div>
+    {% else %}
+      <div class="v170-empty"><b>No hay fixtures reales cacheados</b><p>Primero sincroniza partidos reales desde /admin/fixtures-sync. NeMeSiS no enviará partidos fake.</p></div>
+    {% endif %}
+  </section>
+
+  <section class="v170-panel">
+    <h2>Últimos logs Telegram</h2>
+    {% if diag.logs %}
+      <div class="v170-log">
+      {% for log in diag.logs %}
+        <div><span>{{ log.status }}</span><b>{{ log.title }}</b><small>{{ log.created_at }} · {{ log.channel }}</small></div>
+      {% endfor %}
+      </div>
+    {% else %}
+      <div class="v170-empty"><b>Sin logs todavía</b><p>Cuando pruebes envío, los resultados reales aparecerán aquí.</p></div>
+    {% endif %}
+  </section>
+</section>
+{% endblock %}

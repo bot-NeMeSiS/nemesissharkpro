@@ -1,0 +1,52 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="v126-wrap">
+  <section class="v126-hero">
+    <div>
+      <p class="v126-kicker">V126 · CLOSING PICKS PRO</p>
+      <h1>Cierre real de picks</h1>
+      <p>WIN / LOSS / VOID, ROI, winrate, profit, pendientes y cerrados. Preparado para resultados reales.</p>
+    </div>
+    <div class="v126-score">{{ stats.roi }}% ROI</div>
+  </section>
+
+  <section class="v126-grid">
+    <article><span>Total</span><strong>{{ stats.total }}</strong></article>
+    <article><span>Pendientes</span><strong>{{ stats.pending }}</strong></article>
+    <article><span>Cerrados</span><strong>{{ stats.closed }}</strong></article>
+    <article><span>Wins</span><strong>{{ stats.wins }}</strong></article>
+    <article><span>Losses</span><strong>{{ stats.losses }}</strong></article>
+    <article><span>Profit</span><strong>{{ stats.profit }}u</strong></article>
+  </section>
+
+  <section class="v126-panel">
+    <h2>Acciones API</h2>
+    <div class="v126-actions">
+      <a href="/api/v126/closing/health">Health</a>
+      <a href="/api/v126/closing/list">Listar picks</a>
+      <a href="/api/v126/closing/performance">Performance</a>
+      <a href="/admin/picks-manager">Picks Manager</a>
+    </div>
+  </section>
+
+  <section class="v126-panel">
+    <h2>Picks recientes</h2>
+    {% for p in picks %}
+      <div class="v126-row">
+        <div>
+          <strong>{{ p.title }}</strong>
+          <small>{{ p.match_name }} · {{ p.pick }} · {{ p.plan }}</small>
+        </div>
+        <div>{{ p.status }} / {{ p.result }}</div>
+        <div>{{ p.profit }}u</div>
+      </div>
+    {% else %}
+      <div class="v126-empty">
+        <strong>No hay picks cerrables todavía</strong>
+        <p>Cuando se creen picks reales, podrás cerrarlos como WIN / LOSS / VOID y ver ROI automático.</p>
+      </div>
+    {% endfor %}
+  </section>
+</div>
+{% endblock %}

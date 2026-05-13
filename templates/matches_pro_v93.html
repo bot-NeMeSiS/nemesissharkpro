@@ -1,0 +1,21 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/static/css/v93_pro.css"><title>Partidos V93</title></head><body><div class="nms-app">
+<aside class="nms-side">
+  <div class="nms-brand"><div class="nms-logo">NS</div><div><b>NeMeSiS</b><span>SHARK PRO</span></div></div>
+  <div class="nms-plan"><span>Tu plan</span><strong>{{ vm.user.plan }}</strong><em>{{ vm.user.status }}</em><small>Banca actual {{ vm.user.bankroll }}</small></div>
+  <nav>
+    <a href="/" class="active">Inicio</a>
+    <a href="/picks">Picks hoy</a>
+    <a href="/partidos">Partidos hoy</a>
+    <a href="/en-directo">En directo</a>
+    <a href="/mi-cuenta">Mi cuenta</a>
+    
+  </nav>
+</aside>
+<main class="nms-main">
+<header class="nms-top">
+  <a href="/">Inicio</a><a href="/picks">Picks</a><a href="/partidos">Partidos</a><a href="/en-directo">Directos</a><a href="/mi-cuenta">Mi cuenta</a><a href="/api/v93/status">V93</a>
+</header>
+
+<section class="nms-hero compact"><div><span class="nms-badge">CALENDARIO REAL</span><h1>Partidos disponibles</h1><p>Solo fechas reales del feed. Nada viejo ni inventado.</p></div><div class="nms-actions"><a href="/partidos?force=true">Actualizar</a></div></section>
+<section class="nms-list full">{% for p in vm.matches %}<a class="nms-row" href="{{ p.detail_url }}"><div class="nms-date"><b>{{ p.date }}</b><span>{{ p.time }} h Madrid</span></div><div class="nms-teams"><small>{{ p.league }} · {{ p.status }}</small><b>{{ p.home }}</b><b>{{ p.away }}</b></div><div class="nms-bet"><small>Mercado</small><b>{{ p.market }}</b><span>{{ p.bookmaker }}</span></div><div class="nms-chip"><small>Cuota</small><b>{{ p.odds }}</b></div><div class="nms-chip"><small>Score</small><b>{{ p.score }}</b></div></a>{% else %}<div class="nms-empty">No hay partidos reales ahora. Sin demos.</div>{% endfor %}</section>
+</main></div></body></html>

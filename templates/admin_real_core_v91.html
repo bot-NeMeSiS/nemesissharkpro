@@ -1,0 +1,53 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>V91 Real Core Engine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/css/v70_premium_ui.css">
+  <link rel="stylesheet" href="/static/css/v91_real_core.css">
+</head>
+<body>
+<main class="nsp-shell" style="padding:24px 0 40px;">
+  <section class="nsp-hero">
+    <span class="nsp-eyebrow">⚙️ V91 Real Core Engine</span>
+    <h1 class="nsp-title">{{ status.status }}</h1>
+    <p class="nsp-subtitle">Una sola fuente de verdad para partidos, picks, detalles, live y dashboard.</p>
+    <div class="v91-actions">
+      <a class="nsp-btn" href="/api/real-core/status">Status API</a>
+      <a class="nsp-btn secondary" href="/api/core-feed?force=true">Refresh feed</a>
+      <a class="nsp-btn secondary" href="/api/core-purge">Purgar legacy</a>
+    </div>
+  </section>
+
+  <section class="v91-count-grid" style="margin-top:18px;">
+    <article><span>Total</span><strong>{{ status.feed.counts.total }}</strong></article>
+    <article><span>Live</span><strong>{{ status.feed.counts.live }}</strong></article>
+    <article><span>Hoy</span><strong>{{ status.feed.counts.today }}</strong></article>
+    <article><span>Próximos</span><strong>{{ status.feed.counts.upcoming }}</strong></article>
+  </section>
+
+  {% if not status.feed.ok %}
+  <section class="v91-empty">
+    <strong>Feed real vacío.</strong>
+    <p>{{ status.feed.message }}</p>
+    {% if status.feed.error %}<small>{{ status.feed.error }}</small>{% endif %}
+  </section>
+  {% endif %}
+
+  <section class="nsp-card" style="margin-top:18px;">
+    <h2>Módulos activos</h2>
+    <table>
+      <thead><tr><th>Módulo</th><th>Estado</th></tr></thead>
+      <tbody>
+      {% for m in status.modules %}
+      <tr><td>{{ m }}</td><td><span class="nsp-pill ok">ACTIVO</span></td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</main>
+<script src="/static/js/v91_real_core.js"></script>
+</body>
+</html>
