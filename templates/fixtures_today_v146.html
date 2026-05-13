@@ -1,50 +1,12 @@
+
 {% extends "base.html" %}
 {% block content %}
 <div class="v146-wrap">
-<section class="v146-hero">
-  <div>
-    <p class="v146-kicker">PARTIDOS REALES · CORE RECUPERADO</p>
-    <h1>Partidos reales</h1>
-    <p>Hoy, directo, próximos y finalizados desde el Real Core. Si hoy no hay datos cacheados, se muestran próximos partidos reales para evitar una pantalla vacía.</p>
-    <div class="v146-tabs">
-      <a href="/fixtures/today-pro?filter=today">Hoy</a>
-      <a href="/fixtures/today-pro?filter=live">En directo</a>
-      <a href="/fixtures/today-pro?filter=upcoming">Próximos</a>
-      <a href="/fixtures/today-pro?filter=finished">Finalizados</a>
-      <a href="/fixtures/today-pro?filter=all">Todos</a>
-    </div>
-  </div>
-  <div class="v146-badge">{{ status.total }} reales</div>
-</section>
-
-{% if fixtures and fixtures[0].get('smart_fallback') %}
-<section class="v146-note">
-  <strong>Hoy no había partidos reales cacheados.</strong><br>
-  Te muestro próximos partidos reales guardados desde picks/cuotas para que el cliente no vea la pantalla vacía.
-</section>
-{% endif %}
-
+<section class="v146-hero"><div><p class="v146-kicker">V146 · REAL FIXTURES CONNECTOR PRO</p><h1>Partidos reales</h1><p>Hoy, live, próximos y finalizados desde caché/Real Core. No se muestran partidos inventados.</p><div class="v146-tabs"><a href="/fixtures/today-pro?filter=today">Hoy</a><a href="/fixtures/today-pro?filter=live">Live</a><a href="/fixtures/today-pro?filter=upcoming">Próximos</a><a href="/fixtures/today-pro?filter=finished">Finalizados</a><a href="/fixtures/today-pro?filter=all">Todos</a></div></div><div class="v146-badge">{{ status.total }} cacheados</div></section>
 {% if fixtures %}
-<section class="v146-list">
-{% for f in fixtures %}
-  <article class="v146-match">
-    <div>
-      <span>{{ f.league or "Liga" }}</span>
-      <h2>{{ f.home_team }}{% if f.away_team %} vs {{ f.away_team }}{% endif %}</h2>
-      <p>{{ f.kickoff or "Hora pendiente" }} · {{ f.status or "programado" }}</p>
-      {% if f.pick %}<p class="v146-pick">Pick: {{ f.pick }}</p>{% endif %}
-      {% if f.odds_decimal %}<p class="v146-odds">Cuota real: {{ f.odds_decimal }}{% if f.odds_bookmaker %} · {{ f.odds_bookmaker }}{% endif %}</p>{% endif %}
-    </div>
-    <div class="v146-score">{{ f.score }}</div>
-  </article>
-{% endfor %}
-</section>
+<section class="v146-list">{% for f in fixtures %}<article class="v146-match"><div><span>{{ f.league or "Liga" }}</span><h2>{{ f.home_team }} vs {{ f.away_team }}</h2><p>{{ f.kickoff or "Hora pendiente" }} · {{ f.status }}</p></div><div class="v146-score">{{ f.score }}</div></article>{% endfor %}</section>
 {% else %}
-<section class="v146-empty">
-  <h2>No hay partidos reales cargados todavía</h2>
-  <p>Falta sincronizar proveedor o revisar claves de Render. No se inventan partidos ni marcadores.</p>
-  <a href="/admin/fixtures-sync">Ver sincronización</a>
-</section>
+<section class="v146-empty"><h2>No hay partidos reales para este filtro</h2><p>Cuando el Real Core/API sincronice fixtures reales, aparecerán aquí. No se inventan partidos ni marcadores.</p><a href="/admin/fixtures-sync">Ver sincronización</a></section>
 {% endif %}
 </div>
 {% endblock %}

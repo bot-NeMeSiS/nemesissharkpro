@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="v207-hero">
+  <div class="v207-kicker">V207 · Radar Premium</div>
+  <h1>Radar premium de partidos</h1>
+  <p>Ordena los partidos reales por interés, actividad, confianza disponible y movimiento de mercado. Sin partidos ni resultados inventados.</p>
+</section>
+
+<section class="v207-summary">
+  <article><b>{{ data.total_partidos }}</b><span>partidos reales en radar</span></article>
+  <article><b>{{ data.partidos_calientes }}</b><span>partidos con atención alta</span></article>
+  <article><b>REAL ONLY</b><span>sin datos simulados</span></article>
+</section>
+
+{% if data.cards %}
+<section class="v207-radar-grid">
+  {% for c in data.cards %}
+  <article class="v207-card v207-level-{{ c.nivel|lower|replace(' ', '-') }}">
+    <div class="v207-card-top">
+      <span>{{ c.competicion }}</span>
+      <strong>{{ c.badge }}</strong>
+    </div>
+    <div class="v207-teams">
+      <div>{{ c.local }}</div>
+      <b>{{ c.marcador }}</b>
+      <div>{{ c.visitante }}</div>
+    </div>
+    <div class="v207-meta-row">
+      <span>{{ c.estado }}</span>
+      <span>{{ c.inicio }}</span>
+    </div>
+    <div class="v207-score">
+      <div>
+        <small>Interés radar</small>
+        <strong>{{ c.radar_score }}%</strong>
+      </div>
+      <div class="v207-ring" style="--score: {{ c.radar_score }};"><span>{{ c.nivel }}</span></div>
+    </div>
+    <div class="v207-meter"><span style="width: {{ c.radar_score }}%"></span></div>
+    <div class="v207-tags">
+      <span>Mercado: {{ c.mercado }}</span>
+      {% if c.confianza is not none %}<span>Confianza {{ c.confianza }}%</span>{% endif %}
+      {% if c.movimiento_pct is not none %}<span>Movimiento {{ c.movimiento_pct }}%</span>{% endif %}
+    </div>
+    <ul class="v207-reasons">
+      {% for r in c.razones %}<li>{{ r }}</li>{% endfor %}
+    </ul>
+    <div class="v207-actions">
+      <a href="/match-center-real">Abrir</a>
+      <a href="/cliente/live-command">Live</a>
+      <a href="/cliente/shark-ai-real">SHARK AI</a>
+    </div>
+  </article>
+  {% endfor %}
+</section>
+{% else %}
+<section class="v207-empty">
+  <h2>Radar esperando datos reales</h2>
+  <p>{{ data.mensaje_vacio }}</p>
+  <div class="v207-actions v207-empty-actions">
+    <a href="/fixtures/today-pro">Sincronizar/ver partidos</a>
+    <a href="/cliente/odds-movement">Ver cuotas</a>
+  </div>
+</section>
+{% endif %}
+
+{% if admin %}
+<section class="v207-admin">
+  <h2>Control admin V207</h2>
+  <p>Fuentes usadas: {{ data.resumen.fuentes|join(', ') }}.</p>
+  <code>/api/v207/match-radar</code>
+</section>
+{% endif %}
+
+<style>
+.v207-hero{padding:22px;border-radius:26px;background:radial-gradient(circle at top right,rgba(0,208,255,.28),transparent 32%),linear-gradient(135deg,#06111f,#081a33 55%,#06111f);color:#fff;margin:12px 0 14px;box-shadow:0 22px 70px rgba(0,0,0,.26)}
+.v207-kicker{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:#65ddff;font-weight:900;margin-bottom:8px}.v207-hero h1{margin:0;font-size:clamp(28px,7vw,50px);line-height:1}.v207-hero p{opacity:.84;max-width:760px}.v207-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:12px 0}.v207-summary article{background:rgba(8,21,36,.94);border:1px solid rgba(102,221,255,.14);border-radius:20px;color:#fff;padding:16px}.v207-summary b{display:block;font-size:25px}.v207-summary span{font-size:13px;opacity:.72}.v207-radar-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}.v207-card{background:linear-gradient(180deg,#081524,#07111f);border:1px solid rgba(255,255,255,.1);border-radius:26px;padding:16px;color:#fff;box-shadow:0 18px 55px rgba(0,0,0,.23);overflow:hidden}.v207-card-top,.v207-meta-row,.v207-score,.v207-actions{display:flex;justify-content:space-between;gap:10px;align-items:center}.v207-card-top span{font-size:12px;opacity:.68}.v207-card-top strong{font-size:12px;background:rgba(255,255,255,.08);padding:7px 10px;border-radius:999px}.v207-teams{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;margin:18px 0 10px;font-weight:900}.v207-teams div:last-child{text-align:right}.v207-teams b{font-size:20px;color:#66ddff}.v207-meta-row{font-size:12px;opacity:.68;margin-bottom:14px}.v207-score small{display:block;opacity:.7}.v207-score strong{font-size:30px}.v207-ring{width:74px;height:74px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#65ddff calc(var(--score)*1%),rgba(255,255,255,.08) 0);position:relative}.v207-ring:after{content:"";position:absolute;inset:7px;border-radius:50%;background:#081524}.v207-ring span{position:relative;z-index:1;font-size:11px;font-weight:900;text-align:center}.v207-meter{height:8px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin:12px 0}.v207-meter span{display:block;height:100%;background:linear-gradient(90deg,#45d6ff,#ffd36b,#ff6b6b);border-radius:99px}.v207-tags{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.v207-tags span{font-size:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);padding:7px 9px;border-radius:999px}.v207-reasons{margin:10px 0 14px;padding-left:18px;opacity:.8;font-size:13px}.v207-actions a{flex:1;text-align:center;text-decoration:none;color:#fff;background:rgba(255,255,255,.08);border-radius:14px;padding:10px 8px;font-weight:800;font-size:13px}.v207-level-muy-alto{border-color:rgba(255,83,83,.55);box-shadow:0 20px 70px rgba(255,73,73,.18)}.v207-level-alto{border-color:rgba(255,211,107,.45)}.v207-empty,.v207-admin{border-radius:24px;padding:22px;background:rgba(8,21,36,.94);color:#fff;border:1px solid rgba(255,255,255,.10);margin:16px 0}.v207-empty-actions{justify-content:flex-start}.v207-empty-actions a{max-width:230px}@media(max-width:640px){.v207-hero{padding:18px;margin:8px 0}.v207-summary{grid-template-columns:1fr 1fr}.v207-radar-grid{grid-template-columns:1fr}.v207-card{padding:14px}.v207-teams{font-size:14px}.v207-actions{position:static}}
+</style>
+{% endblock %}

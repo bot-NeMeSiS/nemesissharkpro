@@ -1,0 +1,15 @@
+{
+  "version": "V207_PREMIUM_MATCH_RADAR_PRO",
+  "base": "V206.1_REAL_FIXTURES_RECOVERY_FIX",
+  "mode": "REAL_ONLY",
+  "render_ready": true,
+  "github_ready": true,
+  "requirements_included": true,
+  "features": [
+    "premium_match_radar",
+    "real_fixtures_priority",
+    "odds_movement_integration",
+    "client_admin_views",
+    "spanish_ui"
+  ]
+}
