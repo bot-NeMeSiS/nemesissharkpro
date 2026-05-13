@@ -16,6 +16,7 @@
   <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
   <link rel="stylesheet" href="/static/app.css">
   <script defer src="/static/app.js"></script>
+  <script defer src="{{ url_for('static', filename='js/v194_navigation_identity_polish.js') }}"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/shark_score_v274.css') }}">
   <link rel="stylesheet" href="/static/css/v70_premium_ui.css">
 <link rel="stylesheet" href="/static/css/v81_commercial.css">
@@ -55,10 +56,14 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v160_admin_business.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v170_pwa_telegram_fix.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v179_pwa_install_reliability.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v193_app_feel_ultra_premium.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v194_navigation_identity_polish.css') }}">
 </head>
-<body class="{% if current_user %}plan-theme-{{ (current_user.plan or 'FREE')|lower }}{% else %}plan-theme-public{% endif %}">
+{% set public_clean_paths = ['/', '/inicio', '/planes', '/membresias', '/pricing', '/cliente-login', '/registro', '/admin-login'] %}
+{% set is_public_clean = request.path in public_clean_paths %}
+<body class="{% if current_user and not is_public_clean %}plan-theme-{{ (current_user.plan or 'FREE')|lower }}{% else %}plan-theme-public{% endif %}">
   <header class="topbar">
-    <a class="brand" href="{{ '/clientes' if session.get('user') else '/' }}">
+    <a class="brand" href="{{ '/' if is_public_clean else ('/clientes' if session.get('user') else '/') }}">
       <span class="brand-icon pro-mark">NS</span>
       <span>
         <strong>NeMeSiS</strong>
@@ -67,7 +72,7 @@
     </a>
 
     <nav class="nav">
-      <a href="{{ '/clientes' if session.get('user') else '/' }}">Inicio</a>
+      <a href="{{ '/' if is_public_clean else ('/clientes' if session.get('user') else '/') }}">Inicio</a>
       <a href="/picks">Picks</a>
       <a href="/partidos">Partidos</a>
       <a href="/clasificaciones">Clasificación</a>
@@ -79,12 +84,12 @@
       {% if is_admin %}
         <a class="admin-nav" href="/admin">Admin</a>
       {% endif %}
-      {% if current_user %}
+      {% if current_user and not is_public_clean %}
         <a href="/logout">Salir</a>
       {% endif %}
     </nav>
   </header>
-{% if session.get('user') %}
+{% if session.get('user') and not is_public_clean %}
 <nav class="client-app-nav-v308">
   <a href="/clientes"><span>Inicio</span></a>
   <a href="/picks"><span>Picks</span></a>
@@ -97,6 +102,13 @@
 </nav>
 {% endif %}
 
+
+  {% if session.get('user') and not is_public_clean %}
+  <div class="v194-history-nav" aria-label="Navegación de historial">
+    <button type="button" class="v194-history-btn" data-v194-back aria-label="Volver a la página anterior">← Atrás</button>
+    <button type="button" class="v194-history-btn" data-v194-forward aria-label="Ir a la página siguiente">Adelante →</button>
+  </div>
+  {% endif %}
 
   <main class="container">
     <section class="v170-pwa-card is-hidden" data-v170-install-card>
@@ -180,5 +192,6 @@
   <script src="{{ url_for('static', filename='js/v160_admin_business.js') }}"></script>
   <script src="{{ url_for('static', filename='js/v170_pwa_smart_install.js') }}"></script>
   <script src="{{ url_for('static', filename='js/v179_pwa_install_reliability.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/v193_app_feel_ultra_premium.js') }}"></script>
 </body>
 </html>

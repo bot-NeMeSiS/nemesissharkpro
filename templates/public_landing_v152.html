@@ -10,7 +10,7 @@
   <link rel="apple-touch-icon" href="/static/icons/icon-192.png">
   <link rel="stylesheet" href="/static/css/v152_public_landing.css">
 </head>
-<body class="v152-public {% if current %}is-logged{% endif %}">
+<body class="v152-public">
   <header class="v152-topbar">
     <a class="v152-brand" href="/" aria-label="NeMeSiS SHARK PRO inicio">
       <span class="v152-logo">NS</span>
@@ -21,12 +21,7 @@
       <a href="/partidos">Partidos</a>
       <a href="/home-live-real">Live</a>
       <a href="/match-center-real">Match Center</a>
-      {% if current %}
-        <a class="v152-nav-user" href="/cliente/pro">Panel cliente</a>
-        <a class="v152-nav-exit" href="/logout">Salir</a>
-      {% else %}
-        <a href="/cliente-login">Entrar</a>
-      {% endif %}
+<a href="/cliente-login">Entrar</a>
     </nav>
   </header>
 
@@ -37,20 +32,11 @@
         <h1>Picks deportivos, partidos reales y SHARK AI en una experiencia premium.</h1>
         <p>NeMeSiS SHARK PRO une señales, live center, favoritos, Telegram, ROI y winrate en una plataforma clara para cliente y potente para negocio.</p>
         <div class="v152-actions">
-          {% if current %}
-            <a class="v152-btn v152-primary" href="/cliente/pro">Acceder a mi panel</a>
-            <a class="v152-btn v152-ghost" href="/logout">Salir de cuenta</a>
-          {% else %}
-            <a class="v152-btn v152-primary" href="/cliente-login">Entrar / iniciar sesión</a>
+<a class="v152-btn v152-primary" href="/cliente-login">Entrar / iniciar sesión</a>
             <a class="v152-btn v152-ghost" href="#planes">Ver planes</a>
-          {% endif %}
           <button class="v152-btn v152-install" id="nemesis-pwa-install" type="button">Instalar app</button>
         </div>
-        {% if current %}
-          <div class="v152-session-card">Sesión activa: <strong>{{ current.username }}</strong> · Plan <strong>{{ current.plan or 'FREE' }}</strong></div>
-        {% else %}
-          <div class="v152-session-card">Crea tu cuenta o entra para guardar favoritos, banca y estadísticas.</div>
-        {% endif %}
+<div class="v152-session-card">Crea tu cuenta o entra para guardar favoritos, banca y estadísticas.</div>
       </div>
       <aside class="v152-hero-panel" aria-label="Resumen de producto">
         <div><small>Partidos</small><strong>Reales</strong><span>Si no hay feed real, estado vacío premium.</span></div>

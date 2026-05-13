@@ -221,11 +221,12 @@ def build_real_match(event, sport_key):
 
     validation = validate_match(match)
     match["valid"] = validation["valid"]
-    match["quality_score"] = validation["score"]
+    match["quality_score"] = validation["score"]  # calidad técnica del dato real, no confianza de apuesta
     match["reject_reasons"] = validation["reasons"]
-    match["shark_score"] = validation["score"]
     match["risk"] = risk_from_match(match)
-    match["stake"] = stake_from_score(validation["score"], match["risk"])
+    match["confidence_score"] = confidence_from_match(match, validation["score"])
+    match["shark_score"] = match["confidence_score"]  # valor visible cliente: confianza estimada
+    match["stake"] = stake_from_score(match["confidence_score"], match["risk"])
     match["ev"] = "Pendiente"
 
     return match
@@ -288,6 +289,57 @@ def validate_match(match):
         "reasons": reasons or ["OK"],
     }
 
+
+
+def confidence_from_match(match, data_quality_score):
+    """Confianza estimada visible al cliente.
+
+    No es probabilidad garantizada ni ML final: combina calidad del dato real,
+    cuota disponible, riesgo, casa de apuestas y cercanía temporal para evitar
+    mostrar siempre 100 cuando el dato simplemente es válido.
+    """
+    score = 58
+    try:
+        dq = int(data_quality_score or 0)
+    except Exception:
+        dq = 0
+    score += max(0, min(18, int((dq - 60) * 0.45)))
+
+    try:
+        odds = float(str(match.get("odds") or "0").replace(",", "."))
+    except Exception:
+        odds = 0.0
+
+    if 1.45 <= odds <= 2.20:
+        score += 14
+    elif 2.20 < odds <= 2.85:
+        score += 8
+    elif 1.20 <= odds < 1.45:
+        score += 5
+    elif odds > 3.25:
+        score -= 12
+    elif odds <= 0:
+        score -= 10
+
+    risk = clean_text(match.get("risk")).lower()
+    if "alto" in risk:
+        score -= 14
+    elif "medio" in risk:
+        score -= 6
+    elif "bajo" in risk:
+        score += 4
+
+    if match.get("bookmaker"):
+        score += 4
+
+    status = clean_text(match.get("status")).upper()
+    relative = clean_text(match.get("relative")).lower()
+    if "EN DIRECTO" in status:
+        score += 3
+    elif "hoy" in relative or "empieza" in relative:
+        score += 2
+
+    return max(35, min(92, int(round(score))))
 
 def risk_from_match(match):
     odds = match.get("odds")

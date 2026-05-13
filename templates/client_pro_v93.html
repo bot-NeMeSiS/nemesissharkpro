@@ -9,7 +9,7 @@
     <a href="/partidos">Partidos hoy</a>
     <a href="/en-directo">En directo</a>
     <a href="/mi-cuenta">Mi cuenta</a>
-    <a href="/admin/real-core">Admin Core</a>
+    
   </nav>
 </aside>
 <main class="nms-main">
@@ -18,7 +18,7 @@
 </header>
 
 <section class="nms-hero">
- <div><span class="nms-badge">V93 REAL CLIENT UX</span><h1>Hola, {{ vm.user.name }}</h1><p>Panel cliente premium, limpio y conectado al Real Core. Sin partidos inventados.</p></div>
+ <div><span class="nms-badge">V93 REAL CLIENT UX</span><h1>Panel cliente</h1><p>Panel cliente premium, limpio y conectado al Real Core. Sin partidos inventados.</p></div>
  <div class="nms-actions"><a href="/picks?force=true">Ver picks</a><a href="/partidos?force=true">Partidos hoy</a><a href="/admin/real-core">Revisar Core</a></div>
 </section>
 {% if not vm.health.ok %}<section class="nms-alert"><b>Modo seguro:</b> {{ vm.health.message }} {% if vm.health.error %}· {{ vm.health.error }}{% endif %}</section>{% endif %}

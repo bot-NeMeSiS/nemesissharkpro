@@ -19,7 +19,7 @@ from zoneinfo import ZoneInfo
 
 from flask import Flask, render_template, request, redirect, session, jsonify, send_from_directory, Response
 
-APP_VERSION = "NeMeSiS_SHARK_PRO_V192_0_MATCH_INTELLIGENCE_REAL_PRO"
+APP_VERSION = "NeMeSiS_SHARK_PRO_V195_0_CLIENT_POLISH_CONFIDENCE_CLEANUP_RENDER_READY"
 APP_NAME = "NeMeSiS SHARK PRO"
 
 
@@ -7997,15 +7997,13 @@ def public_landing_v152():
     se muestran accesos directos a su panel y a salir de la cuenta, pero no se
     fuerza el panel cliente. Esto recupera el flujo comercial FREE/PRO/ELITE.
     """
-    current = session.get("user") if session else None
-    return render_template("public_landing_v152.html", current=current)
+    return render_template("public_landing_v152.html", current=None)
 
 @app.route("/planes")
 @app.route("/membresias")
 @app.route("/pricing")
 def public_plans_v152():
-    current = session.get("user") if session else None
-    return render_template("public_landing_v152.html", current=current, focus_plans=True)
+    return render_template("public_landing_v152.html", current=None, focus_plans=True)
 
 @app.route("/dashboard")
 def dashboard_router_v152():
@@ -8668,3 +8666,10 @@ try:
 except Exception as e:
     print("[V192] Match Intelligence blueprint no cargado:", e)
 
+
+# --- V193 APP FEEL ULTRA PREMIUM ---
+try:
+    from app_feel_v193.routes import bp_app_feel_v193
+    app.register_blueprint(bp_app_feel_v193)
+except Exception as e:
+    print("[V193] App Feel Ultra Premium blueprint no cargado:", e)

@@ -3,7 +3,7 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>NeMeSiS SHARK PRO - Real Core</title>
+  <title>NeMeSiS SHARK PRO - Partidos y picks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/static/css/v70_premium_ui.css">
   <link rel="stylesheet" href="/static/css/v91_real_core.css">
@@ -12,13 +12,17 @@
 <body>
 <main class="nsp-shell" style="padding:24px 0 40px;">
   <section class="nsp-hero">
-    <span class="nsp-eyebrow">🦈 V91 Real Core Engine</span>
-    <h1 class="nsp-title">{% if page_mode == "picks" %}Picks reales{% elif page_mode == "live" %}En directo real{% else %}Partidos reales{% endif %}</h1>
-    <p class="nsp-subtitle">{{ feed.message }} · datos reales o pantalla vacía segura.</p>
+    <span class="nsp-eyebrow">🦈 Datos reales verificados</span>
+    <h1 class="nsp-title">{% if page_mode == "picks" %}Picks de hoy{% elif page_mode == "live" %}En directo{% else %}Partidos de hoy{% endif %}</h1>
+    <p class="nsp-subtitle">Solo mostramos datos reales disponibles. Si no hay señal fiable, la pantalla queda vacía sin demos.</p>
     <div class="v91-actions">
       <a class="nsp-btn" href="{{ refresh_url or '/partidos?force=true' }}">Actualizar</a>
-      <a class="nsp-btn secondary" href="/admin/real-core">Admin V91</a>
-      <a class="nsp-btn secondary" href="/api/core-feed?force=true">API feed</a>
+      <button class="nsp-btn secondary" type="button" onclick="history.back()">← Atrás</button>
+      <button class="nsp-btn secondary" type="button" onclick="history.forward()">Adelante →</button>
+      {% if session.get('user', {}).get('role') == 'admin' %}
+      <a class="nsp-btn secondary" href="/admin/real-core">Panel admin</a>
+      <a class="nsp-btn secondary" href="/api/core-feed?force=true">API interna</a>
+      {% endif %}
     </div>
   </section>
 
@@ -32,7 +36,7 @@
   {% if not feed.ok %}
   <section class="v91-empty">
     <strong>No hay datos reales para mostrar ahora mismo.</strong>
-    <p>No se muestran demos, seeds ni partidos antiguos. Revisa The Odds API o fuerza refresh.</p>
+    <p>No se muestran demos ni partidos inventados. Vuelve a actualizar más tarde o revisa la configuración desde el panel admin.</p>
     {% if feed.error %}<small>{{ feed.error }}</small>{% endif %}
   </section>
   {% endif %}
@@ -50,15 +54,15 @@
         <h2>{{ m.home_team }} <span>vs</span> {{ m.away_team }}</h2>
         <p>{{ m.market }}{% if m.odds %} · cuota {{ m.odds }}{% endif %}</p>
         <div class="v91-tags">
-          <span>Real</span>
-          <span>{{ m.source }}</span>
-          <span>{{ m.bookmaker or "bookmaker pendiente" }}</span>
+          <span>Datos reales</span>
+          <span>Cuota verificada</span>
+          <span>{{ m.bookmaker or "Casa pendiente" }}</span>
         </div>
       </div>
       <div class="v91-score">
-        <strong>{{ m.shark_score }}</strong>
-        <span>SHARK</span>
-        <small>{{ m.risk }} · {{ m.stake }}</small>
+        <strong>{{ m.confidence_score or m.shark_score }}</strong>
+        <span>Confianza</span>
+        <small>Riesgo {{ m.risk }} · stake {{ m.stake }}</small>
         <a href="/partido-pro/{{ m.id }}">Abrir</a>
       </div>
     </article>
