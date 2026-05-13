@@ -8621,3 +8621,11 @@ try:
     app.register_blueprint(bp_data_visual_richness_v186)
 except Exception as e:
     print("[V186] Data Visual Richness blueprint no cargado:", e)
+
+
+# --- V187 LIVE DEPTH + SPEED OPTIMIZATION ---
+try:
+    from live_depth_speed_v187.routes import bp_live_depth_speed_v187
+    app.register_blueprint(bp_live_depth_speed_v187)
+except Exception as e:
+    print("[V187] Live Depth Speed blueprint no cargado:", e)
