@@ -1,1 +1,0 @@
-document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.v168-action-card a[href^="/api/"]').forEach(a=>{a.addEventListener('click',async e=>{e.preventDefault();try{const r=await fetch(a.href);const j=await r.json();a.textContent=j.message||'Acción preparada';a.classList.add('done');}catch(err){a.textContent='Acción preparada';}})});});

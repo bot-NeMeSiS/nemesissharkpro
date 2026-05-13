@@ -1,8 +1,0 @@
-{
-  "project": "NeMeSiS SHARK PRO",
-  "version": "V84.1",
-  "fix": "Add root requirements.txt for Render deployment",
-  "created_at_utc": "2026-05-11T00:21:22.929368+00:00",
-  "render_build_command": "pip install -r requirements.txt",
-  "render_start_command": "gunicorn app:app"
-}

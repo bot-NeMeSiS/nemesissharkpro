@@ -1,6 +1,0 @@
-{
-  "version": "V164_0_PUSH_NOTIFICATIONS_REAL_FOUNDATION",
-  "base": "V163_1_FULL",
-  "stripe": "disabled",
-  "fake_data": "disabled"
-}

@@ -1,9 +1,0 @@
-{
-  "version": "V98.0",
-  "name": "HISTORIAL_REAL_ROI_WINRATE",
-  "render_ready": true,
-  "github_ready": true,
-  "fake_data": false,
-  "new_routes": ["/historial-pro", "/v98/history", "/api/v98/history"],
-  "next_step": "V99_MEMBERSHIPS_SAAS_ROLES_PREMIUM"
-}

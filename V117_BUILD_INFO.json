@@ -1,7 +1,0 @@
-{
-  "version": "V117_TELEGRAM_PRO_REAL",
-  "base": "V116_REAL_DATA_SYNCHRONIZATION",
-  "render_ready": true,
-  "github_ready": true,
-  "no_fake_alerts": true
-}

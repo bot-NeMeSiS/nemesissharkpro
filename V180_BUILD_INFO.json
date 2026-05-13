@@ -1,9 +1,0 @@
-{
-  "version": "V180_0_BACKUP_RECOVERY_PRODUCTION_HARDENING",
-  "base": "V179",
-  "features": [
-    "backup_recovery",
-    "production_hardening",
-    "sqlite_backups"
-  ]
-}

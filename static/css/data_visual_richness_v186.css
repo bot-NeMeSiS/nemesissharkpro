@@ -1,7 +1,0 @@
-
-/* V186 Data Visual Richness PROPIO */
-.nms-ring{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--c,#22d3ee) calc(var(--v,0)*1%), rgba(255,255,255,.08) 0)}
-.nms-ring span{width:66px;height:66px;border-radius:50%;display:grid;place-items:center;background:#071526;color:#eafbff;font-weight:950}
-.nms-spark{font-size:28px;letter-spacing:2px;color:#35f0a1;text-shadow:0 0 20px rgba(53,240,161,.25)}
-.nms-heat{display:grid;grid-template-columns:repeat(12,1fr);gap:4px}
-.nms-heat i{height:18px;border-radius:7px;background:rgba(34,211,238,var(--a,.25));border:1px solid rgba(255,255,255,.08)}

@@ -1,7 +1,0 @@
-{
-  "version": "V116_REAL_DATA_SYNCHRONIZATION",
-  "base": "V115_CLIENT_EXPERIENCE_OVERHAUL",
-  "render_ready": true,
-  "github_ready": true,
-  "no_fake_data_policy": true
-}

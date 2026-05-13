@@ -1,9 +1,0 @@
-{
-  "version": "V165_0_FINAL_UX_POLISH_AND_APP_FLOW",
-  "base": "V164_0_PUSH_NOTIFICATIONS_REAL_FOUNDATION",
-  "release": "Render/GitHub ready",
-  "stripe": false,
-  "no_fake_policy": true,
-  "routes": ["/app-flow", "/cliente/app-flow", "/cliente/ux-pro", "/admin/ux-health"],
-  "apis": ["/api/v165/app-status", "/api/v165/ui-health", "/api/v165/navigation-state"]
-}

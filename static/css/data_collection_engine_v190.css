@@ -1,6 +1,0 @@
-
-/* V190 Data Collection Engine PRO */
-.nms-data-card{border:1px solid rgba(34,211,238,.18);border-radius:22px;background:linear-gradient(135deg,rgba(34,211,238,.08),rgba(255,209,102,.05));padding:16px}
-.nms-data-kpi{font-size:32px;font-weight:950;color:#eafbff}
-.nms-data-bar{height:12px;border-radius:999px;background:#071526;overflow:hidden}
-.nms-data-bar span{display:block;height:100%;width:var(--w);background:linear-gradient(90deg,#22d3ee,#35f0a1)}

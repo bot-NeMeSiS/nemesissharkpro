@@ -1,6 +1,0 @@
-{
-  "version": "V108_CLIENT_UX_RECOVERY_FULL_CLEAN",
-  "base": "V107_MEMBERSHIP_VISUAL_PRO",
-  "focus": "client_navigation_account_logout_clean_copy",
-  "stripe": "deferred"
-}

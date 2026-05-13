@@ -1,9 +1,0 @@
-{
-  "version": "V197_TEAM_IDENTITY_ENGINE_PRO",
-  "name": "Team Identity Engine Pro",
-  "spanish_only_ui": true,
-  "real_only": true,
-  "fake_logos": false,
-  "render_ready": true,
-  "github_ready": true
-}

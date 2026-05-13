@@ -1,8 +1,0 @@
-
-.v136-wrap{max-width:1240px;margin:0 auto;padding:28px;color:#fff}
-.v136-hero{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,#070b14,#111d35);border:1px solid rgba(57,208,255,.25);border-radius:34px;padding:34px}
-.v136-kicker{color:#39d0ff;font-size:12px;font-weight:900}
-.v136-hero h1{font-size:48px;margin:8px 0}
-.v136-badge{padding:18px 22px;border-radius:999px;background:rgba(57,208,255,.12);color:#39d0ff;font-weight:900}
-.v136-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
-.v136-grid a{background:#0f172a;border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:24px;color:#fff;text-decoration:none}

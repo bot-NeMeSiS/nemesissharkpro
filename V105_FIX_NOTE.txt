@@ -1,1 +1,0 @@
-V105 corregida: reparado f-string roto en Telegram payload y añadido Admin PRO Center.
