@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="v211-wrap">
+  <div class="v211-hero">
+    <p class="eyebrow">V211 · Design System SHARK PRO</p>
+    <h1>Sistema visual unificado</h1>
+    <p>Base común para botones, cards, badges, navegación móvil, estados live, membresías, confianza y riesgo. Esta capa no inventa datos: solo ordena y hace coherente la experiencia.</p>
+  </div>
+  <div class="v211-grid">
+    <article class="v211-card"><span>Estado</span><strong>ACTIVO</strong><small>CSS global V211 cargado</small></article>
+    <article class="v211-card"><span>Cliente</span><strong>LIMPIO</strong><small>menos ruido técnico</small></article>
+    <article class="v211-card"><span>Móvil</span><strong>1 NAV</strong><small>barra inferior unificada</small></article>
+    <article class="v211-card"><span>Planes</span><strong>FREE/PRO/ELITE</strong><small>colores consistentes</small></article>
+  </div>
+  <div class="v211-grid">
+    <article class="v211-card">
+      <h2>Tokens visuales</h2>
+      {% for name, color in tokens.colores.items() %}
+      <div class="v211-token"><span>{{ name }}</span><span class="v211-swatch" style="background: {{ color }}"></span></div>
+      {% endfor %}
+    </article>
+    <article class="v211-card">
+      <h2>Componentes normalizados</h2>
+      <div class="v211-list">{% for c in tokens.componentes %}<p>✓ {{ c }}</p>{% endfor %}</div>
+    </article>
+    <article class="v211-card">
+      <h2>Reglas de producto</h2>
+      <div class="v211-list">{% for r in tokens.reglas %}<p>{{ r }}</p>{% endfor %}</div>
+    </article>
+  </div>
+  <div class="v210-panel">
+    <h2>Accesos</h2>
+    <div class="v210-actions">
+      <a href="/api/v211/design-system/status">API estado V211</a>
+      <a href="/cliente/design-system">Vista cliente V211</a>
+      <a href="/admin/performance-v210">Rendimiento V210</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

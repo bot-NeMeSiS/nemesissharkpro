@@ -114,25 +114,114 @@ def parse_day(kickoff):
         except Exception:
             return None
 
-def list_fixtures(filter_name="today", limit=250):
+
+def rows_from_picks(limit=250):
+    """Fallback REAL ONLY: lee partidos reales ya guardados en la tabla principal picks.
+    No crea partidos, no inventa cuotas y solo muestra registros con origen/ID externo real.
+    """
     ensure_schema()
     con = connect()
-    rows = [dict(r) for r in con.execute("SELECT * FROM real_fixtures_v146 ORDER BY kickoff ASC,id DESC LIMIT ?", (int(limit),))]
-    con.close()
+    try:
+        cur = con.cursor()
+        cur.execute("""
+            SELECT id, sport, league, title, pick, kickoff_time, live_status, live_minute,
+                   live_score, odds_decimal, odds_bookmaker, external_event_id, source, created_at
+            FROM picks
+            WHERE COALESCE(active,1)=1
+              AND (
+                COALESCE(external_event_id,'') <> ''
+                OR LOWER(COALESCE(source,'')) LIKE '%odds%'
+                OR LOWER(COALESCE(source,'')) LIKE '%api%'
+                OR COALESCE(odds_decimal,'') <> ''
+              )
+            ORDER BY COALESCE(kickoff_time, created_at) ASC, id DESC
+            LIMIT ?
+        """, (int(limit),))
+        rows = [dict(r) for r in cur.fetchall()]
+    except Exception:
+        rows = []
+    finally:
+        con.close()
+
+    out = []
+    for r in rows:
+        title = (r.get('title') or '').strip()
+        home, away = '', ''
+        for sep in [' vs ', ' VS ', ' v ', ' - ', '–']:
+            if sep in title:
+                parts = title.split(sep, 1)
+                home, away = parts[0].strip(), parts[1].strip()
+                break
+        if not home or not away:
+            # Mantiene REAL ONLY: si no se pueden separar equipos, se muestra como partido real genérico sin inventar rival.
+            home = title or 'Partido real'
+            away = ''
+        score_home, score_away = None, None
+        live_score = str(r.get('live_score') or '').strip()
+        if '-' in live_score:
+            try:
+                a,b = live_score.split('-',1)
+                score_home, score_away = int(a.strip()), int(b.strip())
+            except Exception:
+                pass
+        st = str(r.get('live_status') or 'upcoming').lower()
+        out.append({
+            'id': 'pick_' + str(r.get('id')),
+            'external_id': str(r.get('external_event_id') or r.get('id') or ''),
+            'source': r.get('source') or 'picks_real_core',
+            'sport': r.get('sport') or 'football',
+            'league': r.get('league') or '',
+            'home_team': home,
+            'away_team': away,
+            'kickoff': r.get('kickoff_time') or r.get('created_at') or '',
+            'status': st,
+            'minute': r.get('live_minute') or '',
+            'score_home': score_home,
+            'score_away': score_away,
+            'raw_json': '',
+            'updated_at': r.get('created_at') or '',
+            'pick': r.get('pick') or '',
+            'odds_decimal': r.get('odds_decimal') or '',
+            'odds_bookmaker': r.get('odds_bookmaker') or '',
+            '_from_picks': True,
+        })
+    return out
+
+def _filter_fixture_rows(rows, filter_name="today"):
     today = date.today()
     out = []
+    seen = set()
     for r in rows:
         st = str(r.get("status") or "").lower()
         d = parse_day(r.get("kickoff"))
         keep = filter_name == "all"
         if filter_name == "today": keep = d == today
-        if filter_name == "live": keep = st in ["live","inplay","in_play","1h","2h","ht"]
-        if filter_name == "upcoming": keep = st in ["upcoming","scheduled","not_started","pre"]
-        if filter_name == "finished": keep = st in ["finished","ft","ended","closed"]
+        if filter_name == "live": keep = st in ["live","inplay","in_play","1h","2h","ht","en vivo","en directo"]
+        if filter_name == "upcoming": keep = st in ["upcoming","scheduled","not_started","pre", ""] or (d and d >= today)
+        if filter_name == "finished": keep = st in ["finished","ft","ended","closed","finalizado"]
         if keep:
+            key = (str(r.get("external_id") or ""), str(r.get("home_team") or "").lower(), str(r.get("away_team") or "").lower(), str(r.get("kickoff") or "")[:16])
+            if key in seen:
+                continue
+            seen.add(key)
             r["score"] = "N/A" if r.get("score_home") is None or r.get("score_away") is None else f"{r.get('score_home')}-{r.get('score_away')}"
             out.append(r)
     return out
+
+def list_fixtures(filter_name="today", limit=250):
+    ensure_schema()
+    con = connect()
+    rows = [dict(r) for r in con.execute("SELECT * FROM real_fixtures_v146 ORDER BY kickoff ASC,id DESC LIMIT ?", (int(limit),))]
+    con.close()
+    # V206.1: une con picks/cuotas reales para evitar pantallas vacías cuando el conector V146 aún no ha sincronizado.
+    rows.extend(rows_from_picks(limit))
+    out = _filter_fixture_rows(rows, filter_name)
+    # UX real: si 'hoy' está vacío, muestra próximos reales. No inventa nada, solo evita pantalla muerta.
+    if filter_name == "today" and not out:
+        out = _filter_fixture_rows(rows, "upcoming")[:int(limit)]
+        for r in out:
+            r["smart_fallback"] = True
+    return out[:int(limit)]
 
 def logs(limit=30):
     ensure_schema()
@@ -142,13 +231,15 @@ def logs(limit=30):
     return rows
 
 def status():
+    picks_fallback = len(rows_from_picks(500))
     return {
-        "version": "V146_REAL_FIXTURES_CONNECTOR_PRO",
+        "version": "V206_1_REAL_FIXTURES_RECOVERY_PRO",
         "db_path": db_path(),
         "total": len(list_fixtures("all")),
         "today": len(list_fixtures("today")),
         "live": len(list_fixtures("live")),
         "upcoming": len(list_fixtures("upcoming")),
         "finished": len(list_fixtures("finished")),
-        "policy": {"no_fake_matches": True, "no_fake_scores": True, "real_core_first": True}
+        "picks_real_core": picks_fallback,
+        "policy": {"no_fake_matches": True, "no_fake_scores": True, "real_core_first": True, "fallback_from_real_picks": True}
     }

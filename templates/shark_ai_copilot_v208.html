@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="v208-hero"><b>V208 · SHARK AI Copilot</b><h1>Copiloto deportivo real</h1><p>{{ data.respuesta }}</p></section>
+<section class="v208-grid">
+  {% for m in data.contexto.radar or data.contexto.live %}
+  <article><strong>{{ m.partido or (m.local ~ ' vs ' ~ m.visitante) }}</strong><span>{{ m.estado or m.nivel or 'Seguimiento' }}</span><b>{{ m.marcador or 'sin marcador' }}</b></article>
+  {% else %}<article><strong>Sin datos reales cargados</strong><span>El SHARK no inventa partidos.</span></article>{% endfor %}
+</section>
+<style>.v208-hero{padding:22px;border-radius:24px;background:linear-gradient(135deg,#07111f,#103b67);color:#fff;margin:12px 0}.v208-hero h1{margin:8px 0;font-size:clamp(28px,7vw,46px)}.v208-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}.v208-grid article{background:#081524;color:#fff;border:1px solid rgba(91,204,255,.18);border-radius:22px;padding:16px}.v208-grid strong,.v208-grid span,.v208-grid b{display:block}.v208-grid span{opacity:.72;margin:8px 0}</style>
+{% endblock %}

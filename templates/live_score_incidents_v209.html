@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="v209-hero">
+  <div class="v209-kicker">V209 · Marcador Live</div>
+  <h1>Resultados e incidentes en directo</h1>
+  <p>Marcador, minuto, estado e incidentes reales cuando llegan del proveedor. Si no llegan, se muestra aviso limpio sin inventar datos.</p>
+</section>
+<section class="v209-summary">
+  <article><b>{{ data.en_directo }}</b><span>en directo</span></article>
+  <article><b>{{ data.con_marcador }}</b><span>con marcador real</span></article>
+  <article><b>{{ data.total_partidos }}</b><span>partidos reales</span></article>
+</section>
+{% if data.partidos %}
+<section class="v209-grid">
+{% for m in data.partidos %}
+  <article class="v209-card {% if m.en_directo %}is-live{% endif %}">
+    <div class="v209-top"><span>{{ m.competicion }}</span><strong>{{ m.badge }}</strong></div>
+    <div class="v209-scoreline">
+      <div class="team home">{{ m.local }}</div>
+      <div class="score {% if not m.tiene_marcador %}no-score{% endif %}">{{ m.marcador }}</div>
+      <div class="team away">{{ m.visitante }}</div>
+    </div>
+    <div class="v209-meta"><span>{{ m.estado }}</span><span>{{ m.minuto or m.kickoff }}</span></div>
+    <p class="v209-note">{{ m.mensaje_score }}</p>
+    {% if m.incidents %}
+    <div class="v209-timeline">
+      {% for e in m.incidents[:5] %}<div><b>{{ e.minuto }}</b><span>{{ e.tipo }} {{ e.equipo }} {{ e.jugador }}</span></div>{% endfor %}
+    </div>
+    {% else %}
+    <div class="v209-empty-line">Sin incidentes reales recibidos todavía.</div>
+    {% endif %}
+    <div class="v209-actions"><a href="/match-center-real">Abrir partido</a><a href="/cliente/shark-copilot">SHARK AI</a></div>
+  </article>
+{% endfor %}
+</section>
+{% else %}
+<section class="v209-empty"><h2>No hay partidos reales cargados</h2><p>{{ data.mensaje }}</p><a href="/admin/fixtures-sync">Sincronizar fixtures</a></section>
+{% endif %}
+{% if admin %}<section class="v209-admin"><h2>Diagnóstico V209</h2><p>{{ data.mensaje }}</p><code>/api/v209/live-score</code></section>{% endif %}
+<style>
+.v209-hero{padding:22px;border-radius:26px;background:linear-gradient(135deg,#06111f,#0e3156);color:#fff;margin:12px 0;box-shadow:0 18px 55px rgba(0,0,0,.24)}.v209-kicker{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:#70d6ff}.v209-hero h1{margin:8px 0;font-size:clamp(28px,7vw,48px)}.v209-hero p{opacity:.84;max-width:780px}.v209-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}.v209-summary article{background:#081524;color:#fff;border:1px solid rgba(112,214,255,.15);border-radius:20px;padding:15px}.v209-summary b{display:block;font-size:26px}.v209-summary span{font-size:12px;opacity:.74}.v209-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}.v209-card{background:#081524;color:#fff;border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:16px;box-shadow:0 15px 48px rgba(0,0,0,.22)}.v209-card.is-live{border-color:rgba(255,67,67,.55);box-shadow:0 18px 60px rgba(255,40,40,.18)}.v209-top,.v209-meta,.v209-actions{display:flex;align-items:center;justify-content:space-between;gap:10px}.v209-top span{opacity:.7;font-size:12px}.v209-top strong{padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.08);font-size:12px}.v209-scoreline{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;margin:20px 0}.v209-scoreline .team{font-weight:800}.v209-scoreline .away{text-align:right}.v209-scoreline .score{font-size:26px;font-weight:950;color:#70d6ff;white-space:nowrap}.v209-scoreline .score.no-score{font-size:15px;color:#ffd36b}.v209-meta{font-size:13px;opacity:.78}.v209-note{font-size:13px;color:#cfefff;background:rgba(112,214,255,.08);border-radius:14px;padding:10px}.v209-timeline{display:grid;gap:8px;margin:10px 0}.v209-timeline div{display:flex;gap:10px;background:rgba(255,255,255,.06);border-radius:12px;padding:8px}.v209-timeline b{color:#ffd36b}.v209-empty-line{font-size:13px;opacity:.6;border:1px dashed rgba(255,255,255,.14);border-radius:14px;padding:10px;margin:10px 0}.v209-actions a,.v209-empty a{flex:1;text-align:center;text-decoration:none;color:#fff;background:rgba(255,255,255,.08);border-radius:14px;padding:10px;font-weight:800;font-size:13px}.v209-empty,.v209-admin{background:#081524;color:#fff;border-radius:24px;padding:22px;margin:16px 0;border:1px solid rgba(255,255,255,.1)}@media(max-width:640px){.v209-summary{grid-template-columns:1fr 1fr}.v209-grid{grid-template-columns:1fr}.v209-scoreline{grid-template-columns:1fr;gap:6px}.v209-scoreline .away{text-align:left}.v209-scoreline .score{font-size:30px}.v209-actions{position:static}}
+</style>
+{% endblock %}

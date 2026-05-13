@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="v210-wrap">
+  <div class="v210-hero compact">
+    <p class="eyebrow">Modo rápido</p>
+    <h1>NeMeSiS optimizado para móvil</h1>
+    <p>Vista ligera preparada para cargar rápido y consumir menos recursos.</p>
+  </div>
+  <div class="v210-grid">
+    <article class="v210-card"><span>Estado</span><strong>{{ status.estado|upper }}</strong></article>
+    <article class="v210-card"><span>Respuesta</span><strong>{{ status.score_ms }} ms</strong></article>
+    <article class="v210-card"><span>Live/cache</span><strong>{{ status.fixtures + status.picks }}</strong></article>
+  </div>
+</section>
+{% endblock %}

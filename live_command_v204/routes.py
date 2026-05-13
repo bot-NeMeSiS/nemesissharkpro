@@ -100,9 +100,37 @@ def _card_from_row(row, i):
     }
 
 
+
+def _v209_cards(limit=24):
+    try:
+        from live_score_incidents_v209.routes import live_score_payload
+        payload = live_score_payload(limit)
+        cards = []
+        for m in payload.get('partidos') or []:
+            if not (m.get('en_directo') or m.get('estado') in ('DESCANSO','EN DIRECTO')):
+                continue
+            cards.append({
+                'partido': m.get('partido'),
+                'local': m.get('local'),
+                'visitante': m.get('visitante'),
+                'competicion': m.get('competicion'),
+                'marcador': m.get('marcador'),
+                'minuto': m.get('minuto') or m.get('estado'),
+                'estado': m.get('estado'),
+                'intensidad': 82 if m.get('en_directo') else 64,
+                'presion': 76 if m.get('tiene_marcador') else 58,
+                'prioridad': 'Alta' if m.get('en_directo') else 'Media',
+                'senal': 'Marcador live conectado' if m.get('tiene_marcador') else 'Live sin marcador del proveedor',
+            })
+        return cards
+    except Exception:
+        return []
+
 def live_command_payload():
-    rows = _fetch_live_rows()
-    cards = [_card_from_row(r, i) for i, r in enumerate(rows)]
+    cards = _v209_cards()
+    if not cards:
+        rows = _fetch_live_rows()
+        cards = [_card_from_row(r, i) for i, r in enumerate(rows)]
     return {
         'version': 'V204_LIVE_COMMAND_CENTER_PRO',
         'generado': datetime.utcnow().isoformat() + 'Z',

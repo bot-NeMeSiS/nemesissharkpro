@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="v210-wrap">
+  <div class="v210-hero">
+    <p class="eyebrow">V210 · Rendimiento real</p>
+    <h1>Centro de rendimiento</h1>
+    <p>Control de velocidad, caché, base de datos y endpoints ligeros. Sin llamadas extra a APIs externas desde esta vista.</p>
+  </div>
+
+  <div class="v210-grid">
+    <article class="v210-card"><span>Estado</span><strong>{{ status.estado|upper }}</strong><small>{{ status.score_ms }} ms</small></article>
+    <article class="v210-card"><span>Base de datos</span><strong>{{ 'OK' if status.db_existe else 'Pendiente' }}</strong><small>{{ status.db_size_mb }} MB</small></article>
+    <article class="v210-card"><span>Partidos</span><strong>{{ status.fixtures }}</strong><small>fixtures cacheados</small></article>
+    <article class="v210-card"><span>Picks</span><strong>{{ status.picks }}</strong><small>registros reales</small></article>
+    <article class="v210-card"><span>Cuotas</span><strong>{{ status.odds_snapshots }}</strong><small>snapshots mercado</small></article>
+    <article class="v210-card"><span>Notificaciones</span><strong>{{ status.notificaciones }}</strong><small>historial</small></article>
+  </div>
+
+  <div class="v210-panel">
+    <h2>Recomendaciones</h2>
+    {% for rec in status.recomendaciones %}<p>• {{ rec }}</p>{% endfor %}
+    <div class="v210-actions">
+      <a href="/api/v210/performance/status">Ver API estado</a>
+      <a href="/api/v210/mobile-lite/fixtures">Endpoint móvil ligero</a>
+      <a href="/api/v210/performance/optimize">Optimizar SQLite</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

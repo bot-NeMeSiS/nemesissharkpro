@@ -8738,3 +8738,53 @@ try:
     app.register_blueprint(bp_live_command_v204)
 except Exception as e:
     print('[V204] Live Command Center blueprint no cargado:', e)
+
+# --- V205 SMART NOTIFICATIONS ENGINE PRO ---
+try:
+    from smart_notifications_v205.routes import bp_smart_notifications_v205
+    app.register_blueprint(bp_smart_notifications_v205)
+except Exception as e:
+    print('[V205] Smart Notifications blueprint no cargado:', e)
+
+# --- V206 ADVANCED ODDS MOVEMENT ENGINE PRO ---
+try:
+    from odds_movement_v206.routes import bp_odds_movement_v206
+    app.register_blueprint(bp_odds_movement_v206)
+except Exception as e:
+    print('[V206] Odds Movement blueprint no cargado:', e)
+
+# --- V207 PREMIUM MATCH RADAR PRO ---
+try:
+    from premium_match_radar_v207.routes import bp_premium_match_radar_v207
+    app.register_blueprint(bp_premium_match_radar_v207)
+except Exception as e:
+    print('[V207] Premium Match Radar blueprint no cargado:', e)
+
+# --- V208 SHARK AI COPILOT REAL PRO ---
+try:
+    from shark_ai_copilot_v208.routes import bp_shark_ai_copilot_v208
+    app.register_blueprint(bp_shark_ai_copilot_v208)
+except Exception as e:
+    print('[V208] Shark AI Copilot blueprint no cargado:', e)
+
+# --- V209 LIVE SCORE + INCIDENTS RECOVERY PRO ---
+try:
+    from live_score_incidents_v209.routes import bp_live_score_incidents_v209
+    app.register_blueprint(bp_live_score_incidents_v209)
+except Exception as e:
+    print('[V209] Live Score Incidents blueprint no cargado:', e)
+
+
+# --- V210 REAL PERFORMANCE OPTIMIZATION PRO ---
+try:
+    from performance_v210.routes import bp_performance_v210
+    app.register_blueprint(bp_performance_v210)
+except Exception as e:
+    print('[V210] Performance Optimization blueprint no cargado:', e)
+
+# --- V211 DESIGN SYSTEM SHARK PRO ---
+try:
+    from design_system_v211.routes import bp_design_system_v211
+    app.register_blueprint(bp_design_system_v211)
+except Exception as e:
+    print('[V211] Design System blueprint no cargado:', e)
