@@ -7558,6 +7558,14 @@ def cliente_v171_premium_full():
 
 # =================== END V171 TELEGRAM REAL DELIVERY + CLIENT PREMIUM EXPERIENCE ===================
 
+
+# --- V215 REVENUE & MEMBERSHIP CONTROL PRO ---
+try:
+    from revenue_membership_v215.routes import bp_revenue_membership_v215
+    app.register_blueprint(bp_revenue_membership_v215)
+except Exception as e:
+    print('[V215] Revenue & Membership Control blueprint no cargado:', e)
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))
 
@@ -8795,3 +8803,18 @@ try:
     app.register_blueprint(bp_personalization_v212)
 except Exception as e:
     print('[V212] User Personalization blueprint no cargado:', e)
+
+# --- V213 DAILY SMART HUB PRO ---
+try:
+    from daily_hub_v213.routes import bp_daily_hub_v213
+    app.register_blueprint(bp_daily_hub_v213)
+except Exception as e:
+    print('[V213] Daily Smart Hub blueprint no cargado:', e)
+
+# --- V214 CLIENT RETENTION + ENGAGEMENT PRO ---
+try:
+    from engagement_v214.routes import bp_engagement_v214
+    app.register_blueprint(bp_engagement_v214)
+except Exception as e:
+    print('[V214] Engagement blueprint no cargado:', e)
+

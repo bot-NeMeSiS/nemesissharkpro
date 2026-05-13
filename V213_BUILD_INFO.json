@@ -1,0 +1,7 @@
+{
+  "version": "V213",
+  "name": "DAILY_SMART_HUB_PRO",
+  "base": "V212.1",
+  "real_only": true,
+  "routes": ["/cliente/daily-hub", "/cliente/inicio-inteligente", "/admin/daily-hub", "/api/v213/daily-hub"]
+}
