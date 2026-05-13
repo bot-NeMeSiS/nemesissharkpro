@@ -8673,3 +8673,26 @@ try:
     app.register_blueprint(bp_app_feel_v193)
 except Exception as e:
     print("[V193] App Feel Ultra Premium blueprint no cargado:", e)
+
+# --- V196 LIVE EVENTS REAL EXPANSION PRO ---
+try:
+    from live_events_real_v196.routes import bp_live_events_real_v196
+    app.register_blueprint(bp_live_events_real_v196)
+except Exception as e:
+    print("[V196] Live Events Real Expansion blueprint no cargado:", e)
+
+
+# --- V197 TEAM IDENTITY ENGINE PRO ---
+try:
+    from team_identity_v197.routes import bp_team_identity_v197
+    app.register_blueprint(bp_team_identity_v197)
+except Exception as e:
+    print("[V197] Team Identity Engine blueprint no cargado:", e)
+
+
+# --- V198 SEARCH + DISCOVER PRO ---
+try:
+    from search_discover_v198.routes import bp_search_discover_v198
+    app.register_blueprint(bp_search_discover_v198)
+except Exception as e:
+    print('[V198] Search + Discover blueprint no cargado:', e)
