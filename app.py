@@ -19,7 +19,7 @@ from zoneinfo import ZoneInfo
 
 from flask import Flask, render_template, request, redirect, session, jsonify, send_from_directory, Response
 
-APP_VERSION = "NeMeSiS_SHARK_PRO_V180_0_BACKUP_RECOVERY_PRODUCTION_HARDENING"
+APP_VERSION = "NeMeSiS_SHARK_PRO_V192_0_MATCH_INTELLIGENCE_REAL_PRO"
 APP_NAME = "NeMeSiS SHARK PRO"
 
 
@@ -8629,3 +8629,42 @@ try:
     app.register_blueprint(bp_live_depth_speed_v187)
 except Exception as e:
     print("[V187] Live Depth Speed blueprint no cargado:", e)
+
+
+# --- V188 ADVANCED STATS PRO ---
+try:
+    from advanced_stats_v188.routes import bp_advanced_stats_v188
+    app.register_blueprint(bp_advanced_stats_v188)
+except Exception as e:
+    print("[V188] Advanced Stats blueprint no cargado:", e)
+
+
+# --- V189 MACHINE LEARNING DATA FOUNDATION PRO ---
+try:
+    from ml_data_foundation_v189.routes import bp_ml_data_foundation_v189
+    app.register_blueprint(bp_ml_data_foundation_v189)
+except Exception as e:
+    print("[V189] ML Data Foundation blueprint no cargado:", e)
+
+
+# --- V190 DATA COLLECTION ENGINE PRO ---
+try:
+    from data_collection_engine_v190.routes import bp_data_collection_engine_v190
+    app.register_blueprint(bp_data_collection_engine_v190)
+except Exception as e:
+    print("[V190] Data Collection Engine blueprint no cargado:", e)
+
+# --- V191 AUTOMATION ENGINE PRO ---
+try:
+    from automation_engine_v191.routes import bp_automation_engine_v191
+    app.register_blueprint(bp_automation_engine_v191)
+except Exception as e:
+    print("[V191] Automation Engine blueprint no cargado:", e)
+
+# --- V192 MATCH INTELLIGENCE REAL PRO ---
+try:
+    from match_intelligence_v192.routes import bp_match_intelligence_v192
+    app.register_blueprint(bp_match_intelligence_v192)
+except Exception as e:
+    print("[V192] Match Intelligence blueprint no cargado:", e)
+
