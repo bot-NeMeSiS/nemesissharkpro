@@ -1,0 +1,21 @@
+{
+  "version": "V245_NAVIGATION_UNIFICATION_PRO",
+  "generated_at": "2026-05-14T20:07:47.749842+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "fixes": [
+    "Partidos de hoy ya no queda aislada",
+    "Volver atrás visible",
+    "Ir a mi cuenta visible",
+    "Inicio visible",
+    "Bottom nav móvil coherente",
+    "Salir visible",
+    "SHARK AI flotante"
+  ],
+  "rutas_objetivo": [
+    "/fixtures/today-pro",
+    "/cliente/partidos-hoy",
+    "/home-live-real",
+    "/live-command-center"
+  ]
+}

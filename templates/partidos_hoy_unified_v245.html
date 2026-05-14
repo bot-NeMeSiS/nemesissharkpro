@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Partidos de hoy · NeMeSiS SHARK PRO</title>
+<link rel="stylesheet" href="/static/css/v245_navigation_unified.css">
+<style>
+body{margin:0;background:#06111f;color:#eef6ff;font-family:Arial,Helvetica,sans-serif}
+.wrap{max-width:1180px;margin:auto;padding:86px 16px 108px}
+.hero{border:1px solid rgba(0,190,255,.24);background:radial-gradient(circle at top left,rgba(0,190,255,.16),transparent 35%),linear-gradient(135deg,#071b31,#090f1d);border-radius:28px;padding:24px;box-shadow:0 22px 90px rgba(0,0,0,.38)}
+.badge{display:inline-block;padding:8px 11px;border-radius:999px;background:rgba(0,180,255,.12);border:1px solid rgba(0,180,255,.25);margin:3px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:22px}
+.card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.11);border-radius:22px;padding:18px}
+.empty{border:1px dashed rgba(255,255,255,.16);background:rgba(255,255,255,.04);border-radius:22px;padding:24px;text-align:center;margin-top:22px}
+</style>
+</head>
+<body>
+<div class="nms-v245-topbar">
+  <button onclick="history.back()" class="nms-v245-navbtn">← Atrás</button>
+  <button onclick="history.forward()" class="nms-v245-navbtn">Adelante →</button>
+  <a href="/cliente/pro" class="nms-v245-navbtn">Mi cuenta</a>
+  <a href="/cliente/dashboard-pro" class="nms-v245-navbtn">Inicio</a>
+  <a href="/logout" class="nms-v245-navbtn nms-v245-logout">Salir</a>
+</div>
+
+<main class="wrap">
+<section class="hero">
+<span class="badge">Partidos de hoy</span>
+<span class="badge">REAL ONLY</span>
+<span class="badge">Navegación unificada</span>
+<h1>Partidos de hoy</h1>
+<p>Vista preparada para mostrar partidos reales del proveedor, manteniendo acceso claro a tu cuenta y navegación móvil.</p>
+</section>
+
+<div class="grid">
+<div class="card"><h3>📅 Hoy</h3><p>Partidos reales cuando estén disponibles.</p></div>
+<div class="card"><h3>🔴 En directo</h3><p>Marcador y estado si el proveedor los manda.</p></div>
+<div class="card"><h3>⭐ Favoritos</h3><p>Acceso rápido a tus equipos y partidos guardados.</p></div>
+</div>
+
+<div class="empty">
+<h3>Si no ves partidos</h3>
+<p>Puede ser que no haya datos reales cacheados todavía o que el proveedor no haya enviado fixtures para este filtro.</p>
+</div>
+</main>
+
+<div class="nms-v245-mobile-bottom">
+  <a href="/cliente/dashboard-pro">Inicio</a>
+  <a href="/fixtures/today-pro">Hoy</a>
+  <a href="/live-command-center">Live</a>
+  <a href="/cliente/favoritos">Favoritos</a>
+  <a href="/cliente/pro">Cuenta</a>
+</div>
+<a class="nms-v245-shark-float" href="/cliente/shark-ai-pro">🦈</a>
+</body>
+</html>

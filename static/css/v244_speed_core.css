@@ -1,0 +1,6 @@
+
+/* V244 · Global Scalability + Speed Core Pro */
+.nms-speed-card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.11);border-radius:24px;padding:20px}
+.nms-speed-skeleton{height:64px;border-radius:18px;background:linear-gradient(90deg,rgba(255,255,255,.05),rgba(255,255,255,.10),rgba(255,255,255,.05));background-size:220% 100%;animation:nmsSpeed 1.25s infinite}
+@keyframes nmsSpeed{0%{background-position:220% 0}100%{background-position:-220% 0}}
+.nms-speed-notice{padding:14px;border-radius:18px;background:rgba(110,242,181,.08);border:1px solid rgba(110,242,181,.28);color:#bffff0;font-weight:800}

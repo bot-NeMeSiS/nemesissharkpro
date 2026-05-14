@@ -1,0 +1,29 @@
+{
+  "version": "V244_GLOBAL_SCALABILITY_SPEED_CORE_PRO",
+  "generated_at": "2026-05-14T20:03:18.614011+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "speed_core": {
+    "smart_cache": true,
+    "lazy_loading": true,
+    "critical_data_first": true,
+    "reduce_api_duplicates": true,
+    "mobile_pwa_speed": true,
+    "asset_light_mode": true
+  },
+  "scalability": [
+    "Más usuarios",
+    "Más partidos",
+    "Más deportes",
+    "Más live",
+    "Más operaciones",
+    "Preparado para workers futuros"
+  ],
+  "rules": [
+    "No recargar datos si la caché sigue siendo válida",
+    "Cargar primero lo crítico: sesión, home, live principal",
+    "Cargar lo secundario después",
+    "No inventar datos por velocidad",
+    "Evitar peticiones duplicadas"
+  ]
+}
