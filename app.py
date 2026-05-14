@@ -8818,3 +8818,23 @@ try:
 except Exception as e:
     print('[V214] Engagement blueprint no cargado:', e)
 
+
+
+# =========================
+# V217 QUALITY ASSURANCE + ROUTE AUDIT PRO
+# =========================
+@app.route("/admin/qa-v217")
+@app.route("/admin/quality-audit")
+def admin_quality_audit_v217():
+    try:
+        return render_template("qa_v217.html")
+    except Exception:
+        return """
+        <html><head><title>QA V217</title><meta name='viewport' content='width=device-width, initial-scale=1'></head>
+        <body style='font-family:Arial;background:#06111f;color:white;padding:24px'>
+        <h1>V217 · Centro de calidad</h1>
+        <h2 style='color:#ffd36e'>FALTA ACTIVAR PASARELA DE PAGO REAL</h2>
+        <p>Revisar cliente, admin, partidos reales, live score, PWA, Render, Telegram y pricing.</p>
+        <p>REAL ONLY: si no hay dato real, no se inventa.</p>
+        </body></html>
+        """

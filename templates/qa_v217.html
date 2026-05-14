@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>QA V217 · NeMeSiS SHARK PRO</title>
+  <style>
+    body{margin:0;background:#06111f;color:#eef6ff;font-family:Arial,Helvetica,sans-serif}
+    .wrap{max-width:1120px;margin:0 auto;padding:28px 18px 80px}
+    .hero{border:1px solid rgba(0,180,255,.25);background:linear-gradient(135deg,#081b31,#0b1020);border-radius:24px;padding:24px;box-shadow:0 20px 80px rgba(0,0,0,.35)}
+    h1{font-size:34px;margin:0 0 8px}
+    h2{margin-top:26px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:18px}
+    .card{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.045);border-radius:18px;padding:16px}
+    .ok{color:#6ef2b5}.warn{color:#ffd36e}.bad{color:#ff7b7b}
+    .bigwarn{font-size:22px;font-weight:800;color:#ffd36e;padding:18px;border:1px solid rgba(255,211,110,.35);border-radius:18px;background:rgba(255,211,110,.08)}
+    a{color:#7bdcff}
+    ul{line-height:1.75}
+    .pill{display:inline-block;padding:7px 10px;border-radius:999px;background:rgba(0,180,255,.12);border:1px solid rgba(0,180,255,.25);margin:4px}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="pill">V217</div><div class="pill">QA PRO</div><div class="pill">REAL ONLY</div>
+    <h1>Centro de calidad previo a lanzamiento</h1>
+    <p>Revisión rápida para detectar fallos visibles antes de enseñar o vender NeMeSiS SHARK PRO.</p>
+    <div class="bigwarn">IMPORTANTE: FALTA ACTIVAR PASARELA DE PAGO REAL antes de vender membresías automáticas.</div>
+  </div>
+
+  <h2>Checklist crítico</h2>
+  <div class="grid">
+    <div class="card"><b>Identidad cliente</b><p class="ok">Comprobar que cada cuenta muestra su propio nombre y membresía.</p></div>
+    <div class="card"><b>Admin oculto</b><p class="ok">El cliente no debe ver accesos técnicos ni paneles admin.</p></div>
+    <div class="card"><b>Partidos reales</b><p class="warn">Si el proveedor no manda marcador, mostrar aviso limpio sin inventar.</p></div>
+    <div class="card"><b>Móvil/PWA</b><p class="ok">Revisar navbar única, spacing y botón SHARK flotante.</p></div>
+    <div class="card"><b>Render</b><p class="ok">requirements.txt debe estar en raíz.</p></div>
+    <div class="card"><b>Comercial</b><p class="warn">Pricing visible, pero sin cobros fake.</p></div>
+  </div>
+
+  <h2>Rutas a revisar</h2>
+  <ul>
+    <li>/cliente/pro</li>
+    <li>/cliente/dashboard-pro</li>
+    <li>/cliente/live-command</li>
+    <li>/cliente/shark-copilot</li>
+    <li>/match-center-real</li>
+    <li>/live-command-center</li>
+    <li>/admin/product-control</li>
+    <li>/admin/revenue</li>
+    <li>/admin/commercial-launch</li>
+  </ul>
+
+  <h2>Regla de oro</h2>
+  <p>Si no hay dato real del proveedor, no se inventa. Se muestra estado pendiente, no disponible o esperando datos live.</p>
+</div>
+</body>
+</html>
