@@ -1,0 +1,25 @@
+{
+  "version": "V231_SMART_VALUE_DETECTION_PRO",
+  "generated_at": "2026-05-14T18:15:46.645797+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "engines": [
+    "Value score",
+    "Risk score",
+    "Volatility score",
+    "Live movement detection",
+    "Momentum detection",
+    "Market comparison prep"
+  ],
+  "alerts": [
+    "Movimiento fuerte de cuota",
+    "Presión anormal",
+    "Posible oportunidad",
+    "Mercado inestable"
+  ],
+  "guardrails": [
+    "No inventar value",
+    "No prometer aciertos",
+    "No mostrar oportunidades fake"
+  ]
+}

@@ -8981,3 +8981,46 @@ def api_v229_personalization_status():
         "dynamic_home": True,
         "mensaje": "Personalización preparada usando actividad real del usuario."
     }
+
+
+# V230 LIVE DATA EXPANSION PRO
+@app.route("/cliente/live-data")
+@app.route("/cliente/live-data-expansion")
+@app.route("/admin/live-data")
+def live_data_expansion_v230():
+    try:
+        return render_template("live_data_expansion_v230.html")
+    except Exception:
+        return "<h1>V230 · Live Data Expansion</h1><p>REAL ONLY: sin estadísticas, alineaciones ni eventos inventados.</p>"
+
+@app.route("/api/v230/live-data/status")
+def api_v230_live_data_status():
+    return {
+        "version": "V230",
+        "idioma": "es",
+        "real_only": True,
+        "bloques": ["marcador", "minuto", "incidentes", "alineaciones", "estadisticas", "corners", "tiros", "posesion"],
+        "mensaje": "Preparado para datos live reales. Si faltan, no se inventan."
+    }
+
+
+# V231 SMART VALUE DETECTION PRO
+@app.route("/cliente/value-radar")
+@app.route("/cliente/oportunidades")
+@app.route("/admin/value-engine")
+def value_radar_v231():
+    try:
+        return render_template("value_radar_v231.html")
+    except Exception:
+        return "<h1>V231 · Value Radar</h1><p>REAL ONLY: sin oportunidades inventadas.</p>"
+
+@app.route("/api/v231/value/status")
+def api_v231_value_status():
+    return {
+        "version": "V231",
+        "idioma": "es",
+        "real_only": True,
+        "value_score": True,
+        "risk_score": True,
+        "mensaje": "Radar preparado para detectar movimientos y señales reales."
+    }

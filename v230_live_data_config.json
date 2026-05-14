@@ -1,0 +1,22 @@
+{
+  "version": "V230_LIVE_DATA_EXPANSION_PRO",
+  "generated_at": "2026-05-14T18:12:05.800298+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "live_data_blocks": [
+    "Marcador",
+    "Minuto",
+    "Estado partido",
+    "Incidentes",
+    "Alineaciones",
+    "Estadísticas live",
+    "Corners",
+    "Tiros",
+    "Posesión",
+    "Ataques peligrosos",
+    "Tarjetas",
+    "Sustituciones"
+  ],
+  "fallback": "Si el proveedor no manda el dato real, se muestra estado pendiente limpio.",
+  "ml_readiness": true
+}

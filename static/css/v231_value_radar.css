@@ -1,0 +1,6 @@
+
+/* V231 · Smart Value Detection Pro */
+.nms-value-card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:16px}
+.nms-value-score{color:#6ef2b5;font-size:28px;font-weight:900}
+.nms-risk-score{color:#ffe19b;font-size:28px;font-weight:900}
+.nms-value-notice{padding:14px;border-radius:16px;background:rgba(255,211,110,.09);border:1px solid rgba(255,211,110,.35);color:#ffe19b;font-weight:800}

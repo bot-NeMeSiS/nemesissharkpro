@@ -1,0 +1,6 @@
+
+/* V230 · Live Data Expansion Pro */
+.nms-live-data-card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:16px}
+.nms-live-data-empty{border:1px dashed rgba(255,255,255,.18);background:rgba(255,255,255,.04);border-radius:18px;padding:16px;text-align:center}
+.nms-live-data-metric{font-size:26px;font-weight:900}
+.nms-live-data-notice{padding:14px;border-radius:16px;background:rgba(255,211,110,.09);border:1px solid rgba(255,211,110,.35);color:#ffe19b;font-weight:800}
