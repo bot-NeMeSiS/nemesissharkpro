@@ -1,0 +1,33 @@
+{
+  "version": "V233_COMMERCIAL_READINESS_PRO",
+  "generated_at": "2026-05-14T18:32:18.179941+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "plans": {
+    "FREE": [
+      "Acceso básico",
+      "Live limitado",
+      "Alertas limitadas"
+    ],
+    "PRO": [
+      "Value Radar",
+      "Más alerts",
+      "Más live",
+      "Más SHARK AI"
+    ],
+    "ELITE": [
+      "SHARK AI completo",
+      "Match Intelligence",
+      "Premium live",
+      "Experiencia total"
+    ]
+  },
+  "commercial_blocks": [
+    "Upgrade flow",
+    "Conversion engine",
+    "Premium badges",
+    "Feature gating",
+    "Commercial analytics"
+  ],
+  "payments_ready": true
+}
