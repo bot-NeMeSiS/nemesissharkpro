@@ -1,0 +1,44 @@
+{
+  "version": "V241_GLOBAL_SPORTS_EXPANSION_PRO",
+  "generated_at": "2026-05-14T19:17:43.368941+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "sports_supported_ready": [
+    "Fútbol",
+    "Baloncesto",
+    "Tenis",
+    "MMA/UFC",
+    "Béisbol",
+    "Hockey",
+    "NFL",
+    "Esports"
+  ],
+  "sport_modules": {
+    "futbol": [
+      "goles",
+      "posesión",
+      "tarjetas"
+    ],
+    "basket": [
+      "cuartos",
+      "racha",
+      "triples"
+    ],
+    "tenis": [
+      "sets",
+      "break points"
+    ],
+    "mma": [
+      "rounds",
+      "golpes",
+      "control"
+    ]
+  },
+  "features": [
+    "Sports adaptive UI",
+    "SHARK AI multi-sport",
+    "Global league expansion",
+    "Sport-specific live",
+    "Smart sport priority"
+  ]
+}
