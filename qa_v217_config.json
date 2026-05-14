@@ -1,0 +1,40 @@
+{
+  "version": "V217_QUALITY_ASSURANCE_ROUTE_AUDIT_PRO",
+  "generated_at": "2026-05-13T22:12:31.023824Z",
+  "principios": [
+    "REAL ONLY",
+    "Sin demos visibles",
+    "Sin datos fake",
+    "Cliente limpio",
+    "Render/GitHub ready"
+  ],
+  "rutas_criticas": [
+    "/",
+    "/cliente/pro",
+    "/cliente/dashboard-pro",
+    "/cliente/live-command",
+    "/cliente/favoritos",
+    "/cliente/shark-copilot",
+    "/cliente/advanced-stats",
+    "/match-center-real",
+    "/live-command-center",
+    "/admin/product-control",
+    "/admin/data-engine",
+    "/admin/revenue",
+    "/admin/commercial-launch"
+  ],
+  "checklist": [
+    "Login cliente sin nombre cruzado",
+    "Login admin separado",
+    "No mostrar Damian en cuentas cliente ajenas",
+    "No mostrar botones admin al cliente",
+    "Partidos reales o fallback limpio",
+    "Marcador live si proveedor lo manda",
+    "Sin resultados inventados",
+    "requirements.txt en raíz",
+    "PWA manifest/service-worker presentes",
+    "Móvil sin doble navbar",
+    "Pricing visible sin cobro fake",
+    "Aviso grande si falta pasarela de pago"
+  ]
+}
