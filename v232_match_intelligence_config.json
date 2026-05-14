@@ -1,0 +1,30 @@
+{
+  "version": "V232_ADVANCED_MATCH_INTELLIGENCE_PRO",
+  "generated_at": "2026-05-14T18:17:40.827121+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "intelligence_blocks": [
+    "Match Intelligence Score",
+    "Momentum",
+    "Presión",
+    "Riesgo",
+    "Value Radar",
+    "Estado live",
+    "Lectura SHARK AI",
+    "Fases del partido"
+  ],
+  "signals": [
+    "Dominio claro",
+    "Presión creciente",
+    "Mercado inestable",
+    "Riesgo elevado",
+    "Oportunidad potencial",
+    "Partido controlado"
+  ],
+  "guardrails": [
+    "No inventar señales",
+    "No inventar marcador",
+    "No inventar estadísticas",
+    "No prometer aciertos"
+  ]
+}

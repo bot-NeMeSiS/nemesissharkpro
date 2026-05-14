@@ -8838,8 +8838,6 @@ def admin_quality_audit_v217():
         <p>REAL ONLY: si no hay dato real, no se inventa.</p>
         </body></html>
         """
-<<<<<<< HEAD
-=======
 
 
 # =========================
@@ -9026,4 +9024,24 @@ def api_v231_value_status():
         "risk_score": True,
         "mensaje": "Radar preparado para detectar movimientos y señales reales."
     }
->>>>>>> cbd7a77ed00cea49bf101da32af1f7431d494365
+
+
+# V232 ADVANCED MATCH INTELLIGENCE PRO
+@app.route("/cliente/match-intelligence-pro")
+@app.route("/cliente/inteligencia-partido")
+@app.route("/admin/match-intelligence-pro")
+def match_intelligence_v232():
+    try:
+        return render_template("match_intelligence_v232.html")
+    except Exception:
+        return "<h1>V232 · Match Intelligence</h1><p>REAL ONLY: sin señales ni estadísticas inventadas.</p>"
+
+@app.route("/api/v232/match-intelligence/status")
+def api_v232_match_intelligence_status():
+    return {
+        "version": "V232",
+        "idioma": "es",
+        "real_only": True,
+        "match_intelligence": True,
+        "mensaje": "Inteligencia de partido preparada con datos reales suficientes."
+    }
