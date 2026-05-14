@@ -1,0 +1,11 @@
+
+body{margin:0;background:#06111f;color:#eef6ff;font-family:Arial,Helvetica,sans-serif}
+.v247-wrap{max-width:1180px;margin:auto;padding:86px 16px 110px}
+.v247-hero{border:1px solid rgba(0,190,255,.24);background:radial-gradient(circle at top left,rgba(0,190,255,.16),transparent 35%),linear-gradient(135deg,#071b31,#090f1d);border-radius:28px;padding:24px;box-shadow:0 22px 90px rgba(0,0,0,.38)}
+.v247-badge{display:inline-block;padding:8px 11px;border-radius:999px;background:rgba(0,180,255,.12);border:1px solid rgba(0,180,255,.25);margin:3px}
+.v247-notice{padding:14px;border-radius:18px;background:rgba(110,242,181,.08);border:1px solid rgba(110,242,181,.28);color:#bffff0;font-weight:800}
+.v247-card,.v247-panel{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.11);border-radius:22px;padding:18px;margin-top:16px}
+.v247-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:18px}
+.v247-flow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.v247-flow div{padding:10px 13px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);font-weight:800}
+@media(max-width:640px){.v247-wrap{padding:78px 12px 112px}.v247-hero{padding:18px;border-radius:24px}}

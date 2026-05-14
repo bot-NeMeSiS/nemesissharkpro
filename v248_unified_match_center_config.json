@@ -1,0 +1,24 @@
+{
+  "version": "V248_UNIFIED_MATCH_CENTER_PRO",
+  "generated_at": "2026-05-14T20:19:03.783802+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "modules": [
+    "Score header",
+    "Crests",
+    "Minute/status",
+    "Live data",
+    "Timeline",
+    "Value radar",
+    "SHARK AI",
+    "Match intelligence",
+    "Favorites",
+    "Navigation unified"
+  ],
+  "fallbacks": {
+    "score": "— : —",
+    "minute": "Pendiente de minuto real",
+    "timeline": "Sin incidencias reales disponibles",
+    "crest": "Iniciales premium"
+  }
+}

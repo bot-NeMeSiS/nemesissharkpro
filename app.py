@@ -9315,3 +9315,49 @@ def api_v246_live_score_crests_status():
         "fallback_score": "— : —",
         "mensaje": "Live preparado con marcador, minuto y escudos sin inventar datos."
     }
+
+
+# V247 LIVE BINDING + DATA INTEGRITY PRO
+@app.route("/admin/live-binding-integrity")
+@app.route("/cliente/live-binding-integrity")
+@app.route("/live-binding-integrity")
+def live_binding_integrity_v247():
+    try:
+        return render_template("live_binding_integrity_v247.html")
+    except Exception:
+        return "<h1>V247 · Live Binding + Data Integrity</h1><p>Marcador, minuto y escudos normalizados. REAL ONLY.</p>"
+
+@app.route("/api/v247/live-binding/status")
+def api_v247_live_binding_status():
+    return {
+        "version": "V247",
+        "idioma": "es",
+        "real_only": True,
+        "binding_ready": True,
+        "score_validation": True,
+        "crest_fallback": True,
+        "mensaje": "Live binding e integridad de datos preparados."
+    }
+
+
+# V248 UNIFIED MATCH CENTER PRO
+@app.route("/match-center-unified")
+@app.route("/cliente/match-center-unified")
+@app.route("/admin/match-center-unified")
+def unified_match_center_v248():
+    try:
+        return render_template("unified_match_center_v248.html")
+    except Exception:
+        return "<h1>V248 · Unified Match Center</h1><p>Marcador, minuto, escudos, live, value y SHARK AI unidos. REAL ONLY.</p>"
+
+@app.route("/api/v248/match-center/status")
+def api_v248_match_center_status():
+    return {
+        "version": "V248",
+        "idioma": "es",
+        "real_only": True,
+        "unified_match_center": True,
+        "score_header": True,
+        "timeline_ready": True,
+        "mensaje": "Match Center unificado preparado."
+    }

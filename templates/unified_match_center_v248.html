@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Match Center · NeMeSiS SHARK PRO</title>
+<link rel="stylesheet" href="/static/css/v245_navigation_unified.css">
+<link rel="stylesheet" href="/static/css/v248_unified_match_center.css">
+</head>
+<body>
+<div class="nms-v245-topbar">
+  <button onclick="history.back()" class="nms-v245-navbtn">← Atrás</button>
+  <button onclick="history.forward()" class="nms-v245-navbtn">Adelante →</button>
+  <a href="/cliente/pro" class="nms-v245-navbtn">Mi cuenta</a>
+  <a href="/cliente/dashboard-pro" class="nms-v245-navbtn">Inicio</a>
+  <a href="/logout" class="nms-v245-navbtn nms-v245-logout">Salir</a>
+</div>
+
+<main class="v248-wrap">
+<section class="v248-match-hero">
+  <div>
+    <span class="v248-badge">V248</span>
+    <span class="v248-badge">Match Center</span>
+    <span class="v248-badge">REAL ONLY</span>
+  </div>
+  <div class="v248-status-line">
+    <span class="v248-live-dot"></span>
+    <span id="v248-status">En directo</span>
+    <span id="v248-minute" class="v248-minute">Pendiente de minuto real</span>
+  </div>
+
+  <div class="v248-scoreboard">
+    <div class="v248-team">
+      <div id="v248-home-crest" class="v248-crest">LOC</div>
+      <div id="v248-home-name" class="v248-team-name">Equipo local</div>
+    </div>
+    <div id="v248-score" class="v248-score">— : —</div>
+    <div class="v248-team">
+      <div id="v248-away-crest" class="v248-crest">VIS</div>
+      <div id="v248-away-name" class="v248-team-name">Equipo visitante</div>
+    </div>
+  </div>
+
+  <div class="v248-actions">
+    <a href="/cliente/favoritos">⭐ Favorito</a>
+    <a href="/cliente/shark-ai-pro">🧠 SHARK AI</a>
+    <a href="/cliente/value-radar">📈 Value</a>
+    <a href="/cliente/live-data">📊 Live Data</a>
+  </div>
+</section>
+
+<section class="v248-grid">
+  <article class="v248-card">
+    <h3>📊 Datos live</h3>
+    <p>Posesión, tiros, corners, ataques y estadísticas si el proveedor las manda.</p>
+    <div class="v248-empty">Esperando datos reales.</div>
+  </article>
+  <article class="v248-card">
+    <h3>📈 Value Radar</h3>
+    <p>Movimientos de cuotas y señales de oportunidad potencial sin prometer aciertos.</p>
+    <div class="v248-empty">Sin señales reales suficientes.</div>
+  </article>
+  <article class="v248-card">
+    <h3>🧠 Lectura SHARK</h3>
+    <p>Explicación prudente del partido con datos reales disponibles.</p>
+    <div class="v248-empty">SHARK AI espera contexto real.</div>
+  </article>
+</section>
+
+<section class="v248-card">
+  <h2>Timeline</h2>
+  <div class="v248-timeline">
+    <div class="v248-event">⏱️ Sin incidencias reales disponibles todavía.</div>
+    <div class="v248-event">✅ Preparado para goles, tarjetas, VAR, penaltis y sustituciones reales.</div>
+  </div>
+</section>
+</main>
+
+<div class="nms-v245-mobile-bottom">
+  <a href="/cliente/dashboard-pro">Inicio</a>
+  <a href="/fixtures/today-pro">Hoy</a>
+  <a href="/live-command-center">Live</a>
+  <a href="/cliente/favoritos">Favoritos</a>
+  <a href="/cliente/pro">Cuenta</a>
+</div>
+<a class="nms-v245-shark-float" href="/cliente/shark-ai-pro">🦈</a>
+<script src="/static/js/v247_live_binding.js"></script>
+<script src="/static/js/v248_unified_match_center.js"></script>
+</body>
+</html>

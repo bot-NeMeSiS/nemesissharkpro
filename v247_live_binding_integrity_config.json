@@ -1,0 +1,32 @@
+{
+  "version": "V247_LIVE_BINDING_DATA_INTEGRITY_PRO",
+  "generated_at": "2026-05-14T20:16:15.761227+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "binding_fields": [
+    "home_name",
+    "away_name",
+    "home_score",
+    "away_score",
+    "minute",
+    "status",
+    "home_logo",
+    "away_logo",
+    "fixture_id",
+    "league"
+  ],
+  "sources_priority": [
+    "live payload",
+    "fixtures cache",
+    "picks/odds cache",
+    "team identity cache",
+    "fallback visual limpio"
+  ],
+  "guardrails": [
+    "No inventar marcador",
+    "No inventar minuto",
+    "No inventar resultado",
+    "No inventar escudo real",
+    "Mostrar placeholder premium si falta logo"
+  ]
+}
