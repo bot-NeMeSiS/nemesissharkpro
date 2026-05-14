@@ -9200,3 +9200,48 @@ def api_v240_shark_ai_master_status():
         "membership_limits": True,
         "mensaje": "SHARK AI Master Control preparado."
     }
+
+
+# V242 AUTOMATION & OPERATIONS PRO
+@app.route("/admin/automation-operations")
+@app.route("/admin/automation")
+@app.route("/admin/ops-automation")
+def automation_operations_v242():
+    try:
+        return render_template("automation_operations_v242.html")
+    except Exception:
+        return "<h1>V242 · Automation & Operations</h1><p>REAL ONLY: automatizaciones seguras sin datos inventados.</p>"
+
+@app.route("/api/v242/automation/status")
+def api_v242_automation_status():
+    return {
+        "version": "V242",
+        "idioma": "es",
+        "real_only": True,
+        "fixtures_sync": True,
+        "live_sync": True,
+        "telegram_dispatch": True,
+        "mensaje": "Automatización y operaciones preparadas."
+    }
+
+
+# V243 PREMIUM BUSINESS ECOSYSTEM PRO
+@app.route("/admin/business-ecosystem")
+@app.route("/admin/premium-business")
+@app.route("/admin/growth")
+def business_ecosystem_v243():
+    try:
+        return render_template("business_ecosystem_v243.html")
+    except Exception:
+        return "<h1>V243 · Business Ecosystem</h1><p>REAL ONLY: negocio premium sin métricas ni pagos inventados.</p>"
+
+@app.route("/api/v243/business/status")
+def api_v243_business_status():
+    return {
+        "version": "V243",
+        "idioma": "es",
+        "real_only": True,
+        "fake_payments": False,
+        "business_dashboard": True,
+        "mensaje": "Ecosistema de negocio premium preparado."
+    }

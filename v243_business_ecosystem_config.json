@@ -1,0 +1,32 @@
+{
+  "version": "V243_PREMIUM_BUSINESS_ECOSYSTEM_PRO",
+  "generated_at": "2026-05-14T19:23:30.155680+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "business_blocks": [
+    "Usuarios activos",
+    "Membresías",
+    "Conversión",
+    "Retención",
+    "Engagement",
+    "Uso SHARK AI",
+    "Uso Live",
+    "Notificaciones",
+    "Planes premium"
+  ],
+  "plans": [
+    "FREE",
+    "PRO",
+    "ELITE"
+  ],
+  "payments": {
+    "fake_payments": false,
+    "future_ready": true
+  },
+  "guardrails": [
+    "No mostrar ingresos falsos",
+    "No simular pagos reales",
+    "No inventar métricas comerciales",
+    "Mostrar estados pendientes si no hay datos"
+  ]
+}

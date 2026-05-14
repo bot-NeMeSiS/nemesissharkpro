@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Automation & Operations · NeMeSiS SHARK PRO</title>
+<style>
+body{margin:0;background:#06111f;color:#eef6ff;font-family:Arial,Helvetica,sans-serif}
+.wrap{max-width:1200px;margin:auto;padding:24px 16px 104px}
+.hero{border:1px solid rgba(0,190,255,.24);background:radial-gradient(circle at top left,rgba(0,190,255,.16),transparent 35%),linear-gradient(135deg,#071b31,#090f1d);border-radius:30px;padding:26px;box-shadow:0 22px 90px rgba(0,0,0,.38)}
+.badge{display:inline-block;padding:8px 11px;border-radius:999px;background:rgba(0,180,255,.12);border:1px solid rgba(0,180,255,.25);margin:3px}
+.title{font-size:36px;font-weight:900;margin:10px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px}
+.card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.11);border-radius:24px;padding:20px}
+.status{display:inline-flex;border-radius:999px;padding:8px 12px;background:rgba(110,242,181,.08);border:1px solid rgba(110,242,181,.28);color:#bffff0;font-weight:800}
+.warn{padding:14px;border-radius:18px;background:rgba(255,211,110,.08);border:1px solid rgba(255,211,110,.28);color:#ffe19b;font-weight:800}
+.btn{display:inline-block;border-radius:999px;padding:10px 13px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);margin:5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="hero">
+<span class="badge">V242</span>
+<span class="badge">Automation</span>
+<span class="badge">Operations</span>
+<span class="badge">REAL ONLY</span>
+<h1 class="title">Centro de automatización y operaciones</h1>
+<p>Control de sincronizaciones, snapshots, live, cuotas, Telegram, caché y recuperación segura.</p>
+<div class="warn">Las automatizaciones solo deben actuar con datos reales. No se crean partidos, resultados ni picks fake.</div>
+</section>
+
+<div class="grid">
+<div class="card"><h3>📅 Fixtures Sync</h3><p>Preparado para sincronizar partidos reales.</p><span class="status">Ready</span></div>
+<div class="card"><h3>🔴 Live Sync</h3><p>Preparado para actualizar marcador, estado e incidencias.</p><span class="status">Ready</span></div>
+<div class="card"><h3>📈 Odds Snapshots</h3><p>Preparado para guardar evolución de cuotas.</p><span class="status">Ready</span></div>
+<div class="card"><h3>📲 Telegram</h3><p>Preparado para dispatch seguro por membresía.</p><span class="status">Ready</span></div>
+</div>
+
+<div class="grid">
+<div class="card">
+<h3>Acciones admin</h3>
+<span class="btn">Sincronizar fixtures</span>
+<span class="btn">Actualizar live</span>
+<span class="btn">Calentar caché</span>
+<span class="btn">Test Telegram</span>
+</div>
+<div class="card">
+<h3>Auto Recovery</h3>
+<p>Preparado para reintentos controlados sin saturar APIs.</p>
+</div>
+<div class="card">
+<h3>Audit Trail</h3>
+<p>Preparado para registrar operaciones importantes.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

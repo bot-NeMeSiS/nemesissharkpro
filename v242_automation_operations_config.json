@@ -1,0 +1,28 @@
+{
+  "version": "V242_AUTOMATION_OPERATIONS_PRO",
+  "generated_at": "2026-05-14T19:19:35.333657+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "automation_jobs": [
+    "Sincronizar fixtures",
+    "Actualizar live",
+    "Guardar snapshots",
+    "Actualizar cuotas",
+    "Calentar caché",
+    "Cerrar picks",
+    "Enviar Telegram",
+    "Registrar incidencias"
+  ],
+  "operation_modes": [
+    "manual",
+    "programado",
+    "seguro",
+    "solo si hay datos reales"
+  ],
+  "guardrails": [
+    "No crear partidos fake",
+    "No cerrar picks sin resultado real",
+    "No enviar Telegram con datos inventados",
+    "No consumir API sin control"
+  ]
+}
