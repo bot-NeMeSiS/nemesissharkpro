@@ -8937,3 +8937,47 @@ def retention_engine_v227():
         return render_template("retention_engine_v227.html")
     except Exception:
         return "<h1>V227 · Retention Engine</h1><p>REAL ONLY: engagement basado en actividad real.</p>"
+
+
+# V228 EXTREME PERFORMANCE OPTIMIZATION PRO
+@app.route("/admin/performance-center")
+@app.route("/cliente/performance-center")
+@app.route("/cliente/performance")
+def performance_center_v228():
+    try:
+        return render_template("performance_center_v228.html")
+    except Exception:
+        return "<h1>V228 · Performance Center</h1><p>Optimización, cache, móvil/PWA y REAL ONLY.</p>"
+
+@app.route("/api/v228/performance/status")
+def api_v228_performance_status():
+    return {
+        "version": "V228",
+        "idioma": "es",
+        "real_only": True,
+        "cache_first": True,
+        "lazy_loading": True,
+        "mensaje": "Optimización preparada. No se inventan datos para cargar más rápido."
+    }
+
+
+# V229 PERSONALIZATION AI ENGINE PRO
+@app.route("/cliente/personalizacion")
+@app.route("/cliente/mi-shark")
+@app.route("/admin/personalization-ai")
+def personalization_ai_v229():
+    try:
+        return render_template("personalization_ai_v229.html")
+    except Exception:
+        return "<h1>V229 · Personalization AI</h1><p>REAL ONLY: personalización basada en actividad real.</p>"
+
+@app.route("/api/v229/personalization/status")
+def api_v229_personalization_status():
+    return {
+        "version": "V229",
+        "idioma": "es",
+        "real_only": True,
+        "smart_priority": True,
+        "dynamic_home": True,
+        "mensaje": "Personalización preparada usando actividad real del usuario."
+    }
