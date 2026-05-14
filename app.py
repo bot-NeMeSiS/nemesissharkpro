@@ -8926,3 +8926,14 @@ def live_experience_v226():
 @app.route("/api/v226/live/status")
 def api_v226_live_status():
     return {"version":"V226","idioma":"es","real_only":True,"score_fallback":"— : —","mensaje":"Esperando datos reales del proveedor. No se inventan marcadores."}
+
+
+# V227 RETENTION ENGINE PRO
+@app.route("/cliente/retention-engine")
+@app.route("/cliente/engagement")
+@app.route("/admin/retention")
+def retention_engine_v227():
+    try:
+        return render_template("retention_engine_v227.html")
+    except Exception:
+        return "<h1>V227 · Retention Engine</h1><p>REAL ONLY: engagement basado en actividad real.</p>"

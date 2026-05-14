@@ -1,0 +1,15 @@
+{
+  "version": "V227_RETENTION_ENGINE_PRO",
+  "generated_at": "2026-05-14T18:00:35.146643+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "features": [
+    "Rachas diarias",
+    "Actividad usuario",
+    "Objetivos diarios",
+    "Favoritos",
+    "Resumen diario",
+    "Engagement tracking"
+  ],
+  "fallback": "Si no hay actividad suficiente, se muestra estado limpio."
+}
