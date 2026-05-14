@@ -1,0 +1,9 @@
+{
+  "version": "V260",
+  "name": "REAL ALERT DELIVERY BRIDGE PRO",
+  "real_only": true,
+  "routes": ["/real-alert-delivery-bridge", "/alert-delivery-bridge", "/cliente/real-alert-delivery-bridge", "/admin/real-alert-delivery-bridge"],
+  "status_endpoint": "/api/v260/real-alert-delivery-bridge/status",
+  "focus": ["PWA alerts", "Telegram alerts", "membership routing", "anti-spam", "data quality gate"],
+  "render_ready": true
+}

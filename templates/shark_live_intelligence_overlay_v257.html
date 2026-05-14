@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHARK Live Intelligence Overlay · NeMeSiS SHARK PRO</title>
+<link rel="stylesheet" href="/static/css/v245_navigation_unified.css">
+<link rel="stylesheet" href="/static/css/v257_shark_live_intelligence_overlay.css">
+</head>
+<body>
+<div class="nms-v245-topbar">
+  <button onclick="history.back()" class="nms-v245-navbtn">← Atrás</button>
+  <button onclick="history.forward()" class="nms-v245-navbtn">Adelante →</button>
+  <a href="/cliente/pro" class="nms-v245-navbtn">Mi cuenta</a>
+  <a href="/cliente/dashboard-pro" class="nms-v245-navbtn">Inicio</a>
+  <a href="/logout" class="nms-v245-navbtn nms-v245-logout">Salir</a>
+</div>
+
+<main class="v257-wrap">
+<section class="v257-hero">
+  <div class="v257-badges"><span>V257</span><span>Live Overlay</span><span>REAL ONLY</span></div>
+  <h1>SHARK Live Intelligence Overlay</h1>
+  <p>Capa visual premium para leer presión, ritmo, dominancia y señales live usando únicamente datos reales disponibles.</p>
+  <div class="v257-realonly">Si no hay datos suficientes, el sistema muestra estado limpio: no inventa momentum, presión, marcador ni alertas.</div>
+</section>
+
+<section class="v257-grid">
+  <article class="v257-card v257-main-card">
+    <h2>⚡ Presión contextual</h2>
+    <div class="v257-meter"><div id="v257-pressure-fill"></div></div>
+    <p id="v257-pressure-text">Esperando eventos, marcador o métricas live reales.</p>
+  </article>
+
+  <article class="v257-card">
+    <h2>📈 Ritmo live</h2>
+    <div class="v257-signal" id="v257-tempo">LOW DATA</div>
+    <p>Detecta si el partido empieza a calentarse solo cuando existe señal real.</p>
+  </article>
+
+  <article class="v257-card">
+    <h2>🔥 Interés SHARK</h2>
+    <div class="v257-signal" id="v257-interest">WATCH</div>
+    <p>Preparado para conectar con Hot Match Alerts, timeline y cuotas.</p>
+  </article>
+</section>
+
+<section class="v257-grid">
+  <article class="v257-card">
+    <h2>🏠 Dominancia local</h2>
+    <div class="v257-bar"><div id="v257-home-dom"></div></div>
+    <small>Sin eventos reales suficientes.</small>
+  </article>
+  <article class="v257-card">
+    <h2>🛡️ Dominancia visitante</h2>
+    <div class="v257-bar"><div id="v257-away-dom"></div></div>
+    <small>Sin eventos reales suficientes.</small>
+  </article>
+  <article class="v257-card">
+    <h2>🚨 Alertas premium</h2>
+    <div id="v257-alerts" class="v257-alerts"><div class="v257-empty">Sin alertas reales activas.</div></div>
+  </article>
+</section>
+
+<section class="v257-card">
+  <h2>Conexión preparada</h2>
+  <div class="v257-connect-grid">
+    <div>Pipeline live unificado</div><div>Timeline real</div><div>Snapshots ML</div><div>Hot Match Alerts</div><div>SHARK AI contextual</div><div>PWA / Telegram futuro</div>
+  </div>
+</section>
+</main>
+
+<div class="nms-v245-mobile-bottom">
+  <a href="/cliente/dashboard-pro">Inicio</a>
+  <a href="/fixtures/today-pro">Hoy</a>
+  <a href="/live-command-center">Live</a>
+  <a href="/cliente/favoritos">Favoritos</a>
+  <a href="/cliente/pro">Cuenta</a>
+</div>
+<a class="nms-v245-shark-float" href="/cliente/shark-ai-pro">🦈</a>
+<script src="/static/js/v257_shark_live_intelligence_overlay.js"></script>
+</body>
+</html>

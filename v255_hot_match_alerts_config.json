@@ -1,0 +1,9 @@
+{
+  "version": "V255",
+  "name": "HOT MATCH ALERTS ENGINE PRO",
+  "real_only": true,
+  "routes": ["/hot-match-alerts", "/cliente/hot-match-alerts", "/admin/hot-match-alerts", "/api/v255/hot-match-alerts/status"],
+  "purpose": "Detectar partidos accionables solo si existe cobertura real suficiente de live, cuota, fuente e ID externo.",
+  "no_fake_data": ["partidos", "marcadores", "minutos", "cuotas", "momentum", "alertas"],
+  "next_step": "Telegram/PWA Smart Alert Delivery con reglas de ahorro API."
+}

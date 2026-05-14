@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>V258 · Smart Live Orchestrator · NeMeSiS SHARK PRO</title>
+  <style>
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:#06111f;color:#eaf4ff}
+    .wrap{max-width:1180px;margin:0 auto;padding:28px 18px 90px}
+    .hero{border:1px solid rgba(46,213,255,.25);background:linear-gradient(135deg,rgba(7,23,43,.96),rgba(4,12,24,.98));border-radius:28px;padding:26px;box-shadow:0 24px 80px rgba(0,0,0,.35)}
+    .tag{display:inline-flex;padding:7px 12px;border:1px solid rgba(46,213,255,.35);border-radius:999px;color:#7de7ff;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    h1{font-size:clamp(30px,5vw,58px);line-height:.96;margin:18px 0 12px}.sub{color:#a9bed3;font-size:17px;max-width:850px;line-height:1.55}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:16px;margin-top:22px}.card{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.045);border-radius:22px;padding:18px}.card b{display:block;margin-bottom:8px;color:#fff}.card p{margin:0;color:#a9bed3;line-height:1.45}.ok{color:#59ffbc}.warn{color:#ffd166}.low{color:#8fa3b7}.pill{margin-top:14px;display:inline-flex;padding:8px 11px;border-radius:999px;background:rgba(89,255,188,.1);color:#59ffbc;font-size:13px;font-weight:800}.matrix{margin-top:18px;border-collapse:collapse;width:100%;overflow:hidden;border-radius:18px}.matrix th,.matrix td{border-bottom:1px solid rgba(255,255,255,.08);padding:13px;text-align:left}.matrix th{color:#7de7ff;font-size:12px;text-transform:uppercase;letter-spacing:.08em}.matrix td{color:#dcecff}.footer{margin-top:22px;color:#7f94aa;font-size:13px}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <span class="tag">V258 · Smart Live Orchestrator</span>
+      <h1>Refresco inteligente, menos API, más velocidad.</h1>
+      <p class="sub">Centro preparado para orquestar live, fixtures, odds, caché, snapshots y hot matches con filosofía REAL ONLY. No inventa partidos, marcadores, cuotas ni presión: solo prioriza lo que tenga datos reales y muestra fallback premium si falta información.</p>
+      <div class="grid">
+        <article class="card"><b class="ok">Smart Refresh</b><p>Frecuencia dinámica según estado del partido: live/HOT primero, próximos después, finalizados con baja prioridad.</p></article>
+        <article class="card"><b class="ok">API Call Shield</b><p>Evita llamadas repetidas y prepara ventanas de caché para ahorrar créditos de The Odds API.</p></article>
+        <article class="card"><b class="warn">Background Tasks Ready</b><p>Base lista para workers futuros en Render sin bloquear la experiencia del usuario.</p></article>
+        <article class="card"><b class="low">REAL ONLY</b><p>Si no hay dato real, se muestra estado incompleto en vez de inventar señales.</p></article>
+      </div>
+      <table class="matrix">
+        <thead><tr><th>Bloque</th><th>Prioridad</th><th>Política</th></tr></thead>
+        <tbody>
+          <tr><td>Partidos HOT live</td><td>Muy alta</td><td>Refresco corto si hay datos reales</td></tr>
+          <tr><td>Partidos live normales</td><td>Alta</td><td>Refresco moderado y controlado</td></tr>
+          <tr><td>Próximos partidos</td><td>Media</td><td>Caché más largo</td></tr>
+          <tr><td>Finalizados / baja señal</td><td>Baja</td><td>Sin spam API</td></tr>
+        </tbody>
+      </table>
+      <span class="pill">Preparado para Telegram/PWA alerts</span>
+      <div class="footer">NeMeSiS SHARK PRO · V258 · Build limpio para GitHub/Render</div>
+    </section>
+  </main>
+</body>
+</html>

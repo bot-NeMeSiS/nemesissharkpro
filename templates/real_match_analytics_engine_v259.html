@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>V259 · Real Match Analytics Engine</title>
+  <style>
+    :root{--bg:#07111f;--panel:#0c1b31;--panel2:#10243f;--text:#eaf3ff;--muted:#8fa6c4;--accent:#13d8ff;--gold:#f6c85f;--ok:#29e6a7;--warn:#ffcc66;--bad:#ff6680}
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial;background:radial-gradient(circle at top,#12345c 0,#07111f 42%,#030812 100%);color:var(--text)}
+    .wrap{max-width:1180px;margin:0 auto;padding:24px 16px 90px}.top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:22px}.badge{border:1px solid rgba(19,216,255,.35);color:var(--accent);padding:8px 12px;border-radius:999px;background:rgba(19,216,255,.08);font-weight:800;font-size:12px;letter-spacing:.08em}.hero{padding:24px;border:1px solid rgba(255,255,255,.08);border-radius:28px;background:linear-gradient(145deg,rgba(16,36,63,.94),rgba(7,17,31,.96));box-shadow:0 18px 60px rgba(0,0,0,.35)}
+    h1{margin:0 0 10px;font-size:clamp(28px,5vw,48px);line-height:1.02}.lead{color:var(--muted);font-size:17px;max-width:820px;line-height:1.55}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:18px}.card{background:rgba(12,27,49,.86);border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:16px;min-height:128px}.card h3{margin:0 0 8px;font-size:15px}.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}.meter{height:9px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:14px}.bar{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--ok))}.gold{color:var(--gold)}.ok{color:var(--ok)}.warn{color:var(--warn)}.section{margin-top:16px;display:grid;grid-template-columns:1.25fr .75fr;gap:14px}.list{display:grid;gap:10px}.row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:13px 14px;border-radius:18px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.06)}.row span{color:var(--muted);font-size:13px}.pill{font-size:12px;font-weight:900;border-radius:999px;padding:6px 9px;background:rgba(19,216,255,.1);color:var(--accent);white-space:nowrap}.footer{margin-top:18px;color:var(--muted);font-size:13px}.nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.nav a{color:var(--text);text-decoration:none;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);padding:10px 12px;border-radius:14px;font-weight:800;font-size:13px}
+    @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.section{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}} @media(max-width:560px){.grid{grid-template-columns:1fr}.wrap{padding:16px 12px 84px}.hero{padding:18px;border-radius:22px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="top"><div class="badge">V259 · REAL MATCH ANALYTICS ENGINE PRO</div><div class="badge">REAL ONLY SYSTEM</div></div>
+    <section class="hero">
+      <h1>Analítica contextual real para cada partido.</h1>
+      <p class="lead">Centro preparado para convertir live, cuotas, snapshots, timeline y calidad de datos en señales premium: peligro, ritmo, tendencia y contexto. Si una señal no tiene datos reales suficientes, se muestra como no disponible.</p>
+      <div class="nav">
+        <a href="/match-center-unified">Match Center</a><a href="/smart-live-orchestrator">Orquestador Live</a><a href="/shark-live-intelligence-overlay">Overlay SHARK</a><a href="/hot-match-alerts">Hot Alerts</a>
+      </div>
+    </section>
+    <section class="grid">
+      <article class="card"><h3>Índice de peligro</h3><p>Base preparada para expected danger real con eventos, minuto, marcador y ritmo.</p><div class="meter"><div class="bar" style="width:76%"></div></div></article>
+      <article class="card"><h3>Ritmo contextual</h3><p>Lectura de intensidad solo cuando el live feed aporte señales verificables.</p><div class="meter"><div class="bar" style="width:72%"></div></div></article>
+      <article class="card"><h3>Cambio de tendencia</h3><p>Preparado para detectar giros con snapshots históricos y movimiento de cuotas.</p><div class="meter"><div class="bar" style="width:69%"></div></div></article>
+      <article class="card"><h3>Calidad de datos</h3><p>Guard rail para impedir presión, momentum o alertas inventadas.</p><div class="meter"><div class="bar" style="width:92%"></div></div></article>
+    </section>
+    <section class="section">
+      <div class="card"><h3>Motor de señales</h3><div class="list">
+        <div class="row"><strong>Marcador + minuto</strong><span>Binding obligatorio para contexto live</span><b class="pill">BASE</b></div>
+        <div class="row"><strong>Cuotas + movimiento</strong><span>Preparado para detectar value y cambios de mercado</span><b class="pill">ODDS</b></div>
+        <div class="row"><strong>Timeline + eventos</strong><span>Goles, tarjetas, incidentes y ritmo real cuando la fuente lo permita</span><b class="pill">LIVE</b></div>
+        <div class="row"><strong>Snapshots ML</strong><span>Histórico para patrones y tendencias futuras</span><b class="pill">ML READY</b></div>
+      </div></div>
+      <div class="card"><h3>Regla premium</h3><p>NeMeSiS SHARK PRO no rellena huecos con fantasía. Sin datos reales suficientes: fallback elegante, explicación clara y señal bloqueada.</p><p class="footer"><b class="ok">Preparado:</b> intelligence cards, danger base, trend shift y auditoría de calidad.</p></div>
+    </section>
+  </main>
+</body>
+</html>

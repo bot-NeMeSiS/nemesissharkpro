@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>V261 · Smart Value Detection</title>
+  <style>
+    :root{--bg:#06111f;--card:#0c1b30;--muted:#8ea6c8;--text:#eff7ff;--line:rgba(255,255,255,.10);--gold:#f6c85f;--blue:#4db7ff;--green:#55e6a5;--red:#ff718d}
+    *{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at top,#12365f 0,#06111f 42%,#03070d 100%);color:var(--text);font-family:Inter,system-ui,Segoe UI,Arial,sans-serif}
+    .wrap{max-width:1180px;margin:auto;padding:28px 16px 80px}.top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}.badge{display:inline-flex;border:1px solid rgba(77,183,255,.35);background:rgba(77,183,255,.12);border-radius:999px;padding:7px 11px;color:#bfe7ff;font-weight:700;font-size:12px}.h1{font-size:clamp(30px,5vw,58px);line-height:.95;margin:14px 0 10px;font-weight:950;letter-spacing:-.05em}.sub{color:var(--muted);max-width:760px;font-size:16px;line-height:1.55}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:22px 0}.kpi{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.035));border:1px solid var(--line);border-radius:22px;padding:16px}.kpi b{display:block;font-size:28px}.kpi span{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em}.panel{background:rgba(6,17,31,.72);border:1px solid var(--line);border-radius:28px;padding:16px;box-shadow:0 24px 80px rgba(0,0,0,.28)}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{background:linear-gradient(180deg,rgba(12,27,48,.96),rgba(7,17,31,.96));border:1px solid var(--line);border-radius:24px;padding:16px;min-height:250px}.card.high{border-color:rgba(246,200,95,.55);box-shadow:0 0 34px rgba(246,200,95,.08)}.title{font-size:17px;font-weight:900;margin:10px 0 8px}.meta{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0 12px}.pill{font-size:12px;padding:6px 9px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid var(--line);color:#cfe2ff}.score{height:10px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin:12px 0}.score i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--green),var(--gold));border-radius:inherit}.band{font-weight:950;color:var(--gold);font-size:13px;letter-spacing:.04em}.reasons{margin:12px 0 0;padding:0;list-style:none;color:var(--muted);font-size:13px}.reasons li{margin:6px 0}.empty{padding:28px;border:1px dashed rgba(255,255,255,.18);border-radius:22px;color:var(--muted);text-align:center}.nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.btn{color:var(--text);text-decoration:none;border:1px solid var(--line);background:rgba(255,255,255,.06);padding:10px 13px;border-radius:14px;font-weight:800;font-size:13px}@media(max-width:900px){.grid,.cards{grid-template-columns:1fr 1fr}}@media(max-width:620px){.grid,.cards{grid-template-columns:1fr}.wrap{padding:20px 12px 90px}.card{min-height:auto}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="top">
+      <div>
+        <div class="badge">V261 · REAL ONLY · VALUE INTELLIGENCE</div>
+        <h1 class="h1">Smart Value Detection<br>+ Bankroll Edge</h1>
+        <p class="sub">Motor premium para detectar calidad de señal, valor observable y stake orientativo sin inventar cuotas, picks ni probabilidades. Si falta dato real, baja la confianza y muestra fallback limpio.</p>
+      </div>
+      <div class="nav">
+        <a class="btn" href="/cliente/pro">Mi cuenta</a>
+        <a class="btn" href="/live-command-center">Live</a>
+        <a class="btn" href="/real-match-analytics">Analytics</a>
+        <a class="btn" href="/real-alert-delivery-bridge">Alertas</a>
+      </div>
+    </section>
+    <section class="grid">
+      <div class="kpi"><span>Señales reales</span><b>{{ data.total }}</b></div>
+      <div class="kpi"><span>Value alto</span><b>{{ data.high }}</b></div>
+      <div class="kpi"><span>Value watch</span><b>{{ data.watch }}</b></div>
+      <div class="kpi"><span>Low data</span><b>{{ data.low }}</b></div>
+    </section>
+    <section class="panel">
+      {% if data.items %}
+      <div class="cards">
+        {% for m in data.items %}
+        <article class="card {% if m.quality >= 78 %}high{% endif %}">
+          <div class="band">{{ m.band }} · {{ m.quality }}/100</div>
+          <div class="score"><i style="width:{{ m.quality }}%"></i></div>
+          <div class="title">{{ m.title or 'Partido real sin título completo' }}</div>
+          <div class="meta">
+            <span class="pill">{{ m.league or 'Liga real pendiente' }}</span>
+            <span class="pill">{{ m.live_status or 'PROGRAMADO' }}</span>
+            {% if m.live_minute %}<span class="pill">{{ m.live_minute }}</span>{% endif %}
+            {% if m.live_score %}<span class="pill">{{ m.live_score }}</span>{% endif %}
+          </div>
+          <div class="meta">
+            {% if m.pick %}<span class="pill">Pick: {{ m.pick }}</span>{% endif %}
+            {% if m.cuota %}<span class="pill">Cuota: {{ m.cuota }}</span>{% endif %}
+            {% if m.ev %}<span class="pill">EV: {{ m.ev }}%</span>{% endif %}
+            <span class="pill">Stake guía: {{ m.bankroll_unit }}u</span>
+          </div>
+          <ul class="reasons">
+            {% for r in m.reasons %}<li>✓ {{ r }}</li>{% endfor %}
+            {% if not m.reasons %}<li>Datos insuficientes para señal premium.</li>{% endif %}
+          </ul>
+        </article>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="empty">No hay señales reales suficientes ahora mismo. El sistema no inventa value: espera a que entren partidos/cuotas reales desde tus APIs.</div>
+      {% endif %}
+    </section>
+  </main>
+</body>
+</html>
