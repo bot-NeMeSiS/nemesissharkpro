@@ -1,0 +1,32 @@
+
+/* V246 · Live Score + Crests Fix Pro */
+body{margin:0;background:#06111f;color:#eef6ff;font-family:Arial,Helvetica,sans-serif}
+.nms-v246-wrap{max-width:1180px;margin:auto;padding:86px 16px 110px}
+.nms-v246-hero{border:1px solid rgba(0,190,255,.24);background:radial-gradient(circle at top left,rgba(0,190,255,.16),transparent 35%),linear-gradient(135deg,#071b31,#090f1d);border-radius:28px;padding:24px;box-shadow:0 22px 90px rgba(0,0,0,.38)}
+.nms-v246-badge{display:inline-block;padding:8px 11px;border-radius:999px;background:rgba(0,180,255,.12);border:1px solid rgba(0,180,255,.25);margin:3px}
+.nms-v246-live-card{margin-top:18px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.055);border-radius:26px;padding:20px;box-shadow:0 18px 70px rgba(0,0,0,.30)}
+.nms-v246-status-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.nms-v246-live-dot{width:10px;height:10px;border-radius:999px;background:#ff4d4d;box-shadow:0 0 18px rgba(255,77,77,.9)}
+.nms-v246-status-text{font-weight:900;color:#ffb6b6}
+.nms-v246-minute{margin-left:auto;border-radius:999px;padding:8px 12px;background:rgba(255,211,110,.09);border:1px solid rgba(255,211,110,.28);color:#ffe19b;font-weight:800}
+.nms-v246-scoreboard{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px}
+.nms-v246-team{text-align:center;min-width:0}
+.nms-v246-crest{width:64px;height:64px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(0,190,255,.22),rgba(110,242,181,.16));border:1px solid rgba(0,210,255,.28);font-weight:900;color:#eef6ff;overflow:hidden}
+.nms-v246-crest img{width:100%;height:100%;object-fit:contain}
+.nms-v246-team-name{font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nms-v246-score{font-size:44px;font-weight:1000;letter-spacing:.5px;min-width:116px;text-align:center;color:#fff;text-shadow:0 0 24px rgba(0,210,255,.28)}
+.nms-v246-info{margin-top:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;color:#cfe6ff}
+.nms-v246-info div{border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.04);border-radius:16px;padding:12px}
+.nms-v246-actions{display:flex;gap:10px;overflow-x:auto;margin-top:16px;padding-bottom:4px}
+.nms-v246-actions a{white-space:nowrap;text-decoration:none;color:#eef6ff;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);border-radius:999px;padding:10px 13px}
+.nms-v246-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:18px}
+.nms-v246-panel{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.11);border-radius:22px;padding:18px}
+@media(max-width:640px){
+  .nms-v246-wrap{padding:78px 12px 112px}
+  .nms-v246-hero{padding:18px;border-radius:24px}
+  .nms-v246-live-card{padding:16px;border-radius:22px}
+  .nms-v246-scoreboard{gap:8px}
+  .nms-v246-crest{width:52px;height:52px;font-size:13px}
+  .nms-v246-score{font-size:32px;min-width:86px}
+  .nms-v246-minute{margin-left:0}
+}

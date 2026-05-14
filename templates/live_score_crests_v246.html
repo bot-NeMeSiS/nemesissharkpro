@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Live · NeMeSiS SHARK PRO</title>
+<link rel="stylesheet" href="/static/css/v245_navigation_unified.css">
+<link rel="stylesheet" href="/static/css/v246_live_score_crests.css">
+</head>
+<body>
+<div class="nms-v245-topbar">
+  <button onclick="history.back()" class="nms-v245-navbtn">← Atrás</button>
+  <button onclick="history.forward()" class="nms-v245-navbtn">Adelante →</button>
+  <a href="/cliente/pro" class="nms-v245-navbtn">Mi cuenta</a>
+  <a href="/cliente/dashboard-pro" class="nms-v245-navbtn">Inicio</a>
+  <a href="/logout" class="nms-v245-navbtn nms-v245-logout">Salir</a>
+</div>
+
+<main class="nms-v246-wrap">
+<section class="nms-v246-hero">
+  <span class="nms-v246-badge">V246</span>
+  <span class="nms-v246-badge">Live Score</span>
+  <span class="nms-v246-badge">Escudos</span>
+  <span class="nms-v246-badge">REAL ONLY</span>
+  <h1>Directo premium</h1>
+  <p>Marcador, minuto y escudos visibles. Si el proveedor no manda el dato real, no se inventa.</p>
+</section>
+
+<section class="nms-v246-live-card">
+  <div class="nms-v246-status-row">
+    <span class="nms-v246-live-dot"></span>
+    <span class="nms-v246-status-text" id="v246-match-status">En directo</span>
+    <span class="nms-v246-minute" id="v246-match-minute">Pendiente de minuto real</span>
+  </div>
+
+  <div class="nms-v246-scoreboard">
+    <div class="nms-v246-team">
+      <div class="nms-v246-crest" id="v246-home-crest">LOC</div>
+      <div class="nms-v246-team-name" id="v246-home-name">Equipo local</div>
+    </div>
+
+    <div class="nms-v246-score" id="v246-score">— : —</div>
+
+    <div class="nms-v246-team">
+      <div class="nms-v246-crest" id="v246-away-crest">VIS</div>
+      <div class="nms-v246-team-name" id="v246-away-name">Equipo visitante</div>
+    </div>
+  </div>
+
+  <div class="nms-v246-info">
+    <div><b>Marcador:</b> solo si llega dato real.</div>
+    <div><b>Minuto:</b> solo si llega dato real.</div>
+    <div><b>Escudos:</b> logo real si existe; si no, iniciales premium.</div>
+  </div>
+
+  <div class="nms-v246-actions">
+    <a href="/match-center-real">Match Center</a>
+    <a href="/cliente/shark-ai-pro">SHARK AI</a>
+    <a href="/cliente/value-radar">Value Radar</a>
+    <a href="/cliente/favoritos">Favoritos</a>
+  </div>
+</section>
+
+<section class="nms-v246-grid">
+  <div class="nms-v246-panel"><h3>⚽ Resultado</h3><p>El marcador queda preparado para pintarse desde payload real.</p></div>
+  <div class="nms-v246-panel"><h3>⏱️ Minuto</h3><p>El minuto no se inventa. Si no llega, se muestra estado pendiente.</p></div>
+  <div class="nms-v246-panel"><h3>🛡️ Escudos</h3><p>Logo real o fallback premium con iniciales.</p></div>
+</section>
+</main>
+
+<div class="nms-v245-mobile-bottom">
+  <a href="/cliente/dashboard-pro">Inicio</a>
+  <a href="/fixtures/today-pro">Hoy</a>
+  <a href="/live-command-center">Live</a>
+  <a href="/cliente/favoritos">Favoritos</a>
+  <a href="/cliente/pro">Cuenta</a>
+</div>
+<a class="nms-v245-shark-float" href="/cliente/shark-ai-pro">🦈</a>
+<script src="/static/js/v246_live_score_crests.js"></script>
+</body>
+</html>

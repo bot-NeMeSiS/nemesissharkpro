@@ -1,0 +1,19 @@
+{
+  "version": "V246_LIVE_SCORE_CRESTS_FIX_PRO",
+  "generated_at": "2026-05-14T20:13:56.586916+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "fixes": [
+    "Marcador visible en live",
+    "Minuto visible en live",
+    "Estado partido visible",
+    "Escudos visibles si existen",
+    "Fallback premium para escudos",
+    "Live cards coherentes con la app"
+  ],
+  "fallbacks": {
+    "score": "— : —",
+    "minute": "Pendiente de minuto real",
+    "crest": "iniciales del equipo"
+  }
+}

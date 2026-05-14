@@ -9291,3 +9291,27 @@ def api_v245_navigation_status():
         "account_access": True,
         "mensaje": "Navegación unificada preparada para pantallas aisladas."
     }
+
+
+# V246 LIVE SCORE + CRESTS FIX PRO
+@app.route("/live-command-center-v246")
+@app.route("/cliente/live-v246")
+@app.route("/cliente/live-score-crests")
+def live_score_crests_v246():
+    try:
+        return render_template("live_score_crests_v246.html")
+    except Exception:
+        return "<h1>V246 · Live Score + Escudos</h1><p>Marcador, minuto y escudos preparados. REAL ONLY.</p>"
+
+@app.route("/api/v246/live-score-crests/status")
+def api_v246_live_score_crests_status():
+    return {
+        "version": "V246",
+        "idioma": "es",
+        "real_only": True,
+        "score_visible": True,
+        "minute_visible": True,
+        "crests_visible": True,
+        "fallback_score": "— : —",
+        "mensaje": "Live preparado con marcador, minuto y escudos sin inventar datos."
+    }
