@@ -1,0 +1,23 @@
+{
+  "version": "V225_SHARK_AI_EVOLUTION_PRO",
+  "generated_at": "2026-05-14T17:05:08.960610+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "modos": [
+    "Resumen diario",
+    "Partidos en directo",
+    "Análisis de pick",
+    "Riesgo bajo",
+    "Valor potencial",
+    "Favoritos",
+    "Movimiento de cuotas"
+  ],
+  "guardrails": [
+    "No inventar partidos",
+    "No inventar marcadores",
+    "No inventar cuotas",
+    "No prometer aciertos",
+    "Explicar cuando faltan datos"
+  ],
+  "fallback": "No tengo datos reales suficientes para analizar esto ahora mismo."
+}

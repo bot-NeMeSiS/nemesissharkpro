@@ -1,0 +1,14 @@
+{
+  "version": "V224_REAL_PUSH_NOTIFICATIONS_PRO",
+  "generated_at": "2026-05-14T17:00:25.941338+00:00",
+  "real_only": true,
+  "tipos_alerta": [
+    "gol",
+    "roja",
+    "pick_nuevo",
+    "favorito_live",
+    "alerta_shark",
+    "movimiento_cuota"
+  ],
+  "fallback": "Si no hay evento real del proveedor, no se envía alerta fake."
+}

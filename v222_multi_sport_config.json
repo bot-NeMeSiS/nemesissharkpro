@@ -1,0 +1,46 @@
+{
+  "version": "V222_MULTI_SPORT_EXPANSION_PRO",
+  "generated_at": "2026-05-14T16:44:17.851417+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "deporte_principal": "futbol",
+  "deportes": [
+    {
+      "id": "futbol",
+      "nombre": "Fútbol",
+      "estado": "principal",
+      "real_only": true
+    },
+    {
+      "id": "baloncesto",
+      "nombre": "Baloncesto",
+      "estado": "preparado",
+      "real_only": true
+    },
+    {
+      "id": "tenis",
+      "nombre": "Tenis",
+      "estado": "preparado",
+      "real_only": true
+    },
+    {
+      "id": "nfl",
+      "nombre": "NFL",
+      "estado": "preparado",
+      "real_only": true
+    },
+    {
+      "id": "esports",
+      "nombre": "eSports",
+      "estado": "preparado",
+      "real_only": true
+    },
+    {
+      "id": "ufc",
+      "nombre": "UFC",
+      "estado": "preparado",
+      "real_only": true
+    }
+  ],
+  "regla": "Si no hay API real configurada para un deporte, se muestra estado pendiente y no se inventan partidos."
+}

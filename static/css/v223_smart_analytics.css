@@ -1,0 +1,7 @@
+
+/* V223 · Smart Analytics Evolution Pro */
+.nms-analytics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.nms-analytics-card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:16px}
+.nms-analytics-value{font-size:28px;font-weight:900}
+.nms-analytics-empty{border:1px dashed rgba(255,255,255,.18);background:rgba(255,255,255,.04);border-radius:20px;padding:22px;text-align:center}
+.nms-analytics-trust{border:1px solid rgba(255,211,110,.35);background:rgba(255,211,110,.08);color:#ffe19b;border-radius:16px;padding:12px 14px;font-weight:800}

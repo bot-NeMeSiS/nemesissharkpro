@@ -1,0 +1,6 @@
+
+/* V225 · SHARK AI Evolution Pro */
+.nms-ai-prompt{border-radius:999px;padding:10px 13px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);display:inline-flex;gap:8px;align-items:center}
+.nms-ai-card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:16px}
+.nms-ai-guardrail{padding:14px;border-radius:16px;background:rgba(255,211,110,.09);border:1px solid rgba(255,211,110,.35);color:#ffe19b;font-weight:800}
+.nms-ai-answer{line-height:1.55;color:#d8ecff}

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Performance Center · NeMeSiS SHARK PRO</title>
+<style>
+body{margin:0;background:#06111f;color:#eef6ff;font-family:Arial,Helvetica,sans-serif}
+.wrap{max-width:1080px;margin:auto;padding:24px 16px 90px}
+.hero{border:1px solid rgba(0,190,255,.25);background:linear-gradient(135deg,#071b31,#090f1d);border-radius:24px;padding:22px;box-shadow:0 20px 70px rgba(0,0,0,.35)}
+.badge{display:inline-block;padding:7px 10px;border-radius:999px;background:rgba(0,180,255,.12);border:1px solid rgba(0,180,255,.25);margin:3px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
+.card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:16px}
+.metric{font-size:32px;font-weight:900}
+.ok{color:#6ef2b5}.warn{color:#ffe19b}
+.bar{height:9px;border-radius:999px;background:rgba(255,255,255,.09);overflow:hidden;margin-top:10px}
+.fill{height:100%;width:78%;background:linear-gradient(90deg,#27d6ff,#6ef2b5)}
+.notice{padding:14px;border-radius:16px;background:rgba(255,211,110,.09);border:1px solid rgba(255,211,110,.35);color:#ffe19b;font-weight:800}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="hero">
+<span class="badge">V228</span>
+<span class="badge">Performance</span>
+<span class="badge">PWA</span>
+<span class="badge">REAL ONLY</span>
+<h1>Centro de rendimiento extremo</h1>
+<p>Optimización de velocidad, caché, móvil/PWA y consumo de API.</p>
+<div class="notice">Nunca se inventan datos para cargar más rápido. Si falta dato real, se muestra fallback limpio.</div>
+</section>
+
+<div class="grid">
+<div class="card"><div class="metric ok">Cache</div><p>Preparado para reutilizar datos válidos y reducir consumo API.</p><div class="bar"><div class="fill"></div></div></div>
+<div class="card"><div class="metric ok">Móvil</div><p>Preparado para cargas más suaves y cards ligeras.</p><div class="bar"><div class="fill"></div></div></div>
+<div class="card"><div class="metric warn">Live</div><p>Priorizar marcador, estado e incidencias reales.</p><div class="bar"><div class="fill"></div></div></div>
+<div class="card"><div class="metric ok">PWA</div><p>Mejor sensación app con refresh ligero.</p><div class="bar"><div class="fill"></div></div></div>
+</div>
+
+<div class="grid">
+<div class="card"><h3>⚡ Lazy loading</h3><p>Cargar primero lo importante y dejar lo secundario después.</p></div>
+<div class="card"><h3>🧠 Cache inteligente</h3><p>No repetir llamadas si los datos siguen siendo válidos.</p></div>
+<div class="card"><h3>📱 Mobile smooth</h3><p>Menos bloqueo visual y estados más limpios.</p></div>
+<div class="card"><h3>🛡️ Recovery</h3><p>Si falla proveedor, la app no se rompe ni muestra datos falsos.</p></div>
+</div>
+</div>
+</body>
+</html>

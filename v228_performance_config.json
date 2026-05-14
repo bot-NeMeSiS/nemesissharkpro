@@ -1,0 +1,22 @@
+{
+  "version": "V228_EXTREME_PERFORMANCE_OPTIMIZATION_PRO",
+  "generated_at": "2026-05-14T18:07:11.075241+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "objetivos": [
+    "Menos recargas",
+    "Mejor móvil/PWA",
+    "Cache más inteligente",
+    "Lazy loading",
+    "Menor uso API",
+    "Render más estable",
+    "Pantallas más rápidas"
+  ],
+  "reglas": [
+    "No llamar API si hay cache válido",
+    "No bloquear UI si falta proveedor",
+    "Mostrar skeleton/empty state limpio",
+    "Priorizar datos críticos live",
+    "No inventar datos por velocidad"
+  ]
+}

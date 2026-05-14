@@ -1,0 +1,27 @@
+{
+  "version": "V229_PERSONALIZATION_AI_ENGINE_PRO",
+  "generated_at": "2026-05-14T18:10:13.240864+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "personalizacion": [
+    "Deportes favoritos",
+    "Ligas favoritas",
+    "Equipos favoritos",
+    "Horarios de uso",
+    "Partidos consultados",
+    "Picks revisados",
+    "Uso SHARK AI",
+    "Live preferidos"
+  ],
+  "engine": {
+    "smart_priority": true,
+    "home_dinamica": true,
+    "alertas_personalizadas": true,
+    "ml_readiness": true
+  },
+  "privacy": [
+    "Sin venta de datos",
+    "Sin tracking invasivo",
+    "Sin inventar preferencias"
+  ]
+}

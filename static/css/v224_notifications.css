@@ -1,0 +1,13 @@
+
+.nms-notification-card{
+  border-radius:18px;
+  padding:16px;
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.12);
+}
+.nms-notification-badge{
+  border-radius:999px;
+  padding:7px 10px;
+  background:rgba(0,180,255,.12);
+  border:1px solid rgba(0,180,255,.25);
+}

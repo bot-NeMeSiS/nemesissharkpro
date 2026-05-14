@@ -1,0 +1,5 @@
+
+.nms-empty-state{border:1px dashed rgba(255,255,255,.18);background:rgba(255,255,255,.04);border-radius:20px;padding:22px;text-align:center}
+.nms-trust-badge{border:1px solid rgba(255,211,110,.35);background:rgba(255,211,110,.08);color:#ffe19b;border-radius:999px;padding:8px 12px;font-weight:800}
+.nms-mobile-card{border-radius:20px;padding:16px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12)}
+@media(max-width:720px){.nms-mobile-card{padding:14px;border-radius:18px}.nms-hero-compact{padding:18px!important}}
