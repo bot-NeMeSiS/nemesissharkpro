@@ -1,0 +1,19 @@
+{
+  "version": "V223_SMART_ANALYTICS_EVOLUTION_PRO",
+  "generated_at": "2026-05-14T16:51:31.975804+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "metricas": [
+    "ROI real",
+    "Winrate real",
+    "Beneficio",
+    "Cuota media",
+    "Racha",
+    "Riesgo medio",
+    "Mercados top",
+    "Ligas top",
+    "Evolución mensual",
+    "Actividad usuario"
+  ],
+  "fallback": "Si no hay histórico suficiente, no se inventa. Se muestra estado limpio."
+}

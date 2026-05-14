@@ -8838,3 +8838,41 @@ def admin_quality_audit_v217():
         <p>REAL ONLY: si no hay dato real, no se inventa.</p>
         </body></html>
         """
+
+
+# =========================
+# V221 CUSTOMER EXPERIENCE POLISH PRO
+# =========================
+@app.route("/cliente/experiencia-v221")
+@app.route("/cliente/customer-experience")
+def cliente_experiencia_v221():
+    try:
+        return render_template("customer_experience_v221.html")
+    except Exception:
+        return "<h1>NeMeSiS SHARK PRO · Experiencia Cliente V221</h1><p>REAL ONLY: si no hay dato real, no se inventa.</p>"
+
+
+# =========================
+# V222 MULTI-SPORT EXPANSION PRO
+# =========================
+@app.route("/cliente/multi-deporte")
+@app.route("/cliente/multi-sport")
+@app.route("/admin/multi-deporte")
+def multi_sport_expansion_v222():
+    try:
+        return render_template("multi_sport_v222.html")
+    except Exception:
+        return "<h1>V222 · Multi-deporte</h1><p>REAL ONLY: fútbol principal; otros deportes preparados para APIs reales.</p>"
+
+
+# =========================
+# V223 SMART ANALYTICS EVOLUTION PRO
+# =========================
+@app.route("/cliente/analytics-pro")
+@app.route("/cliente/smart-analytics")
+@app.route("/admin/smart-analytics")
+def smart_analytics_v223():
+    try:
+        return render_template("smart_analytics_v223.html")
+    except Exception:
+        return "<h1>V223 · Analíticas inteligentes</h1><p>REAL ONLY: si no hay histórico suficiente, no se inventan métricas.</p>"
