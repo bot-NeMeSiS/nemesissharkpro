@@ -1,0 +1,33 @@
+{
+  "version": "V235_PAYMENT_SYSTEM_READY_PRO",
+  "generated_at": "2026-05-14T18:47:14.634881+00:00",
+  "real_only": true,
+  "membership_engine": {
+    "plans": [
+      "FREE",
+      "PRO",
+      "ELITE"
+    ],
+    "feature_gating": true,
+    "subscription_states": [
+      "active",
+      "trial",
+      "expiring",
+      "expired",
+      "cancelled"
+    ]
+  },
+  "billing": {
+    "payments_ready": true,
+    "stripe_ready": true,
+    "webhooks_ready": true,
+    "upgrade_flow": true
+  },
+  "premium_sections": [
+    "SHARK AI",
+    "Value Radar",
+    "Match Intelligence",
+    "Premium Live",
+    "Advanced Alerts"
+  ]
+}

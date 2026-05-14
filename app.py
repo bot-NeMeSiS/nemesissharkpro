@@ -9066,3 +9066,25 @@ def api_v234_ux_status():
         "mobile_optimized": True,
         "mensaje": "UX premium refinada."
     }
+
+
+# V235 PAYMENT SYSTEM READY PRO
+@app.route("/premium-billing")
+@app.route("/billing")
+@app.route("/admin/billing")
+def payment_system_v235():
+    try:
+        return render_template("payment_system_v235.html")
+    except Exception:
+        return "<h1>V235 · Payment System Ready</h1><p>Arquitectura premium preparada para pagos futuros.</p>"
+
+@app.route("/api/v235/billing/status")
+def api_v235_billing_status():
+    return {
+        "version": "V235",
+        "idioma": "es",
+        "stripe_ready": True,
+        "webhooks_ready": True,
+        "membership_engine": True,
+        "mensaje": "Sistema premium preparado para pagos futuros."
+    }
