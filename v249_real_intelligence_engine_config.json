@@ -1,0 +1,29 @@
+{
+  "version": "V249_REAL_INTELLIGENCE_ENGINE_PRO",
+  "generated_at": "2026-05-14T20:27:23.777723+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "modules": [
+    "Live Pressure Engine",
+    "Momentum Detection",
+    "Dominance Flow",
+    "Heat Intensity",
+    "Smart Alerts",
+    "Hot Match Detection",
+    "Contextual SHARK AI",
+    "ML Future Preparation"
+  ],
+  "alerts_examples": [
+    "Presión alta local",
+    "Momentum visitante",
+    "Partido caliente",
+    "Ataques peligrosos consecutivos",
+    "Cuota moviéndose rápido"
+  ],
+  "guardrails": [
+    "No inventar presión",
+    "No inventar momentum",
+    "No inventar alertas",
+    "Mostrar estado insuficiente si faltan datos"
+  ]
+}

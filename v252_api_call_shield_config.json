@@ -1,0 +1,1 @@
+{"version":"V252","name":"API CALL SHIELD + CACHE POLICY PRO","real_only":true,"routes":["/api-call-shield","/cliente/api-call-shield","/admin/api-call-shield","/api/v252/api-call-shield/status"],"goal":"Reducir consumo API detectando caché segura, datos caducados y binding incompleto sin inventar datos."}

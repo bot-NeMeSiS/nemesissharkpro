@@ -19,7 +19,7 @@ from zoneinfo import ZoneInfo
 
 from flask import Flask, render_template, request, redirect, session, jsonify, send_from_directory, Response
 
-APP_VERSION = "NeMeSiS_SHARK_PRO_V195_0_CLIENT_POLISH_CONFIDENCE_CLEANUP_RENDER_READY"
+APP_VERSION = "NeMeSiS_SHARK_PRO_V253_0_REAL_SNAPSHOT_RECORDER_ML_FOUNDATION_PRO_RENDER_READY"
 APP_NAME = "NeMeSiS SHARK PRO"
 
 
@@ -9361,3 +9361,646 @@ def api_v248_match_center_status():
         "timeline_ready": True,
         "mensaje": "Match Center unificado preparado."
     }
+
+
+# V249 REAL INTELLIGENCE ENGINE PRO
+@app.route("/real-intelligence-engine")
+@app.route("/cliente/real-intelligence")
+@app.route("/admin/real-intelligence")
+def real_intelligence_engine_v249():
+    try:
+        return render_template("real_intelligence_engine_v249.html")
+    except Exception:
+        return "<h1>V249 · Real Intelligence Engine</h1><p>Motor contextual preparado. REAL ONLY.</p>"
+
+@app.route("/api/v249/real-intelligence/status")
+def api_v249_real_intelligence_status():
+    return {
+        "version": "V249",
+        "idioma": "es",
+        "real_only": True,
+        "pressure_engine": True,
+        "momentum_detection": True,
+        "hot_match_detection": True,
+        "smart_alerts": True,
+        "mensaje": "Motor de inteligencia real preparado."
+    }
+
+
+# V250 REAL DATA HEALTH COMMAND CENTER PRO
+# Objetivo: detectar rápido por qué faltan partidos/live/escudos sin inventar nada y sin gastar API de más.
+def _v250_safe_count(cur, sql, params=()):
+    try:
+        cur.execute(sql, params)
+        row = cur.fetchone()
+        return int((row[0] if row else 0) or 0)
+    except Exception:
+        return 0
+
+
+def v250_real_data_health_snapshot():
+    now = utc_now()
+    snap = {
+        "version": "V250",
+        "idioma": "es",
+        "real_only": True,
+        "generated_at": madrid_iso_now(),
+        "providers": {
+            "the_odds_api": {"enabled": bool(ENABLE_ODDS_API), "key": bool(ODDS_API_KEY), "cache_minutes": ODDS_CACHE_MINUTES},
+            "thesportsdb": {"enabled": bool(ENABLE_LIVE_API), "key": bool(THESPORTSDB_KEY), "cache_minutes": LIVE_CACHE_MINUTES},
+            "api_football": {"enabled": bool(ENABLE_API_FOOTBALL), "key": bool(API_FOOTBALL_KEY), "days_ahead": API_FOOTBALL_DAYS_AHEAD},
+        },
+        "limits": {
+            "performance_safe_mode": bool(PERFORMANCE_SAFE_MODE),
+            "max_sports_per_refresh": MAX_SPORTS_PER_REFRESH,
+            "max_events_per_sport": MAX_EVENTS_PER_SPORT,
+            "public_refresh_cooldown_seconds": PUBLIC_LIVE_REFRESH_COOLDOWN_SECONDS,
+            "admin_refresh_cooldown_seconds": ADMIN_REFRESH_COOLDOWN_SECONDS,
+            "odds_monthly_credit_limit": ODDS_MONTHLY_CREDIT_LIMIT,
+            "live_daily_request_limit": LIVE_DAILY_REQUEST_LIMIT,
+        },
+        "counts": {},
+        "quality": {},
+        "cache": {},
+        "alerts": [],
+        "recommendations": [],
+        "message": "Diagnóstico real preparado. No se inventan partidos, marcadores, minutos ni escudos."
+    }
+    conn = None
+    try:
+        conn = get_db()
+        cur = conn.cursor()
+        snap["counts"]["picks_active"] = _v250_safe_count(cur, "SELECT COUNT(*) FROM picks WHERE COALESCE(active,1)=1")
+        snap["counts"]["fixtures_today"] = _v250_safe_count(cur, "SELECT COUNT(*) FROM picks WHERE COALESCE(active,1)=1 AND substr(COALESCE(kickoff_time,''),1,10)=?", (madrid_date_today().isoformat(),))
+        snap["counts"]["live_with_score"] = _v250_safe_count(cur, "SELECT COUNT(*) FROM picks WHERE COALESCE(active,1)=1 AND COALESCE(live_score,'')!=''")
+        snap["counts"]["live_with_minute"] = _v250_safe_count(cur, "SELECT COUNT(*) FROM picks WHERE COALESCE(active,1)=1 AND COALESCE(live_minute,'')!=''")
+        snap["counts"]["with_odds"] = _v250_safe_count(cur, "SELECT COUNT(*) FROM picks WHERE COALESCE(active,1)=1 AND COALESCE(odds_decimal,'')!=''")
+        snap["counts"]["real_sources"] = _v250_safe_count(cur, "SELECT COUNT(*) FROM picks WHERE COALESCE(active,1)=1 AND LOWER(COALESCE(source,'')) NOT IN ('','manual','demo','fake')")
+        snap["counts"]["api_cache_rows"] = _v250_safe_count(cur, "SELECT COUNT(*) FROM api_cache")
+        snap["counts"]["api_cache_valid"] = _v250_safe_count(cur, "SELECT COUNT(*) FROM api_cache WHERE COALESCE(expires_at,'')='' OR expires_at>=?", (iso_now(),))
+        snap["counts"]["api_logs_today"] = _v250_safe_count(cur, "SELECT COUNT(*) FROM api_usage_logs WHERE substr(COALESCE(created_at,''),1,10)=?", (utc_now().strftime('%Y-%m-%d'),))
+        snap["counts"]["alerts_today"] = _v250_safe_count(cur, "SELECT COUNT(*) FROM alert_logs WHERE substr(COALESCE(created_at,''),1,10)=?", (utc_now().strftime('%Y-%m-%d'),))
+        try:
+            cur.execute("""
+                SELECT provider, COUNT(*) total,
+                       SUM(CASE WHEN COALESCE(expires_at,'')='' OR expires_at>=? THEN 1 ELSE 0 END) valid
+                FROM api_cache GROUP BY provider ORDER BY total DESC LIMIT 12
+            """, (iso_now(),))
+            snap["cache"]["by_provider"] = [dict(r) for r in cur.fetchall()]
+        except Exception:
+            snap["cache"]["by_provider"] = []
+        try:
+            cur.execute("""
+                SELECT id, league, title, live_status, live_score, live_minute, kickoff_time, odds_decimal, odds_bookmaker, source
+                FROM picks WHERE COALESCE(active,1)=1
+                ORDER BY CASE WHEN COALESCE(kickoff_time,'')='' THEN 1 ELSE 0 END, kickoff_time ASC, id DESC
+                LIMIT 10
+            """)
+            snap["sample_matches"] = [dict(r) for r in cur.fetchall()]
+        except Exception:
+            snap["sample_matches"] = []
+    except Exception as exc:
+        snap["alerts"].append({"level": "error", "text": "No se pudo leer la base de datos real: " + str(exc)[:160]})
+    finally:
+        try:
+            if conn: conn.close()
+        except Exception:
+            pass
+
+    active = max(1, int(snap["counts"].get("picks_active") or 0))
+    snap["quality"]["score_coverage_pct"] = round((snap["counts"].get("live_with_score", 0) / active) * 100, 1)
+    snap["quality"]["minute_coverage_pct"] = round((snap["counts"].get("live_with_minute", 0) / active) * 100, 1)
+    snap["quality"]["odds_coverage_pct"] = round((snap["counts"].get("with_odds", 0) / active) * 100, 1)
+    snap["quality"]["real_source_pct"] = round((snap["counts"].get("real_sources", 0) / active) * 100, 1)
+
+    if not snap["providers"]["the_odds_api"]["key"]:
+        snap["alerts"].append({"level": "warning", "text": "Falta ODDS_API_KEY/THE_ODDS_API_KEY: no se pueden traer cuotas ni próximos partidos desde The Odds API."})
+    if snap["counts"].get("picks_active", 0) == 0:
+        snap["alerts"].append({"level": "warning", "text": "No hay partidos/picks activos guardados. Conviene lanzar refresh admin o revisar proveedor."})
+    if snap["counts"].get("live_with_score", 0) == 0:
+        snap["alerts"].append({"level": "info", "text": "No hay marcadores live reales guardados ahora mismo. La UI debe mostrar — : — sin inventar."})
+    if snap["counts"].get("api_cache_valid", 0) < snap["counts"].get("api_cache_rows", 0):
+        snap["recommendations"].append("Hay caché caducada: el siguiente refresh puede renovar datos reales respetando límites.")
+    if PERFORMANCE_SAFE_MODE:
+        snap["recommendations"].append("Performance Safe Mode activo: protege Render y evita llamadas pesadas desde vistas públicas.")
+    snap["recommendations"].append("Para más partidos reales: configurar ODDS_SPORT_KEYS con ligas activas y mantener AUTO_FILTER_ACTIVE_SPORTS=true.")
+    snap["recommendations"].append("Para más minuto/resultado/escudos reales: activar proveedor live con datos disponibles; si falta, mostrar fallback premium limpio.")
+    return snap
+
+
+@app.route("/real-data-health")
+@app.route("/cliente/real-data-health")
+@app.route("/admin/real-data-health")
+def real_data_health_v250():
+    try:
+        return render_template("real_data_health_v250.html")
+    except Exception:
+        return "<h1>V250 · Real Data Health</h1><p>Centro de diagnóstico real preparado. REAL ONLY.</p>"
+
+
+@app.route("/api/v250/real-data-health/status")
+def api_v250_real_data_health_status():
+    return jsonify(v250_real_data_health_snapshot())
+
+
+@app.route("/api/v250/real-data-health/refresh", methods=["POST", "GET"])
+def api_v250_real_data_health_refresh():
+    # Endpoint admin/manual: usa los refrescos existentes y respeta cache/límites salvo force=1.
+    force = str(request.args.get("force", "0")).lower() in ["1", "true", "yes"]
+    result = {"version": "V250", "real_only": True, "force": force, "steps": []}
+    try:
+        result["steps"].append({"provider": "theoddsapi", "result": refresh_theoddsapi(force=force, notify=False)})
+    except Exception as exc:
+        result["steps"].append({"provider": "theoddsapi", "error": str(exc)[:180]})
+    try:
+        if ENABLE_API_FOOTBALL:
+            result["steps"].append({"provider": "api_football", "result": refresh_api_football_upcoming(force=force)})
+    except Exception as exc:
+        result["steps"].append({"provider": "api_football", "error": str(exc)[:180]})
+    result["health_after"] = v250_real_data_health_snapshot()
+    return jsonify(result)
+
+
+# V251 LIVE COVERAGE MATRIX PRO
+# Objetivo: ver partido a partido qué datos reales faltan: minuto, marcador, cuota, kickoff, fuente y escudo.
+def _v251_split_teams(title):
+    text = (title or "").replace(" vs. ", " vs ").replace(" VS ", " vs ").replace(" - ", " vs ")
+    for sep in [" vs ", " v ", " @ "]:
+        if sep in text:
+            parts = [x.strip() for x in text.split(sep, 1)]
+            if len(parts) == 2:
+                return parts[0], parts[1]
+    return text.strip(), ""
+
+
+def _v251_status_label(row):
+    missing = []
+    if not (row.get("kickoff_time") or "").strip(): missing.append("hora")
+    if not (row.get("live_score") or "").strip(): missing.append("marcador")
+    if not (row.get("live_minute") or "").strip(): missing.append("minuto")
+    if not ((row.get("odds_decimal") or row.get("cuota") or "").strip()): missing.append("cuota")
+    if not (row.get("source") or "").strip() or (row.get("source") or "").lower() in ["manual", "demo", "fake"]: missing.append("fuente real")
+    if not missing:
+        return "Completo", []
+    return "Faltan datos reales", missing
+
+
+def v251_live_coverage_matrix_snapshot(limit=80):
+    snap = {
+        "version": "V251",
+        "idioma": "es",
+        "real_only": True,
+        "generated_at": madrid_iso_now(),
+        "summary": {"total": 0, "complete": 0, "needs_attention": 0, "with_crest_pair": 0},
+        "coverage": {},
+        "matches": [],
+        "message": "Matriz real de cobertura preparada. Si falta algo, se marca como pendiente sin inventarlo."
+    }
+    conn = None
+    try:
+        conn = get_db(); cur = conn.cursor()
+        cur.execute("""
+            SELECT id, sport, league, title, pick, cuota, ev, score, premium, live_status, live_score, live_minute,
+                   kickoff_time, odds_decimal, odds_bookmaker, odds_market, odds_updated_at, external_event_id, source, active
+            FROM picks
+            WHERE COALESCE(active,1)=1
+            ORDER BY CASE WHEN COALESCE(kickoff_time,'')='' THEN 1 ELSE 0 END, kickoff_time ASC, id DESC
+            LIMIT ?
+        """, (int(limit),))
+        rows = [dict(r) for r in cur.fetchall()]
+        snap["summary"]["total"] = len(rows)
+        keys = ["kickoff_time", "live_score", "live_minute", "odds", "real_source", "external_event_id"]
+        counters = {k: 0 for k in keys}
+        for r in rows:
+            home, away = _v251_split_teams(r.get("title"))
+            home_logo = display_team_logo(home) if home else ""
+            away_logo = display_team_logo(away) if away else ""
+            status_label, missing = _v251_status_label(r)
+            odds_value = (r.get("odds_decimal") or r.get("cuota") or "").strip()
+            item = {
+                "id": r.get("id"),
+                "sport": r.get("sport") or "",
+                "league": r.get("league") or "",
+                "title": r.get("title") or "Partido real pendiente",
+                "home": home,
+                "away": away,
+                "home_logo": home_logo,
+                "away_logo": away_logo,
+                "kickoff_time": r.get("kickoff_time") or "",
+                "live_status": r.get("live_status") or "PROGRAMADO",
+                "live_score": r.get("live_score") or "",
+                "live_minute": r.get("live_minute") or "",
+                "odds": odds_value,
+                "bookmaker": r.get("odds_bookmaker") or "",
+                "market": r.get("odds_market") or "",
+                "source": r.get("source") or "",
+                "external_event_id": r.get("external_event_id") or "",
+                "status_label": status_label,
+                "missing": missing,
+                "coverage_score": max(0, 100 - len(missing) * 16)
+            }
+            if item["kickoff_time"]: counters["kickoff_time"] += 1
+            if item["live_score"]: counters["live_score"] += 1
+            if item["live_minute"]: counters["live_minute"] += 1
+            if item["odds"]: counters["odds"] += 1
+            if item["external_event_id"]: counters["external_event_id"] += 1
+            if item["source"] and item["source"].lower() not in ["manual", "demo", "fake"]: counters["real_source"] += 1
+            if home_logo and away_logo: snap["summary"]["with_crest_pair"] += 1
+            if missing: snap["summary"]["needs_attention"] += 1
+            else: snap["summary"]["complete"] += 1
+            snap["matches"].append(item)
+        total = max(1, len(rows))
+        snap["coverage"] = {k + "_pct": round((v / total) * 100, 1) for k, v in counters.items()}
+    except Exception as exc:
+        snap["error"] = str(exc)[:180]
+    finally:
+        try:
+            if conn: conn.close()
+        except Exception:
+            pass
+    return snap
+
+
+@app.route("/live-coverage-matrix")
+@app.route("/cliente/live-coverage-matrix")
+@app.route("/admin/live-coverage-matrix")
+def live_coverage_matrix_v251():
+    try:
+        return render_template("live_coverage_matrix_v251.html")
+    except Exception:
+        return "<h1>V251 · Live Coverage Matrix</h1><p>Matriz real de cobertura preparada. REAL ONLY.</p>"
+
+
+@app.route("/api/v251/live-coverage-matrix/status")
+def api_v251_live_coverage_matrix_status():
+    limit = request.args.get("limit", "80")
+    try:
+        limit = max(10, min(200, int(limit)))
+    except Exception:
+        limit = 80
+    return jsonify(v251_live_coverage_matrix_snapshot(limit=limit))
+
+
+# ============================================================
+# V252 API CALL SHIELD + CACHE POLICY PRO
+# Objetivo: proteger créditos/API, detectar datos caducados y decidir cuándo refrescar.
+# REAL ONLY: no inventa partidos, cuotas, marcadores ni eventos.
+# ============================================================
+V252_CACHE_TTL_MINUTES = int(os.environ.get("V252_CACHE_TTL_MINUTES", "12") or 12)
+V252_LIVE_TTL_MINUTES = int(os.environ.get("V252_LIVE_TTL_MINUTES", "2") or 2)
+V252_PREMATCH_TTL_MINUTES = int(os.environ.get("V252_PREMATCH_TTL_MINUTES", "30") or 30)
+
+
+def _v252_parse_dt(value):
+    if not value:
+        return None
+    try:
+        txt = str(value).strip().replace("Z", "+00:00")
+        dt = datetime.fromisoformat(txt)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=MADRID_TZ)
+        return dt.astimezone(MADRID_TZ)
+    except Exception:
+        return None
+
+
+def _v252_minutes_old(value):
+    dt = _v252_parse_dt(value)
+    if not dt:
+        return None
+    return max(0, int((madrid_now() - dt).total_seconds() // 60))
+
+
+def _v252_bucket_for_match(row):
+    status = str(row.get("live_status") or "").upper()
+    kickoff = _v252_parse_dt(row.get("kickoff_time"))
+    now = madrid_now()
+    if status in ("LIVE", "EN VIVO", "1H", "2H", "HT") or row.get("live_minute"):
+        return "live", V252_LIVE_TTL_MINUTES
+    if kickoff and kickoff <= now + timedelta(hours=6):
+        return "near", V252_CACHE_TTL_MINUTES
+    return "prematch", V252_PREMATCH_TTL_MINUTES
+
+
+def v252_api_call_shield_snapshot(limit=100):
+    snap = {
+        "version": "V252",
+        "real_only": True,
+        "generated_at": madrid_iso_now(),
+        "policy": {
+            "live_ttl_minutes": V252_LIVE_TTL_MINUTES,
+            "near_match_ttl_minutes": V252_CACHE_TTL_MINUTES,
+            "prematch_ttl_minutes": V252_PREMATCH_TTL_MINUTES,
+            "message": "Solo recomienda refrescos cuando los datos reales están caducados o incompletos. No inventa datos."
+        },
+        "summary": {"total": 0, "safe_cache": 0, "refresh_recommended": 0, "missing_real_id": 0, "missing_odds_timestamp": 0},
+        "buckets": {"live": 0, "near": 0, "prematch": 0},
+        "matches": [],
+        "next_actions": []
+    }
+    conn = None
+    try:
+        conn = get_db()
+        cur = conn.cursor()
+        cur.execute("""
+            SELECT id, sport, league, title, live_status, live_score, live_minute, kickoff_time,
+                   odds_decimal, cuota, odds_bookmaker, odds_market, odds_updated_at,
+                   external_event_id, source, active
+            FROM picks
+            WHERE COALESCE(active,1)=1
+            ORDER BY CASE WHEN COALESCE(kickoff_time,'')='' THEN 1 ELSE 0 END, kickoff_time ASC, id DESC
+            LIMIT ?
+        """, (int(limit),))
+        rows = [dict(r) for r in cur.fetchall()]
+        snap["summary"]["total"] = len(rows)
+        for r in rows:
+            bucket, ttl = _v252_bucket_for_match(r)
+            snap["buckets"][bucket] = snap["buckets"].get(bucket, 0) + 1
+            age = _v252_minutes_old(r.get("odds_updated_at"))
+            missing = []
+            if not r.get("external_event_id"):
+                missing.append("id externo")
+                snap["summary"]["missing_real_id"] += 1
+            if not r.get("odds_updated_at"):
+                missing.append("hora actualización cuota")
+                snap["summary"]["missing_odds_timestamp"] += 1
+            if bucket == "live" and not (r.get("live_score") or r.get("live_minute")):
+                missing.append("marcador/minuto live")
+            stale = age is None or age > ttl
+            refresh = bool(stale or missing)
+            if refresh:
+                snap["summary"]["refresh_recommended"] += 1
+            else:
+                snap["summary"]["safe_cache"] += 1
+            home, away = _v251_split_teams(r.get("title")) if '_v251_split_teams' in globals() else ("", "")
+            snap["matches"].append({
+                "id": r.get("id"),
+                "sport": r.get("sport") or "",
+                "league": r.get("league") or "",
+                "title": r.get("title") or "Partido real pendiente",
+                "home": home,
+                "away": away,
+                "status": r.get("live_status") or "PROGRAMADO",
+                "score": r.get("live_score") or "",
+                "minute": r.get("live_minute") or "",
+                "bucket": bucket,
+                "ttl_minutes": ttl,
+                "odds_age_minutes": age,
+                "external_event_id": r.get("external_event_id") or "",
+                "source": r.get("source") or "",
+                "refresh_recommended": refresh,
+                "missing": missing,
+                "reason": "refrescar" if refresh else "cache válida"
+            })
+        if snap["summary"]["refresh_recommended"]:
+            snap["next_actions"].append("Refrescar solo partidos marcados como caducados/incompletos para ahorrar créditos.")
+        if snap["summary"]["missing_real_id"]:
+            snap["next_actions"].append("Mejorar binding de external_event_id para escudos, marcador y cuotas más estables.")
+        if not rows:
+            snap["next_actions"].append("No hay picks/partidos activos en SQLite. Mostrar fallback premium y no consumir API en bucle.")
+    except Exception as exc:
+        snap["error"] = str(exc)[:220]
+    finally:
+        try:
+            if conn: conn.close()
+        except Exception:
+            pass
+    return snap
+
+
+@app.route("/api-call-shield")
+@app.route("/cliente/api-call-shield")
+@app.route("/admin/api-call-shield")
+def api_call_shield_v252():
+    try:
+        return render_template("api_call_shield_v252.html")
+    except Exception:
+        return "<h1>V252 · API Call Shield</h1><p>Escudo de consumo API y política de caché preparado. REAL ONLY.</p>"
+
+
+@app.route("/api/v252/api-call-shield/status")
+def api_v252_api_call_shield_status():
+    limit = request.args.get("limit", "100")
+    try:
+        limit = max(10, min(250, int(limit)))
+    except Exception:
+        limit = 100
+    return jsonify(v252_api_call_shield_snapshot(limit=limit))
+
+
+# ============================================================
+# V253 REAL SNAPSHOT RECORDER + ML FOUNDATION PRO
+# Objetivo: empezar a guardar snapshots reales para machine learning futuro
+# sin inventar datos y sin consumir API desde la vista pública.
+# ============================================================
+
+def v253_ensure_snapshot_tables():
+    conn = None
+    try:
+        conn = get_db(); cur = conn.cursor()
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS match_real_snapshots (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                created_at TEXT NOT NULL,
+                madrid_time TEXT,
+                pick_id INTEGER,
+                external_event_id TEXT,
+                sport TEXT,
+                league TEXT,
+                title TEXT,
+                kickoff_time TEXT,
+                live_status TEXT,
+                live_score TEXT,
+                live_minute TEXT,
+                odds_decimal TEXT,
+                odds_bookmaker TEXT,
+                odds_market TEXT,
+                odds_updated_at TEXT,
+                source TEXT,
+                completeness_score INTEGER DEFAULT 0,
+                missing_fields TEXT,
+                real_only INTEGER DEFAULT 1
+            )
+        """)
+        cur.execute("CREATE INDEX IF NOT EXISTS idx_match_real_snapshots_pick_time ON match_real_snapshots(pick_id, created_at)")
+        cur.execute("CREATE INDEX IF NOT EXISTS idx_match_real_snapshots_external ON match_real_snapshots(external_event_id)")
+        conn.commit()
+        return True
+    except Exception:
+        return False
+    finally:
+        try:
+            if conn: conn.close()
+        except Exception:
+            pass
+
+
+def _v253_snapshot_missing(row):
+    missing = []
+    for key, label in [
+        ("external_event_id", "id externo"),
+        ("kickoff_time", "hora partido"),
+        ("source", "fuente real"),
+        ("odds_decimal", "cuota"),
+        ("odds_updated_at", "hora cuota"),
+    ]:
+        if not row.get(key):
+            missing.append(label)
+    status = str(row.get("live_status") or "").upper()
+    if status in ("LIVE", "EN VIVO", "1H", "2H", "HT"):
+        if not row.get("live_score"):
+            missing.append("marcador live")
+        if not row.get("live_minute"):
+            missing.append("minuto live")
+    return missing
+
+
+def v253_capture_real_snapshots(limit=120):
+    v253_ensure_snapshot_tables()
+    result = {
+        "version": "V253",
+        "real_only": True,
+        "generated_at": madrid_iso_now(),
+        "captured": 0,
+        "skipped": 0,
+        "message": "Snapshots reales guardados para ML futuro. No se inventa ningún dato.",
+        "items": []
+    }
+    conn = None
+    try:
+        conn = get_db(); cur = conn.cursor()
+        cur.execute("""
+            SELECT id, sport, league, title, kickoff_time, live_status, live_score, live_minute,
+                   odds_decimal, cuota, odds_bookmaker, odds_market, odds_updated_at,
+                   external_event_id, source
+            FROM picks
+            WHERE COALESCE(active,1)=1
+            ORDER BY CASE WHEN COALESCE(kickoff_time,'')='' THEN 1 ELSE 0 END, kickoff_time ASC, id DESC
+            LIMIT ?
+        """, (int(limit),))
+        rows = [dict(r) for r in cur.fetchall()]
+        for r in rows:
+            odds_value = r.get("odds_decimal") or r.get("cuota") or ""
+            rr = dict(r); rr["odds_decimal"] = odds_value
+            missing = _v253_snapshot_missing(rr)
+            completeness = max(0, 100 - len(missing) * 13)
+            # Antiduplicado suave: evita guardar el mismo estado exacto en la misma hora.
+            cur.execute("""
+                SELECT id FROM match_real_snapshots
+                WHERE pick_id=? AND COALESCE(live_score,'')=? AND COALESCE(live_minute,'')=?
+                  AND COALESCE(odds_decimal,'')=? AND substr(created_at,1,13)=substr(?,1,13)
+                LIMIT 1
+            """, (r.get("id"), r.get("live_score") or "", r.get("live_minute") or "", str(odds_value or ""), iso_now()))
+            if cur.fetchone():
+                result["skipped"] += 1
+                continue
+            cur.execute("""
+                INSERT INTO match_real_snapshots (
+                    created_at, madrid_time, pick_id, external_event_id, sport, league, title, kickoff_time,
+                    live_status, live_score, live_minute, odds_decimal, odds_bookmaker, odds_market,
+                    odds_updated_at, source, completeness_score, missing_fields, real_only
+                ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1)
+            """, (
+                iso_now(), madrid_iso_now(), r.get("id"), r.get("external_event_id") or "",
+                r.get("sport") or "", r.get("league") or "", r.get("title") or "", r.get("kickoff_time") or "",
+                r.get("live_status") or "", r.get("live_score") or "", r.get("live_minute") or "",
+                str(odds_value or ""), r.get("odds_bookmaker") or "", r.get("odds_market") or "",
+                r.get("odds_updated_at") or "", r.get("source") or "", completeness, ", ".join(missing)
+            ))
+            result["captured"] += 1
+            if len(result["items"]) < 15:
+                result["items"].append({
+                    "pick_id": r.get("id"), "title": r.get("title") or "Partido real pendiente",
+                    "league": r.get("league") or "", "score": r.get("live_score") or "",
+                    "minute": r.get("live_minute") or "", "odds": str(odds_value or ""),
+                    "completeness_score": completeness, "missing": missing
+                })
+        conn.commit()
+    except Exception as exc:
+        result["error"] = str(exc)[:220]
+    finally:
+        try:
+            if conn: conn.close()
+        except Exception:
+            pass
+    return result
+
+
+def v253_snapshot_center_status(limit=80):
+    v253_ensure_snapshot_tables()
+    snap = {
+        "version": "V253",
+        "real_only": True,
+        "generated_at": madrid_iso_now(),
+        "summary": {"snapshots_total": 0, "matches_tracked": 0, "avg_completeness": 0, "last_snapshot": ""},
+        "recent": [],
+        "ml_foundation": {
+            "ready": True,
+            "purpose": "base histórica real para patrones, tendencias, momentum, movimiento de cuotas y modelos futuros",
+            "no_fake_data": True
+        },
+        "recommendations": []
+    }
+    conn = None
+    try:
+        conn = get_db(); cur = conn.cursor()
+        cur.execute("SELECT COUNT(*) c, COUNT(DISTINCT pick_id) m, AVG(completeness_score) a, MAX(created_at) last FROM match_real_snapshots")
+        row = cur.fetchone()
+        if row:
+            snap["summary"] = {
+                "snapshots_total": int(row[0] or 0),
+                "matches_tracked": int(row[1] or 0),
+                "avg_completeness": round(float(row[2] or 0), 1),
+                "last_snapshot": row[3] or ""
+            }
+        cur.execute("""
+            SELECT pick_id, title, league, live_status, live_score, live_minute, odds_decimal,
+                   completeness_score, missing_fields, madrid_time, source
+            FROM match_real_snapshots
+            ORDER BY id DESC LIMIT ?
+        """, (int(limit),))
+        snap["recent"] = [dict(r) for r in cur.fetchall()]
+    except Exception as exc:
+        snap["error"] = str(exc)[:220]
+    finally:
+        try:
+            if conn: conn.close()
+        except Exception:
+            pass
+    if snap["summary"].get("snapshots_total", 0) < 50:
+        snap["recommendations"].append("Aún hay pocos snapshots: conviene capturar periódicamente desde admin/cron para ML real.")
+    if snap["summary"].get("avg_completeness", 0) < 70:
+        snap["recommendations"].append("La calidad media puede mejorar reforzando id externo, live score/minuto y timestamp de cuotas.")
+    snap["recommendations"].append("Mantener REAL ONLY: si falta dato, guardarlo vacío y mostrar fallback premium.")
+    return snap
+
+
+@app.route("/real-snapshot-recorder")
+@app.route("/ml-snapshot-center")
+@app.route("/cliente/ml-snapshot-center")
+@app.route("/admin/ml-snapshot-center")
+def ml_snapshot_center_v253():
+    try:
+        return render_template("ml_snapshot_center_v253.html")
+    except Exception:
+        return "<h1>V253 · Real Snapshot Recorder</h1><p>Base ML real preparada con snapshots históricos. REAL ONLY.</p>"
+
+
+@app.route("/api/v253/ml-snapshot-center/status")
+def api_v253_ml_snapshot_center_status():
+    limit = request.args.get("limit", "80")
+    try:
+        limit = max(10, min(250, int(limit)))
+    except Exception:
+        limit = 80
+    return jsonify(v253_snapshot_center_status(limit=limit))
+
+
+@app.route("/api/v253/ml-snapshot-center/capture", methods=["POST", "GET"])
+def api_v253_ml_snapshot_center_capture():
+    limit = request.args.get("limit", "120")
+    try:
+        limit = max(10, min(300, int(limit)))
+    except Exception:
+        limit = 120
+    return jsonify(v253_capture_real_snapshots(limit=limit))

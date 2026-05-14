@@ -1,0 +1,19 @@
+{
+  "version": "V250",
+  "name": "REAL DATA HEALTH COMMAND CENTER PRO",
+  "real_only": true,
+  "routes": [
+    "/real-data-health",
+    "/cliente/real-data-health",
+    "/admin/real-data-health",
+    "/api/v250/real-data-health/status",
+    "/api/v250/real-data-health/refresh"
+  ],
+  "focus": [
+    "diagnostico datos reales",
+    "cobertura marcador minuto cuotas",
+    "cache y limites API",
+    "fallback premium limpio",
+    "Render safe mode"
+  ]
+}

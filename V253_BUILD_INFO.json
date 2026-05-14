@@ -1,0 +1,14 @@
+{
+  "version": "V253",
+  "name": "REAL SNAPSHOT RECORDER + ML FOUNDATION PRO",
+  "real_only": true,
+  "routes": [
+    "/ml-snapshot-center",
+    "/real-snapshot-recorder",
+    "/cliente/ml-snapshot-center",
+    "/admin/ml-snapshot-center",
+    "/api/v253/ml-snapshot-center/status",
+    "/api/v253/ml-snapshot-center/capture"
+  ],
+  "notes": "Base histórica real para ML futuro sin inventar datos. ZIP limpio Render/GitHub."
+}
