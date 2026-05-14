@@ -1,0 +1,5 @@
+
+/* V239 · Enterprise Stability Pro */
+.nms-stability-card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.11);border-radius:24px;padding:20px}
+.nms-stability-status{display:inline-flex;border-radius:999px;padding:8px 12px;background:rgba(110,242,181,.08);border:1px solid rgba(110,242,181,.28)}
+.nms-stability-warning{padding:14px;border-radius:18px;background:rgba(255,211,110,.08);border:1px solid rgba(255,211,110,.28);color:#ffe19b;font-weight:800}

@@ -1,0 +1,17 @@
+{
+  "version": "V238_FINAL_PREMIUM_EXPERIENCE_PRO",
+  "generated_at": "2026-05-14T18:58:22.940319+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "experience_layers": [
+    "Home premium",
+    "Trust experience",
+    "Live premium",
+    "SHARK AI premium",
+    "Value radar",
+    "Analytics",
+    "Planes premium",
+    "Mobile/PWA polish"
+  ],
+  "commercial_ready": true
+}

@@ -1,0 +1,28 @@
+{
+  "version": "V236_ADVANCED_LIVE_OPERATIONS_PRO",
+  "generated_at": "2026-05-14T18:51:29.614317+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "live_operations": [
+    "Estado feeds",
+    "Sincronización fixtures",
+    "Sincronización marcadores",
+    "Sincronización incidencias",
+    "Sincronización odds",
+    "Reintentos",
+    "Auditoría live",
+    "Fallbacks premium"
+  ],
+  "admin_actions": [
+    "Revisar estado live",
+    "Reintentar sync",
+    "Comprobar proveedor",
+    "Ver últimos errores",
+    "Ver últimos datos reales"
+  ],
+  "guardrails": [
+    "No inventar marcadores",
+    "No inventar eventos",
+    "No rellenar live con datos fake"
+  ]
+}

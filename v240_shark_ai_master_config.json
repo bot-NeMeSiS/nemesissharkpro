@@ -1,0 +1,39 @@
+{
+  "version": "V240_SHARK_AI_MASTER_CONTROL_PRO",
+  "generated_at": "2026-05-14T19:08:39.758205+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "ai_modes": [
+    "Resumen diario",
+    "Análisis live",
+    "Análisis de pick",
+    "Riesgo",
+    "Value radar",
+    "Match intelligence",
+    "Predicción prudente",
+    "Favoritos"
+  ],
+  "membership_limits": {
+    "FREE": [
+      "resumen básico",
+      "consultas limitadas"
+    ],
+    "PRO": [
+      "value radar",
+      "más consultas",
+      "alertas AI"
+    ],
+    "ELITE": [
+      "AI completa",
+      "match intelligence",
+      "predictive prudente"
+    ]
+  },
+  "guardrails": [
+    "No inventar datos",
+    "No prometer aciertos",
+    "Explicar incertidumbre",
+    "Mostrar datos insuficientes cuando aplique",
+    "No recomendar como garantía"
+  ]
+}

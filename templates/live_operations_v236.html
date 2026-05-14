@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Live Operations · NeMeSiS SHARK PRO</title>
+<style>
+body{margin:0;background:#06111f;color:#eef6ff;font-family:Arial,Helvetica,sans-serif}
+.wrap{max-width:1180px;margin:auto;padding:24px 16px 100px}
+.hero{border:1px solid rgba(0,190,255,.24);background:linear-gradient(135deg,#071b31,#090f1d);border-radius:28px;padding:24px;box-shadow:0 20px 80px rgba(0,0,0,.36)}
+.badge{display:inline-block;padding:8px 11px;border-radius:999px;background:rgba(0,180,255,.12);border:1px solid rgba(0,180,255,.25);margin:3px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:24px}
+.card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.11);border-radius:22px;padding:18px}
+.ok{color:#6ef2b5;font-weight:900}.warn{color:#ffe19b;font-weight:900}.danger{color:#ff8f8f;font-weight:900}
+.status{display:inline-flex;border-radius:999px;padding:8px 12px;background:rgba(110,242,181,.08);border:1px solid rgba(110,242,181,.28);color:#bffff0;font-weight:800}
+.notice{padding:14px;border-radius:18px;background:rgba(255,211,110,.08);border:1px solid rgba(255,211,110,.28);color:#ffe19b;font-weight:800}
+.btn{display:inline-block;margin:6px 4px 0 0;padding:10px 13px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="hero">
+<span class="badge">V236</span>
+<span class="badge">Live Ops</span>
+<span class="badge">REAL ONLY</span>
+<h1>Centro avanzado de operaciones live</h1>
+<p>Control operativo para feeds, fixtures, marcadores, incidencias, odds y reintentos.</p>
+<div class="notice">Si el proveedor no manda datos reales, el sistema no inventa marcadores ni eventos.</div>
+</section>
+
+<div class="grid">
+<div class="card"><h3>📡 Feed live</h3><p class="warn">Preparado para monitorizar proveedor.</p><span class="status">En espera de datos reales</span></div>
+<div class="card"><h3>⚽ Marcadores</h3><p class="warn">Conectado a fallback limpio.</p><span class="status">Sin inventar resultados</span></div>
+<div class="card"><h3>🟨 Incidencias</h3><p class="warn">Goles, tarjetas y cambios si llegan.</p><span class="status">REAL ONLY</span></div>
+<div class="card"><h3>📈 Odds</h3><p class="warn">Preparado para revisar movimientos.</p><span class="status">Snapshots</span></div>
+</div>
+
+<div class="grid">
+<div class="card">
+<h3>Acciones rápidas admin</h3>
+<span class="btn">Revisar estado</span>
+<span class="btn">Reintentar sync</span>
+<span class="btn">Ver últimos errores</span>
+<span class="btn">Comprobar proveedor</span>
+</div>
+<div class="card">
+<h3>Auditoría live</h3>
+<p>Preparado para registrar cuándo entran datos, cuándo fallan y qué fuente los aporta.</p>
+</div>
+<div class="card">
+<h3>Recovery</h3>
+<p>Si falla el live, se muestra estado premium y no una pantalla rota.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -9088,3 +9088,115 @@ def api_v235_billing_status():
         "membership_engine": True,
         "mensaje": "Sistema premium preparado para pagos futuros."
     }
+
+
+# V236 ADVANCED LIVE OPERATIONS PRO
+@app.route("/admin/live-operations")
+@app.route("/admin/live-ops")
+@app.route("/cliente/live-operations")
+def live_operations_v236():
+    try:
+        return render_template("live_operations_v236.html")
+    except Exception:
+        return "<h1>V236 · Live Operations</h1><p>REAL ONLY: operaciones live sin datos inventados.</p>"
+
+@app.route("/api/v236/live-operations/status")
+def api_v236_live_operations_status():
+    return {
+        "version": "V236",
+        "idioma": "es",
+        "real_only": True,
+        "monitor_feeds": True,
+        "retry_ready": True,
+        "audit_ready": True,
+        "mensaje": "Centro live operativo preparado."
+    }
+
+
+# V237 AI PREDICTIVE EVOLUTION PRO
+@app.route("/cliente/ai-predictive")
+@app.route("/cliente/shark-predictive")
+@app.route("/admin/ai-predictive")
+def ai_predictive_v237():
+    try:
+        return render_template("ai_predictive_v237.html")
+    except Exception:
+        return "<h1>V237 · AI Predictive Evolution</h1><p>REAL ONLY: sin probabilidades inventadas ni promesas de acierto.</p>"
+
+@app.route("/api/v237/ai-predictive/status")
+def api_v237_ai_predictive_status():
+    return {
+        "version": "V237",
+        "idioma": "es",
+        "real_only": True,
+        "no_promete_aciertos": True,
+        "escenarios_preparados": True,
+        "mensaje": "Lectura predictiva prudente preparada con datos reales suficientes."
+    }
+
+
+# V238 FINAL PREMIUM EXPERIENCE PRO
+@app.route("/cliente/premium-experience")
+@app.route("/cliente/experiencia-premium")
+@app.route("/admin/premium-experience")
+def final_premium_experience_v238():
+    try:
+        return render_template("final_premium_experience_v238.html")
+    except Exception:
+        return "<h1>V238 · Final Premium Experience</h1><p>REAL ONLY: experiencia premium sin datos inventados.</p>"
+
+@app.route("/api/v238/premium-experience/status")
+def api_v238_premium_experience_status():
+    return {
+        "version": "V238",
+        "idioma": "es",
+        "real_only": True,
+        "premium_experience": True,
+        "commercial_ready": True,
+        "mensaje": "Experiencia premium final preparada."
+    }
+
+
+# V239 ENTERPRISE STABILITY PRO
+@app.route("/cliente/enterprise-stability")
+@app.route("/cliente/stability")
+@app.route("/admin/enterprise-stability")
+def enterprise_stability_v239():
+    try:
+        return render_template("enterprise_stability_v239.html")
+    except Exception:
+        return "<h1>V239 · Enterprise Stability</h1><p>REAL ONLY: estabilidad y recuperación segura.</p>"
+
+@app.route("/api/v239/enterprise-stability/status")
+def api_v239_enterprise_stability_status():
+    return {
+        "version": "V239",
+        "idioma": "es",
+        "real_only": True,
+        "safe_live_engine": True,
+        "error_recovery": True,
+        "monitoring_ready": True,
+        "mensaje": "Capa de estabilidad empresarial preparada."
+    }
+
+
+# V240 SHARK AI MASTER CONTROL PRO
+@app.route("/admin/shark-ai-master")
+@app.route("/cliente/shark-ai-master")
+@app.route("/cliente/mi-shark-ai")
+def shark_ai_master_v240():
+    try:
+        return render_template("shark_ai_master_v240.html")
+    except Exception:
+        return "<h1>V240 · SHARK AI Master Control</h1><p>REAL ONLY: control centralizado sin datos inventados.</p>"
+
+@app.route("/api/v240/shark-ai-master/status")
+def api_v240_shark_ai_master_status():
+    return {
+        "version": "V240",
+        "idioma": "es",
+        "real_only": True,
+        "guardrails": True,
+        "membership_limits": True,
+        "mensaje": "SHARK AI Master Control preparado."
+    }

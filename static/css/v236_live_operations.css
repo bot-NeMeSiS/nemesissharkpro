@@ -1,0 +1,5 @@
+
+/* V236 · Advanced Live Operations Pro */
+.nms-liveops-card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.11);border-radius:22px;padding:18px}
+.nms-liveops-status{display:inline-flex;border-radius:999px;padding:8px 12px;background:rgba(110,242,181,.08);border:1px solid rgba(110,242,181,.28)}
+.nms-liveops-action{display:inline-flex;border-radius:999px;padding:10px 13px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}

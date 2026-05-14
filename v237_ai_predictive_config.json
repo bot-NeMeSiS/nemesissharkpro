@@ -1,0 +1,23 @@
+{
+  "version": "V237_AI_PREDICTIVE_EVOLUTION_PRO",
+  "generated_at": "2026-05-14T18:54:43.779128+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "predictive_blocks": [
+    "Escenarios posibles",
+    "Riesgo estimado",
+    "Confianza orientativa",
+    "Tendencia del partido",
+    "Lectura de momentum",
+    "Value context",
+    "ML readiness"
+  ],
+  "guardrails": [
+    "No prometer aciertos",
+    "No inventar probabilidades",
+    "No inventar datos",
+    "No vender garantía",
+    "Explicar incertidumbre"
+  ],
+  "fallback": "No hay datos reales suficientes para una lectura predictiva prudente."
+}

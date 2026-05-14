@@ -1,0 +1,22 @@
+{
+  "version": "V239_ENTERPRISE_STABILITY_PRO",
+  "generated_at": "2026-05-14T19:05:44.653116+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "stability_blocks": [
+    "Safe live engine",
+    "Error recovery",
+    "Smart fallbacks",
+    "API protection",
+    "Background sync safety",
+    "Monitoring readiness",
+    "Performance safety"
+  ],
+  "guardrails": [
+    "No mostrar pantallas rotas",
+    "No inventar datos",
+    "No saturar APIs",
+    "No loops agresivos",
+    "Mantener UX premium"
+  ]
+}

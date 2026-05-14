@@ -1,0 +1,6 @@
+
+/* V238 · Final Premium Experience Pro */
+.nms-premium-card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.11);border-radius:24px;padding:20px;transition:all .18s ease}
+.nms-premium-card:hover{transform:translateY(-2px);border-color:rgba(0,210,255,.34)}
+.nms-premium-trust{padding:14px;border-radius:18px;background:rgba(110,242,181,.08);border:1px solid rgba(110,242,181,.28);color:#bffff0;font-weight:800}
+.nms-premium-empty{border:1px dashed rgba(255,255,255,.16);background:rgba(255,255,255,.04);border-radius:22px;padding:24px;text-align:center}
