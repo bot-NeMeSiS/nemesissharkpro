@@ -1,0 +1,8 @@
+
+/* V234 · Final UX Polish Pro */
+.nms-ux-card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.11);border-radius:22px;padding:18px;transition:all .18s ease}
+.nms-ux-card:hover{transform:translateY(-2px);border-color:rgba(0,210,255,.34)}
+.nms-ux-empty{border:1px dashed rgba(255,255,255,.16);background:rgba(255,255,255,.04);border-radius:22px;padding:24px;text-align:center}
+.nms-ux-skeleton{position:relative;overflow:hidden;background:rgba(255,255,255,.06);border-radius:16px;height:64px}
+.nms-ux-skeleton:after{content:"";position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);animation:nmsUX 1.3s infinite}
+@keyframes nmsUX{100%{transform:translateX(100%)}}

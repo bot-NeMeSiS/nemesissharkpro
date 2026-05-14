@@ -9045,3 +9045,24 @@ def api_v232_match_intelligence_status():
         "match_intelligence": True,
         "mensaje": "Inteligencia de partido preparada con datos reales suficientes."
     }
+
+
+# V234 FINAL UX POLISH PRO
+@app.route("/cliente/ux-polish")
+@app.route("/cliente/final-ux")
+@app.route("/admin/ux-polish")
+def ux_polish_v234():
+    try:
+        return render_template("final_ux_polish_v234.html")
+    except Exception:
+        return "<h1>V234 · UX Polish</h1><p>Experiencia premium refinada y preparada para móvil/PWA.</p>"
+
+@app.route("/api/v234/ux/status")
+def api_v234_ux_status():
+    return {
+        "version": "V234",
+        "idioma": "es",
+        "premium_motion": True,
+        "mobile_optimized": True,
+        "mensaje": "UX premium refinada."
+    }
