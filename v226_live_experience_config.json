@@ -1,0 +1,17 @@
+{
+  "version": "V226_LIVE_EXPERIENCE_2_PRO",
+  "generated_at": "2026-05-14T17:46:51.308799+00:00",
+  "real_only": true,
+  "idioma": "es",
+  "eventos_preparados": [
+    "gol",
+    "tarjeta amarilla",
+    "tarjeta roja",
+    "VAR",
+    "penalti",
+    "sustitución",
+    "descanso",
+    "final"
+  ],
+  "fallback": "Esperando datos reales del proveedor."
+}

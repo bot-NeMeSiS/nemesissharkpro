@@ -8876,3 +8876,53 @@ def smart_analytics_v223():
         return render_template("smart_analytics_v223.html")
     except Exception:
         return "<h1>V223 · Analíticas inteligentes</h1><p>REAL ONLY: si no hay histórico suficiente, no se inventan métricas.</p>"
+
+
+# =========================
+# V224 REAL PUSH NOTIFICATIONS PRO
+# =========================
+@app.route("/cliente/notificaciones")
+@app.route("/cliente/alertas")
+@app.route("/admin/notifications")
+def notifications_center_v224():
+    try:
+        return render_template("notifications_center_v224.html")
+    except Exception:
+        return "<h1>V224 · Centro de notificaciones</h1><p>REAL ONLY: sin alertas fake.</p>"
+
+
+# =========================
+# V225 SHARK AI EVOLUTION PRO
+# =========================
+@app.route("/cliente/shark-ai-evolution")
+@app.route("/cliente/shark-ai-pro")
+@app.route("/admin/shark-ai-evolution")
+def shark_ai_evolution_v225():
+    try:
+        return render_template("shark_ai_evolution_v225.html")
+    except Exception:
+        return "<h1>V225 · SHARK AI Evolution</h1><p>REAL ONLY: SHARK AI no inventa datos.</p>"
+
+@app.route("/api/v225/shark-ai/modos")
+def api_v225_shark_ai_modos():
+    return {
+        "version": "V225",
+        "idioma": "es",
+        "real_only": True,
+        "modos": ["Resumen diario", "Directo", "Picks", "Riesgo", "Valor", "Favoritos", "Cuotas"],
+        "regla": "Si no hay datos reales suficientes, no se inventa."
+    }
+
+# V226 LIVE EXPERIENCE 2.0 PRO
+@app.route("/cliente/live-experience-2")
+@app.route("/cliente/live-2")
+@app.route("/admin/live-experience-2")
+def live_experience_v226():
+    try:
+        return render_template("live_experience_v226.html")
+    except Exception:
+        return "<h1>V226 · Live Experience 2.0</h1><p>REAL ONLY: sin marcadores ni eventos inventados.</p>"
+
+@app.route("/api/v226/live/status")
+def api_v226_live_status():
+    return {"version":"V226","idioma":"es","real_only":True,"score_fallback":"— : —","mensaje":"Esperando datos reales del proveedor. No se inventan marcadores."}

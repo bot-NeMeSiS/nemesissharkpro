@@ -1,0 +1,1 @@
+window.NMS_LIVE_V226={realOnly:true,fallbackScore:"— : —",fallbackMessage:"Esperando datos reales del proveedor."};
