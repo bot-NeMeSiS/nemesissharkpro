@@ -1,0 +1,8 @@
+{
+  "version": "V261.0",
+  "name": "SMART_VALUE_DETECTION_BANKROLL_EDGE_PRO",
+  "real_only": true,
+  "render_ready": true,
+  "github_clean": true,
+  "added_routes": ["/smart-value-detection", "/value-edge-engine", "/bankroll-edge", "/api/v261/smart-value-detection/status", "/api/v261/value-snapshot"]
+}

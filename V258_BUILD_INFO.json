@@ -1,0 +1,15 @@
+{
+  "version": "V258",
+  "name": "SMART LIVE ORCHESTRATOR + BACKGROUND TASKS PRO",
+  "real_only": true,
+  "routes": [
+    "/smart-live-orchestrator",
+    "/live-orchestrator",
+    "/cliente/smart-live-orchestrator",
+    "/admin/smart-live-orchestrator",
+    "/api/v258/smart-live-orchestrator/status"
+  ],
+  "render_ready": true,
+  "github_ready": true,
+  "clean_zip": true
+}

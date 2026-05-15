@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="v263-unified-page" data-v263-screen="smart_value_detection_bankroll_edge_v261">
+<div class="wrap">
+    <section class="top">
+      <div>
+        <div class="badge">V261 · REAL ONLY · VALUE INTELLIGENCE</div>
+        <h1 class="h1">Smart Value Detection<br>+ Bankroll Edge</h1>
+        <p class="sub">Motor premium para detectar calidad de señal, valor observable y stake orientativo sin inventar cuotas, picks ni probabilidades. Si falta dato real, baja la confianza y muestra fallback limpio.</p>
+      </div>
+      <div class="nav">
+        <a class="btn" href="/cliente/pro">Mi cuenta</a>
+        <a class="btn" href="/live-command-center">Live</a>
+        <a class="btn" href="/real-match-analytics">Analytics</a>
+        <a class="btn" href="/real-alert-delivery-bridge">Alertas</a>
+      </div>
+    </section>
+    <section class="grid">
+      <div class="kpi"><span>Señales reales</span><b>{{ data.total }}</b></div>
+      <div class="kpi"><span>Value alto</span><b>{{ data.high }}</b></div>
+      <div class="kpi"><span>Value watch</span><b>{{ data.watch }}</b></div>
+      <div class="kpi"><span>Low data</span><b>{{ data.low }}</b></div>
+    </section>
+    <section class="panel">
+      {% if data.items %}
+      <div class="cards">
+        {% for m in data.items %}
+        <article class="card {% if m.quality >= 78 %}high{% endif %}">
+          <div class="band">{{ m.band }} · {{ m.quality }}/100</div>
+          <div class="score"><i style="width:{{ m.quality }}%"></i></div>
+          <div class="title">{{ m.title or 'Partido real sin título completo' }}</div>
+          <div class="meta">
+            <span class="pill">{{ m.league or 'Liga real pendiente' }}</span>
+            <span class="pill">{{ m.live_status or 'PROGRAMADO' }}</span>
+            {% if m.live_minute %}<span class="pill">{{ m.live_minute }}</span>{% endif %}
+            {% if m.live_score %}<span class="pill">{{ m.live_score }}</span>{% endif %}
+          </div>
+          <div class="meta">
+            {% if m.pick %}<span class="pill">Pick: {{ m.pick }}</span>{% endif %}
+            {% if m.cuota %}<span class="pill">Cuota: {{ m.cuota }}</span>{% endif %}
+            {% if m.ev %}<span class="pill">EV: {{ m.ev }}%</span>{% endif %}
+            <span class="pill">Stake guía: {{ m.bankroll_unit }}u</span>
+          </div>
+          <ul class="reasons">
+            {% for r in m.reasons %}<li>✓ {{ r }}</li>{% endfor %}
+            {% if not m.reasons %}<li>Datos insuficientes para señal premium.</li>{% endif %}
+          </ul>
+        </article>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="empty">No hay señales reales suficientes ahora mismo. El sistema no inventa value: espera a que entren partidos/cuotas reales desde tus APIs.</div>
+      {% endif %}
+    </section>
+  </div>
+</section>
+{% endblock %}

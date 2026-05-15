@@ -1,0 +1,15 @@
+{
+  "version": "V262",
+  "name": "MATCH_PRIORITY_RANKING_PROFILE_ENGINE_PRO",
+  "real_only": true,
+  "routes": [
+    "/match-priority-ranking",
+    "/priority-match-center",
+    "/api/v262/match-priority-ranking"
+  ],
+  "validated": [
+    "zip",
+    "python_compile",
+    "clean_build"
+  ]
+}

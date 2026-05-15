@@ -1,0 +1,15 @@
+{
+  "version": "V263",
+  "name": "GLOBAL DESIGN SYSTEM UNIFICATION PRO",
+  "real_only": true,
+  "render_ready": true,
+  "github_clean": true,
+  "changes": [
+    "global visual design system",
+    "unified premium shell",
+    "recent screens integrated into base.html",
+    "legacy templates visual shell",
+    "mobile bottom nav unification",
+    "PWA banner duplicate visual control"
+  ]
+}

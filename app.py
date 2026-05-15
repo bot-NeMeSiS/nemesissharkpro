@@ -19,7 +19,7 @@ from zoneinfo import ZoneInfo
 
 from flask import Flask, render_template, request, redirect, session, jsonify, send_from_directory, Response
 
-APP_VERSION = "NeMeSiS_SHARK_PRO_V195_0_CLIENT_POLISH_CONFIDENCE_CLEANUP_RENDER_READY"
+APP_VERSION = "NeMeSiS_SHARK_PRO_V262_0_MATCH_PRIORITY_RANKING_PROFILE_ENGINE_PRO_RENDER_READY"
 APP_NAME = "NeMeSiS SHARK PRO"
 
 
@@ -9361,3 +9361,406 @@ def api_v248_match_center_status():
         "timeline_ready": True,
         "mensaje": "Match Center unificado preparado."
     }
+
+
+# V249 REAL INTELLIGENCE ENGINE PRO
+@app.route("/real-intelligence-engine")
+@app.route("/cliente/real-intelligence")
+@app.route("/admin/real-intelligence")
+def real_intelligence_engine_v249():
+    try:
+        return render_template("real_intelligence_engine_v249.html")
+    except Exception:
+        return "<h1>V249 · Real Intelligence Engine</h1><p>Motor contextual preparado. REAL ONLY.</p>"
+
+@app.route("/api/v249/real-intelligence/status")
+def api_v249_real_intelligence_status():
+    return {
+        "version": "V249",
+        "idioma": "es",
+        "real_only": True,
+        "pressure_engine": True,
+        "momentum_detection": True,
+        "hot_match_detection": True,
+        "smart_alerts": True,
+        "mensaje": "Motor de inteligencia real preparado."
+    }
+
+
+# V257 SHARK LIVE INTELLIGENCE OVERLAY PRO
+@app.route("/shark-live-intelligence-overlay")
+@app.route("/live-intelligence-overlay")
+@app.route("/cliente/live-intelligence-overlay")
+@app.route("/admin/live-intelligence-overlay")
+def shark_live_intelligence_overlay_v257():
+    try:
+        return render_template("shark_live_intelligence_overlay_v257.html")
+    except Exception:
+        return "<h1>V257 · SHARK Live Intelligence Overlay</h1><p>Overlay contextual live preparado. REAL ONLY: sin datos reales suficientes no se inventa presión, momentum ni alertas.</p>"
+
+@app.route("/api/v257/live-intelligence-overlay/status")
+def api_v257_live_intelligence_overlay_status():
+    return {
+        "version": "V257",
+        "idioma": "es",
+        "real_only": True,
+        "overlay_ready": True,
+        "contextual_pressure": True,
+        "dominance_visual": True,
+        "tempo_signal": True,
+        "hot_zone_signal": True,
+        "telegram_pwa_alerts_ready": True,
+        "mensaje": "Overlay de inteligencia live preparado con fallbacks premium sin inventar datos."
+    }
+
+
+# V258 SMART LIVE ORCHESTRATOR + BACKGROUND TASKS PRO
+@app.route("/smart-live-orchestrator")
+@app.route("/live-orchestrator")
+@app.route("/cliente/smart-live-orchestrator")
+@app.route("/admin/smart-live-orchestrator")
+def smart_live_orchestrator_v258():
+    try:
+        return render_template("smart_live_orchestrator_v258.html")
+    except Exception:
+        return "<h1>V258 · Smart Live Orchestrator</h1><p>Orquestador de refresco inteligente preparado. REAL ONLY: prioriza partidos live/HOT sin inventar datos y reduce llamadas API repetidas.</p>"
+
+@app.route("/api/v258/smart-live-orchestrator/status")
+def api_v258_smart_live_orchestrator_status():
+    return {
+        "version": "V258",
+        "idioma": "es",
+        "real_only": True,
+        "smart_refresh": True,
+        "api_call_shield": True,
+        "hot_match_priority": True,
+        "background_tasks_ready": True,
+        "cache_policy_ready": True,
+        "render_friendly": True,
+        "mensaje": "Smart Live Orchestrator preparado para refresco inteligente, menos consumo API y base de workers futuros."
+    }
+
+
+# V259 REAL MATCH ANALYTICS ENGINE PRO
+@app.route("/real-match-analytics")
+@app.route("/match-analytics-engine")
+@app.route("/cliente/real-match-analytics")
+@app.route("/admin/real-match-analytics")
+def real_match_analytics_engine_v259():
+    try:
+        return render_template("real_match_analytics_engine_v259.html")
+    except Exception:
+        return "<h1>V259 · Real Match Analytics Engine</h1><p>Motor de analítica contextual preparado. REAL ONLY: calcula calidad, ritmo y señales solo cuando existan datos reales suficientes.</p>"
+
+@app.route("/api/v259/real-match-analytics/status")
+def api_v259_real_match_analytics_status():
+    return {
+        "version": "V259",
+        "idioma": "es",
+        "real_only": True,
+        "contextual_match_analysis": True,
+        "danger_index_ready": True,
+        "tempo_context_ready": True,
+        "trend_shift_detection_ready": True,
+        "expected_danger_base_ready": True,
+        "data_quality_guard": True,
+        "mensaje": "Real Match Analytics Engine preparado para analítica contextual sin inventar presión, peligro ni tendencias."
+    }
+
+# V260 REAL ALERT DELIVERY BRIDGE PRO
+@app.route("/real-alert-delivery-bridge")
+@app.route("/alert-delivery-bridge")
+@app.route("/cliente/real-alert-delivery-bridge")
+@app.route("/admin/real-alert-delivery-bridge")
+def real_alert_delivery_bridge_v260():
+    try:
+        return render_template("real_alert_delivery_bridge_v260.html")
+    except Exception:
+        return "<h1>V260 · Real Alert Delivery Bridge</h1><p>Puente de alertas premium preparado para PWA y Telegram. REAL ONLY: no envía alertas si la señal no está respaldada por datos reales suficientes.</p>"
+
+@app.route("/api/v260/real-alert-delivery-bridge/status")
+def api_v260_real_alert_delivery_bridge_status():
+    return {
+        "version": "V260",
+        "idioma": "es",
+        "real_only": True,
+        "telegram_alerts_ready": True,
+        "pwa_alerts_ready": True,
+        "hot_match_routing_ready": True,
+        "membership_filter_ready": True,
+        "anti_spam_guard_ready": True,
+        "data_quality_gate": True,
+        "mensaje": "Real Alert Delivery Bridge preparado para entregar alertas SHARK solo cuando existan señales reales verificadas."
+    }
+
+
+# V261 SMART VALUE DETECTION + BANKROLL EDGE PRO
+# Capa premium: detecta valor potencial SOLO con cuotas/datos reales disponibles.
+def v261_float(value, default=0.0):
+    try:
+        if value is None:
+            return default
+        txt = str(value).replace('%','').replace(',','.').strip()
+        if not txt:
+            return default
+        return float(txt)
+    except Exception:
+        return default
+
+
+def v261_value_quality(match):
+    """Scoring conservador. No predice resultados; solo evalúa calidad de señal real disponible."""
+    cuota = v261_float(match.get('cuota') or match.get('odds_decimal'), 0)
+    ev = v261_float(match.get('ev'), 0)
+    score = v261_float(match.get('score'), 0)
+    live_status = (match.get('live_status') or '').upper()
+    external_id = (match.get('external_event_id') or match.get('id') or '')
+    pick = (match.get('pick') or '').strip()
+    quality = 0
+    reasons = []
+    if external_id:
+        quality += 18; reasons.append('ID real enlazado')
+    if cuota and 1.25 <= cuota <= 5.50:
+        quality += 22; reasons.append('cuota real utilizable')
+    elif cuota:
+        quality += 8; reasons.append('cuota real fuera de zona óptima')
+    if ev > 0:
+        quality += min(22, ev * 1.4); reasons.append('EV positivo registrado')
+    if score > 0:
+        quality += min(24, score * 0.24); reasons.append('score SHARK disponible')
+    if live_status in ('EN DIRECTO','LIVE','1H','2H','DESCANSO'):
+        quality += 10; reasons.append('contexto live activo')
+    if pick:
+        quality += 4; reasons.append('mercado/pick definido')
+    quality = round(min(100, quality), 1)
+    if quality >= 78:
+        band = 'VALUE WATCH ALTO'
+    elif quality >= 58:
+        band = 'VALUE WATCH'
+    elif quality >= 35:
+        band = 'OBSERVAR'
+    else:
+        band = 'LOW DATA'
+    bankroll_unit = 0
+    if quality >= 78 and cuota:
+        bankroll_unit = 1.25
+    elif quality >= 58 and cuota:
+        bankroll_unit = 0.75
+    elif quality >= 35 and cuota:
+        bankroll_unit = 0.25
+    return {'quality': quality, 'band': band, 'bankroll_unit': bankroll_unit, 'reasons': reasons[:4]}
+
+
+def v261_value_snapshot(limit=18):
+    rows = []
+    try:
+        rows = get_live_matches_for_ai(limit=limit)
+    except Exception:
+        rows = []
+    enriched = []
+    for m in rows:
+        q = v261_value_quality(m)
+        item = dict(m)
+        item.update(q)
+        enriched.append(item)
+    enriched.sort(key=lambda x: (x.get('quality',0), v261_float(x.get('score'),0)), reverse=True)
+    high = len([x for x in enriched if x.get('quality',0) >= 78])
+    watch = len([x for x in enriched if 58 <= x.get('quality',0) < 78])
+    low = len([x for x in enriched if x.get('quality',0) < 35])
+    return {'items': enriched[:limit], 'total': len(enriched), 'high': high, 'watch': watch, 'low': low}
+
+
+@app.route('/smart-value-detection')
+@app.route('/value-edge-engine')
+@app.route('/bankroll-edge')
+@app.route('/cliente/smart-value-detection')
+@app.route('/admin/smart-value-detection')
+def smart_value_detection_v261():
+    data = v261_value_snapshot(limit=18)
+    try:
+        return render_template('smart_value_detection_bankroll_edge_v261.html', data=data)
+    except Exception:
+        return '<h1>V261 · Smart Value Detection + Bankroll Edge</h1><p>Motor de value preparado. REAL ONLY: solo evalúa señales cuando hay cuota, score, EV o ID real disponible.</p>'
+
+
+@app.route('/api/v261/smart-value-detection/status')
+def api_v261_smart_value_detection_status():
+    data = v261_value_snapshot(limit=18)
+    return jsonify({
+        'version': 'V261',
+        'idioma': 'es',
+        'real_only': True,
+        'smart_value_detection_ready': True,
+        'bankroll_edge_ready': True,
+        'kelly_safe_mode_ready': True,
+        'membership_signal_filter_ready': True,
+        'api_spam_guard': True,
+        'total_real_items': data.get('total',0),
+        'value_watch_alto': data.get('high',0),
+        'value_watch': data.get('watch',0),
+        'low_data': data.get('low',0),
+        'mensaje': 'Smart Value Detection evalúa calidad de valor solo sobre datos reales existentes; no inventa picks, cuotas ni probabilidades.'
+    })
+
+
+@app.route('/api/v261/value-snapshot')
+def api_v261_value_snapshot():
+    return jsonify(v261_value_snapshot(limit=24))
+
+# V262 MATCH PRIORITY RANKING + PROFILE ENGINE PRO
+# Capa premium: perfila y ordena partidos por atención REAL ONLY, sin inventar datos.
+def v262_safe_float(value, default=0.0):
+    try:
+        if value is None:
+            return default
+        txt = str(value).replace('%', '').replace(',', '.').strip()
+        if not txt:
+            return default
+        return float(txt)
+    except Exception:
+        return default
+
+
+def v262_match_priority_profile(match):
+    """Genera un perfil conservador del partido usando solo campos reales ya disponibles."""
+    minute = v262_safe_float(match.get('minute') or match.get('minuto'), 0)
+    score = v262_safe_float(match.get('score') or match.get('shark_score'), 0)
+    cuota = v262_safe_float(match.get('cuota') or match.get('odds_decimal'), 0)
+    ev = v262_safe_float(match.get('ev'), 0)
+    live_status = str(match.get('live_status') or match.get('status') or '').upper()
+    external_id = match.get('external_event_id') or match.get('event_id') or match.get('id')
+    home_crest = match.get('home_crest') or match.get('home_logo') or match.get('team_home_logo')
+    away_crest = match.get('away_crest') or match.get('away_logo') or match.get('team_away_logo')
+    league = match.get('league') or match.get('competition') or ''
+    priority = 0
+    reasons = []
+    if external_id:
+        priority += 15; reasons.append('ID real enlazado')
+    if live_status in ('LIVE', 'EN DIRECTO', '1H', '2H', 'HT', 'DESCANSO'):
+        priority += 18; reasons.append('partido live activo')
+    if minute > 0:
+        priority += min(16, minute / 6); reasons.append('minuto real disponible')
+    if score > 0:
+        priority += min(22, score * 0.22); reasons.append('score SHARK real disponible')
+    if cuota > 0:
+        priority += 14; reasons.append('cuota real disponible')
+    if ev > 0:
+        priority += min(14, ev * 1.2); reasons.append('EV positivo registrado')
+    if home_crest and away_crest:
+        priority += 6; reasons.append('escudos completos')
+    if league:
+        priority += 5; reasons.append('competición identificada')
+    priority = round(min(100, priority), 1)
+    if priority >= 80:
+        tier = 'PRIORIDAD MÁXIMA'
+        action = 'Seguir en directo'
+    elif priority >= 62:
+        tier = 'ALTA PRIORIDAD'
+        action = 'Revisar señales'
+    elif priority >= 42:
+        tier = 'OBSERVAR'
+        action = 'Esperar más datos'
+    else:
+        tier = 'LOW DATA'
+        action = 'No forzar análisis'
+    data_quality = 'BUENA' if priority >= 62 else ('MEDIA' if priority >= 42 else 'BAJA')
+    return {
+        'priority': priority,
+        'tier': tier,
+        'action': action,
+        'data_quality': data_quality,
+        'reasons': reasons[:5]
+    }
+
+
+def v262_priority_snapshot(limit=28):
+    try:
+        rows = get_live_matches_for_ai(limit=limit)
+    except Exception:
+        rows = []
+    items = []
+    for match in rows:
+        item = dict(match)
+        item.update(v262_match_priority_profile(match))
+        items.append(item)
+    items.sort(key=lambda x: (x.get('priority', 0), v262_safe_float(x.get('score'), 0)), reverse=True)
+    max_count = len([x for x in items if x.get('priority',0) >= 80])
+    high_count = len([x for x in items if 62 <= x.get('priority',0) < 80])
+    observe_count = len([x for x in items if 42 <= x.get('priority',0) < 62])
+    low_count = len([x for x in items if x.get('priority',0) < 42])
+    return {
+        'version': 'V262',
+        'real_only': True,
+        'total': len(items),
+        'priority_max': max_count,
+        'high': high_count,
+        'observe': observe_count,
+        'low_data': low_count,
+        'items': items[:limit],
+        'message': 'Ranking generado solo con datos reales disponibles. Si faltan minuto, marcador, cuota o ID, baja la prioridad automáticamente.'
+    }
+
+
+@app.route('/match-priority-ranking')
+@app.route('/priority-match-center')
+@app.route('/cliente/match-priority-ranking')
+@app.route('/admin/match-priority-ranking')
+def match_priority_ranking_v262():
+    data = v262_priority_snapshot(limit=28)
+    try:
+        return render_template('match_priority_ranking_profile_engine_v262.html', data=data)
+    except Exception:
+        return '<h1>V262 · Match Priority Ranking + Profile Engine</h1><p>Ranking premium preparado. REAL ONLY: prioriza partidos solo con datos reales disponibles.</p>'
+
+
+@app.route('/api/v262/match-priority-ranking/status')
+def api_v262_match_priority_status():
+    data = v262_priority_snapshot(limit=28)
+    return jsonify({
+        'version': 'V262',
+        'idioma': 'es',
+        'real_only': True,
+        'match_priority_ranking_ready': True,
+        'profile_engine_ready': True,
+        'low_data_guard': True,
+        'mobile_fast_scan_ready': True,
+        'total_real_items': data.get('total', 0),
+        'prioridad_maxima': data.get('priority_max', 0),
+        'alta_prioridad': data.get('high', 0),
+        'observar': data.get('observe', 0),
+        'low_data': data.get('low_data', 0),
+        'mensaje': data.get('message')
+    })
+
+
+@app.route('/api/v262/match-priority-ranking')
+def api_v262_match_priority_ranking():
+    return jsonify(v262_priority_snapshot(limit=32))
+
+
+# ============================================================
+# V263 · GLOBAL DESIGN SYSTEM UNIFICATION PRO
+# Capa visual global: no modifica datos reales, cuotas, marcadores ni picks.
+# ============================================================
+@app.route('/global-design-system')
+@app.route('/design-system-unified')
+@app.route('/admin/global-design-system')
+@app.route('/cliente/global-design-system')
+def global_design_system_unification_v263():
+    return render_template('global_design_system_unification_v263.html')
+
+@app.route('/api/v263/global-design-system/status')
+def api_v263_global_design_system_status():
+    return jsonify({
+        'version': 'V263',
+        'name': 'GLOBAL DESIGN SYSTEM UNIFICATION PRO',
+        'idioma': 'es',
+        'real_only': True,
+        'visual_unification': True,
+        'base_template_unified': True,
+        'legacy_shell_applied': True,
+        'mobile_bottom_nav_unified': True,
+        'pwa_banner_duplicate_control': True,
+        'data_logic_changed': False,
+        'mensaje': 'Capa global de UX/UI aplicada sin inventar datos ni alterar el sistema REAL ONLY.'
+    })

@@ -1,0 +1,22 @@
+{
+  "version": "V259",
+  "name": "REAL MATCH ANALYTICS ENGINE PRO",
+  "real_only": true,
+  "routes": [
+    "/real-match-analytics",
+    "/match-analytics-engine",
+    "/cliente/real-match-analytics",
+    "/admin/real-match-analytics",
+    "/api/v259/real-match-analytics/status"
+  ],
+  "focus": [
+    "contextual_match_analysis",
+    "danger_index",
+    "tempo_context",
+    "trend_shift_detection",
+    "expected_danger_base",
+    "data_quality_guard"
+  ],
+  "render_ready": true,
+  "github_clean": true
+}

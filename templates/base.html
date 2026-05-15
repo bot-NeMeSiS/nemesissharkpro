@@ -61,10 +61,11 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v203_session_mobile_rebuild.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v210_performance.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v211_design_system.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v263_global_design_system_unification.css') }}">
 </head>
 {% set public_clean_paths = ['/', '/inicio', '/planes', '/membresias', '/pricing', '/cliente-login', '/registro', '/admin-login'] %}
 {% set is_public_clean = request.path in public_clean_paths %}
-<body class="{% if current_user and not is_public_clean %}plan-theme-{{ (current_user.plan or 'FREE')|lower }}{% else %}plan-theme-public{% endif %}">
+<body class="v263-global-unified {% if current_user and not is_public_clean %}plan-theme-{{ (current_user.plan or 'FREE')|lower }}{% else %}plan-theme-public{% endif %}">
   <header class="topbar">
     <a class="brand" href="{{ '/' if is_public_clean else ('/clientes' if session.get('user') else '/') }}">
       <span class="brand-icon pro-mark">NS</span>

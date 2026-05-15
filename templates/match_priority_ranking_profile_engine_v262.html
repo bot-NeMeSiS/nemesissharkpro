@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="v263-unified-page" data-v263-screen="match_priority_ranking_profile_engine_v262">
+<div class="wrap">
+    <section class="hero">
+      <h1>V262 · Match Priority Ranking + Profile Engine</h1>
+      <p>Centro premium para ordenar partidos por atención real. No inventa señales: si faltan minuto, marcador, cuota, escudos o ID real, el sistema baja prioridad y muestra fallback limpio.</p>
+      <div class="chips"><span class="chip">REAL ONLY</span><span class="chip">Ranking live</span><span class="chip">Perfilado inteligente</span><span class="chip">Mobile fast scan</span></div>
+    </section>
+    <section class="grid">
+      <div class="stat"><span>Total real</span><b>{{ data.total }}</b></div>
+      <div class="stat"><span>Prioridad máxima</span><b>{{ data.priority_max }}</b></div>
+      <div class="stat"><span>Alta prioridad</span><b>{{ data.high }}</b></div>
+      <div class="stat"><span>Low data</span><b>{{ data.low_data }}</b></div>
+    </section>
+    {% if data.items %}
+    <section class="cards">
+      {% for m in data.items %}
+      <article class="card">
+        <div class="top"><div><span class="tier">{{ m.tier }}</span><div class="teams">{{ m.home_team or m.home or m.team_home or 'Local' }} vs {{ m.away_team or m.away or m.team_away or 'Visitante' }}</div><div class="meta">{{ m.league or m.competition or 'Competición no disponible' }} · {{ m.live_status or m.status or 'Estado no disponible' }}</div></div><div class="score">{{ m.priority }}</div></div>
+        <p><b>Acción:</b> {{ m.action }} · <b>Calidad:</b> {{ m.data_quality }}</p>
+        <ul class="reasons">{% for r in m.reasons %}<li>{{ r }}</li>{% endfor %}</ul>
+      </article>
+      {% endfor %}
+    </section>
+    {% else %}
+      <div class="empty"><b>No hay partidos reales suficientes ahora mismo.</b><p>El sistema queda preparado y no mostrará datos inventados. Cuando entren datos reales por API/cache, aparecerán aquí.</p></div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

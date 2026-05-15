@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="v263-unified-page" data-v263-screen="smart_live_orchestrator_v258">
+<div class="wrap">
+    <section class="hero">
+      <span class="tag">V258 · Smart Live Orchestrator</span>
+      <h1>Refresco inteligente, menos API, más velocidad.</h1>
+      <p class="sub">Centro preparado para orquestar live, fixtures, odds, caché, snapshots y hot matches con filosofía REAL ONLY. No inventa partidos, marcadores, cuotas ni presión: solo prioriza lo que tenga datos reales y muestra fallback premium si falta información.</p>
+      <div class="grid">
+        <article class="card"><b class="ok">Smart Refresh</b><p>Frecuencia dinámica según estado del partido: live/HOT primero, próximos después, finalizados con baja prioridad.</p></article>
+        <article class="card"><b class="ok">API Call Shield</b><p>Evita llamadas repetidas y prepara ventanas de caché para ahorrar créditos de The Odds API.</p></article>
+        <article class="card"><b class="warn">Background Tasks Ready</b><p>Base lista para workers futuros en Render sin bloquear la experiencia del usuario.</p></article>
+        <article class="card"><b class="low">REAL ONLY</b><p>Si no hay dato real, se muestra estado incompleto en vez de inventar señales.</p></article>
+      </div>
+      <table class="matrix">
+        <thead><tr><th>Bloque</th><th>Prioridad</th><th>Política</th></tr></thead>
+        <tbody>
+          <tr><td>Partidos HOT live</td><td>Muy alta</td><td>Refresco corto si hay datos reales</td></tr>
+          <tr><td>Partidos live normales</td><td>Alta</td><td>Refresco moderado y controlado</td></tr>
+          <tr><td>Próximos partidos</td><td>Media</td><td>Caché más largo</td></tr>
+          <tr><td>Finalizados / baja señal</td><td>Baja</td><td>Sin spam API</td></tr>
+        </tbody>
+      </table>
+      <span class="pill">Preparado para Telegram/PWA alerts</span>
+      <div class="footer">NeMeSiS SHARK PRO · V258 · Build limpio para GitHub/Render</div>
+    </section>
+  </div>
+</section>
+{% endblock %}
