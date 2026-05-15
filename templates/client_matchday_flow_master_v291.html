@@ -1,0 +1,47 @@
+
+{% extends "base.html" %}
+{% block title %}Matchday Flow Master · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_matchday_flow_master_v291.css') }}">
+
+<section class="v291-shell">
+  <div class="v291-hero">
+    <span class="v291-badge">V291 · Matchday Flow</span>
+    <h1>Flujo maestro para días de partidos</h1>
+    <p>
+      Una experiencia cliente preparada para seguir el día completo:
+      briefing → live → value → SHARK → recap.
+    </p>
+  </div>
+
+  <div class="v291-flow">
+    <article class="v291-step">
+      <span>01</span>
+      <h2>Briefing</h2>
+      <p>Entrar y entender rápido qué merece atención.</p>
+      <a href="/cliente/daily-command">Abrir</a>
+    </article>
+
+    <article class="v291-step">
+      <span>02</span>
+      <h2>Live Priority</h2>
+      <p>Partidos calientes y contexto visual premium.</p>
+      <a href="/cliente/live-experience">Live</a>
+    </article>
+
+    <article class="v291-step">
+      <span>03</span>
+      <h2>Decision Radar</h2>
+      <p>Mirar ahora, revisar value o esperar datos.</p>
+      <a href="/cliente/decision-radar">Radar</a>
+    </article>
+
+    <article class="v291-step">
+      <span>04</span>
+      <h2>SHARK AI</h2>
+      <p>Contexto e inteligencia premium.</p>
+      <a href="/cliente/shark-ai-pro">SHARK</a>
+    </article>
+  </div>
+</section>
+{% endblock %}

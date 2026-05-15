@@ -1,0 +1,10 @@
+{
+  "version_base": "V289",
+  "next_version": "V290",
+  "templates": 226,
+  "css_files": 123,
+  "routes_in_app_py": 371,
+  "templates_using_base_estimate": 130,
+  "legacy_full_html_candidates_estimate": 94,
+  "conclusion": "La línea cliente va bien: falta seguir migrando legacy, profundizar live real y modularizar app.py."
+}

@@ -1,0 +1,12 @@
+
+.v289-shell{width:min(1180px,calc(100% - 28px));margin:28px auto 96px;color:#eef7ff}
+.v289-hero{padding:28px;border-radius:28px;background:linear-gradient(135deg,#08182e,#030b17);border:1px solid rgba(95,200,255,.18)}
+.v289-badge{display:inline-flex;padding:8px 12px;border-radius:999px;background:rgba(0,188,255,.12);color:#9ee7ff;font-weight:900}
+.v289-hero h1{margin:16px 0;font-size:clamp(2rem,5vw,4rem)}
+.v289-hero p{color:#aabbd3;max-width:760px}
+.v289-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+.v289-card{padding:22px;border-radius:24px;background:#0d1e36;border:1px solid rgba(255,255,255,.08)}
+.v289-card.low{background:#2b2416}
+.v289-card span{color:#8fdfff;font-weight:900}
+.v289-card a{display:inline-flex;margin-top:12px;text-decoration:none;padding:10px 14px;border-radius:14px;background:linear-gradient(135deg,#7ee8ff,#398dff);color:#06111f;font-weight:900}
+@media(max-width:900px){.v289-grid{grid-template-columns:1fr}}

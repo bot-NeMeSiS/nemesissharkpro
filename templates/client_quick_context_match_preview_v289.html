@@ -1,0 +1,40 @@
+
+{% extends "base.html" %}
+{% block title %}Quick Context Match Preview · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_quick_context_match_preview_v289.css') }}">
+
+<section class="v289-shell">
+  <div class="v289-hero">
+    <span class="v289-badge">V289 · Quick Context</span>
+    <h1>Vista rápida contextual de partidos</h1>
+    <p>
+      El cliente entiende rápidamente si un partido merece atención sin entrar
+      todavía al Match Center completo.
+    </p>
+  </div>
+
+  <div class="v289-grid">
+    <article class="v289-card">
+      <span>HOT</span>
+      <h2>Partido caliente</h2>
+      <p>Live importante, seguimiento rápido y acceso directo.</p>
+      <a href="/cliente/live-experience">Abrir Live</a>
+    </article>
+
+    <article class="v289-card">
+      <span>VALUE</span>
+      <h2>Value rápido</h2>
+      <p>Vista resumida preparada para value y banca.</p>
+      <a href="/smart-value-detection">Ver Value</a>
+    </article>
+
+    <article class="v289-card low">
+      <span>LOW DATA</span>
+      <h2>Esperar</h2>
+      <p>Cuando falten datos reales, la app lo indica claramente.</p>
+      <a href="/real-data-health">Estado de datos</a>
+    </article>
+  </div>
+</section>
+{% endblock %}

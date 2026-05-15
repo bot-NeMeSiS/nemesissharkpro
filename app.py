@@ -10631,5 +10631,49 @@ def client_decision_radar_v287():
 # ===== END V287 =====
 
 
+
+
+# ===== V288 · LEGACY SCREEN CLEANUP + FULL CLIENT CONSISTENCY PRO =====
+@app.route("/legacy-screen-cleanup")
+@app.route("/client-consistency-center")
+@app.route("/cliente/consistencia")
+def legacy_screen_cleanup_v288():
+    return render_template("legacy_screen_cleanup_v288.html")
+# ===== END V288 =====
+
+
+
+
+# ===== V289 · CLIENT QUICK CONTEXT MATCH PREVIEW PRO =====
+@app.route("/client-quick-context")
+@app.route("/cliente/quick-context")
+@app.route("/cliente/match-preview")
+def client_quick_context_v289():
+    return render_template("client_quick_context_match_preview_v289.html")
+# ===== END V289 =====
+
+
+
+
+# ===== V290 · CLIENT DAILY INTELLIGENCE RECAP PRO =====
+@app.route("/client-daily-intelligence-recap")
+@app.route("/cliente/daily-intelligence")
+@app.route("/cliente/resumen-inteligente")
+def client_daily_intelligence_recap_v290():
+    return render_template("client_daily_intelligence_recap_v290.html")
+# ===== END V290 =====
+
+
+
+
+# ===== V291 · CLIENT MATCHDAY FLOW MASTER PRO =====
+@app.route("/client-matchday-flow")
+@app.route("/cliente/matchday-flow")
+@app.route("/cliente/flujo-partidos")
+def client_matchday_flow_v291():
+    return render_template("client_matchday_flow_master_v291.html")
+# ===== END V291 =====
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

@@ -1,0 +1,105 @@
+
+/* V288 · Legacy Screen Cleanup + Full Client Consistency PRO
+   Capa segura: no elimina estilos antiguos, suaviza diferencias y evita barras/pantallas rotas. */
+
+:root{
+  --v288-bg:#050d19;
+  --v288-panel:rgba(10,24,43,.92);
+  --v288-panel-2:rgba(15,35,62,.92);
+  --v288-border:rgba(124,210,255,.16);
+  --v288-border-soft:rgba(255,255,255,.09);
+  --v288-text:#edf7ff;
+  --v288-muted:#a8b9cf;
+  --v288-accent:#67d9ff;
+  --v288-accent-2:#3e8dff;
+  --v288-gold:#f4c86a;
+  --v288-radius:24px;
+  --v288-shadow:0 18px 48px rgba(0,0,0,.28);
+}
+
+body{
+  background:
+    radial-gradient(circle at top left, rgba(33,125,255,.12), transparent 34%),
+    radial-gradient(circle at top right, rgba(0,210,255,.08), transparent 30%),
+    var(--v288-bg);
+  color:var(--v288-text);
+}
+
+.client-page,
+.cliente-page,
+.dashboard-client,
+.v288-client-shell,
+main{
+  color:var(--v288-text);
+}
+
+.v288-client-shell{
+  width:min(1180px, calc(100% - 28px));
+  margin:28px auto 96px;
+}
+
+.v288-unified-card,
+.card-premium,
+.client-card,
+.match-card,
+.live-card,
+.value-card{
+  border-radius:var(--v288-radius);
+  border:1px solid var(--v288-border-soft);
+  background:linear-gradient(180deg, var(--v288-panel-2), var(--v288-panel));
+  box-shadow:var(--v288-shadow);
+}
+
+.v288-unified-btn,
+.btn-premium,
+.client-action,
+.quick-action{
+  border-radius:14px;
+  font-weight:900;
+  transition:transform .2s ease, opacity .2s ease, border-color .2s ease;
+}
+
+.v288-unified-btn:hover,
+.btn-premium:hover,
+.client-action:hover,
+.quick-action:hover{
+  transform:translateY(-2px);
+}
+
+.v288-low-data,
+.low-data,
+.empty-state{
+  border:1px dashed rgba(244,200,106,.35);
+  background:rgba(244,200,106,.07);
+  color:#ffe1a2;
+  border-radius:18px;
+  padding:14px 16px;
+}
+
+.v288-safe-bottom-space{
+  height:72px;
+}
+
+@media (min-width: 901px){
+  .mobile-bottom-nav,
+  .bottom-nav,
+  .app-bottom-nav{
+    display:none !important;
+  }
+}
+
+@media (max-width: 900px){
+  .v288-client-shell{
+    width:min(100% - 18px, 1180px);
+    margin-top:18px;
+    margin-bottom:110px;
+  }
+  .v288-unified-card,
+  .card-premium,
+  .client-card,
+  .match-card,
+  .live-card,
+  .value-card{
+    border-radius:20px;
+  }
+}

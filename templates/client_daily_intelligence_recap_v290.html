@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Daily Intelligence Recap · NeMeSiS SHARK PRO{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_daily_intelligence_recap_v290.css') }}">
+
+<section class="v290-shell">
+  <header class="v290-hero">
+    <div>
+      <span class="v290-badge">V290 · Daily Intelligence Recap</span>
+      <h1>Resumen inteligente del día</h1>
+      <p>
+        Una capa cliente para entrar y entender en segundos qué hay que mirar,
+        qué está caliente, dónde puede haber value y qué debe esperar por LOW DATA.
+      </p>
+    </div>
+    <div class="v290-status">
+      <strong>Modo cliente</strong>
+      <span>Claridad diaria + REAL ONLY</span>
+    </div>
+  </header>
+
+  <div class="v290-recap-grid">
+    <article class="v290-card primary">
+      <span>01 · Hoy</span>
+      <h2>Qué mirar primero</h2>
+      <p>Acceso directo a Smart Home, Daily Command y Action Center para reducir pasos.</p>
+      <div class="v290-links">
+        <a href="/cliente/smart-home">Smart Home</a>
+        <a href="/cliente/daily-command">Daily Command</a>
+      </div>
+    </article>
+
+    <article class="v290-card">
+      <span>02 · Live</span>
+      <h2>Partidos con foco</h2>
+      <p>Live Storytelling, Decision Radar y HOT/WATCH/LOW DATA mejor conectados.</p>
+      <div class="v290-links">
+        <a href="/cliente/live-story">Live Story</a>
+        <a href="/cliente/decision-radar">Decision Radar</a>
+      </div>
+    </article>
+
+    <article class="v290-card">
+      <span>03 · Value</span>
+      <h2>Señales con control</h2>
+      <p>Value y banca siguen separados de datos inventados; si falta información, espera.</p>
+      <div class="v290-links">
+        <a href="/smart-value-detection">Value</a>
+        <a href="/bankroll-edge">Banca</a>
+      </div>
+    </article>
+
+    <article class="v290-card low">
+      <span>04 · LOW DATA</span>
+      <h2>Evitar ruido</h2>
+      <p>El sistema prioriza claridad: si no hay datos reales suficientes, lo muestra limpio.</p>
+      <div class="v290-links">
+        <a href="/real-data-health">Salud de datos</a>
+        <a href="/client-consistency-center">Consistencia</a>
+      </div>
+    </article>
+  </div>
+
+  <footer class="v290-footer">
+    <div>
+      <h3>Estado del producto</h3>
+      <p>
+        Vamos bien: la experiencia cliente ya tiene una columna vertebral clara.
+        El siguiente bloque grande debe ser migración legacy por grupos y luego datos live más profundos.
+      </p>
+    </div>
+    <a href="/client-action-center">Abrir Action Center</a>
+  </footer>
+</section>
+{% endblock %}
