@@ -10741,5 +10741,16 @@ def client_legacy_batch_one_v302():
 # ===== END V302 =====
 
 
+
+
+# ===== V305 · CLIENT MATCH STATUS INTELLIGENCE PRO =====
+@app.route("/client-match-status-intelligence")
+@app.route("/cliente/match-status")
+@app.route("/cliente/estado-partido")
+def client_match_status_intelligence_v305():
+    return render_template("client_match_status_intelligence_v305.html")
+# ===== END V305 =====
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

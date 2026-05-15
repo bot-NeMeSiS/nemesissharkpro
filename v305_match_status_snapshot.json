@@ -1,0 +1,7 @@
+{
+  "version": "V305",
+  "name": "CLIENT MATCH STATUS INTELLIGENCE PRO",
+  "base": "V304",
+  "focus": "estado del partido más claro para cliente: HOT, WATCH, VALUE, LOW DATA",
+  "real_only": true
+}

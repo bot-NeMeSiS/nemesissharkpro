@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Match Status Intelligence · NeMeSiS SHARK PRO{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_match_status_intelligence_v305.css') }}">
+<script defer src="{{ url_for('static', filename='js/client_match_status_intelligence_v305.js') }}"></script>
+
+<section class="v305-shell">
+  <div class="v305-hero">
+    <div>
+      <span class="v305-badge">V305 · Match Status Intelligence</span>
+      <h1>Estado inteligente del partido</h1>
+      <p>
+        Nueva capa cliente para entender de un vistazo si un partido está caliente,
+        necesita seguimiento, tiene posible value o debe esperar por falta de datos reales.
+      </p>
+    </div>
+    <div class="v305-status">
+      <strong>REAL ONLY</strong>
+      <span>Estado claro · sin inventar señales</span>
+    </div>
+  </div>
+
+  <div class="v305-grid">
+    <article class="v305-card hot">
+      <span>HOT</span>
+      <h2>Partido caliente</h2>
+      <p>Prioridad alta cuando haya datos reales suficientes y contexto live útil.</p>
+      <a href="/cliente/live-central">Abrir Live Hub</a>
+    </article>
+
+    <article class="v305-card watch">
+      <span>WATCH</span>
+      <h2>Seguir evolución</h2>
+      <p>Partidos interesantes que todavía necesitan más minuto, contexto o confirmación.</p>
+      <a href="/cliente/timeline-prioridad">Ver Timeline</a>
+    </article>
+
+    <article class="v305-card value">
+      <span>VALUE</span>
+      <h2>Revisar oportunidad</h2>
+      <p>Acceso a value y banca cuando el contexto y las cuotas reales acompañen.</p>
+      <a href="/smart-value-detection">Revisar Value</a>
+    </article>
+
+    <article class="v305-card low">
+      <span>LOW DATA</span>
+      <h2>Esperar datos</h2>
+      <p>Si faltan marcador, minuto, cuotas o fuente fiable, la app lo muestra limpio.</p>
+      <a href="/real-data-health">Salud de datos</a>
+    </article>
+  </div>
+
+  <div class="v305-footer">
+    <div>
+      <h3>Qué mejora V305</h3>
+      <p>
+        El cliente no tiene que interpretar pantallas sueltas: cada partido tendrá un estado mental claro
+        conectado con live, timeline, value, SHARK y avisos.
+      </p>
+    </div>
+    <a href="/cliente/companero-live">Live Companion</a>
+  </div>
+</section>
+{% endblock %}
