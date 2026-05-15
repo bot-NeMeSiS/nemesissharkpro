@@ -12,6 +12,7 @@ body{margin:0;background:#06111f;color:#eef6ff;font-family:Arial}.wrap{max-width
 .btn{white-space:nowrap;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.07);border-radius:999px;padding:10px 13px;display:inline-block;margin:4px}
 @media(max-width:640px){.result{font-size:28px;min-width:70px}.team{padding:12px 8px}}
 </style>  <link rel="stylesheet" href="/static/css/v263_global_design_system_unification.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/v266_client_experience_unification.css') }}">
 </head><body class="v263-global-unified v263-global-unified">
 <div class="v263-legacy-shell" aria-label="Navegación unificada V263">
   <a class="v263-shell-brand" href="/clientes"><strong>NeMeSiS</strong><small>SHARK PRO</small></a>
@@ -28,4 +29,5 @@ body{margin:0;background:#06111f;color:#eef6ff;font-family:Arial}.wrap{max-width
 </section>
 <div class="grid"><div class="card"><h3>🔥 Señales live</h3><p>Presión, momentum y peligro si existen datos reales.</p></div><div class="card"><h3>⚽ Incidencias</h3><p>Goles, tarjetas, VAR y cambios si el proveedor los manda.</p></div><div class="card"><h3>📈 Cuotas</h3><p>Movimiento de mercado cuando haya snapshots.</p></div></div>
 <section class="card"><h2>Timeline</h2><div class="event">⏱️ Sin incidencias reales disponibles todavía.</div><div class="event">✅ Preparado para eventos reales cuando lleguen.</div></section>
-</div></body></html>
+</div><script defer src="{{ url_for('static', filename='js/v266_client_experience_unification.js') }}"></script>
+</body></html>

@@ -1,5 +1,6 @@
 
 <!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>V77 Performance</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/static/css/v70_premium_ui.css">  <link rel="stylesheet" href="/static/css/v263_global_design_system_unification.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/v266_client_experience_unification.css') }}">
 </head><body class="v263-global-unified v263-global-unified">
 <div class="v263-legacy-shell" aria-label="Navegación unificada V263">
   <a class="v263-shell-brand" href="/clientes"><strong>NeMeSiS</strong><small>SHARK PRO</small></a>
@@ -17,4 +18,5 @@
 <article class="nsp-card nsp-kpi"><div class="nsp-kpi-label">Cache Items</div><div class="nsp-kpi-value">{{ status.cache_items }}</div></article>
 </section>
 <section class="nsp-card" style="margin-top:18px;"><h2>Módulos</h2><table><thead><tr><th>Módulo</th><th>Estado</th></tr></thead><tbody>{% for m in status.modules %}<tr><td>{{ m.name }}</td><td><span class="nsp-pill ok">{{ m.status }}</span></td></tr>{% endfor %}</tbody></table></section>
-</main><nav class="nsp-mobile-bottom"><a href="/">Inicio</a><a href="/admin/community">V76</a><a href="/admin/performance">V77</a><a href="/admin/launch-candidate">V78</a></nav><script src="/static/js/v70_premium_ui.js"></script></body></html>
+</main><nav class="nsp-mobile-bottom"><a href="/">Inicio</a><a href="/admin/community">V76</a><a href="/admin/performance">V77</a><a href="/admin/launch-candidate">V78</a></nav><script src="/static/js/v70_premium_ui.js"></script><script defer src="{{ url_for('static', filename='js/v266_client_experience_unification.js') }}"></script>
+</body></html>

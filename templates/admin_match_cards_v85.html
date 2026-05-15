@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/static/css/v70_premium_ui.css">
   <link rel="stylesheet" href="/static/css/v85_match_cards.css">
   <link rel="stylesheet" href="/static/css/v263_global_design_system_unification.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/v266_client_experience_unification.css') }}">
 </head>
 <body class="v263-global-unified v263-global-unified">
 <div class="v263-legacy-shell" aria-label="Navegación unificada V263">
@@ -65,5 +66,6 @@
 </main>
 <script src="/static/js/v70_premium_ui.js"></script>
 <script src="/static/js/v85_match_cards.js"></script>
+<script defer src="{{ url_for('static', filename='js/v266_client_experience_unification.js') }}"></script>
 </body>
 </html>

@@ -16,6 +16,7 @@ body{margin:0;background:#06111f;color:#eef6ff;font-family:Arial,Helvetica,sans-
 .empty{border:1px dashed rgba(255,255,255,.18);background:rgba(255,255,255,.04);border-radius:18px;padding:16px;text-align:center}
 </style>
   <link rel="stylesheet" href="/static/css/v263_global_design_system_unification.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/v266_client_experience_unification.css') }}">
 </head>
 <body class="v263-global-unified v263-global-unified">
 <div class="v263-legacy-shell" aria-label="Navegación unificada V263">
@@ -55,5 +56,6 @@ body{margin:0;background:#06111f;color:#eef6ff;font-family:Arial,Helvetica,sans-
 <p>La estructura está preparada para mostrarlos automáticamente cuando estén disponibles.</p>
 </div>
 </div>
+<script defer src="{{ url_for('static', filename='js/v266_client_experience_unification.js') }}"></script>
 </body>
 </html>

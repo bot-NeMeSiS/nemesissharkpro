@@ -19,7 +19,7 @@ from zoneinfo import ZoneInfo
 
 from flask import Flask, render_template, request, redirect, session, jsonify, send_from_directory, Response
 
-APP_VERSION = "NeMeSiS_SHARK_PRO_V264_0_CORE_STABILITY_CLEAN_APP_RECOVERY_PRO_RENDER_READY"
+APP_VERSION = "NeMeSiS_SHARK_PRO_V265_0_ROUTE_SAFETY_VISUAL_CONSISTENCY_GUARD_PRO_RENDER_READY"
 APP_NAME = "NeMeSiS SHARK PRO"
 
 
@@ -9792,6 +9792,107 @@ def core_stability_clean_recovery_v264():
 @app.route('/api/v264/core-stability/status')
 def api_v264_core_stability_status():
     return jsonify(v264_core_stability_status())
+
+
+# ============================================================
+# V265 · ROUTE SAFETY + VISUAL CONSISTENCY GUARD PRO
+# Capa de control para evitar regresiones: rutas, plantillas,
+# consistencia visual y marcadores peligrosos. No toca datos reales.
+# ============================================================
+def v265_route_safety_status():
+    """Diagnóstico ligero en runtime. REAL ONLY: solo audita estructura interna."""
+    template_dir = os.path.join(os.path.dirname(__file__), 'templates')
+    static_dir = os.path.join(os.path.dirname(__file__), 'static')
+    route_rules = []
+    try:
+        for rule in app.url_map.iter_rules():
+            route_rules.append(str(rule.rule))
+    except Exception:
+        route_rules = []
+
+    html_files = []
+    base_extended = 0
+    standalone = 0
+    if os.path.isdir(template_dir):
+        for name in sorted(os.listdir(template_dir)):
+            if name.endswith('.html'):
+                html_files.append(name)
+                try:
+                    content = open(os.path.join(template_dir, name), 'r', encoding='utf-8', errors='ignore').read(800)
+                    if 'extends' in content and 'base.html' in content:
+                        base_extended += 1
+                    elif name != 'base.html':
+                        standalone += 1
+                except Exception:
+                    standalone += 1
+
+    css_files = []
+    css_dir = os.path.join(static_dir, 'css')
+    if os.path.isdir(css_dir):
+        css_files = [f for f in os.listdir(css_dir) if f.endswith('.css')]
+
+    danger_markers = []
+    try:
+        with open(__file__, 'r', encoding='utf-8', errors='ignore') as fh:
+            source = fh.read()
+        for marker in ('<'*7, '='*7 + chr(10), '>'*7):
+            if marker in source:
+                danger_markers.append(marker.strip())
+    except Exception:
+        danger_markers.append('source_read_error')
+
+    return {
+        'version': 'V265',
+        'name': 'ROUTE SAFETY + VISUAL CONSISTENCY GUARD PRO',
+        'app_version': APP_VERSION,
+        'idioma': 'es',
+        'real_only': True,
+        'data_logic_changed': False,
+        'routes_total': len(route_rules),
+        'templates_total': len(html_files),
+        'templates_extending_base': base_extended,
+        'templates_standalone_detected': standalone,
+        'css_files_total': len(css_files),
+        'merge_conflict_markers_detected': danger_markers,
+        'route_guard_ready': True,
+        'visual_guard_ready': True,
+        'render_safety_ready': len(danger_markers) == 0,
+        'next_action': 'Seguir migrando pantallas standalone a base.html sin tocar lógica real.',
+        'mensaje': 'Guardia de rutas y consistencia visual activo: ayuda a detectar pantallas aisladas, CSS disperso y conflictos antes de desplegar.'
+    }
+
+@app.route('/route-safety-guard')
+@app.route('/visual-consistency-guard')
+@app.route('/admin/route-safety-guard')
+@app.route('/admin/visual-consistency-guard')
+def route_safety_visual_consistency_guard_v265():
+    return render_template('route_safety_visual_consistency_guard_v265.html', status=v265_route_safety_status())
+
+@app.route('/api/v265/route-safety/status')
+def api_v265_route_safety_status():
+    return jsonify(v265_route_safety_status())
+
+
+@app.route('/client-experience-unification')
+@app.route('/admin/client-experience-unification')
+def client_experience_unification_v266():
+    """V266 · Centro de unificación de experiencia cliente.
+    Pantalla segura: no llama APIs externas y no inventa datos deportivos.
+    """
+    payload = {
+        "version": "V266",
+        "name": "CLIENT EXPERIENCE UNIFICATION PRO",
+        "focus": "Uniformidad visual, navegación cliente y mobile app feel",
+        "real_only": True,
+        "areas": [
+            "base visual común",
+            "cards y botones unificados",
+            "bottom nav móvil consistente",
+            "fallback premium LOW DATA",
+            "pantallas cliente prioritarias",
+        ],
+    }
+    return render_template('client_experience_unification_v266.html', payload=payload)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

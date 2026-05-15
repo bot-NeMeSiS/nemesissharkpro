@@ -1,0 +1,138 @@
+
+/* V266 · CLIENT EXPERIENCE UNIFICATION PRO
+   Capa global para que las pantallas cliente se sientan como una sola app.
+   No inventa datos: solo normaliza layout, cards, botones, navegación y estados visuales. */
+:root{
+  --v266-bg:#050814;
+  --v266-bg2:#07142f;
+  --v266-panel:rgba(8,18,42,.86);
+  --v266-panel-strong:rgba(12,28,62,.94);
+  --v266-line:rgba(95,180,255,.20);
+  --v266-line-strong:rgba(95,180,255,.38);
+  --v266-text:#eef7ff;
+  --v266-muted:#9db2cf;
+  --v266-accent:#34d6ff;
+  --v266-accent2:#1d8cff;
+  --v266-gold:#f8c76a;
+  --v266-danger:#ff6b8a;
+  --v266-ok:#52f2a8;
+  --v266-radius:22px;
+  --v266-shadow:0 18px 55px rgba(0,0,0,.38);
+}
+html{background:var(--v266-bg);}
+body.v263-global-unified,
+body.v266-client-unified,
+body:not(.public-landing){
+  color:var(--v266-text);
+  background:
+    radial-gradient(circle at top left, rgba(30,136,255,.18), transparent 34%),
+    radial-gradient(circle at 88% 10%, rgba(52,214,255,.12), transparent 30%),
+    linear-gradient(145deg,var(--v266-bg),var(--v266-bg2) 52%,#03060f);
+  min-height:100vh;
+}
+body.v266-client-unified .container,
+body.v263-global-unified .container{
+  width:min(1220px, calc(100% - 28px));
+  margin:0 auto;
+  padding:22px 0 110px;
+}
+.topbar,
+.v266-app-shell .topbar{
+  position:sticky;top:0;z-index:70;
+  backdrop-filter:blur(18px);
+  background:linear-gradient(180deg, rgba(5,10,27,.94), rgba(5,10,27,.74));
+  border-bottom:1px solid var(--v266-line);
+  box-shadow:0 10px 35px rgba(0,0,0,.28);
+}
+.topbar .brand,.brand{gap:10px;text-decoration:none;color:var(--v266-text)}
+.brand-icon,.pro-mark{box-shadow:0 0 0 1px var(--v266-line-strong),0 0 28px rgba(52,214,255,.22)}
+.nav a,.nav button,.client-app-nav-v308 a,.client-app-nav-v308 button,.bottom-mobile-nav-v283 a,.bottom-mobile-nav-v283 button{
+  border-radius:999px;
+  transition:transform .16s ease, border-color .16s ease, background .16s ease;
+}
+.nav a:hover,.client-app-nav-v308 a:hover,.client-app-nav-v308 button:hover{transform:translateY(-1px);border-color:var(--v266-line-strong);}
+/* Shell común */
+.v266-page-hero,.hero,.panel-hero,.page-hero,.premium-hero,.client-hero,.shark-hero{
+  border:1px solid var(--v266-line);
+  background:linear-gradient(135deg, rgba(14,34,76,.92), rgba(6,15,35,.82));
+  border-radius:calc(var(--v266-radius) + 6px);
+  padding:clamp(18px,3vw,32px);
+  box-shadow:var(--v266-shadow);
+  margin-bottom:18px;
+  position:relative;overflow:hidden;
+}
+.v266-page-hero:before,.hero:before,.panel-hero:before,.page-hero:before,.premium-hero:before,.client-hero:before,.shark-hero:before{
+  content:"";position:absolute;inset:-80px -80px auto auto;width:220px;height:220px;
+  background:radial-gradient(circle,rgba(52,214,255,.22),transparent 70%);pointer-events:none;
+}
+h1,h2,h3{letter-spacing:-.025em;color:var(--v266-text)}
+main h1:first-child,main h2:first-child{margin-top:0}
+p,.muted,small{color:var(--v266-muted)}
+/* Cards y grids comunes */
+.card,.panel,.box,.tile,.metric-card,.match-card,.pick-card,.live-card,.premium-card,.admin-card,.client-card,
+[class*="card"],[class*="panel"],[class*="tile"]{
+  border-color:var(--v266-line) !important;
+  background:linear-gradient(180deg,var(--v266-panel),rgba(5,12,30,.84)) !important;
+  border-radius:var(--v266-radius) !important;
+  box-shadow:0 14px 42px rgba(0,0,0,.26) !important;
+}
+.grid,.cards,.metrics-grid,.match-grid,.premium-grid,.client-grid,.dashboard-grid{
+  display:grid;gap:16px;
+}
+@media (min-width:860px){.grid,.cards,.metrics-grid,.match-grid,.premium-grid,.client-grid,.dashboard-grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}}
+/* Botones */
+a.btn,button,.btn,.button,[class*="btn"],input[type="submit"]{
+  border-radius:999px;
+}
+a.btn,.btn,.button,button[type="submit"],input[type="submit"],.primary,.cta{
+  background:linear-gradient(135deg,var(--v266-accent),var(--v266-accent2));
+  color:#031122 !important;
+  border:1px solid rgba(255,255,255,.18);
+  font-weight:800;
+  box-shadow:0 12px 28px rgba(29,140,255,.20);
+}
+.secondary,.ghost,.btn-secondary{
+  background:rgba(255,255,255,.06) !important;color:var(--v266-text) !important;border:1px solid var(--v266-line) !important;
+}
+/* Estados REAL ONLY */
+.low-data,.empty-state,.fallback,.no-data,.real-only,.quality-low,[class*="low-data"],[class*="empty"]{
+  border:1px dashed rgba(248,199,106,.36) !important;
+  background:linear-gradient(135deg,rgba(248,199,106,.10),rgba(8,18,42,.76)) !important;
+  color:var(--v266-text);
+}
+.badge,.tag,.pill,.chip,[class*="badge"],[class*="chip"],[class*="pill"]{
+  border-radius:999px;
+  border:1px solid var(--v266-line);
+  background:rgba(52,214,255,.08);
+  color:var(--v266-text);
+}
+/* Tablas */
+table{width:100%;border-collapse:separate;border-spacing:0 8px;color:var(--v266-text)}
+th{color:var(--v266-muted);font-weight:700;text-align:left}
+td,th{padding:10px 12px}tbody tr{background:rgba(255,255,255,.045)}tbody tr td:first-child{border-radius:14px 0 0 14px}tbody tr td:last-child{border-radius:0 14px 14px 0}
+/* Formularios */
+input,select,textarea{
+  background:rgba(2,8,24,.72)!important;color:var(--v266-text)!important;border:1px solid var(--v266-line)!important;border-radius:16px!important;
+}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--v266-accent)!important;box-shadow:0 0 0 3px rgba(52,214,255,.16)}
+/* Mobile app feel */
+.client-app-nav-v308{border:1px solid var(--v266-line);background:rgba(5,10,27,.78);backdrop-filter:blur(18px)}
+.bottom-mobile-nav-v283{
+  border-top:1px solid var(--v266-line)!important;
+  background:rgba(5,10,27,.88)!important;backdrop-filter:blur(20px);box-shadow:0 -16px 40px rgba(0,0,0,.32);
+}
+#nemesis-pwa-banner{display:none!important}.v170-pwa-card{max-width:920px;margin:0 auto 16px;border-radius:20px}
+.shark-float{box-shadow:0 18px 44px rgba(29,140,255,.34)!important}
+/* Compatibilidad pantallas sueltas */
+body:not(.v263-global-unified) main,body:not(.v263-global-unified) .main,body:not(.v263-global-unified) .wrap,body:not(.v263-global-unified) .container{
+  max-width:1220px;margin-inline:auto;padding-inline:14px;
+}
+body:not(.v263-global-unified) header,body:not(.v263-global-unified) .header{border-bottom:1px solid var(--v266-line)}
+/* Admin menos invasivo, cliente primero */
+.admin-nav,.admin-only{opacity:.88}
+@media (max-width:760px){
+  body.v266-client-unified .container,body.v263-global-unified .container{width:min(100% - 18px,1220px);padding-top:14px;padding-bottom:96px}
+  .nav{display:none!important}.topbar{padding-inline:12px}.brand small{display:block}
+  .v266-page-hero,.hero,.panel-hero,.page-hero,.premium-hero,.client-hero,.shark-hero{padding:18px;border-radius:22px}
+  .card,.panel,.box,.tile,.metric-card,.match-card,.pick-card,.live-card,.premium-card,.admin-card,.client-card,[class*="card"],[class*="panel"]{border-radius:18px!important}
+}

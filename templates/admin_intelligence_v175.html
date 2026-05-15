@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/static/app.css">
   <link rel="stylesheet" href="/static/admin_intelligence_v175.css">
   <link rel="stylesheet" href="/static/css/v263_global_design_system_unification.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/v266_client_experience_unification.css') }}">
 </head>
 <body class="v263-global-unified v175-admin-body">
 <div class="v263-legacy-shell" aria-label="Navegación unificada V263">
@@ -86,5 +87,6 @@
     </section>
   </main>
   <script src="/static/admin_intelligence_v175.js"></script>
+<script defer src="{{ url_for('static', filename='js/v266_client_experience_unification.js') }}"></script>
 </body>
 </html>

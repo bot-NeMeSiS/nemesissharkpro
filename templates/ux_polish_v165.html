@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/static/app.css">
   <link rel="stylesheet" href="/static/v165/ux_polish_v165.css">
   <link rel="stylesheet" href="/static/css/v263_global_design_system_unification.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/v266_client_experience_unification.css') }}">
 </head>
 <body class="v263-global-unified v165-body">
 <div class="v263-legacy-shell" aria-label="Navegación unificada V263">
@@ -75,5 +76,6 @@
     <a href="/cliente/pro">Inicio</a><a href="/home-live-pro">Live</a><a href="/fixtures/today-pro">Partidos</a><a href="/shark-ai">SHARK</a><a href="/cuenta">Cuenta</a>
   </nav>
   <script src="/static/v165/ux_polish_v165.js"></script>
+<script defer src="{{ url_for('static', filename='js/v266_client_experience_unification.js') }}"></script>
 </body>
 </html>

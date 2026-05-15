@@ -6,6 +6,7 @@
   <title>Live Events Ultra · NeMeSiS SHARK PRO</title>
   <link rel="stylesheet" href="/static/live_events_ultra_v176.css">
   <link rel="stylesheet" href="/static/css/v263_global_design_system_unification.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/v266_client_experience_unification.css') }}">
 </head>
 <body class="v263-global-unified v176-body">
 <div class="v263-legacy-shell" aria-label="Navegación unificada V263">
@@ -111,5 +112,6 @@
     {% endif %}
   </main>
   <script src="/static/live_events_ultra_v176.js"></script>
+<script defer src="{{ url_for('static', filename='js/v266_client_experience_unification.js') }}"></script>
 </body>
 </html>

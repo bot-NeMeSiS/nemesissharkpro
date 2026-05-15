@@ -14,6 +14,7 @@ body{margin:0;background:#06111f;color:#eef6ff;font-family:Arial}
 .warn{padding:14px;border-radius:16px;background:rgba(255,211,110,.09);border:1px solid rgba(255,211,110,.35);color:#ffe19b;font-weight:800}
 </style>
   <link rel="stylesheet" href="/static/css/v263_global_design_system_unification.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/v266_client_experience_unification.css') }}">
 </head>
 <body class="v263-global-unified v263-global-unified">
 <div class="v263-legacy-shell" aria-label="Navegación unificada V263">
@@ -40,5 +41,6 @@ body{margin:0;background:#06111f;color:#eef6ff;font-family:Arial}
 <div class="card"><h3>🧠 SHARK AI</h3><p>Alertas inteligentes y tendencias destacadas.</p></div>
 </div>
 </div>
+<script defer src="{{ url_for('static', filename='js/v266_client_experience_unification.js') }}"></script>
 </body>
 </html>

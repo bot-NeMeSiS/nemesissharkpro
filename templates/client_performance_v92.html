@@ -1,5 +1,6 @@
 
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/static/css/v92_client_panel.css"><title>Rendimiento</title>  <link rel="stylesheet" href="/static/css/v263_global_design_system_unification.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/v266_client_experience_unification.css') }}">
 </head><body class="v263-global-unified v263-global-unified">
 <div class="v263-legacy-shell" aria-label="Navegación unificada V263">
   <a class="v263-shell-brand" href="/clientes"><strong>NeMeSiS</strong><small>SHARK PRO</small></a>
@@ -17,4 +18,5 @@
 <section class="v92-hero compact"><div><span class="v92-pill">MI CUENTA</span><h1>Rendimiento y banca</h1><p>Sin historial cerrado no se inventa ROI ni winrate.</p></div></section>
 <section class="v92-stats"><article><span>ROI</span><strong>{{ vm.user.roi }}</strong><small>Historial real</small></article><article><span>Winrate</span><strong>{{ vm.user.winrate }}</strong><small>Picks cerrados</small></article><article><span>Banca</span><strong>{{ vm.user.bankroll }}</strong><small>Configurable</small></article><article><span>Cerrados</span><strong>{{ vm.user.closed_picks }}</strong><small>Resultados reales</small></article></section>
 <section class="v92-grid"><div class="v92-panel"><div class="v92-panel-head"><div><span>Banca</span><h2>Control de dinero</h2></div></div><input class="v92-input" value="{{ vm.user.bankroll.replace('€','') }}"><button class="v92-button">Guardar</button></div><div class="v92-panel"><div class="v92-panel-head"><div><span>Perfil SHARK</span><h2>Ajustes</h2></div></div><p class="v92-muted">Riesgo: {{ vm.user.risk_profile }} · Deporte: {{ vm.user.sport }} · Liga: {{ vm.user.favorite_league }}</p></div></section>
-</main></div></body></html>
+</main></div><script defer src="{{ url_for('static', filename='js/v266_client_experience_unification.js') }}"></script>
+</body></html>

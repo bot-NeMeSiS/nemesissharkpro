@@ -1,4 +1,5 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/static/css/v93_pro.css"><title>Mi cuenta V93</title>  <link rel="stylesheet" href="/static/css/v263_global_design_system_unification.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/v266_client_experience_unification.css') }}">
 </head><body class="v263-global-unified v263-global-unified">
 <div class="v263-legacy-shell" aria-label="Navegación unificada V263">
   <a class="v263-shell-brand" href="/clientes"><strong>NeMeSiS</strong><small>SHARK PRO</small></a>
@@ -27,4 +28,5 @@
 <section class="nms-hero compact"><div><span class="nms-badge">MI CUENTA</span><h1>Banca, ROI y perfil SHARK</h1><p>ROI y winrate solo aparecerán cuando exista historial real cerrado.</p></div></section>
 <section class="nms-kpis"><article><span>ROI</span><strong>{{ vm.user.roi }}</strong><small>Real</small></article><article><span>Winrate</span><strong>{{ vm.user.winrate }}</strong><small>Real</small></article><article><span>Banca</span><strong>{{ vm.user.bankroll }}</strong><small>Configurable</small></article><article><span>Perfil</span><strong>{{ vm.user.risk }}</strong><small>{{ vm.user.sport }}</small></article></section>
 <section class="nms-layout"><div class="nms-card"><div class="nms-card-head"><div><span>Banca</span><h2>Control de stake</h2></div></div><input class="nms-input" value="10.00"><button class="nms-btn">Guardar</button></div><div class="nms-card"><div class="nms-card-head"><div><span>Telegram</span><h2>{{ vm.user.telegram }}</h2></div></div><p class="muted">Conexión pendiente. Sin simulaciones.</p></div></section>
-</main></div></body></html>
+</main></div><script defer src="{{ url_for('static', filename='js/v266_client_experience_unification.js') }}"></script>
+</body></html>

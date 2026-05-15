@@ -1,0 +1,13 @@
+{
+  "version": "V265",
+  "name": "ROUTE SAFETY + VISUAL CONSISTENCY GUARD PRO",
+  "real_only": true,
+  "render_ready": true,
+  "routes_added": [
+    "/route-safety-guard",
+    "/visual-consistency-guard",
+    "/admin/route-safety-guard",
+    "/api/v265/route-safety/status"
+  ],
+  "data_logic_changed": false
+}

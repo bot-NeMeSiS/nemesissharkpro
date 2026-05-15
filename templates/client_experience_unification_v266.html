@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="v266-page-hero">
+  <span class="badge">{{ payload.version }} · {{ payload.name }}</span>
+  <h1>Experiencia cliente unificada</h1>
+  <p>Esta versión añade una capa global para que las pantallas cliente respiren la misma app: mismo fondo premium, mismas tarjetas, botones, estados LOW DATA y navegación móvil.</p>
+  <div class="grid">
+    <article class="card"><h3>Visual único</h3><p>Base común para cliente, picks, live, match center, alertas, favoritos y SHARK AI.</p></article>
+    <article class="card"><h3>Mobile feel</h3><p>Bottom nav y espaciados más estables para uso tipo PWA.</p></article>
+    <article class="card"><h3>REAL ONLY</h3><p>No se inventan datos. La mejora es de experiencia, no fuerza marcadores, cuotas ni eventos.</p></article>
+  </div>
+</section>
+<section class="grid">
+  {% for area in payload.areas %}
+  <article class="premium-card"><span class="chip">Unificación</span><h3>{{ area }}</h3><p>Aplicado como guard visual global para reducir diferencias entre pantallas antiguas y nuevas.</p></article>
+  {% endfor %}
+</section>
+{% endblock %}

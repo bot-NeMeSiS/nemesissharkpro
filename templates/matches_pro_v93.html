@@ -1,4 +1,5 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/static/css/v93_pro.css"><title>Partidos V93</title>  <link rel="stylesheet" href="/static/css/v263_global_design_system_unification.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/v266_client_experience_unification.css') }}">
 </head><body class="v263-global-unified v263-global-unified">
 <div class="v263-legacy-shell" aria-label="Navegación unificada V263">
   <a class="v263-shell-brand" href="/clientes"><strong>NeMeSiS</strong><small>SHARK PRO</small></a>
@@ -26,4 +27,5 @@
 
 <section class="nms-hero compact"><div><span class="nms-badge">CALENDARIO REAL</span><h1>Partidos disponibles</h1><p>Solo fechas reales del feed. Nada viejo ni inventado.</p></div><div class="nms-actions"><a href="/partidos?force=true">Actualizar</a></div></section>
 <section class="nms-list full">{% for p in vm.matches %}<a class="nms-row" href="{{ p.detail_url }}"><div class="nms-date"><b>{{ p.date }}</b><span>{{ p.time }} h Madrid</span></div><div class="nms-teams"><small>{{ p.league }} · {{ p.status }}</small><b>{{ p.home }}</b><b>{{ p.away }}</b></div><div class="nms-bet"><small>Mercado</small><b>{{ p.market }}</b><span>{{ p.bookmaker }}</span></div><div class="nms-chip"><small>Cuota</small><b>{{ p.odds }}</b></div><div class="nms-chip"><small>Score</small><b>{{ p.score }}</b></div></a>{% else %}<div class="nms-empty">No hay partidos reales ahora. Sin demos.</div>{% endfor %}</section>
-</main></div></body></html>
+</main></div><script defer src="{{ url_for('static', filename='js/v266_client_experience_unification.js') }}"></script>
+</body></html>

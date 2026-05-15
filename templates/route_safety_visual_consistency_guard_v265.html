@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="v265-guard-shell">
+  <div class="v265-hero-card">
+    <span class="v265-kicker">V265 · Guardia de estabilidad</span>
+    <h1>Route Safety + Visual Consistency Guard</h1>
+    <p>Panel de control para detectar rutas, pantallas aisladas, CSS disperso y posibles conflictos antes de desplegar en Render. No inventa datos deportivos ni modifica la lógica REAL ONLY.</p>
+    <div class="v265-status-row">
+      <span class="v265-pill ok">REAL ONLY intacto</span>
+      <span class="v265-pill {{ 'ok' if status.render_safety_ready else 'danger' }}">{{ 'Render seguro' if status.render_safety_ready else 'Revisar antes de deploy' }}</span>
+      <span class="v265-pill neutral">{{ status.routes_total }} rutas</span>
+    </div>
+  </div>
+
+  <div class="v265-grid">
+    <article class="v265-card">
+      <small>Rutas registradas</small>
+      <strong>{{ status.routes_total }}</strong>
+      <p>Mapa interno de endpoints para evitar pérdidas o rutas duplicadas al seguir creciendo.</p>
+    </article>
+    <article class="v265-card">
+      <small>Plantillas totales</small>
+      <strong>{{ status.templates_total }}</strong>
+      <p>Control de pantallas HTML disponibles dentro de la app.</p>
+    </article>
+    <article class="v265-card">
+      <small>Extienden base.html</small>
+      <strong>{{ status.templates_extending_base }}</strong>
+      <p>Indicador clave para que todas las pantallas respiren el mismo diseño premium.</p>
+    </article>
+    <article class="v265-card">
+      <small>Standalone detectadas</small>
+      <strong>{{ status.templates_standalone_detected }}</strong>
+      <p>Pantallas candidatas a migrar al shell visual global sin tocar datos reales.</p>
+    </article>
+  </div>
+
+  <div class="v265-panel">
+    <h2>Estado del core</h2>
+    <ul>
+      <li><b>Marcadores de conflicto:</b> {{ status.merge_conflict_markers_detected|join(', ') if status.merge_conflict_markers_detected else 'Ninguno detectado' }}</li>
+      <li><b>CSS detectados:</b> {{ status.css_files_total }}</li>
+      <li><b>Lógica deportiva:</b> No modificada</li>
+      <li><b>Siguiente acción:</b> {{ status.next_action }}</li>
+    </ul>
+  </div>
+</section>
+{% endblock %}

@@ -18,6 +18,7 @@ body{margin:0;background:#06111f;color:#eef6ff;font-family:Arial,Helvetica,sans-
 .signal{display:inline-block;border-radius:999px;padding:9px 12px;margin:5px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
 </style>
   <link rel="stylesheet" href="/static/css/v263_global_design_system_unification.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/v266_client_experience_unification.css') }}">
 </head>
 <body class="v263-global-unified v263-global-unified">
 <div class="v263-legacy-shell" aria-label="Navegación unificada V263">
@@ -64,5 +65,6 @@ body{margin:0;background:#06111f;color:#eef6ff;font-family:Arial,Helvetica,sans-
 <div class="card"><h3>Final de partido</h3><p>Detección de presión tardía y riesgo.</p></div>
 </div>
 </div>
+<script defer src="{{ url_for('static', filename='js/v266_client_experience_unification.js') }}"></script>
 </body>
 </html>

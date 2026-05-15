@@ -1,0 +1,14 @@
+{
+  "version": "V266",
+  "name": "CLIENT EXPERIENCE UNIFICATION PRO",
+  "real_only": true,
+  "validated": [
+    "zip",
+    "app.py compile",
+    "no __pycache__"
+  ],
+  "routes": [
+    "/client-experience-unification",
+    "/admin/client-experience-unification"
+  ]
+}

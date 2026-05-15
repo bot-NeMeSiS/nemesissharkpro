@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head><meta charset="UTF-8"><title>Comunidad SHARK</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/static/css/v70_premium_ui.css">  <link rel="stylesheet" href="/static/css/v263_global_design_system_unification.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/v266_client_experience_unification.css') }}">
 </head>
 <body class="v263-global-unified v263-global-unified">
 <div class="v263-legacy-shell" aria-label="Navegación unificada V263">
@@ -24,4 +25,5 @@
 </main>
 <nav class="nsp-mobile-bottom"><a href="/">Inicio</a><a href="/live-center">Live</a><a href="/community">Comunidad</a><a href="/admin/community">V76</a></nav>
 <script src="/static/js/v70_premium_ui.js"></script>
+<script defer src="{{ url_for('static', filename='js/v266_client_experience_unification.js') }}"></script>
 </body></html>
