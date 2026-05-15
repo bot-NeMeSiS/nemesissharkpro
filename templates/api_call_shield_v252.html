@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>V252 · API Call Shield</title>
+  <style>
+    :root{--bg:#06111f;--panel:#0b1b31;--line:rgba(148,163,184,.22);--txt:#e5f2ff;--mut:#8fb1d8;--ok:#22c55e;--warn:#f59e0b;--bad:#ef4444;--cyan:#22d3ee;--gold:#facc15}
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial;background:radial-gradient(circle at top,#123963 0,#06111f 42%,#020617 100%);color:var(--txt)}
+    .wrap{max-width:1220px;margin:0 auto;padding:24px 16px 88px}.top{display:flex;gap:14px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}.pill{border:1px solid var(--line);background:rgba(15,23,42,.78);border-radius:999px;padding:8px 12px;color:var(--mut);font-weight:800;font-size:12px}.h1{font-size:clamp(28px,5vw,54px);line-height:.95;margin:14px 0 10px;font-weight:1000;letter-spacing:-.04em}.sub{color:var(--mut);max-width:760px;line-height:1.55}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}.card{border:1px solid var(--line);background:linear-gradient(180deg,rgba(15,23,42,.9),rgba(2,6,23,.78));border-radius:24px;padding:16px;box-shadow:0 20px 70px rgba(0,0,0,.22)}.k{color:var(--mut);font-size:12px;font-weight:900;text-transform:uppercase}.v{font-size:30px;font-weight:1000;margin-top:8px}.bar{height:9px;background:rgba(148,163,184,.14);border-radius:999px;overflow:hidden;margin-top:12px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--gold));width:0}.actions{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.btn{border:1px solid var(--line);background:rgba(34,211,238,.12);color:var(--txt);padding:10px 14px;border-radius:14px;font-weight:900;text-decoration:none;cursor:pointer}.table{overflow:auto;border-radius:22px;border:1px solid var(--line)}table{width:100%;border-collapse:collapse;min-width:980px;background:rgba(2,6,23,.48)}th,td{padding:13px 12px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}th{color:#b9d7ff;background:rgba(15,23,42,.9);position:sticky;top:0}.badge{border-radius:999px;padding:6px 9px;font-weight:1000;font-size:11px;display:inline-block}.ok{background:rgba(34,197,94,.15);color:#86efac}.warn{background:rgba(245,158,11,.15);color:#fde68a}.bad{background:rgba(239,68,68,.15);color:#fecaca}.mut{color:var(--mut)}.empty{padding:24px;border:1px dashed var(--line);border-radius:20px;color:var(--mut)}@media(max-width:760px){.grid{grid-template-columns:1fr 1fr}.wrap{padding:18px 12px 92px}.v{font-size:24px}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <span class="pill">V252 · API CALL SHIELD + CACHE POLICY PRO</span>
+      <h1 class="h1">Escudo real de créditos API.</h1>
+      <p class="sub">Decide qué partidos necesitan refresco y cuáles pueden salir desde caché. Mantiene REAL ONLY: si falta marcador, cuota, minuto o ID real, lo marca como pendiente sin inventar nada.</p>
+    </div>
+    <a class="btn" href="/cliente/pro">Volver a mi cuenta</a>
+  </div>
+  <div class="grid">
+    <div class="card"><div class="k">Partidos analizados</div><div class="v" id="total">—</div><div class="bar"><i id="bTotal"></i></div></div>
+    <div class="card"><div class="k">Cache segura</div><div class="v" id="safe">—</div><div class="bar"><i id="bSafe"></i></div></div>
+    <div class="card"><div class="k">Refresco recomendado</div><div class="v" id="refresh">—</div><div class="bar"><i id="bRefresh"></i></div></div>
+    <div class="card"><div class="k">Faltan IDs reales</div><div class="v" id="ids">—</div><div class="bar"><i id="bIds"></i></div></div>
+  </div>
+  <div class="card">
+    <div class="top"><div><div class="k">Política activa</div><div class="sub" id="policy">Cargando política...</div></div><button class="btn" onclick="loadShield()">Actualizar diagnóstico</button></div>
+    <div id="actions" class="actions"></div>
+  </div>
+  <br>
+  <div class="table"><table><thead><tr><th>Partido</th><th>Estado</th><th>Bucket</th><th>Edad cuota</th><th>ID real</th><th>Fuente</th><th>Decisión</th><th>Faltante</th></tr></thead><tbody id="rows"><tr><td colspan="8" class="mut">Cargando...</td></tr></tbody></table></div>
+</div>
+<script>
+function pct(v,t){return t?Math.min(100,Math.round((v/t)*100)):0}
+function setBar(id,v,t){document.getElementById(id).style.width=pct(v,t)+'%'}
+async function loadShield(){
+  const tb=document.getElementById('rows'); tb.innerHTML='<tr><td colspan="8" class="mut">Analizando SQLite/cache real...</td></tr>';
+  try{
+    const r=await fetch('/api/v252/api-call-shield/status?limit=150',{cache:'no-store'}); const d=await r.json(); const s=d.summary||{}; const total=s.total||0;
+    total!==undefined&&(document.getElementById('total').textContent=total);
+    document.getElementById('safe').textContent=s.safe_cache||0; document.getElementById('refresh').textContent=s.refresh_recommended||0; document.getElementById('ids').textContent=s.missing_real_id||0;
+    setBar('bTotal',total,total); setBar('bSafe',s.safe_cache||0,total); setBar('bRefresh',s.refresh_recommended||0,total); setBar('bIds',s.missing_real_id||0,total);
+    const p=d.policy||{}; document.getElementById('policy').textContent=`LIVE ${p.live_ttl_minutes} min · cercanos ${p.near_match_ttl_minutes} min · prematch ${p.prematch_ttl_minutes} min. ${p.message||''}`;
+    document.getElementById('actions').innerHTML=(d.next_actions||[]).map(x=>`<span class="pill">${x}</span>`).join('') || '<span class="pill">Sistema estable. No hace falta consumir API ahora.</span>';
+    const rows=d.matches||[]; if(!rows.length){tb.innerHTML='<tr><td colspan="8"><div class="empty">No hay partidos activos guardados. Fallback premium activo: no consumir API en bucle.</div></td></tr>'; return;}
+    tb.innerHTML=rows.map(m=>`<tr><td><b>${m.title||'Partido real pendiente'}</b><br><span class="mut">${m.league||''}</span></td><td>${m.status||'PROGRAMADO'} ${m.minute?('· '+m.minute):''} ${m.score?('· '+m.score):''}</td><td><span class="badge ${m.bucket==='live'?'bad':m.bucket==='near'?'warn':'ok'}">${m.bucket}</span></td><td>${m.odds_age_minutes===null?'—':m.odds_age_minutes+' min'}<br><span class="mut">TTL ${m.ttl_minutes} min</span></td><td>${m.external_event_id||'—'}</td><td>${m.source||'—'}</td><td><span class="badge ${m.refresh_recommended?'warn':'ok'}">${m.reason}</span></td><td>${(m.missing||[]).join(', ')||'—'}</td></tr>`).join('');
+  }catch(e){tb.innerHTML='<tr><td colspan="8"><div class="empty">No se pudo leer el diagnóstico. Revisa SQLite/env vars en Render.</div></td></tr>'}
+}
+loadShield();
+</script>
+</body></html>

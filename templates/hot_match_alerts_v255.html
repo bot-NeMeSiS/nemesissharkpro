@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>V255 · Hot Match Alerts · NeMeSiS SHARK PRO</title>
+  <style>
+    :root{--bg:#07111f;--card:#0d1b2f;--card2:#10243f;--text:#eaf4ff;--muted:#8fb0d5;--line:rgba(255,255,255,.10);--gold:#ffd166;--cyan:#50e3ff;--red:#ff5c7a;--green:#51f0a2}
+    *{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at top,#12345a 0,#07111f 42%,#040912 100%);font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;color:var(--text)}
+    .wrap{max-width:1180px;margin:0 auto;padding:22px 14px 90px}.top{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+    .badge{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);background:rgba(80,227,255,.08);padding:8px 12px;border-radius:999px;color:var(--cyan);font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+    h1{margin:10px 0 4px;font-size:clamp(26px,4vw,46px);line-height:1}.sub{color:var(--muted);max-width:760px}.actions{display:flex;gap:10px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:linear-gradient(180deg,#15375d,#0b1d34);color:var(--text);padding:12px 14px;border-radius:16px;text-decoration:none;font-weight:800;cursor:pointer}.btn:hover{filter:brightness(1.15)}
+    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0}@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}}
+    .metric,.card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.025));border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 50px rgba(0,0,0,.24)}.metric{padding:16px}.metric b{font-size:30px;display:block}.metric span{color:var(--muted);font-size:13px}
+    .panel{display:grid;grid-template-columns:1fr;gap:12px}.card{padding:14px}.match{display:grid;grid-template-columns:72px 1fr auto;gap:12px;align-items:center}.score{width:64px;height:64px;border-radius:20px;display:grid;place-items:center;background:#081527;border:1px solid var(--line);font-weight:900}.HOT .score{color:var(--gold);box-shadow:0 0 22px rgba(255,209,102,.22)}.WATCH .score{color:var(--cyan)}.LOWDATA .score,.PENDINGREALDATA .score{color:var(--muted)}
+    .name{font-weight:900;font-size:17px}.meta,.reasons,.missing{color:var(--muted);font-size:13px;margin-top:5px}.pill{display:inline-flex;margin:3px 5px 0 0;padding:5px 8px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid var(--line);font-size:12px}.level{font-weight:900;border-radius:999px;padding:8px 10px;border:1px solid var(--line)}.level.HOT{color:var(--gold);background:rgba(255,209,102,.09)}.level.WATCH{color:var(--cyan);background:rgba(80,227,255,.08)}.level.LOWDATA,.level.PENDINGREALDATA{color:var(--muted)}
+    .empty{padding:28px;text-align:center;color:var(--muted)}.foot{margin-top:18px;color:var(--muted);font-size:13px}.sk{opacity:.6;animation:pulse 1.2s infinite alternate}@keyframes pulse{from{opacity:.35}to{opacity:.85}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div><div class="badge">REAL ONLY · V255</div><h1>Hot Match Alerts Engine</h1><div class="sub">Centro de alertas premium basado solo en cobertura real: minuto, marcador, cuota, fuente, ID externo y calidad de dato. Si falta información, no inventa: muestra fallback limpio.</div></div>
+    <div class="actions"><a class="btn" href="/cliente/pro">Mi cuenta</a><a class="btn" href="/live-command-center">Live</a><button class="btn" onclick="loadData()">Actualizar</button></div>
+  </div>
+  <div class="grid">
+    <div class="metric"><b id="mHot" class="sk">—</b><span>Partidos HOT reales</span></div>
+    <div class="metric"><b id="mWatch" class="sk">—</b><span>En vigilancia</span></div>
+    <div class="metric"><b id="mCoverage" class="sk">—</b><span>Cobertura accionable</span></div>
+    <div class="metric"><b id="mTotal" class="sk">—</b><span>Partidos analizados</span></div>
+  </div>
+  <div id="list" class="panel"><div class="card empty">Cargando alertas reales…</div></div>
+  <div class="foot">Regla NeMeSiS: ninguna alerta se considera real si no existe dato real suficiente. Ideal para conectar después con Telegram/PWA sin gastar llamadas innecesarias.</div>
+</div>
+<script>
+function esc(v){return String(v||'').replace(/[&<>'"]/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[s]))}
+function cls(l){return String(l||'').replace(/\s+/g,'')}
+async function loadData(){
+  const list=document.getElementById('list'); list.innerHTML='<div class="card empty">Actualizando datos reales…</div>';
+  try{
+    const r=await fetch('/api/v255/hot-match-alerts/status?limit=160',{cache:'no-store'}); const d=await r.json(); const s=d.summary||{};
+    mHot.textContent=s.hot||0; mWatch.textContent=s.watch||0; mCoverage.textContent=(s.actionable_coverage_percent||0)+'%'; mTotal.textContent=s.total||0;
+    [mHot,mWatch,mCoverage,mTotal].forEach(x=>x.classList.remove('sk'));
+    const alerts=d.alerts||[];
+    if(!alerts.length){list.innerHTML='<div class="card empty">No hay datos reales suficientes todavía. Sistema preparado, fallback premium activo.</div>';return}
+    list.innerHTML=alerts.map(a=>{
+      const c=cls(a.level); const missing=(a.missing||[]).map(x=>`<span class="pill">Falta ${esc(x)}</span>`).join(''); const reasons=(a.reasons||[]).map(x=>`<span class="pill">${esc(x)}</span>`).join('');
+      return `<div class="card match ${c}"><div class="score">${esc(a.hot_score)}<small>/100</small></div><div><div class="name">${esc(a.title)}</div><div class="meta">${esc(a.league)} · ${esc(a.live_minute||'minuto pendiente')} · ${esc(a.live_score||'marcador pendiente')} · cuota ${esc(a.odds_decimal||'pendiente')}</div><div class="reasons">${reasons||'<span class="pill">Esperando datos reales</span>'}</div><div class="missing">${missing}</div></div><div class="level ${c}">${esc(a.level)}</div></div>`
+    }).join('');
+  }catch(e){list.innerHTML='<div class="card empty">No se pudo leer el estado real. Revisa Render/logs/API sin inventar datos.</div>'}
+}
+loadData();
+</script>
+</body></html>

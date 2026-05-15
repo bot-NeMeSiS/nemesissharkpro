@@ -19,7 +19,11 @@ from zoneinfo import ZoneInfo
 
 from flask import Flask, render_template, request, redirect, session, jsonify, send_from_directory, Response
 
+<<<<<<< HEAD
 APP_VERSION = "NeMeSiS_SHARK_PRO_V262_0_MATCH_PRIORITY_RANKING_PROFILE_ENGINE_PRO_RENDER_READY"
+=======
+APP_VERSION = "NeMeSiS_SHARK_PRO_V261_0_SMART_VALUE_DETECTION_BANKROLL_EDGE_PRO_RENDER_READY"
+>>>>>>> 976294b890a42b9e799a792e1b1b209f446c8c35
 APP_NAME = "NeMeSiS SHARK PRO"
 
 
@@ -9606,6 +9610,7 @@ def api_v261_smart_value_detection_status():
 @app.route('/api/v261/value-snapshot')
 def api_v261_value_snapshot():
     return jsonify(v261_value_snapshot(limit=24))
+<<<<<<< HEAD
 
 # V262 MATCH PRIORITY RANKING + PROFILE ENGINE PRO
 # Capa premium: perfila y ordena partidos por atención REAL ONLY, sin inventar datos.
@@ -9764,3 +9769,5 @@ def api_v263_global_design_system_status():
         'data_logic_changed': False,
         'mensaje': 'Capa global de UX/UI aplicada sin inventar datos ni alterar el sistema REAL ONLY.'
     })
+=======
+>>>>>>> 976294b890a42b9e799a792e1b1b209f446c8c35

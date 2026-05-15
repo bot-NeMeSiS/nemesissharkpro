@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Real Data Health · NeMeSiS SHARK PRO</title>
+<link rel="stylesheet" href="/static/css/v245_navigation_unified.css">
+<link rel="stylesheet" href="/static/css/v250_real_data_health.css">
+</head>
+<body>
+<div class="nms-v245-topbar">
+  <button onclick="history.back()" class="nms-v245-navbtn">← Atrás</button>
+  <a href="/cliente/pro" class="nms-v245-navbtn">Mi cuenta</a>
+  <a href="/cliente/dashboard-pro" class="nms-v245-navbtn">Inicio</a>
+  <a href="/fixtures/today-pro" class="nms-v245-navbtn">Partidos de hoy</a>
+  <a href="/live-command-center" class="nms-v245-navbtn">Live</a>
+  <a href="/logout" class="nms-v245-navbtn nms-v245-logout">Salir</a>
+</div>
+
+<main class="v250-wrap">
+  <section class="v250-hero">
+    <div class="v250-badges"><span>V250</span><span>Real Data Health</span><span>REAL ONLY</span></div>
+    <h1>Centro de salud de datos reales</h1>
+    <p>Detecta por qué pueden faltar partidos, marcadores, minutos, cuotas o escudos sin inventar ningún dato.</p>
+    <div class="v250-actions">
+      <button id="v250-refresh-ui">Actualizar panel</button>
+      <button id="v250-refresh-real">Refresh real controlado</button>
+    </div>
+    <div class="v250-note">El refresh real respeta caché y límites. Usa <b>force=1</b> solo desde admin si quieres forzar proveedores.</div>
+  </section>
+
+  <section class="v250-grid v250-kpis">
+    <article><span>Partidos activos</span><strong id="k-active">—</strong></article>
+    <article><span>Hoy</span><strong id="k-today">—</strong></article>
+    <article><span>Con marcador</span><strong id="k-score">—</strong></article>
+    <article><span>Con minuto</span><strong id="k-minute">—</strong></article>
+    <article><span>Con cuotas</span><strong id="k-odds">—</strong></article>
+    <article><span>Caché válida</span><strong id="k-cache">—</strong></article>
+  </section>
+
+  <section class="v250-grid">
+    <article class="v250-card">
+      <h2>Calidad real</h2>
+      <div class="v250-meter"><span>Marcador</span><div><i id="m-score"></i></div><b id="p-score">—%</b></div>
+      <div class="v250-meter"><span>Minuto</span><div><i id="m-minute"></i></div><b id="p-minute">—%</b></div>
+      <div class="v250-meter"><span>Cuotas</span><div><i id="m-odds"></i></div><b id="p-odds">—%</b></div>
+      <div class="v250-meter"><span>Fuente real</span><div><i id="m-source"></i></div><b id="p-source">—%</b></div>
+    </article>
+
+    <article class="v250-card">
+      <h2>Proveedores</h2>
+      <div id="v250-providers" class="v250-list"></div>
+    </article>
+
+    <article class="v250-card">
+      <h2>Alertas limpias</h2>
+      <div id="v250-alerts" class="v250-list"><div class="v250-empty">Cargando diagnóstico…</div></div>
+    </article>
+  </section>
+
+  <section class="v250-card">
+    <h2>Últimos partidos reales guardados</h2>
+    <div id="v250-matches" class="v250-matches"><div class="v250-empty">Cargando partidos…</div></div>
+  </section>
+
+  <section class="v250-card">
+    <h2>Recomendaciones de estabilidad</h2>
+    <div id="v250-recommendations" class="v250-list"></div>
+  </section>
+</main>
+
+<div class="nms-v245-mobile-bottom">
+  <a href="/cliente/dashboard-pro">Inicio</a>
+  <a href="/fixtures/today-pro">Hoy</a>
+  <a href="/live-command-center">Live</a>
+  <a href="/match-center-unified">Center</a>
+  <a href="/cliente/pro">Cuenta</a>
+</div>
+<a class="nms-v245-shark-float" href="/cliente/shark-ai-pro">🦈</a>
+<script src="/static/js/v250_real_data_health.js"></script>
+</body>
+</html>

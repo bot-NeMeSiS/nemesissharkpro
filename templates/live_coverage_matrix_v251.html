@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Live Coverage Matrix · NeMeSiS SHARK PRO</title>
+<link rel="stylesheet" href="/static/css/v245_navigation_unified.css">
+<link rel="stylesheet" href="/static/css/v251_live_coverage_matrix.css">
+</head>
+<body>
+<div class="nms-v245-topbar">
+  <button onclick="history.back()" class="nms-v245-navbtn">← Atrás</button>
+  <a href="/cliente/pro" class="nms-v245-navbtn">Mi cuenta</a>
+  <a href="/fixtures/today-pro" class="nms-v245-navbtn">Partidos de hoy</a>
+  <a href="/live-command-center" class="nms-v245-navbtn">Live</a>
+  <a href="/real-data-health" class="nms-v245-navbtn">Salud datos</a>
+  <a href="/logout" class="nms-v245-navbtn nms-v245-logout">Salir</a>
+</div>
+
+<main class="v251-wrap">
+  <section class="v251-hero">
+    <div class="v251-badges"><span>V251</span><span>Live Coverage Matrix</span><span>REAL ONLY</span></div>
+    <h1>Matriz real de cobertura live</h1>
+    <p>Vista partido a partido para saber exactamente qué datos reales faltan: marcador, minuto, cuota, fuente, ID externo y escudos.</p>
+    <button id="reload">Actualizar matriz</button>
+  </section>
+
+  <section class="v251-kpis">
+    <article><span>Total real</span><strong id="k-total">—</strong></article>
+    <article><span>Completos</span><strong id="k-complete">—</strong></article>
+    <article><span>Revisar</span><strong id="k-attention">—</strong></article>
+    <article><span>Escudos par</span><strong id="k-crests">—</strong></article>
+  </section>
+
+  <section class="v251-card">
+    <h2>Cobertura general</h2>
+    <div id="coverage" class="v251-coverage"></div>
+  </section>
+
+  <section class="v251-card">
+    <h2>Partidos reales guardados</h2>
+    <div id="matches" class="v251-matches"><div class="v251-empty">Cargando matriz real…</div></div>
+  </section>
+</main>
+
+<div class="nms-v245-mobile-bottom">
+  <a href="/cliente/dashboard-pro">Inicio</a>
+  <a href="/fixtures/today-pro">Hoy</a>
+  <a href="/live-command-center">Live</a>
+  <a href="/real-data-health">Datos</a>
+  <a href="/cliente/pro">Cuenta</a>
+</div>
+<a class="nms-v245-shark-float" href="/cliente/shark-ai-pro">🦈</a>
+<script src="/static/js/v251_live_coverage_matrix.js"></script>
+</body>
+</html>
