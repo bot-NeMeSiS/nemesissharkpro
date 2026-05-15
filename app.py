@@ -10620,5 +10620,16 @@ def client_live_storytelling_v286():
     return render_template("client_live_storytelling_v286.html")
 
 
+
+
+# ===== V287 · CLIENT DECISION RADAR + VALUE CLARITY PRO =====
+@app.route("/client-decision-radar")
+@app.route("/cliente/decision-radar")
+@app.route("/cliente/radar-decision")
+def client_decision_radar_v287():
+    return render_template("client_decision_radar_v287.html")
+# ===== END V287 =====
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

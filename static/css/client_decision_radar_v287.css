@@ -1,0 +1,20 @@
+
+.v287-shell{width:min(1180px,calc(100% - 28px));margin:28px auto 96px;color:#edf7ff}
+.v287-hero{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:18px;padding:28px;border-radius:28px;background:radial-gradient(circle at top left,rgba(20,142,255,.22),transparent 35%),linear-gradient(135deg,#07182e,#030b17);border:1px solid rgba(92,195,255,.2);box-shadow:0 24px 70px rgba(0,0,0,.34)}
+.v287-badge{display:inline-flex;padding:8px 12px;border-radius:999px;background:rgba(0,190,255,.13);border:1px solid rgba(0,190,255,.24);color:#9de8ff;font-weight:900;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+.v287-hero h1{margin:16px 0 10px;font-size:clamp(2rem,5vw,4.2rem);line-height:.94}
+.v287-hero p{max-width:760px;color:#aebdd2;font-size:1.03rem}
+.v287-pillbox{border-radius:24px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.11);padding:22px;display:flex;flex-direction:column;justify-content:center;gap:8px}
+.v287-pillbox strong{font-size:1.55rem;color:#9ee7ff}.v287-pillbox span{color:#aebdd2}
+.v287-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+.v287-card{min-height:250px;padding:22px;border-radius:24px;background:linear-gradient(180deg,rgba(15,35,64,.95),rgba(7,16,31,.95));border:1px solid rgba(255,255,255,.09);box-shadow:0 18px 44px rgba(0,0,0,.25);display:flex;flex-direction:column;gap:10px;transition:transform .22s ease,border-color .22s ease}
+.v287-card:hover{transform:translateY(-3px);border-color:rgba(89,204,255,.38)}
+.v287-card.hot{background:radial-gradient(circle at top left,rgba(25,206,130,.18),transparent 36%),linear-gradient(180deg,rgba(15,45,68,.96),rgba(7,16,31,.96))}
+.v287-card.wait{background:radial-gradient(circle at top left,rgba(255,196,72,.16),transparent 36%),linear-gradient(180deg,rgba(38,34,20,.96),rgba(7,16,31,.96))}
+.v287-card span{color:#8edfff;font-weight:900;text-transform:uppercase;font-size:.76rem;letter-spacing:.04em}
+.v287-card h2{font-size:1.45rem;margin:4px 0}
+.v287-card p{color:#a8b9d1;line-height:1.5;flex:1}
+.v287-card a,.v287-flow a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;color:#06111f;background:linear-gradient(135deg,#7ee8ff,#398dff);padding:11px 14px;border-radius:14px;font-weight:900}
+.v287-flow{margin-top:18px;padding:22px;border-radius:24px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);display:flex;align-items:center;justify-content:space-between;gap:18px}
+.v287-flow h3{margin:0 0 7px}.v287-flow p{margin:0;color:#a8b9d1}
+@media(max-width:900px){.v287-hero{grid-template-columns:1fr}.v287-grid{grid-template-columns:1fr}.v287-flow{flex-direction:column;align-items:stretch}.v287-flow a{width:100%}}

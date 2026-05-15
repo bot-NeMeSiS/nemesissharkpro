@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Decision Radar Cliente · NeMeSiS SHARK PRO{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_decision_radar_v287.css') }}">
+
+<section class="v287-shell">
+  <div class="v287-hero">
+    <div>
+      <span class="v287-badge">V287 · Decision Radar</span>
+      <h1>Radar de decisión para el cliente</h1>
+      <p>
+        Una capa visual para entender rápido si un partido merece atención, si hay que esperar,
+        o si los datos reales todavía no son suficientes.
+      </p>
+    </div>
+    <div class="v287-pillbox">
+      <strong>REAL ONLY</strong>
+      <span>Ver · Analizar · Esperar</span>
+    </div>
+  </div>
+
+  <div class="v287-grid">
+    <article class="v287-card hot">
+      <span>Prioridad alta</span>
+      <h2>Mirar ahora</h2>
+      <p>Para partidos con cobertura real suficiente, contexto live y señales útiles.</p>
+      <a href="/cliente/live-experience">Ir a Live</a>
+    </article>
+
+    <article class="v287-card">
+      <span>Value clarity</span>
+      <h2>Revisar value</h2>
+      <p>Acceso directo a la capa de value y banca para tomar mejores decisiones.</p>
+      <a href="/smart-value-detection">Abrir Value</a>
+    </article>
+
+    <article class="v287-card wait">
+      <span>LOW DATA</span>
+      <h2>Esperar datos</h2>
+      <p>Cuando falten marcador, minuto, cuotas o fuente fiable, la app no inventa.</p>
+      <a href="/real-data-health">Ver salud de datos</a>
+    </article>
+  </div>
+
+  <div class="v287-flow">
+    <div>
+      <h3>Flujo recomendado</h3>
+      <p>Smart Home → Live Story → Decision Radar → Value/Banca → SHARK AI</p>
+    </div>
+    <a href="/cliente/centro-accion">Volver al Action Center</a>
+  </div>
+</section>
+{% endblock %}
