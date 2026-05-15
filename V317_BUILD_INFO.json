@@ -1,0 +1,11 @@
+{
+  "version": "V317",
+  "name": "CLIENT_EXPERIENCE_OS_PRO",
+  "render_ready": true,
+  "github_ready": true,
+  "touches_api_on_open": false,
+  "routes": [
+    "/cliente/experiencia",
+    "/api/v317/client-experience-os"
+  ]
+}

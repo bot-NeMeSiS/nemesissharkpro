@@ -11040,5 +11040,105 @@ def client_shark_memory_v315():
 # ===== END V315 =====
 
 
+# ===== V316 · CLIENT CONTINUITY INTELLIGENCE CENTER PRO =====
+@app.route("/api/v316/client-continuity")
+def api_v316_client_continuity():
+    """Centro de continuidad cliente sobre SHARK Memory V315. Cache-first, sin llamadas API externas."""
+    rows = _v312_fetch_live_candidates(limit=12)
+    try:
+        from live_engine.v312_momentum_engine import build_live_engine_snapshot_v312
+        from live_engine.v313_client_live_hub_engine import build_client_live_hub_v313
+        from live_engine.v314_match_center_engine import build_match_center_premium_v314
+        from live_engine.v315_shark_memory_engine import build_shark_memory_v315
+        from live_engine.v316_client_continuity_engine import build_client_continuity_v316
+        v312_payload = build_live_engine_snapshot_v312(rows)
+        v313_payload = build_client_live_hub_v313(v312_payload)
+        v314_payload = build_match_center_premium_v314(v313_payload)
+        v315_payload = build_shark_memory_v315(v314_payload, persist=True)
+        payload = build_client_continuity_v316(v315_payload)
+    except Exception as exc:
+        payload = {
+            "ok": True,
+            "version": "V316",
+            "mode": "safe-fallback",
+            "touches_api": False,
+            "error": str(exc)[:180],
+            "headline": "Continuity Center seguro activo, sin romper la app.",
+            "session_resume": {"title": "Continuar donde lo dejaste", "text": "Preparado para usar memoria SHARK cuando haya datos cacheados."},
+            "summary": {"tracked": 0, "hot": 0, "watch": 0, "low_data": 0, "avg_momentum": 0, "continuity_health": "SAFE"},
+            "daily_trends": [],
+            "watchlist": [],
+            "recommended_actions": ["Abrir partidos de hoy", "Revisar Smart Live Hub", "Volver a Match Center Premium"],
+            "client_path": ["Smart Home", "Live Hub", "Match Center", "SHARK Memory", "Continuity Center"],
+            "empty_state": {"title": "Modo seguro", "text": "La pantalla no llama a APIs y no rompe el proyecto."}
+        }
+    return jsonify(payload)
+
+
+@app.route("/client-continuity-center")
+@app.route("/cliente/continuity-center")
+@app.route("/cliente/continuidad")
+def client_continuity_center_v316():
+    return render_template("client_continuity_center_v316.html")
+# ===== END V316 =====
+
+
+# ===== V317 · CLIENT EXPERIENCE OS PRO =====
+@app.route("/api/v317/client-experience-os")
+def api_v317_client_experience_os():
+    """Experiencia cliente unificada sobre V316. Cache-first, sin llamadas API externas."""
+    rows = _v312_fetch_live_candidates(limit=12)
+    try:
+        from live_engine.v312_momentum_engine import build_live_engine_snapshot_v312
+        from live_engine.v313_client_live_hub_engine import build_client_live_hub_v313
+        from live_engine.v314_match_center_engine import build_match_center_premium_v314
+        from live_engine.v315_shark_memory_engine import build_shark_memory_v315
+        from live_engine.v316_client_continuity_engine import build_client_continuity_v316
+        from live_engine.v317_client_experience_os_engine import build_client_experience_os_v317
+        v312_payload = build_live_engine_snapshot_v312(rows)
+        v313_payload = build_client_live_hub_v313(v312_payload)
+        v314_payload = build_match_center_premium_v314(v313_payload)
+        v315_payload = build_shark_memory_v315(v314_payload, persist=True)
+        v316_payload = build_client_continuity_v316(v315_payload)
+        payload = build_client_experience_os_v317(v316_payload)
+    except Exception as exc:
+        payload = {
+            "ok": True,
+            "version": "V317",
+            "mode": "safe-fallback",
+            "touches_api": False,
+            "error": str(exc)[:180],
+            "mood": "SAFE READY",
+            "headline": "Experiencia cliente segura activa: menos pantallas sueltas y más recorrido guiado.",
+            "primary_cta": {"label": "Volver a mi cuenta", "href": "/cliente/dashboard", "kind": "safe"},
+            "summary": {"tracked": 0, "hot": 0, "watch": 0, "low_data": 0, "avg_momentum": 0, "experience_health": "SAFE"},
+            "modules": [],
+            "journey": [
+                {"step": "Entrada", "title": "Resumen claro", "text": "El cliente sabe por dónde empezar."},
+                {"step": "Foco", "title": "Live Focus", "text": "Separamos lo urgente de lo que solo hay que mirar."},
+                {"step": "Decisión", "title": "Match Center", "text": "Cada partido se entiende mejor."},
+                {"step": "Memoria", "title": "Continuidad", "text": "La app no olvida la sesión."}
+            ],
+            "top_matches": [],
+            "next_actions": ["Abrir partidos de hoy", "Revisar Live Focus", "Volver a mi cuenta"],
+            "client_navigation": [
+                {"label": "Mi día", "href": "/cliente/experiencia"},
+                {"label": "Live Focus", "href": "/cliente/smart-live-hub"},
+                {"label": "Mi cuenta", "href": "/cliente/dashboard"}
+            ],
+            "empty_state": {"title": "Modo seguro", "text": "La pantalla no llama a APIs y no rompe el proyecto."}
+        }
+    return jsonify(payload)
+
+
+@app.route("/client-experience-os")
+@app.route("/cliente/experiencia")
+@app.route("/cliente/mi-dia")
+@app.route("/cliente/app")
+def client_experience_os_v317():
+    return render_template("client_experience_os_v317.html")
+# ===== END V317 =====
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

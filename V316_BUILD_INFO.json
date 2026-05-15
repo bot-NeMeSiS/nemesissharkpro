@@ -1,0 +1,11 @@
+{
+  "version": "V316",
+  "name": "CLIENT_CONTINUITY_INTELLIGENCE_CENTER_PRO",
+  "base": "V315 FULL",
+  "routes": [
+    "/cliente/continuity-center",
+    "/api/v316/client-continuity"
+  ],
+  "touches_api": false,
+  "render_ready": true
+}

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>NeMeSiS SHARK PRO · Continuity Center V316</title>
+  <style>
+    :root{--bg:#06111f;--card:#0b1b31;--card2:#102640;--text:#eef7ff;--muted:#8fb2d4;--line:rgba(255,255,255,.10);--accent:#22d3ee;--gold:#f8c14a;--hot:#ff477e;--ok:#38e8a3}
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial;background:radial-gradient(circle at top left,#123a66 0,#06111f 35%,#030812 100%);color:var(--text)}
+    .wrap{max-width:1180px;margin:auto;padding:22px}.top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:18px}.brand{font-weight:900;letter-spacing:.4px}.back{color:var(--text);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:10px 14px;background:rgba(255,255,255,.04)}
+    .hero{border:1px solid var(--line);border-radius:28px;padding:26px;background:linear-gradient(135deg,rgba(34,211,238,.16),rgba(248,193,74,.10));box-shadow:0 24px 80px rgba(0,0,0,.35)}
+    h1{margin:0 0 8px;font-size:clamp(28px,4vw,54px);line-height:1}.sub{color:var(--muted);font-size:17px;max-width:840px}.grid{display:grid;grid-template-columns:1.25fr .75fr;gap:16px;margin-top:16px}.card{border:1px solid var(--line);border-radius:24px;background:rgba(11,27,49,.82);padding:18px}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}.kpi{border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.05);padding:14px}.kpi b{font-size:26px;display:block}.muted{color:var(--muted)}
+    .watch{display:grid;gap:12px;margin-top:12px}.match{border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,rgba(255,255,255,.055),rgba(255,255,255,.025));padding:14px;display:grid;grid-template-columns:1fr auto;gap:12px}.badge{border-radius:999px;padding:7px 10px;font-size:12px;font-weight:900;background:rgba(34,211,238,.14);color:var(--accent)}.badge.HOT{background:rgba(255,71,126,.18);color:var(--hot)}.badge.WATCH{background:rgba(248,193,74,.16);color:var(--gold)}.badge.LOW{background:rgba(143,178,212,.12);color:var(--muted)}
+    .actions{display:grid;gap:10px}.act{padding:12px;border-radius:16px;background:rgba(56,232,163,.08);border:1px solid rgba(56,232,163,.16)}.path{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.pill{border:1px solid var(--line);border-radius:999px;padding:8px 10px;color:var(--muted);font-size:13px}.loading{color:var(--muted);padding:30px}@media(max-width:850px){.grid,.kpis{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}.match{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><div class="brand">🦈 NeMeSiS SHARK PRO · V316</div><a class="back" href="/cliente/dashboard">Volver a mi cuenta</a></div>
+  <section class="hero"><h1>Continuity Center</h1><div id="headline" class="sub">Cargando continuidad inteligente...</div><div class="path" id="path"></div></section>
+  <div class="grid">
+    <main>
+      <div class="kpis" id="kpis"></div>
+      <section class="card" style="margin-top:16px"><h2>Partidos vigilados</h2><div class="muted">Memoria + momentum + recomendaciones sin gastar API.</div><div id="watch" class="watch"><div class="loading">Leyendo memoria SHARK...</div></div></section>
+    </main>
+    <aside>
+      <section class="card"><h2>Continuar donde lo dejaste</h2><div id="resume" class="muted">Preparando resumen...</div></section>
+      <section class="card" style="margin-top:16px"><h2>Acciones recomendadas</h2><div id="actions" class="actions"></div></section>
+    </aside>
+  </div>
+</div>
+<script>
+const el=id=>document.getElementById(id);
+function badgeClass(b){ if(!b) return 'badge'; if(b.includes('HOT')) return 'badge HOT'; if(b.includes('WATCH')) return 'badge WATCH'; if(b.includes('LOW')) return 'badge LOW'; return 'badge'; }
+fetch('/api/v316/client-continuity').then(r=>r.json()).then(d=>{
+  el('headline').textContent=d.headline || 'Continuidad activa';
+  el('path').innerHTML=(d.client_path||[]).map(x=>`<span class="pill">${x}</span>`).join('');
+  const s=d.summary||{};
+  el('kpis').innerHTML=[['Seguidos',s.tracked||0],['HOT',s.hot||0],['Watch',s.watch||0],['Momentum',s.avg_momentum||0]].map(k=>`<div class="kpi"><span class="muted">${k[0]}</span><b>${k[1]}</b></div>`).join('');
+  const r=d.session_resume||{}; el('resume').innerHTML=`<b>${r.title||'Continuar'}</b><br><br>${r.text||''}`;
+  const w=d.watchlist||[]; el('watch').innerHTML=w.length?w.map(m=>`<article class="match"><div><b>${m.title}</b><div class="muted">${m.league} · ${m.status} ${m.minute?('· '+m.minute):''} ${m.scoreline?('· '+m.scoreline):''}</div><p>${m.action}</p></div><div><span class="${badgeClass(m.badge)}">${m.badge}</span><div class="muted" style="margin-top:10px;text-align:right">${m.momentum}/100</div></div></article>`).join(''):`<div class="loading">${(d.empty_state||{}).text||'Sin datos todavía.'}</div>`;
+  el('actions').innerHTML=(d.recommended_actions||[]).map(a=>`<div class="act">${a}</div>`).join('');
+}).catch(()=>{el('headline').textContent='Continuity Center seguro activo'; el('watch').innerHTML='<div class="loading">No se pudo leer la API V316, pero la pantalla no rompe la app.</div>'});
+</script>
+</body>
+</html>
