@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}V271 · Centro Diario Cliente · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/v271_client_daily_command_center.css') }}">
+<section class="v271-shell">
+  <div class="v271-hero shark-glass-card">
+    <div>
+      <span class="v271-kicker">{{ payload.version }} · CLIENTE PREMIUM</span>
+      <h1>Centro Diario Cliente</h1>
+      <p>Una pantalla de entrada para saber rápido qué mirar hoy, qué esperar, dónde puede haber valor y cuándo no hay datos reales suficientes.</p>
+    </div>
+    <div class="v271-status-pill">REAL ONLY</div>
+  </div>
+
+  <div class="v271-briefing-grid">
+    <article class="v271-brief-card primary">
+      <div class="v271-icon">🦈</div>
+      <h2>Briefing SHARK del día</h2>
+      <p>Resumen preparado para explicar el día con datos reales. Si no hay fixtures, cuotas o live válido, no se inventa nada.</p>
+      <div class="v271-low-data">LOW DATA · esperando datos reales suficientes</div>
+    </article>
+
+    <article class="v271-brief-card">
+      <div class="v271-card-top"><span>🔥</span><strong>Prioridad</strong></div>
+      <p>Ranking de partidos a revisar según cobertura real, estado live, cuotas y calidad de fuente.</p>
+      <a href="/match-priority-ranking">Ver ranking</a>
+    </article>
+
+    <article class="v271-brief-card">
+      <div class="v271-card-top"><span>💎</span><strong>Value</strong></div>
+      <p>Entrada directa al radar de value sin prometer picks ni forzar apuesta cuando falten cuotas reales.</p>
+      <a href="/smart-value-detection">Ver value</a>
+    </article>
+
+    <article class="v271-brief-card">
+      <div class="v271-card-top"><span>🔔</span><strong>Alertas</strong></div>
+      <p>Estado de alertas premium preparadas para PWA/Telegram con anti-spam y filtro por membresía.</p>
+      <a href="/real-alert-delivery-bridge">Ver alertas</a>
+    </article>
+  </div>
+
+  <div class="v271-command-strip">
+    <a href="/fixtures/today-pro">Hoy</a>
+    <a href="/live-command-center">Live</a>
+    <a href="/cliente/match-experience">Partido</a>
+    <a href="/cliente/smart-dashboard">Dashboard</a>
+    <a href="/cliente/shark-ai-pro">SHARK AI</a>
+  </div>
+
+  <div class="v271-timeline">
+    <div class="v271-step active"><span>1</span><div><h3>Entrar</h3><p>El cliente ve el estado del día sin perderse.</p></div></div>
+    <div class="v271-step"><span>2</span><div><h3>Filtrar</h3><p>Prioriza partidos con datos reales suficientes.</p></div></div>
+    <div class="v271-step"><span>3</span><div><h3>Analizar</h3><p>Consulta value, riesgo, live y contexto SHARK.</p></div></div>
+    <div class="v271-step"><span>4</span><div><h3>Decidir</h3><p>Seguir, esperar o descartar según calidad real.</p></div></div>
+  </div>
+</section>
+<script src="{{ url_for('static', filename='js/v271_client_daily_command_center.js') }}"></script>
+{% endblock %}

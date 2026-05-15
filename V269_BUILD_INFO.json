@@ -1,0 +1,8 @@
+{
+  "version": "V269",
+  "name": "CLIENT PREMIUM FLOW SYSTEM PRO",
+  "real_only": true,
+  "data_logic_changed": false,
+  "routes": ["/client-premium-flow", "/cliente/premium-flow", "/premium-flow-pro"],
+  "validated": true
+}

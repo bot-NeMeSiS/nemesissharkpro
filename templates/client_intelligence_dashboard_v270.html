@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}V270 · Dashboard Inteligente Cliente · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/v270_client_intelligence_dashboard.css') }}">
+<section class="v270-shell">
+  <div class="v270-hero shark-glass-card">
+    <div>
+      <span class="v270-kicker">{{ payload.version }} · EXPERIENCIA CLIENTE</span>
+      <h1>Dashboard Inteligente Cliente</h1>
+      <p>Una entrada más clara, rápida y premium para que el cliente entienda qué mirar, dónde hay valor y cuándo esperar por falta de datos reales.</p>
+    </div>
+    <div class="v270-real-badge">REAL ONLY</div>
+  </div>
+
+  <div class="v270-grid v270-grid-main">
+    <article class="v270-card v270-card-hot">
+      <div class="v270-card-head">
+        <span>🔥</span>
+        <h2>Atención ahora</h2>
+      </div>
+      <p>Zona preparada para mostrar partidos calientes solo cuando el live real tenga minuto, marcador, fuente y calidad suficiente.</p>
+      <div class="v270-empty-state">LOW DATA · esperando datos reales suficientes</div>
+    </article>
+
+    <article class="v270-card">
+      <div class="v270-card-head">
+        <span>🦈</span>
+        <h2>SHARK Contextual</h2>
+      </div>
+      <p>Resumen de contexto para explicar al cliente qué está pasando sin inventar presión, momentum ni eventos.</p>
+      <ul class="v270-checklist">
+        <li>Motivo claro</li>
+        <li>Riesgo visible</li>
+        <li>Acción recomendada</li>
+      </ul>
+    </article>
+
+    <article class="v270-card">
+      <div class="v270-card-head">
+        <span>💎</span>
+        <h2>Value Radar</h2>
+      </div>
+      <p>Espacio unificado para cuotas y edge real. Si no hay cuota real o fuente válida, se muestra fallback premium.</p>
+      <div class="v270-meter"><span style="width: 18%"></span></div>
+      <small>Preparado para binding real con The Odds API/cache.</small>
+    </article>
+  </div>
+
+  <div class="v270-action-strip">
+    <a href="/fixtures/today-pro">Partidos de hoy</a>
+    <a href="/live-command-center">Live</a>
+    <a href="/smart-value-detection">Value</a>
+    <a href="/bankroll-edge">Banca</a>
+    <a href="/cliente/shark-ai-pro">SHARK AI</a>
+  </div>
+
+  <div class="v270-grid">
+    <article class="v270-card compact">
+      <h3>Estado live</h3>
+      <p>Marcador, minuto y escudos se tratan como datos reales obligatorios para activar señales avanzadas.</p>
+    </article>
+    <article class="v270-card compact">
+      <h3>Banca y riesgo</h3>
+      <p>Guía visual para stake por unidades, sin prometer beneficios ni forzar apuestas.</p>
+    </article>
+    <article class="v270-card compact">
+      <h3>Alertas premium</h3>
+      <p>Preparado para Telegram/PWA con anti-spam y filtros por membresía.</p>
+    </article>
+    <article class="v270-card compact">
+      <h3>Acción recomendada</h3>
+      <p>Seguir, revisar o esperar según calidad real del dato disponible.</p>
+    </article>
+  </div>
+</section>
+<script src="{{ url_for('static', filename='js/v270_client_intelligence_dashboard.js') }}"></script>
+{% endblock %}

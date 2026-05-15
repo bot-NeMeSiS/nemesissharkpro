@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="v268-match-shell">
+  <div class="v268-hero">
+    <span class="v268-eyebrow">V268 · Match Experience · REAL ONLY</span>
+    <h1>La ficha de partido debe sentirse como el <span>centro premium del cliente.</span></h1>
+    <p>Unificamos la experiencia de partido: live, marcador, minuto, value, favoritos, alertas, timeline y SHARK AI en una estructura visual común. No se inventa ningún dato: si falta información real, aparece LOW DATA premium.</p>
+    <div class="v268-actions">
+      <a href="/match-center-unified">Abrir Match Center</a>
+      <a class="ghost" href="/live-command-center">Live Command</a>
+      <a class="ghost" href="/real-match-analytics">Analytics</a>
+      <a class="ghost" href="/hot-match-alerts">Alertas HOT</a>
+    </div>
+  </div>
+
+  <div class="v268-layout">
+    <article class="v268-board">
+      <div class="v268-board-top">
+        <span class="v268-live-pill">Ficha premium preparada</span>
+        <span class="v268-data-pill">LOW DATA si faltan datos reales</span>
+      </div>
+      <div class="v268-score-preview">
+        <div class="v268-team"><div class="v268-crest">L</div><strong>Equipo local</strong><small>Escudo real si existe</small></div>
+        <div class="v268-score"><strong>-- : --</strong><small>Marcador real</small></div>
+        <div class="v268-team"><div class="v268-crest">V</div><strong>Equipo visitante</strong><small>Escudo real si existe</small></div>
+      </div>
+      <div class="v268-strip">
+        <span>Minuto real</span><span>Cuota real</span><span>Fuente real</span><span>ID externo</span>
+      </div>
+      <p class="v268-note">Esta maqueta sirve como patrón común para migrar fichas antiguas: mismo fondo, mismas tarjetas, mismos estados, mismas acciones y misma navegación móvil.</p>
+    </article>
+
+    <aside class="v268-side">
+      <h3>Acciones rápidas cliente</h3>
+      <a href="/favoritos">Guardar en favoritos</a>
+      <a href="/smart-value-detection">Ver value</a>
+      <a href="/bankroll-edge">Revisar stake/banca</a>
+      <a href="/cliente/shark-ai-pro">Preguntar a SHARK</a>
+    </aside>
+  </div>
+
+  <div class="v268-grid">
+    <article><strong>Live real</strong><p>Marcador, minuto y estado solo si vienen de fuente real.</p><span>Core</span></article>
+    <article><strong>Timeline</strong><p>Eventos reales cuando la API los permita; si no, fallback limpio.</p><span>Preparado</span></article>
+    <article><strong>Value</strong><p>Señales basadas en cuota real disponible, nunca inventada.</p><span>Premium</span></article>
+    <article><strong>Alertas</strong><p>Puente PWA/Telegram preparado con anti-spam y calidad mínima.</p><span>Pro</span></article>
+    <article><strong>Banca</strong><p>Stake por unidades y control de riesgo visible para el cliente.</p><span>Cliente</span></article>
+    <article><strong>SHARK AI</strong><p>Contexto del partido con guard rail REAL ONLY.</p><span>IA</span></article>
+  </div>
+</section>
+{% endblock %}

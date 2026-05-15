@@ -9913,5 +9913,225 @@ def client_home_navigation_appfeel_v267():
     }
     return render_template('client_home_navigation_appfeel_v267.html', payload=payload)
 
+
+@app.route('/client-match-experience')
+@app.route('/cliente/match-experience')
+@app.route('/match-experience-pro')
+@app.route('/admin/client-match-experience')
+def client_match_experience_v268():
+    """V268 · Client match experience hub.
+    Visual/customer layer only: no external API calls and no fake match data.
+    """
+    payload = {
+        "version": "V268",
+        "name": "CLIENT MATCH EXPERIENCE HUB PRO",
+        "focus": "Ficha de partido premium, live, value, timeline y acciones del cliente",
+        "real_only": True,
+        "data_logic_changed": False,
+        "customer_priority": True,
+        "modules": [
+            "resumen del partido",
+            "marcador y minuto real",
+            "cuotas/value si existen",
+            "timeline/eventos reales",
+            "alertas y favoritos",
+            "SHARK AI contextual"
+        ],
+        "fallback": "LOW DATA premium cuando falten datos reales",
+    }
+    return render_template('client_match_experience_hub_v268.html', payload=payload)
+
+@app.route('/api/v268/client-match-experience/status')
+def api_v268_client_match_experience_status():
+    return jsonify({
+        'version': 'V268',
+        'name': 'CLIENT MATCH EXPERIENCE HUB PRO',
+        'idioma': 'es',
+        'real_only': True,
+        'client_match_hub_ready': True,
+        'premium_match_sheet_ready': True,
+        'low_data_fallback_ready': True,
+        'telegram_pwa_actions_prepared': True,
+        'data_logic_changed': False,
+        'mensaje': 'Experiencia de partido cliente unificada sin inventar datos deportivos.'
+    })
+
+
+@app.route('/client-premium-flow')
+@app.route('/cliente/premium-flow')
+@app.route('/premium-flow-pro')
+@app.route('/admin/client-premium-flow')
+def client_premium_flow_v269():
+    """V269 · Client premium flow system.
+    Visual/customer journey layer only: no external API calls and no fake sports data.
+    """
+    payload = {
+        "version": "V269",
+        "name": "CLIENT PREMIUM FLOW SYSTEM PRO",
+        "focus": "Flujo cliente, acciones rápidas, continuidad visual y app feel premium",
+        "real_only": True,
+        "data_logic_changed": False,
+        "customer_priority": True,
+        "flow_blocks": [
+            "home inteligente",
+            "partidos calientes",
+            "value y banca",
+            "alertas premium",
+            "SHARK contextual",
+            "favoritos y seguimiento"
+        ],
+        "fallback": "LOW DATA premium si faltan datos reales",
+    }
+    return render_template('client_premium_flow_system_v269.html', payload=payload)
+
+@app.route('/api/v269/client-premium-flow/status')
+def api_v269_client_premium_flow_status():
+    return jsonify({
+        'version': 'V269',
+        'name': 'CLIENT PREMIUM FLOW SYSTEM PRO',
+        'idioma': 'es',
+        'real_only': True,
+        'client_flow_ready': True,
+        'premium_action_bar_ready': True,
+        'smart_quick_access_ready': True,
+        'mobile_appfeel_ready': True,
+        'data_logic_changed': False,
+        'mensaje': 'Flujo premium cliente añadido sin inventar datos deportivos ni tocar APIs reales.'
+    })
+
+@app.route('/client-intelligence-dashboard')
+@app.route('/cliente/intelligence-dashboard')
+@app.route('/cliente/smart-dashboard')
+@app.route('/smart-client-dashboard')
+@app.route('/admin/client-intelligence-dashboard')
+def client_intelligence_dashboard_v270():
+    """V270 · Client intelligence dashboard.
+    Customer-facing orchestration layer only. It does not invent fixtures, odds, scores or alerts.
+    """
+    payload = {
+        "version": "V270",
+        "name": "CLIENT INTELLIGENCE DASHBOARD PRO",
+        "focus": "Dashboard cliente más claro, accionable y premium",
+        "real_only": True,
+        "data_logic_changed": False,
+        "customer_priority": True,
+        "sections": [
+            "Resumen inteligente",
+            "Partidos que merecen atención",
+            "Value radar",
+            "Estado live",
+            "Alertas preparadas",
+            "Banca y riesgo",
+            "SHARK AI contextual"
+        ],
+        "fallback": "Mostrar estados LOW DATA premium cuando no existan datos reales suficientes",
+    }
+    return render_template('client_intelligence_dashboard_v270.html', payload=payload)
+
+@app.route('/api/v270/client-intelligence-dashboard/status')
+def api_v270_client_intelligence_dashboard_status():
+    return jsonify({
+        'version': 'V270',
+        'name': 'CLIENT INTELLIGENCE DASHBOARD PRO',
+        'idioma': 'es',
+        'real_only': True,
+        'client_dashboard_ready': True,
+        'smart_summary_ready': True,
+        'value_radar_slot_ready': True,
+        'bankroll_risk_slot_ready': True,
+        'shark_context_slot_ready': True,
+        'data_logic_changed': False,
+        'mensaje': 'Dashboard inteligente cliente añadido sin inventar partidos, cuotas ni marcadores.'
+    })
+
+
+@app.route('/client-daily-command')
+@app.route('/cliente/daily-command')
+@app.route('/cliente/today-command')
+@app.route('/client-today-command')
+@app.route('/admin/client-daily-command')
+def client_daily_command_v271():
+    """V271 · Client daily command center.
+    Customer-facing daily briefing layer only. No invented fixtures, odds, scores or alerts.
+    """
+    payload = {
+        "version": "V271",
+        "name": "CLIENT DAILY COMMAND CENTER PRO",
+        "focus": "Centro diario cliente con resumen, prioridades, alertas y acciones claras",
+        "real_only": True,
+        "data_logic_changed": False,
+        "customer_priority": True,
+        "briefing_blocks": [
+            "Estado del día",
+            "Partidos que mirar",
+            "Señales value",
+            "Alertas preparadas",
+            "Riesgo y banca",
+            "SHARK briefing"
+        ],
+        "fallback": "LOW DATA premium si todavía no hay datos reales suficientes",
+    }
+    return render_template('client_daily_command_center_v271.html', payload=payload)
+
+@app.route('/api/v271/client-daily-command/status')
+def api_v271_client_daily_command_status():
+    return jsonify({
+        'version': 'V271',
+        'name': 'CLIENT DAILY COMMAND CENTER PRO',
+        'idioma': 'es',
+        'real_only': True,
+        'daily_briefing_ready': True,
+        'customer_priority_ready': True,
+        'alert_state_ready': True,
+        'bankroll_risk_summary_ready': True,
+        'shark_briefing_slot_ready': True,
+        'data_logic_changed': False,
+        'mensaje': 'Centro diario cliente preparado sin inventar partidos, cuotas, marcadores ni alertas.'
+    })
+
+
+@app.route('/client-live-experience')
+@app.route('/cliente/live-experience')
+@app.route('/cliente/hot-match-feed')
+@app.route('/hot-match-feed')
+@app.route('/admin/client-live-experience')
+def client_live_experience_v272():
+    """V272 · Client live experience and hot match feed.
+    Customer-facing live layer only. It never invents matches, odds, scores, minutes, crests or alerts.
+    """
+    payload = {
+        "version": "V272",
+        "name": "CLIENT LIVE EXPERIENCE + HOT MATCH FEED PRO",
+        "focus": "Feed live cliente con prioridad visual, HOT matches y acciones claras",
+        "real_only": True,
+        "data_logic_changed": False,
+        "customer_priority": True,
+        "live_blocks": [
+            "HOT matches",
+            "Partidos en seguimiento",
+            "Marcador y minuto real",
+            "Cuotas y value si existen",
+            "Alertas preparadas",
+            "Acciones rápidas cliente"
+        ],
+        "fallback": "LOW DATA premium si no hay live real suficiente",
+    }
+    return render_template('client_live_experience_hot_match_feed_v272.html', payload=payload)
+
+@app.route('/api/v272/client-live-experience/status')
+def api_v272_client_live_experience_status():
+    return jsonify({
+        'version': 'V272',
+        'name': 'CLIENT LIVE EXPERIENCE + HOT MATCH FEED PRO',
+        'idioma': 'es',
+        'real_only': True,
+        'client_live_feed_ready': True,
+        'hot_match_feed_ready': True,
+        'mobile_live_actions_ready': True,
+        'low_data_guard_ready': True,
+        'data_logic_changed': False,
+        'mensaje': 'Experiencia live cliente preparada sin inventar partidos, cuotas, marcadores, minutos ni escudos.'
+    })
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

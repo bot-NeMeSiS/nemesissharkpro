@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}V272 · Live Cliente · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/v272_client_live_experience_hot_match_feed.css') }}">
+<section class="v272-shell">
+  <div class="v272-hero shark-glass-card">
+    <div>
+      <span class="v272-kicker">{{ payload.version }} · LIVE CLIENTE</span>
+      <h1>Live Experience Premium</h1>
+      <p>Una vista live más clara para el cliente: partidos calientes, seguimiento, value, alertas y acciones rápidas sin inventar datos cuando falte cobertura real.</p>
+    </div>
+    <div class="v272-status-pill">REAL ONLY</div>
+  </div>
+
+  <div class="v272-live-layout">
+    <article class="v272-hot-feed">
+      <div class="v272-section-head">
+        <div><span>🔥</span><h2>Hot Match Feed</h2></div>
+        <a href="/hot-match-alerts">Ver alertas</a>
+      </div>
+      <div class="v272-low-data-card">
+        <strong>LOW DATA</strong>
+        <p>Cuando no haya minuto, marcador, cuota, escudo o fuente real suficiente, la app mostrará este estado premium en vez de inventar información.</p>
+      </div>
+      <div class="v272-match-placeholder">
+        <div class="v272-team"><span class="crest"></span><b>Local</b></div>
+        <div class="v272-score"><span>--</span><small>min real</small></div>
+        <div class="v272-team right"><b>Visitante</b><span class="crest"></span></div>
+      </div>
+      <div class="v272-action-bar">
+        <a href="/match-priority-ranking">Prioridad</a>
+        <a href="/smart-value-detection">Value</a>
+        <a href="/cliente/match-experience">Ficha</a>
+        <a href="/cliente/shark-ai-pro">SHARK</a>
+      </div>
+    </article>
+
+    <aside class="v272-side-panel">
+      <div class="v272-mini-card"><span>⚡</span><div><h3>Ritmo live</h3><p>Preparado para pintar ritmo real cuando la API lo aporte.</p></div></div>
+      <div class="v272-mini-card"><span>💎</span><div><h3>Value rápido</h3><p>Solo visible como señal cuando existan cuotas reales suficientes.</p></div></div>
+      <div class="v272-mini-card"><span>🔔</span><div><h3>Alertas</h3><p>Con anti-spam y filtro por membresía preparado.</p></div></div>
+      <div class="v272-mini-card"><span>🦈</span><div><h3>SHARK contexto</h3><p>Explicación clara para seguir, revisar o esperar.</p></div></div>
+    </aside>
+  </div>
+
+  <div class="v272-quick-strip">
+    <a href="/cliente/today-command">Hoy</a>
+    <a href="/live-command-center">Live Center</a>
+    <a href="/client-intelligence-dashboard">Dashboard</a>
+    <a href="/real-data-health">Salud datos</a>
+    <a href="/api-call-shield">API Shield</a>
+  </div>
+</section>
+<script src="{{ url_for('static', filename='js/v272_client_live_experience_hot_match_feed.js') }}"></script>
+{% endblock %}

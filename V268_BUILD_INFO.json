@@ -1,0 +1,14 @@
+{
+  "version": "V268",
+  "name": "CLIENT MATCH EXPERIENCE HUB PRO",
+  "real_only": true,
+  "routes": [
+    "/client-match-experience",
+    "/cliente/match-experience",
+    "/match-experience-pro",
+    "/admin/client-match-experience",
+    "/api/v268/client-match-experience/status"
+  ],
+  "data_logic_changed": false,
+  "render_ready": true
+}
