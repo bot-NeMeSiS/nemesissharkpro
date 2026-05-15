@@ -10675,5 +10675,16 @@ def client_matchday_flow_v291():
 # ===== END V291 =====
 
 
+
+
+# ===== V296 · CLIENT LIVE DECISION COMPANION PRO =====
+@app.route("/client-live-decision-companion")
+@app.route("/cliente/live-decision-companion")
+@app.route("/cliente/companero-live")
+def client_live_decision_companion_v296():
+    return render_template("client_live_decision_companion_v296.html")
+# ===== END V296 =====
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

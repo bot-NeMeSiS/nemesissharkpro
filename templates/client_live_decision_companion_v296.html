@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Live Decision Companion · NeMeSiS SHARK PRO{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_live_decision_companion_v296.css') }}">
+
+<section class="v296-shell">
+  <div class="v296-hero">
+    <div>
+      <span class="v296-badge">V296 · Live Decision Companion</span>
+      <h1>Compañero de decisión en directo</h1>
+      <p>
+        Una capa cliente para acompañar sesiones live: qué mirar, cuándo esperar,
+        cuándo revisar value y cuándo pedir contexto a SHARK AI.
+      </p>
+    </div>
+    <div class="v296-status">
+      <strong>REAL ONLY</strong>
+      <span>Sin datos inventados · decisiones claras</span>
+    </div>
+  </div>
+
+  <div class="v296-grid">
+    <article class="v296-card hot">
+      <span>HOT LIVE</span>
+      <h2>Mirar ahora</h2>
+      <p>Partidos con señales reales suficientes para seguirlos de cerca.</p>
+      <a href="/cliente/live-experience">Abrir Live</a>
+    </article>
+
+    <article class="v296-card watch">
+      <span>WATCH</span>
+      <h2>Seguir evolución</h2>
+      <p>Partidos interesantes, pero que necesitan más contexto o minuto.</p>
+      <a href="/cliente/timeline-prioridad">Timeline</a>
+    </article>
+
+    <article class="v296-card value">
+      <span>VALUE</span>
+      <h2>Revisar oportunidad</h2>
+      <p>Acceso directo a value, banca y calidad de señal.</p>
+      <a href="/smart-value-detection">Ver Value</a>
+    </article>
+
+    <article class="v296-card low">
+      <span>LOW DATA</span>
+      <h2>Esperar</h2>
+      <p>Si faltan datos reales, la app te protege de decisiones malas.</p>
+      <a href="/real-data-health">Salud de datos</a>
+    </article>
+  </div>
+
+  <div class="v296-footer">
+    <div>
+      <h3>Flujo recomendado</h3>
+      <p>Live Command → Timeline Priority → Decision Radar → SHARK AI → Value/Banca.</p>
+    </div>
+    <a href="/cliente/shark-ai-pro">Preguntar a SHARK</a>
+  </div>
+</section>
+{% endblock %}
