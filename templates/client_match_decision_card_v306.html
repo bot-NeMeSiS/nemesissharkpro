@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Match Decision Card · NeMeSiS SHARK PRO{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_match_decision_card_v306.css') }}">
+<script defer src="{{ url_for('static', filename='js/client_match_decision_card_v306.js') }}"></script>
+
+<section class="v306-shell">
+  <div class="v306-hero">
+    <div>
+      <span class="v306-badge">V306 · Match Decision Card</span>
+      <h1>Ficha de decisión por partido</h1>
+      <p>
+        Una vista cliente para resumir qué hacer con cada partido:
+        mirar live, revisar value, preguntar a SHARK o esperar datos reales.
+      </p>
+    </div>
+    <div class="v306-status">
+      <strong>Decisión clara</strong>
+      <span>Acciones útiles · REAL ONLY</span>
+    </div>
+  </div>
+
+  <div class="v306-decision-card">
+    <div class="v306-match-head">
+      <div>
+        <span class="v306-tag">Ejemplo visual sin datos inventados</span>
+        <h2>Partido seleccionado</h2>
+        <p>Cuando haya datos reales, esta ficha mostrará estado, contexto y acciones recomendadas.</p>
+      </div>
+      <div class="v306-state-pill">LOW DATA SAFE</div>
+    </div>
+
+    <div class="v306-metrics">
+      <article>
+        <span>Estado</span>
+        <strong>Esperar</strong>
+        <small>Faltan datos reales suficientes</small>
+      </article>
+      <article>
+        <span>Live</span>
+        <strong>Revisar</strong>
+        <small>Ir al Live Hub si hay cobertura</small>
+      </article>
+      <article>
+        <span>Value</span>
+        <strong>Validar</strong>
+        <small>Solo con cuotas reales</small>
+      </article>
+      <article>
+        <span>SHARK</span>
+        <strong>Contexto</strong>
+        <small>Explicación sin inventar</small>
+      </article>
+    </div>
+
+    <div class="v306-actions">
+      <a href="/cliente/live-central">Abrir Live Hub</a>
+      <a href="/smart-value-detection">Revisar Value</a>
+      <a href="/cliente/shark-ai-pro">Preguntar a SHARK</a>
+      <a href="/real-data-health">Ver Data Health</a>
+    </div>
+  </div>
+
+  <div class="v306-footer">
+    <div>
+      <h3>Qué mejora V306</h3>
+      <p>
+        La app empieza a enseñar cada partido como una decisión clara, no como una simple ficha de datos.
+        Esto aumenta claridad, confianza y sensación premium.
+      </p>
+    </div>
+    <a href="/cliente/estado-partido">Volver a Estado Partido</a>
+  </div>
+</section>
+{% endblock %}

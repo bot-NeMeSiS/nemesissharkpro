@@ -1,0 +1,13 @@
+{
+  "version": "V306",
+  "name": "CLIENT MATCH DECISION CARD PRO",
+  "base": "V305",
+  "focus": "ficha de decisión clara por partido para cliente",
+  "real_only": true,
+  "actions": [
+    "ver live",
+    "revisar value",
+    "preguntar a SHARK",
+    "esperar datos"
+  ]
+}

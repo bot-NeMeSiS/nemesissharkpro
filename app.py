@@ -10752,5 +10752,49 @@ def client_match_status_intelligence_v305():
 # ===== END V305 =====
 
 
+
+
+# ===== V306 · CLIENT MATCH DECISION CARD PRO =====
+@app.route("/client-match-decision-card")
+@app.route("/cliente/match-decision-card")
+@app.route("/cliente/ficha-decision")
+def client_match_decision_card_v306():
+    return render_template("client_match_decision_card_v306.html")
+# ===== END V306 =====
+
+
+
+
+# ===== V307 · CLIENT MATCH DECISION FLOW PRO =====
+@app.route("/client-match-decision-flow")
+@app.route("/cliente/match-decision-flow")
+@app.route("/cliente/flujo-decision-partido")
+def client_match_decision_flow_v307():
+    return render_template("client_match_decision_flow_v307.html")
+# ===== END V307 =====
+
+
+
+
+# ===== V308 · CLIENT MATCH JOURNEY ENGINE PRO =====
+@app.route("/client-match-journey-engine")
+@app.route("/cliente/match-journey")
+@app.route("/cliente/viaje-partido")
+def client_match_journey_engine_v308():
+    return render_template("client_match_journey_engine_v308.html")
+# ===== END V308 =====
+
+
+
+
+# ===== V309 · CLIENT POST MATCH RECAP LOOP PRO =====
+@app.route("/client-post-match-recap-loop")
+@app.route("/cliente/post-match-recap")
+@app.route("/cliente/cierre-partido")
+def client_post_match_recap_loop_v309():
+    return render_template("client_post_match_recap_loop_v309.html")
+# ===== END V309 =====
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

@@ -1,0 +1,14 @@
+{
+  "version": "V309",
+  "name": "CLIENT POST MATCH RECAP LOOP PRO",
+  "base": "V308",
+  "focus": "cerrar el viaje del partido con recap, aprendizaje y continuidad hacia próximos partidos",
+  "real_only": true,
+  "loop": [
+    "recap",
+    "estado final",
+    "aprendizaje",
+    "volver a smart home",
+    "siguiente partido"
+  ]
+}

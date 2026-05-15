@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Match Journey Engine · NeMeSiS SHARK PRO{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_match_journey_engine_v308.css') }}">
+<script defer src="{{ url_for('static', filename='js/client_match_journey_engine_v308.js') }}"></script>
+
+<section class="v308-shell">
+  <div class="v308-hero">
+    <div>
+      <span class="v308-badge">V308 · Match Journey Engine</span>
+      <h1>Viaje completo del partido</h1>
+      <p>
+        Una capa cliente para conectar todo el recorrido del partido:
+        descubrir, previsualizar, seguir en live, decidir, recibir alerta y cerrar con recap.
+      </p>
+    </div>
+    <div class="v308-status">
+      <strong>Journey</strong>
+      <span>Partido conectado de principio a fin</span>
+    </div>
+  </div>
+
+  <div class="v308-journey">
+    <article class="v308-node">
+      <span>01</span>
+      <h2>Descubrir</h2>
+      <p>Encontrar partidos que merecen atención sin ruido.</p>
+      <a href="/cliente/quick-context">Quick Context</a>
+    </article>
+
+    <article class="v308-node">
+      <span>02</span>
+      <h2>Previsualizar</h2>
+      <p>Ver contexto, disponibilidad de datos y posible interés.</p>
+      <a href="/cliente/match-preview">Preview</a>
+    </article>
+
+    <article class="v308-node live">
+      <span>03</span>
+      <h2>Seguir live</h2>
+      <p>Live Hub, Timeline y Estado Partido conectados.</p>
+      <a href="/cliente/live-central">Live Hub</a>
+    </article>
+
+    <article class="v308-node decision">
+      <span>04</span>
+      <h2>Decidir</h2>
+      <p>Ficha y flujo de decisión con acciones claras.</p>
+      <a href="/cliente/flujo-decision-partido">Decision Flow</a>
+    </article>
+
+    <article class="v308-node alert">
+      <span>05</span>
+      <h2>Alerta</h2>
+      <p>Avisos con salida útil: live, value, SHARK o esperar.</p>
+      <a href="/cliente/aviso-a-accion">Aviso a acción</a>
+    </article>
+
+    <article class="v308-node recap">
+      <span>06</span>
+      <h2>Recap</h2>
+      <p>Volver al resumen y continuar la sesión cliente.</p>
+      <a href="/cliente/resumen-inteligente">Recap diario</a>
+    </article>
+  </div>
+
+  <div class="v308-footer">
+    <div>
+      <h3>Qué aporta V308</h3>
+      <p>
+        La app deja de sentirse como pantallas separadas y empieza a guiar al cliente por el ciclo completo del partido.
+        Esto mejora uso diario, retención y sensación premium real.
+      </p>
+    </div>
+    <a href="/cliente/v300">Volver al Core V300</a>
+  </div>
+</section>
+{% endblock %}

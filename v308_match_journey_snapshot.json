@@ -1,0 +1,15 @@
+{
+  "version": "V308",
+  "name": "CLIENT MATCH JOURNEY ENGINE PRO",
+  "base": "V307",
+  "focus": "journey completo del partido para cliente",
+  "real_only": true,
+  "journey": [
+    "descubrir",
+    "previsualizar",
+    "seguir live",
+    "decidir",
+    "recibir alerta",
+    "recap"
+  ]
+}

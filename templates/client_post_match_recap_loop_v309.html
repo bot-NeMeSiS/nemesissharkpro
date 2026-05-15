@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Post Match Recap Loop · NeMeSiS SHARK PRO{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_post_match_recap_loop_v309.css') }}">
+<script defer src="{{ url_for('static', filename='js/client_post_match_recap_loop_v309.js') }}"></script>
+
+<section class="v309-shell">
+  <div class="v309-hero">
+    <div>
+      <span class="v309-badge">V309 · Post Match Recap Loop</span>
+      <h1>Cierre inteligente del partido</h1>
+      <p>
+        El viaje del partido no termina en el live: ahora el cliente tiene una capa para cerrar,
+        revisar, aprender y volver rápido al siguiente partido o al resumen diario.
+      </p>
+    </div>
+    <div class="v309-status">
+      <strong>Loop completo</strong>
+      <span>Live → decisión → recap → siguiente</span>
+    </div>
+  </div>
+
+  <div class="v309-loop-grid">
+    <article class="v309-card">
+      <span>01</span>
+      <h2>Estado final</h2>
+      <p>Preparado para mostrar resultado real, cierre del partido y estado de datos disponibles.</p>
+      <a href="/real-data-health">Ver datos</a>
+    </article>
+
+    <article class="v309-card review">
+      <span>02</span>
+      <h2>Revisión de decisión</h2>
+      <p>Conectar decisión, value y contexto SHARK para entender qué pasó sin inventar.</p>
+      <a href="/cliente/ficha-decision">Ficha decisión</a>
+    </article>
+
+    <article class="v309-card learn">
+      <span>03</span>
+      <h2>Aprendizaje</h2>
+      <p>Base futura para snapshots, tendencias y ML real con histórico de partidos.</p>
+      <a href="/ml-snapshot-center">Snapshots</a>
+    </article>
+
+    <article class="v309-card next">
+      <span>04</span>
+      <h2>Siguiente acción</h2>
+      <p>Volver al día, al live o al Journey para no cortar la experiencia cliente.</p>
+      <a href="/cliente/resumen-inteligente">Resumen diario</a>
+    </article>
+  </div>
+
+  <div class="v309-footer">
+    <div>
+      <h3>Qué mejora V309</h3>
+      <p>
+        Cerramos el ciclo: el cliente no solo entra, mira y decide; también puede volver,
+        revisar y continuar. Esto mejora hábito diario y sensación de producto premium.
+      </p>
+    </div>
+    <div class="v309-actions">
+      <a href="/cliente/viaje-partido">Match Journey</a>
+      <a href="/client-action-center">Action Center</a>
+      <a href="/cliente/smart-home">Smart Home</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

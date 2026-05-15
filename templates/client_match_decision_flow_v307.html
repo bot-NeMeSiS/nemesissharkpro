@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Match Decision Flow · NeMeSiS SHARK PRO{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_match_decision_flow_v307.css') }}">
+<script defer src="{{ url_for('static', filename='js/client_match_decision_flow_v307.js') }}"></script>
+
+<section class="v307-shell">
+  <div class="v307-hero">
+    <div>
+      <span class="v307-badge">V307 · Match Decision Flow</span>
+      <h1>Flujo completo de decisión por partido</h1>
+      <p>
+        El cliente ya no solo ve una ficha: ahora tiene un recorrido claro para prepartido,
+        live, alertas y seguimiento posterior, siempre con REAL ONLY.
+      </p>
+    </div>
+    <div class="v307-status">
+      <strong>4 fases</strong>
+      <span>Pre · Live · Alerta · Recap</span>
+    </div>
+  </div>
+
+  <div class="v307-flow">
+    <article class="v307-step pre">
+      <span>01</span>
+      <h2>Prepartido</h2>
+      <p>Revisar contexto, datos disponibles, cuotas reales y posible interés.</p>
+      <a href="/cliente/match-preview">Match Preview</a>
+    </article>
+
+    <article class="v307-step live">
+      <span>02</span>
+      <h2>Live</h2>
+      <p>Seguir estado HOT/WATCH/LOW DATA, timeline y foco visual.</p>
+      <a href="/cliente/live-central">Live Hub</a>
+    </article>
+
+    <article class="v307-step alert">
+      <span>03</span>
+      <h2>Alerta</h2>
+      <p>Convertir avisos en acciones claras: mirar, revisar value o esperar.</p>
+      <a href="/cliente/aviso-a-accion">Aviso a acción</a>
+    </article>
+
+    <article class="v307-step recap">
+      <span>04</span>
+      <h2>Recap</h2>
+      <p>Volver al resumen y continuar la sesión sin perder el hilo.</p>
+      <a href="/cliente/resumen-inteligente">Resumen diario</a>
+    </article>
+  </div>
+
+  <div class="v307-decision-strip">
+    <div>
+      <h3>Conexión clave</h3>
+      <p>Match Status → Decision Card → Decision Flow → Alert to Action → SHARK AI.</p>
+    </div>
+    <div class="v307-actions">
+      <a href="/cliente/estado-partido">Estado partido</a>
+      <a href="/cliente/ficha-decision">Ficha decisión</a>
+      <a href="/cliente/shark-ai-pro">SHARK AI</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

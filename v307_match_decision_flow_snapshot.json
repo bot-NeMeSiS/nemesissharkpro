@@ -1,0 +1,7 @@
+{
+  "version": "V307",
+  "name": "CLIENT MATCH DECISION FLOW PRO",
+  "base": "V306",
+  "focus": "flujo completo de decisión por partido: prepartido, live, alerta, post-seguimiento",
+  "real_only": true
+}
