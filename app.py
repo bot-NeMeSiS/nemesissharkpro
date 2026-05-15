@@ -10173,5 +10173,45 @@ def api_v274_client_ui_recovery_status():
         'mensaje': 'UI cliente reparada: navegación duplicada eliminada y barra móvil controlada.'
     })
 
+
+@app.route('/client-trust-polish')
+@app.route('/cliente/trust-polish')
+@app.route('/cliente/experience-guard')
+def client_trust_polish_v275():
+    """V275 · Client Trust Polish + Safe Advance.
+    Safe customer-experience improvement after V274 recovery.
+    It only touches UX/CSS and does not alter real data, APIs, odds, scores or alerts.
+    """
+    payload = {
+        "version": "V275",
+        "name": "CLIENT TRUST POLISH + SAFE ADVANCE PRO",
+        "focus": "Pulido seguro de experiencia cliente, navegación y confianza visual",
+        "real_only": True,
+        "data_logic_changed": False,
+        "customer_priority": True,
+        "guards": [
+            "sin navegación duplicada",
+            "sin barras gigantes en desktop",
+            "bottom nav solo móvil",
+            "accesos rápidos claros",
+            "LOW DATA premium",
+            "sin tocar APIs ni cuotas"
+        ]
+    }
+    return render_template('client_trust_polish_v275.html', payload=payload)
+
+@app.route('/api/v275/client-trust-polish/status')
+def api_v275_client_trust_polish_status():
+    return jsonify({
+        'version': 'V275',
+        'name': 'CLIENT TRUST POLISH + SAFE ADVANCE PRO',
+        'real_only': True,
+        'data_logic_changed': False,
+        'desktop_nav_guard': True,
+        'mobile_nav_guard': True,
+        'client_quick_access_ready': True,
+        'mensaje': 'Avance cliente seguro aplicado: UX pulida sin tocar datos reales ni APIs.'
+    })
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

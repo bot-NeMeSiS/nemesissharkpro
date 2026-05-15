@@ -1,0 +1,47 @@
+/* V275 · CLIENT TRUST POLISH + SAFE ADVANCE PRO
+   Avance seguro tras recuperación V274: mejora cliente sin tocar APIs, datos ni lógica REAL ONLY. */
+:root{
+  --v275-bg:#050e20;
+  --v275-card:rgba(8,22,50,.86);
+  --v275-line:rgba(88,205,255,.20);
+  --v275-line-2:rgba(88,205,255,.38);
+  --v275-text:#eef8ff;
+  --v275-muted:#a9bad1;
+  --v275-accent:#4ee7ff;
+  --v275-gold:#f7d66d;
+  --v275-ok:#68f0b9;
+}
+/* Guardia extra: ninguna navegación cliente puede convertirse en panel gigante en desktop */
+@media(min-width:921px){
+  .client-app-nav-v308,
+  .bottom-mobile-nav-v283,
+  .mobile-bottom-nav,
+  .mobile-nav,
+  .app-bottom-nav{display:none!important;visibility:hidden!important;pointer-events:none!important;max-height:0!important;overflow:hidden!important;}
+  .nav,.topbar .nav{max-height:none!important;min-height:0!important;}
+}
+/* Home / panel cliente más limpio y uniforme */
+.client-trust-strip-v275{width:min(1180px,calc(100% - 28px));margin:14px auto 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;}
+.client-trust-chip-v275{border:1px solid var(--v275-line);border-radius:18px;background:linear-gradient(180deg,rgba(10,29,65,.84),rgba(5,13,30,.9));padding:14px 16px;color:var(--v275-text);box-shadow:0 14px 38px rgba(0,0,0,.18);}
+.client-trust-chip-v275 b{display:block;font-size:13px;letter-spacing:.02em;margin-bottom:4px;}
+.client-trust-chip-v275 span{display:block;color:var(--v275-muted);font-size:12px;line-height:1.35;}
+.v275-focus-card{border:1px solid var(--v275-line);background:linear-gradient(135deg,rgba(12,38,86,.9),rgba(5,14,32,.95));border-radius:26px;padding:22px;box-shadow:0 18px 54px rgba(0,0,0,.25);color:var(--v275-text);}
+.v275-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:16px;margin-top:16px;}
+.v275-action-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px;}
+.v275-action{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--v275-text);border:1px solid var(--v275-line);border-radius:20px;background:rgba(255,255,255,.055);padding:14px;transition:.18s ease;min-height:72px;}
+.v275-action:hover{transform:translateY(-2px);border-color:var(--v275-line-2);background:rgba(78,231,255,.10);}
+.v275-action i{font-style:normal;width:34px;height:34px;border-radius:14px;display:grid;place-items:center;background:rgba(78,231,255,.14);}
+.v275-action strong{display:block;font-size:14px;margin-bottom:3px;}
+.v275-action small{display:block;color:var(--v275-muted);font-size:12px;line-height:1.25;}
+.v275-lowdata{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(247,214,109,.26);background:rgba(247,214,109,.09);color:#fff4bd;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:850;}
+/* Evita que banners/AI tapen acciones importantes */
+.shark-float{max-width:76px!important;max-height:76px!important;}
+@media(max-width:920px){
+  .client-trust-strip-v275{grid-template-columns:repeat(2,minmax(0,1fr));width:calc(100% - 18px);gap:10px;}
+  .v275-grid{grid-template-columns:1fr;}
+  .v275-action-grid{grid-template-columns:1fr;}
+  .v275-focus-card{padding:17px;border-radius:22px;}
+}
+@media(max-width:520px){
+  .client-trust-strip-v275{grid-template-columns:1fr;}
+}

@@ -1,0 +1,9 @@
+{
+  "version": "V275",
+  "name": "CLIENT TRUST POLISH + SAFE ADVANCE PRO",
+  "real_only": true,
+  "data_logic_changed": false,
+  "focus": "Pulido seguro de experiencia cliente tras recuperación UI V274",
+  "routes": ["/client-trust-polish", "/cliente/trust-polish", "/cliente/experience-guard"],
+  "validated": true
+}
