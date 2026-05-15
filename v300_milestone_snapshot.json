@@ -1,0 +1,14 @@
+{
+  "version": "V300",
+  "name": "CLIENT EXPERIENCE CORE MILESTONE PRO",
+  "base": "V299",
+  "focus": [
+    "Cliente premium",
+    "flujo diario",
+    "live decision",
+    "alert to action",
+    "REAL ONLY",
+    "consistencia visual"
+  ],
+  "status": "milestone build completo validado"
+}

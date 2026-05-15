@@ -10686,5 +10686,60 @@ def client_live_decision_companion_v296():
 # ===== END V296 =====
 
 
+
+
+# ===== V298 · CLIENT SMART NOTIFICATION CENTER PRO =====
+@app.route("/client-smart-notification-center")
+@app.route("/cliente/notification-center")
+@app.route("/cliente/centro-avisos")
+def client_smart_notification_center_v298():
+    return render_template("client_smart_notification_center_v298.html")
+# ===== END V298 =====
+
+
+
+
+# ===== V299 · CLIENT ALERT TO ACTION FLOW PRO =====
+@app.route("/client-alert-to-action-flow")
+@app.route("/cliente/alert-to-action")
+@app.route("/cliente/aviso-a-accion")
+def client_alert_to_action_flow_v299():
+    return render_template("client_alert_to_action_flow_v299.html")
+# ===== END V299 =====
+
+
+
+
+# ===== V300 · CLIENT EXPERIENCE CORE MILESTONE PRO =====
+@app.route("/client-experience-core")
+@app.route("/cliente/experience-core")
+@app.route("/cliente/v300")
+def client_experience_core_v300():
+    return render_template("client_experience_core_milestone_v300.html")
+# ===== END V300 =====
+
+
+
+
+# ===== V301 · CLIENT LEGACY MIGRATION PLANNER PRO =====
+@app.route("/client-legacy-migration-planner")
+@app.route("/cliente/legacy-migration")
+@app.route("/cliente/plan-migracion")
+def client_legacy_migration_planner_v301():
+    return render_template("client_legacy_migration_planner_v301.html")
+# ===== END V301 =====
+
+
+
+
+# ===== V302 · CLIENT LEGACY BATCH ONE UNIFICATION PRO =====
+@app.route("/client-legacy-batch-one")
+@app.route("/cliente/batch-one")
+@app.route("/cliente/unificacion-lote-uno")
+def client_legacy_batch_one_v302():
+    return render_template("client_legacy_batch_one_unification_v302.html")
+# ===== END V302 =====
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}V300 Experience Core · NeMeSiS SHARK PRO{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_experience_core_milestone_v300.css') }}">
+
+<section class="v300-shell">
+  <div class="v300-hero">
+    <div>
+      <span class="v300-badge">V300 · Milestone</span>
+      <h1>Cliente Premium Experience Core</h1>
+      <p>
+        Hito de consolidación: el cliente ya tiene un recorrido completo,
+        desde entrar a la app hasta recibir avisos, analizar live, decidir y pedir contexto a SHARK.
+      </p>
+    </div>
+    <div class="v300-status">
+      <strong>V300</strong>
+      <span>Core cliente estabilizado</span>
+    </div>
+  </div>
+
+  <div class="v300-grid">
+    <article class="v300-card">
+      <span>01</span>
+      <h2>Entrar y entender</h2>
+      <p>Smart Home, Daily Intelligence y Matchday Flow dan contexto rápido al cliente.</p>
+      <a href="/cliente/resumen-inteligente">Resumen diario</a>
+    </article>
+
+    <article class="v300-card">
+      <span>02</span>
+      <h2>Seguir live</h2>
+      <p>Live Companion, Focus Zones y Priority Timeline ordenan HOT/WATCH/LOW DATA.</p>
+      <a href="/cliente/companero-live">Live Companion</a>
+    </article>
+
+    <article class="v300-card">
+      <span>03</span>
+      <h2>Decidir mejor</h2>
+      <p>Decision Radar, Value y banca ayudan a no actuar a ciegas.</p>
+      <a href="/cliente/radar-decision">Decision Radar</a>
+    </article>
+
+    <article class="v300-card">
+      <span>04</span>
+      <h2>Actuar sin ruido</h2>
+      <p>Notification Center y Alert to Action convierten avisos en acciones claras.</p>
+      <a href="/cliente/aviso-a-accion">Aviso a acción</a>
+    </article>
+  </div>
+
+  <div class="v300-footer">
+    <div>
+      <h3>Qué significa V300</h3>
+      <p>
+        Ya no estamos en pantallas sueltas: hay una columna vertebral cliente.
+        El siguiente gran bloque debe ser migrar legacy por grupos y profundizar datos live reales.
+      </p>
+    </div>
+    <a href="/client-action-center">Action Center</a>
+  </div>
+</section>
+{% endblock %}

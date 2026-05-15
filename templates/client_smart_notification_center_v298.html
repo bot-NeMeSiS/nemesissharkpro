@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Smart Notification Center · NeMeSiS SHARK PRO{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_smart_notification_center_v298.css') }}">
+
+<section class="v298-shell">
+  <div class="v298-hero">
+    <div>
+      <span class="v298-badge">V298 · Smart Notification Center</span>
+      <h1>Centro inteligente de avisos cliente</h1>
+      <p>
+        Una capa premium para ordenar alertas, señales live, LOW DATA, value y avisos SHARK
+        sin saturar al cliente ni inventar información.
+      </p>
+    </div>
+    <div class="v298-status">
+      <strong>Anti-spam</strong>
+      <span>Solo señales útiles · REAL ONLY</span>
+    </div>
+  </div>
+
+  <div class="v298-grid">
+    <article class="v298-card hot">
+      <span>LIVE HOT</span>
+      <h2>Avisos importantes</h2>
+      <p>Partidos que pasan a HOT o merecen atención inmediata.</p>
+      <a href="/cliente/live-experience">Ver live</a>
+    </article>
+
+    <article class="v298-card value">
+      <span>VALUE</span>
+      <h2>Señales de valor</h2>
+      <p>Alertas preparadas para value, banca y calidad de señal.</p>
+      <a href="/smart-value-detection">Ver value</a>
+    </article>
+
+    <article class="v298-card shark">
+      <span>SHARK AI</span>
+      <h2>Contexto inteligente</h2>
+      <p>Preparado para explicar por qué mirar, esperar o revisar un partido.</p>
+      <a href="/cliente/shark-ai-pro">Abrir SHARK</a>
+    </article>
+
+    <article class="v298-card low">
+      <span>LOW DATA</span>
+      <h2>Avisos de protección</h2>
+      <p>Cuando faltan datos reales, la app avisa y evita decisiones falsas.</p>
+      <a href="/real-data-health">Salud de datos</a>
+    </article>
+  </div>
+
+  <div class="v298-footer">
+    <div>
+      <h3>Objetivo del avance</h3>
+      <p>
+        Que las alertas sean útiles, limpias y comerciales: nada de ruido, nada de spam,
+        nada inventado. Base preparada para PWA y Telegram.
+      </p>
+    </div>
+    <a href="/real-alert-delivery-bridge">Puente de alertas</a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Alert to Action Flow · NeMeSiS SHARK PRO{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_alert_to_action_flow_v299.css') }}">
+
+<section class="v299-shell">
+  <div class="v299-hero">
+    <div>
+      <span class="v299-badge">V299 · Alert to Action Flow</span>
+      <h1>Del aviso a la acción correcta</h1>
+      <p>
+        Una capa cliente para que cada aviso tenga salida clara:
+        abrir live, revisar value, preguntar a SHARK o esperar datos reales.
+      </p>
+    </div>
+    <div class="v299-status">
+      <strong>Sin ruido</strong>
+      <span>Alertas útiles · Acción clara</span>
+    </div>
+  </div>
+
+  <div class="v299-flow">
+    <article class="v299-step">
+      <span>01</span>
+      <h2>Recibir aviso</h2>
+      <p>HOT, VALUE, SHARK o LOW DATA desde el centro inteligente.</p>
+      <a href="/cliente/centro-avisos">Centro avisos</a>
+    </article>
+
+    <article class="v299-step hot">
+      <span>02</span>
+      <h2>Abrir contexto</h2>
+      <p>Ir al live, timeline o quick context del partido.</p>
+      <a href="/cliente/live-decision-companion">Live Companion</a>
+    </article>
+
+    <article class="v299-step value">
+      <span>03</span>
+      <h2>Decidir con claridad</h2>
+      <p>Mirar ahora, revisar value o esperar datos con REAL ONLY.</p>
+      <a href="/cliente/radar-decision">Decision Radar</a>
+    </article>
+
+    <article class="v299-step shark">
+      <span>04</span>
+      <h2>Explicar con SHARK</h2>
+      <p>Preparado para contexto inteligente sin inventar señales.</p>
+      <a href="/cliente/shark-ai-pro">SHARK AI</a>
+    </article>
+  </div>
+
+  <div class="v299-footer">
+    <div>
+      <h3>Por qué importa</h3>
+      <p>
+        Esto reduce confusión, mejora conversión del cliente y convierte las alertas en una experiencia guiada,
+        no en notificaciones sueltas.
+      </p>
+    </div>
+    <a href="/client-action-center">Volver al Action Center</a>
+  </div>
+</section>
+{% endblock %}

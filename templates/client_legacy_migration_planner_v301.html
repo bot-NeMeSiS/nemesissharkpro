@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Legacy Migration Planner · NeMeSiS SHARK PRO{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_legacy_migration_planner_v301.css') }}">
+
+<section class="v301-shell">
+  <div class="v301-hero">
+    <div>
+      <span class="v301-badge">V301 · Post V300</span>
+      <h1>Planificador de migración visual</h1>
+      <p>
+        Después del hito V300, toca preparar una migración ordenada de pantallas antiguas:
+        cliente primero, live/match después y admin al final, sin romper rutas ni datos.
+      </p>
+    </div>
+    <div class="v301-status">
+      <strong>Legacy bajo control</strong>
+      <span>Auditoría + estrategia segura</span>
+    </div>
+  </div>
+
+  <div class="v301-grid">
+    <article class="v301-card">
+      <span>01</span>
+      <h2>Cliente primero</h2>
+      <p>Migrar las pantallas que más ve el usuario para que todo parezca una sola app.</p>
+      <a href="/cliente/v300">Ver Core V300</a>
+    </article>
+
+    <article class="v301-card">
+      <span>02</span>
+      <h2>Live y Match</h2>
+      <p>Unificar tarjetas, timelines, estados LOW DATA y navegación contextual.</p>
+      <a href="/cliente/companero-live">Live Companion</a>
+    </article>
+
+    <article class="v301-card">
+      <span>03</span>
+      <h2>Value y decisión</h2>
+      <p>Conectar Radar, Value, banca y SHARK con el mismo lenguaje visual.</p>
+      <a href="/cliente/radar-decision">Decision Radar</a>
+    </article>
+
+    <article class="v301-card">
+      <span>04</span>
+      <h2>Admin sin contaminar cliente</h2>
+      <p>Admin seguirá potente, pero separado visualmente de la experiencia cliente.</p>
+      <a href="/client-consistency-center">Consistencia</a>
+    </article>
+  </div>
+
+  <div class="v301-footer">
+    <div>
+      <h3>Objetivo V301</h3>
+      <p>
+        No es añadir más pantallas por añadir: es preparar el terreno para limpiar lo antiguo
+        con seguridad y mantener el producto serio.
+      </p>
+    </div>
+    <a href="/client-action-center">Action Center</a>
+  </div>
+</section>
+{% endblock %}
