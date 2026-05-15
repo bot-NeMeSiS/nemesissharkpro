@@ -1,0 +1,9 @@
+{
+  "version": "V264",
+  "name": "CORE_STABILITY_CLEAN_APP_RECOVERY_PRO",
+  "render_ready": true,
+  "real_only": true,
+  "app_py_clean": true,
+  "syntax_checked": true,
+  "notes": "Recuperación del core tras error SyntaxError invalid decimal literal por posible marcador de merge en app.py. No altera lógica de datos reales."
+}
