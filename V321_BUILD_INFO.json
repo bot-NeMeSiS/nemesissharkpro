@@ -1,0 +1,13 @@
+{
+  "version": "V321",
+  "name": "LIVE TIMELINE & TURNING POINTS PRO",
+  "base": "V320",
+  "routes": [
+    "/cliente/live-timeline",
+    "/cliente/timeline-live",
+    "/cliente/turning-points",
+    "/api/v321/live-timeline"
+  ],
+  "touches_api": false,
+  "render_ready": true
+}

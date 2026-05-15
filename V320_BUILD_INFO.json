@@ -1,0 +1,12 @@
+{
+  "version": "V320",
+  "name": "Premium Client Command Center PRO",
+  "routes": [
+    "/cliente/command-center",
+    "/cliente/centro-mando",
+    "/api/v320/client-command-center"
+  ],
+  "base": "V319",
+  "api_extra": false,
+  "status": "compiled_ok"
+}

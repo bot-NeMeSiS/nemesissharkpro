@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>NeMeSiS SHARK PRO · Experiencia Unificada</title>
+  <style>
+    :root{--bg:#050914;--panel:rgba(9,18,38,.78);--panel2:rgba(12,28,58,.78);--line:rgba(80,170,255,.18);--text:#edf7ff;--muted:#8ea9c6;--blue:#35b7ff;--gold:#ffd46b;--green:#44f0aa;--red:#ff5d73;--r:24px;--shadow:0 24px 70px rgba(0,0,0,.45)}
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:radial-gradient(circle at 15% 0%,rgba(53,183,255,.22),transparent 28%),radial-gradient(circle at 90% 10%,rgba(255,212,107,.10),transparent 24%),linear-gradient(180deg,#050914,#071020 52%,#030711);color:var(--text);min-height:100vh} a{color:inherit;text-decoration:none}
+    .app{max-width:1180px;margin:0 auto;padding:18px 16px 90px}.top{position:sticky;top:0;z-index:10;margin:0 -16px 18px;padding:12px 16px;backdrop-filter:blur(18px);background:linear-gradient(180deg,rgba(5,9,20,.92),rgba(5,9,20,.68));border-bottom:1px solid var(--line)}
+    .topin{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.2px}.logo{width:38px;height:38px;border-radius:14px;background:linear-gradient(135deg,var(--blue),#123cff);display:grid;place-items:center;box-shadow:0 0 28px rgba(53,183,255,.38)}
+    .nav{display:flex;gap:8px;overflow:auto;padding-bottom:2px}.nav a{white-space:nowrap;padding:10px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.045);color:#cce7ff;font-size:13px}.nav a.active{background:linear-gradient(135deg,rgba(53,183,255,.24),rgba(255,212,107,.12));border-color:rgba(53,183,255,.42);color:white}
+    .hero{border:1px solid var(--line);background:linear-gradient(135deg,rgba(10,24,52,.86),rgba(3,7,17,.78));border-radius:32px;padding:28px;box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"";position:absolute;inset:-80px -120px auto auto;width:300px;height:300px;border-radius:50%;background:rgba(53,183,255,.13);filter:blur(20px)}
+    .badge{display:inline-flex;gap:8px;align-items:center;border:1px solid rgba(68,240,170,.28);color:#bfffe8;background:rgba(68,240,170,.08);border-radius:999px;padding:8px 12px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.7px}.pulse{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(68,240,170,.55);animation:pulse 1.8s infinite}@keyframes pulse{70%{box-shadow:0 0 0 12px transparent}}
+    h1{font-size:clamp(30px,5vw,58px);line-height:.98;margin:18px 0 12px;letter-spacing:-1.6px}.lead{color:#b8cee8;font-size:17px;max-width:760px;line-height:1.55}.heroGrid{display:grid;grid-template-columns:1fr 340px;gap:18px;align-items:end}.score{background:rgba(0,0,0,.24);border:1px solid var(--line);border-radius:26px;padding:20px}.scoreNum{font-size:54px;font-weight:950;color:var(--gold)}.score small{color:var(--muted)}
+    .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:18px}.card{border:1px solid var(--line);background:var(--panel);border-radius:var(--r);padding:18px;box-shadow:0 18px 46px rgba(0,0,0,.28)}.card h2,.card h3{margin:0 0 12px}.muted{color:var(--muted)}
+    .actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.action{display:flex;justify-content:space-between;gap:10px;align-items:center;border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:18px;padding:14px}.action b{display:block}.tag{font-size:11px;text-transform:uppercase;letter-spacing:.6px;border-radius:999px;padding:6px 8px;background:rgba(53,183,255,.12);color:#bdeaff;border:1px solid rgba(53,183,255,.22)}
+    .matches{display:grid;gap:11px}.match{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:13px;border:1px solid rgba(255,255,255,.09);border-radius:18px;background:linear-gradient(135deg,rgba(255,255,255,.055),rgba(255,255,255,.025));transition:.18s transform,.18s border-color}.match:hover{transform:translateY(-2px);border-color:rgba(53,183,255,.38)}.rank{width:32px;height:32px;border-radius:12px;background:rgba(53,183,255,.14);display:grid;place-items:center;font-weight:900}.bar{height:7px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--gold));border-radius:99px}.status{font-size:12px;color:#d8f2ff;font-weight:800}.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:16px;padding:12px 14px;background:linear-gradient(135deg,var(--blue),#1b57ff);font-weight:900;box-shadow:0 12px 28px rgba(53,183,255,.25)}
+    .tokens{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.token{padding:12px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.04)}.footerNav{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);width:min(680px,calc(100% - 24px));display:grid;grid-template-columns:repeat(4,1fr);gap:8px;background:rgba(3,8,18,.78);border:1px solid var(--line);border-radius:24px;padding:8px;backdrop-filter:blur(18px);box-shadow:var(--shadow)}.footerNav a{text-align:center;font-size:12px;padding:10px 6px;border-radius:16px;color:#cde7ff}.footerNav a:first-child{background:rgba(53,183,255,.14);color:white}
+    @media(max-width:860px){.heroGrid,.grid{grid-template-columns:1fr}.actions,.tokens{grid-template-columns:1fr}.topin{align-items:flex-start;flex-direction:column}.nav{width:100%}.hero{padding:22px}.scoreNum{font-size:44px}}
+  </style>
+</head>
+<body>
+  <div class="top"><div class="topin"><a class="brand" href="/cliente/experiencia"><span class="logo">🦈</span><span>NeMeSiS SHARK PRO</span></a><nav class="nav" id="nav"><a class="active" href="/cliente/app-os">App OS</a><a href="/cliente/experiencia">Mi día</a><a href="/cliente/live-visual">Live</a><a href="/cliente/match-center-premium">Match Center</a><a href="/cliente/dashboard">Cuenta</a></nav></div></div>
+  <main class="app">
+    <section class="hero">
+      <div class="heroGrid">
+        <div><span class="badge"><i class="pulse"></i> V319 Unified Experience System</span><h1>Tu app, unificada como experiencia premium.</h1><p class="lead" id="sub">Menos pantallas sueltas. Más recorrido cliente: mirar, seguir, decidir y volver a tu cuenta sin perder contexto.</p></div>
+        <div class="score"><small>Nivel experiencia cliente</small><div class="scoreNum" id="score">--</div><small id="mood">Cargando sistema...</small></div>
+      </div>
+    </section>
+    <section class="grid">
+      <div class="card"><h2>Centro de acción</h2><p class="muted">Lo que la app te recomienda hacer ahora.</p><div class="actions" id="actions"></div></div>
+      <div class="card"><h2>Sistema visual único</h2><div class="tokens" id="tokens"></div></div>
+    </section>
+    <section class="grid">
+      <div class="card"><h2>Partidos en recorrido</h2><div class="matches" id="matches"></div></div>
+      <div class="card"><h2>Reglas de experiencia</h2><div id="rules" class="matches"></div></div>
+    </section>
+  </main>
+  <nav class="footerNav"><a href="/cliente/app-os">App OS</a><a href="/cliente/live-visual">Live</a><a href="/cliente/smart-live-hub">Focus</a><a href="/cliente/dashboard">Cuenta</a></nav>
+  <script>
+    const $=id=>document.getElementById(id); const esc=s=>String(s??'').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));
+    function render(data){
+      $('score').textContent=(data.experience_score||88)+'/100'; $('mood').textContent=data.mood||'PREMIUM APP FEEL'; $('sub').textContent=data.subheadline||data.headline||$('sub').textContent;
+      $('actions').innerHTML=(data.next_actions||[]).map(a=>`<a class="action" href="${esc(a.href||'#')}"><span><b>${esc(a.label)}</b><small class="muted">${esc(a.type||'acción')}</small></span><span class="tag">${esc(a.urgency||'normal')}</span></a>`).join('');
+      const t=data.design_tokens||{}; $('tokens').innerHTML=Object.entries(t).map(([k,v])=>`<div class="token"><b>${esc(k)}</b><br><span class="muted">${esc(v)}</span></div>`).join('');
+      $('matches').innerHTML=(data.experience_cards||[]).map(m=>`<a class="match" href="${esc(m.href||'/cliente/match-center-premium')}"><span class="rank">${esc(m.rank||'•')}</span><span><b>${esc(m.title)}</b><br><span class="muted">${esc(m.headline)} · ${esc(m.reason)}</span><span class="bar"><i style="width:${Number(m.activity||45)}%"></i></span></span><span class="status">${esc(m.status)}</span></a>`).join('');
+      $('rules').innerHTML=(data.client_rules||[]).map((r,i)=>`<div class="match"><span class="rank">${i+1}</span><span><b>${esc(r)}</b><br><span class="muted">Aplicado a navegación, cards y acciones.</span></span><span class="status">OK</span></div>`).join('');
+    }
+    fetch('/api/v319/unified-experience-system').then(r=>r.json()).then(render).catch(()=>render({experience_score:88,mood:'SAFE MODE',next_actions:[{label:'Abrir Mi día',href:'/cliente/experiencia',type:'safe',urgency:'normal'}],design_tokens:{mode:'safe'},experience_cards:[],client_rules:['Carga segura sin API externa']}));
+  </script>
+</body>
+</html>

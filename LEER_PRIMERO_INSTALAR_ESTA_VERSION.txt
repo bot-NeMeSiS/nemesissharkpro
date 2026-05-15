@@ -28,3 +28,6 @@ NO dejar archivos viejos dentro.
 
 Este paquete incluye requirements.txt en la raiz para que Render pueda instalar dependencias.
 ============================================================
+
+
+V319 añadido: /cliente/app-os y /api/v319/unified-experience-system. Experiencia cliente unificada, sin consumo extra de API.

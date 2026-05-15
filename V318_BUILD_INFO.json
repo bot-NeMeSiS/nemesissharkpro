@@ -1,0 +1,11 @@
+{
+  "version": "V318.0",
+  "name": "LIVE_VISUAL_SYSTEM_PRO",
+  "base": "V317",
+  "full_build": true,
+  "routes": [
+    "/cliente/live-visual",
+    "/api/v318/live-visual-system"
+  ],
+  "touches_api": false
+}

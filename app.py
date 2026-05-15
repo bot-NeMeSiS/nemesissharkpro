@@ -11140,5 +11140,243 @@ def client_experience_os_v317():
 # ===== END V317 =====
 
 
+
+# ===== V318 · LIVE VISUAL SYSTEM PRO =====
+@app.route("/api/v318/live-visual-system")
+def api_v318_live_visual_system():
+    """Capa visual premium sobre V317. Cache-first, sin llamadas API externas."""
+    try:
+        rows = _v312_fetch_live_candidates(limit=12)
+        from live_engine.v312_momentum_engine import build_live_engine_snapshot_v312
+        from live_engine.v313_client_live_hub_engine import build_client_live_hub_v313
+        from live_engine.v314_match_center_engine import build_match_center_premium_v314
+        from live_engine.v315_shark_memory_engine import build_shark_memory_v315
+        from live_engine.v316_client_continuity_engine import build_client_continuity_v316
+        from live_engine.v317_client_experience_os_engine import build_client_experience_os_v317
+        from live_engine.v318_live_visual_system_engine import build_live_visual_system_v318
+        v312_payload = build_live_engine_snapshot_v312(rows)
+        v313_payload = build_client_live_hub_v313(v312_payload)
+        v314_payload = build_match_center_premium_v314(v313_payload)
+        v315_payload = build_shark_memory_v315(v314_payload, persist=True)
+        v316_payload = build_client_continuity_v316(v315_payload)
+        v317_payload = build_client_experience_os_v317(v316_payload)
+        payload = build_live_visual_system_v318(v317_payload)
+    except Exception as exc:
+        payload = {
+            "ok": True,
+            "version": "V318",
+            "mode": "safe-fallback",
+            "touches_api": False,
+            "error": str(exc)[:180],
+            "headline": "Live Visual System seguro activo: mejora visual sin tocar APIs.",
+            "mood": "LIVE FEEL SAFE",
+            "activity": "SAFE",
+            "visual_summary": {"hot": 0, "watch": 0, "energy": 0, "motion": "safe", "api_cost": 0},
+            "summary": {},
+            "modules": [],
+            "journey": [],
+            "visual_matches": [],
+            "microinteractions": [
+                {"name": "Modo seguro", "text": "La pantalla carga aunque no haya datos cacheados.", "level": "safe"},
+                {"name": "Sin API extra", "text": "No consume cuota al abrir.", "level": "api"}
+            ],
+            "next_actions": ["Abrir mi app", "Revisar Live Focus", "Volver a mi cuenta"],
+            "client_navigation": [
+                {"label": "Mi app", "href": "/cliente/experiencia"},
+                {"label": "Live Focus", "href": "/cliente/smart-live-hub"},
+                {"label": "Mi cuenta", "href": "/cliente/dashboard"}
+            ],
+            "empty_state": {"title": "Modo seguro", "text": "Pantalla premium lista sin romper el proyecto."}
+        }
+    return jsonify(payload)
+
+
+@app.route("/client-live-visual-system")
+@app.route("/cliente/live-visual")
+@app.route("/cliente/live-visual-system")
+def client_live_visual_system_v318():
+    return render_template("client_live_visual_system_v318.html")
+# ===== END V318 =====
+
+
+
+# ===== V319 · UNIFIED EXPERIENCE SYSTEM PRO =====
+@app.route("/api/v319/unified-experience-system")
+def api_v319_unified_experience_system():
+    """Sistema unificado de experiencia cliente. Cache-first, sin llamadas API externas."""
+    try:
+        rows = _v312_fetch_live_candidates(limit=12)
+        from live_engine.v312_momentum_engine import build_live_engine_snapshot_v312
+        from live_engine.v313_client_live_hub_engine import build_client_live_hub_v313
+        from live_engine.v314_match_center_engine import build_match_center_premium_v314
+        from live_engine.v315_shark_memory_engine import build_shark_memory_v315
+        from live_engine.v316_client_continuity_engine import build_client_continuity_v316
+        from live_engine.v317_client_experience_os_engine import build_client_experience_os_v317
+        from live_engine.v318_live_visual_system_engine import build_live_visual_system_v318
+        from live_engine.v319_unified_experience_system_engine import build_unified_experience_system_v319
+        v312_payload = build_live_engine_snapshot_v312(rows)
+        v313_payload = build_client_live_hub_v313(v312_payload)
+        v314_payload = build_match_center_premium_v314(v313_payload)
+        v315_payload = build_shark_memory_v315(v314_payload, persist=True)
+        v316_payload = build_client_continuity_v316(v315_payload)
+        v317_payload = build_client_experience_os_v317(v316_payload)
+        v318_payload = build_live_visual_system_v318(v317_payload)
+        payload = build_unified_experience_system_v319(v318_payload)
+    except Exception as exc:
+        payload = {
+            "ok": True,
+            "version": "V319",
+            "mode": "safe-fallback",
+            "touches_api": False,
+            "error": str(exc)[:180],
+            "headline": "Unified Experience System seguro activo.",
+            "subheadline": "La app mantiene una experiencia guiada aunque no haya datos cacheados.",
+            "experience_score": 88,
+            "mood": "SAFE PREMIUM APP FEEL",
+            "design_tokens": {"radius": "22px", "spacing": "16/20/28", "surface": "glass-dark", "motion": "soft-live", "density": "mobile-first", "identity": "blue-neon-gold"},
+            "sections": [],
+            "experience_cards": [
+                {"rank": 1, "title": "Mi día", "status": "SAFE", "activity": 50, "headline": "Continuar experiencia", "action": "Abrir", "href": "/cliente/experiencia", "reason": "Entrada segura al recorrido cliente."}
+            ],
+            "next_actions": [
+                {"type": "continue", "label": "Abrir Mi día", "href": "/cliente/experiencia", "urgency": "normal"},
+                {"type": "live", "label": "Ir a Live Visual", "href": "/cliente/live-visual", "urgency": "normal"},
+                {"type": "account", "label": "Volver a mi cuenta", "href": "/cliente/dashboard", "urgency": "normal"}
+            ],
+            "client_rules": ["Una navegación clara.", "Cards coherentes.", "Sin consumo extra de API."]
+        }
+    return jsonify(payload)
+
+
+@app.route("/client-unified-experience-system")
+@app.route("/cliente/app-os")
+@app.route("/cliente/experiencia-unificada")
+def client_unified_experience_system_v319():
+    return render_template("client_unified_experience_system_v319.html")
+# ===== END V319 =====
+
+
+
+# ===== V320 · PREMIUM CLIENT COMMAND CENTER PRO =====
+@app.route("/api/v320/client-command-center")
+def api_v320_client_command_center():
+    """Centro de mando cliente premium. Cache-first, sin llamadas API externas."""
+    try:
+        rows = _v312_fetch_live_candidates(limit=12)
+        from live_engine.v312_momentum_engine import build_live_engine_snapshot_v312
+        from live_engine.v313_client_live_hub_engine import build_client_live_hub_v313
+        from live_engine.v314_match_center_engine import build_match_center_premium_v314
+        from live_engine.v315_shark_memory_engine import build_shark_memory_v315
+        from live_engine.v316_client_continuity_engine import build_client_continuity_v316
+        from live_engine.v317_client_experience_os_engine import build_client_experience_os_v317
+        from live_engine.v318_live_visual_system_engine import build_live_visual_system_v318
+        from live_engine.v319_unified_experience_system_engine import build_unified_experience_system_v319
+        from live_engine.v320_client_command_center_engine import build_client_command_center_v320
+        v312_payload = build_live_engine_snapshot_v312(rows)
+        v313_payload = build_client_live_hub_v313(v312_payload)
+        v314_payload = build_match_center_premium_v314(v313_payload)
+        v315_payload = build_shark_memory_v315(v314_payload, persist=True)
+        v316_payload = build_client_continuity_v316(v315_payload)
+        v317_payload = build_client_experience_os_v317(v316_payload)
+        v318_payload = build_live_visual_system_v318(v317_payload)
+        v319_payload = build_unified_experience_system_v319(v318_payload)
+        payload = build_client_command_center_v320(v319_payload)
+    except Exception as exc:
+        payload = {
+            "ok": True,
+            "version": "V320",
+            "mode": "safe-fallback",
+            "touches_api": False,
+            "error": str(exc)[:180],
+            "headline": "Command Center seguro activo.",
+            "subheadline": "Centro de mando cliente preparado aunque no haya datos cacheados.",
+            "command_score": 88,
+            "mood": "SAFE COMMAND CENTER",
+            "command_strip": [
+                {"label": "Ahora", "value": "0 HOT", "tone": "safe"},
+                {"label": "Radar", "value": "1 WATCH", "tone": "watch"},
+                {"label": "API", "value": "0 llamadas", "tone": "ok"},
+                {"label": "Modo", "value": "Seguro", "tone": "info"}
+            ],
+            "command_cards": [
+                {"rank": 1, "title": "Centro de mando preparado", "status": "READY", "priority": 58, "decision": {"label": "SEGUIR", "tone": "watch", "text": "Listo para ordenar prioridades cuando haya datos."}, "headline": "La experiencia carga sin romper nada.", "reason": "V320 trabaja sobre caché/memoria y no consume API.", "primary_action": "Abrir Mi día", "href": "/cliente/experiencia"}
+            ],
+            "smart_actions": [
+                {"label": "Abrir Mi día", "href": "/cliente/experiencia", "type": "continue", "urgency": "normal"},
+                {"label": "Ir a Live", "href": "/cliente/live-visual", "type": "live", "urgency": "normal"},
+                {"label": "Volver a mi cuenta", "href": "/cliente/dashboard", "type": "account", "urgency": "normal"}
+            ],
+            "experience_principles": ["Foco claro", "Decisión visible", "Sin API extra", "Experiencia cliente guiada"]
+        }
+    return jsonify(payload)
+
+
+@app.route("/client-command-center")
+@app.route("/cliente/command-center")
+@app.route("/cliente/centro-mando")
+def client_command_center_v320():
+    return render_template("client_command_center_v320.html")
+# ===== END V320 =====
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))
+
+
+# ===== V321 · LIVE TIMELINE & TURNING POINTS PRO =====
+@app.route("/api/v321/live-timeline")
+def api_v321_live_timeline():
+    """Timeline live premium con turning points. Cache-first, sin APIs externas."""
+    try:
+        rows = _v312_fetch_live_candidates(limit=12)
+        from live_engine.v312_momentum_engine import build_live_engine_snapshot_v312
+        from live_engine.v313_client_live_hub_engine import build_client_live_hub_v313
+        from live_engine.v314_match_center_engine import build_match_center_premium_v314
+        from live_engine.v315_shark_memory_engine import build_shark_memory_v315
+        from live_engine.v316_client_continuity_engine import build_client_continuity_v316
+        from live_engine.v317_client_experience_os_engine import build_client_experience_os_v317
+        from live_engine.v318_live_visual_system_engine import build_live_visual_system_v318
+        from live_engine.v319_unified_experience_system_engine import build_unified_experience_system_v319
+        from live_engine.v320_client_command_center_engine import build_client_command_center_v320
+        from live_engine.v321_live_timeline_turning_points_engine import build_live_timeline_turning_points_v321
+        v312_payload = build_live_engine_snapshot_v312(rows)
+        v313_payload = build_client_live_hub_v313(v312_payload)
+        v314_payload = build_match_center_premium_v314(v313_payload)
+        v315_payload = build_shark_memory_v315(v314_payload, persist=True)
+        v316_payload = build_client_continuity_v316(v315_payload)
+        v317_payload = build_client_experience_os_v317(v316_payload)
+        v318_payload = build_live_visual_system_v318(v317_payload)
+        v319_payload = build_unified_experience_system_v319(v318_payload)
+        v320_payload = build_client_command_center_v320(v319_payload)
+        payload = build_live_timeline_turning_points_v321(v320_payload)
+    except Exception as exc:
+        payload = {
+            "ok": True,
+            "version": "V321",
+            "mode": "safe-fallback",
+            "touches_api": False,
+            "error": str(exc)[:180],
+            "headline": "Timeline live seguro activo.",
+            "subheadline": "Turning points preparados aunque no haya datos cacheados suficientes.",
+            "timeline_score": 88,
+            "timeline_strip": [
+                {"label":"Puntos clave","value":"1","tone":"watch"},
+                {"label":"HOT","value":"0","tone":"safe"},
+                {"label":"Radar","value":"1","tone":"watch"},
+                {"label":"API","value":"0","tone":"ok"}
+            ],
+            "events": [
+                {"id":"safe","minute":12,"event_type":"CONTEXT","tone":"watch","impact":62,"title":"Timeline preparado","decision":{"label":"SEÑAL SUAVE","tone":"watch","copy":"Listo para detectar cambios."},"summary":"La pantalla carga en modo seguro sin consumo API.","why_it_matters":"Mantiene la experiencia cliente aunque no haya datos suficientes.","action_label":"Abrir Command Center","href":"/cliente/command-center","data_health":"SEGURA"}
+            ],
+            "turning_points": [],
+            "recap": {"title":"Recap seguro","text":"No hay puntos críticos ahora mismo.","best_next_step":"Volver al Command Center","best_href":"/cliente/command-center"},
+            "experience_principles": ["Historia viva", "Impacto visible", "Acción clara", "API 0"]
+        }
+    return jsonify(payload)
+
+
+@app.route("/cliente/live-timeline")
+@app.route("/cliente/timeline-live")
+@app.route("/cliente/turning-points")
+def client_live_timeline_v321():
+    return render_template("client_live_timeline_v321.html")
+# ===== END V321 =====
