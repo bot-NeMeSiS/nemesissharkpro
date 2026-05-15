@@ -10213,5 +10213,237 @@ def api_v275_client_trust_polish_status():
         'mensaje': 'Avance cliente seguro aplicado: UX pulida sin tocar datos reales ni APIs.'
     })
 
+
+@app.route('/client-clarity-layer')
+@app.route('/cliente/clarity-layer')
+@app.route('/cliente/claridad')
+def client_clarity_layer_v276():
+    """V276 · Client Clarity Layer.
+    Customer-first safe improvement: clearer hierarchy, quick decisions and unified UX.
+    Does not touch APIs, odds, scores, fixtures or REAL ONLY data logic.
+    """
+    payload = {
+        "version": "V276",
+        "name": "CLIENT CLARITY LAYER + DECISION UX PRO",
+        "focus": "Hacer que el cliente entienda rápido qué mirar, qué esperar y qué no tocar",
+        "real_only": True,
+        "data_logic_changed": False,
+        "customer_priority": True,
+        "improvements": [
+            "jerarquía visual más clara",
+            "decisión rápida: ver / analizar / esperar",
+            "misma estética de cards cliente",
+            "accesos directos sin duplicar navegación",
+            "LOW DATA visible sin parecer error",
+            "preparado para integrar en home cliente"
+        ]
+    }
+    return render_template('client_clarity_layer_v276.html', payload=payload)
+
+@app.route('/api/v276/client-clarity-layer/status')
+def api_v276_client_clarity_layer_status():
+    return jsonify({
+        'version': 'V276',
+        'name': 'CLIENT CLARITY LAYER + DECISION UX PRO',
+        'real_only': True,
+        'data_logic_changed': False,
+        'client_clarity_ready': True,
+        'duplicate_nav_guard': True,
+        'decision_ux_ready': True,
+        'mensaje': 'Capa de claridad cliente preparada sin tocar datos reales, cuotas, partidos ni APIs.'
+    })
+
+
+
+@app.route('/client-guided-experience')
+@app.route('/cliente/guided-experience')
+@app.route('/cliente/experiencia-guiada')
+def client_guided_experience_v277():
+    """V277 · Client Guided Experience Layer.
+    Safe UX/client-flow layer: no API calls, no fake data, no duplicated navigation.
+    """
+    payload = {
+        "version": "V277",
+        "title": "CLIENT GUIDED EXPERIENCE LAYER PRO",
+        "focus": "Guiar al cliente desde briefing a live, discovery, value y decisión sin saturarlo",
+        "real_only": True,
+        "safe_advance": True,
+        "touches_api": False,
+        "touches_odds": False,
+        "touches_live_scores": False,
+        "guards": [
+            "no navegación duplicada",
+            "bottom nav solo móvil",
+            "desktop limpio",
+            "fallback LOW DATA premium",
+            "sin inventar partidos, cuotas, marcadores ni escudos"
+        ]
+    }
+    return render_template('client_guided_experience_v277.html', payload=payload)
+
+@app.route('/api/v277/client-guided-experience/status')
+def api_v277_client_guided_experience_status():
+    return jsonify({
+        'version': 'V277',
+        'status': 'ready',
+        'real_only': True,
+        'safe_advance': True,
+        'client_guided_experience_ready': True,
+        'touches_api': False,
+        'touches_live_scores': False,
+        'touches_odds': False,
+        'mensaje': 'Experiencia guiada cliente preparada sin tocar datos reales, APIs, cuotas ni navegación global peligrosa.'
+    })
+
+
+@app.route('/client-premium-polish')
+@app.route('/cliente/premium-polish')
+@app.route('/cliente/app-feel')
+def client_premium_polish_v278():
+    """V278 · Client Premium Polish + App Feel Evolution.
+    Safe client-facing polish layer. No API calls, no fake data, no odds/live mutation.
+    """
+    payload = {
+        "version": "V278",
+        "title": "CLIENT PREMIUM POLISH + APP FEEL EVOLUTION PRO",
+        "focus": "Pulir la sensación de app premium del cliente sin tocar datos reales ni navegación peligrosa",
+        "real_only": True,
+        "safe_advance": True,
+        "touches_api": False,
+        "touches_odds": False,
+        "touches_live_scores": False,
+        "improvements": [
+            "jerarquía visual más limpia",
+            "cards más consistentes",
+            "acciones del cliente más claras",
+            "skeletons y estados LOW DATA mejor presentados",
+            "microinteracciones suaves sin recargar el layout",
+            "desktop limpio y mobile controlado"
+        ],
+        "guards": [
+            "no navegación duplicada",
+            "no barras gigantes en desktop",
+            "bottom nav solo móvil",
+            "sin inventar partidos, cuotas, marcadores ni escudos",
+            "sin alterar APIs ni base de datos"
+        ]
+    }
+    return render_template('client_premium_polish_appfeel_v278.html', payload=payload)
+
+@app.route('/api/v278/client-premium-polish/status')
+def api_v278_client_premium_polish_status():
+    return jsonify({
+        'version': 'V278',
+        'status': 'ready',
+        'real_only': True,
+        'safe_advance': True,
+        'client_premium_polish_ready': True,
+        'touches_api': False,
+        'touches_live_scores': False,
+        'touches_odds': False,
+        'duplicate_nav_guard': True,
+        'mensaje': 'Pulido premium cliente preparado sin tocar datos reales, APIs, cuotas, marcadores ni navegación global peligrosa.'
+    })
+
+
+@app.route('/client-personalized-onboarding')
+@app.route('/cliente/onboarding-pro')
+@app.route('/cliente/primeros-pasos')
+def client_personalized_onboarding_v279():
+    """V279 · Client Personalized Onboarding + Preference Layer.
+    Safe client onboarding layer. No API calls, no fake data, no odds/live mutation.
+    """
+    payload = {
+        "version": "V279",
+        "title": "CLIENT PERSONALIZED ONBOARDING + PREFERENCE LAYER PRO",
+        "focus": "Guiar al cliente desde el primer segundo y preparar personalización futura sin tocar datos reales",
+        "real_only": True,
+        "safe_advance": True,
+        "touches_api": False,
+        "touches_odds": False,
+        "touches_live_scores": False,
+        "prepared_preferences": [
+            "deportes favoritos",
+            "ligas favoritas",
+            "nivel de riesgo",
+            "enfoque live/value",
+            "tipo de alertas",
+            "uso de SHARK AI"
+        ],
+        "guards": [
+            "no inventar partidos",
+            "no inventar cuotas",
+            "no inventar marcadores",
+            "no duplicar navegación",
+            "no tocar APIs ni base de datos"
+        ]
+    }
+    return render_template('client_personalized_onboarding_v279.html', payload=payload)
+
+@app.route('/api/v279/client-personalized-onboarding/status')
+def api_v279_client_personalized_onboarding_status():
+    return jsonify({
+        'version': 'V279',
+        'status': 'ready',
+        'real_only': True,
+        'safe_advance': True,
+        'client_onboarding_ready': True,
+        'preference_layer_prepared': True,
+        'touches_api': False,
+        'touches_live_scores': False,
+        'touches_odds': False,
+        'mensaje': 'Onboarding personalizado cliente preparado sin tocar datos reales, APIs, cuotas ni marcadores.'
+    })
+
+
+@app.route('/client-personalization-hub')
+@app.route('/cliente/personalization-hub')
+@app.route('/cliente/preferencias-pro')
+def client_personalization_hub_v280():
+    """V280 · Client Personalization Hub + Smart Preferences Pro.
+    Safe client personalization center. No API calls, no fake data, no odds/live mutation.
+    """
+    payload = {
+        "version": "V280",
+        "title": "CLIENT PERSONALIZATION HUB + SMART PREFERENCES PRO",
+        "focus": "Centralizar preferencias del cliente para que la app se sienta más personal, útil y premium",
+        "real_only": True,
+        "safe_advance": True,
+        "touches_api": False,
+        "touches_odds": False,
+        "touches_live_scores": False,
+        "modules": [
+            "perfil deportivo del cliente",
+            "preferencias de deportes y ligas",
+            "nivel de riesgo y banca",
+            "alertas HOT / value / live",
+            "atajos personalizados",
+            "base futura para recomendaciones reales"
+        ],
+        "guards": [
+            "no inventar partidos, cuotas ni resultados",
+            "no tocar APIs ni base de datos en esta fase",
+            "no duplicar navegación",
+            "bottom nav solo móvil",
+            "desktop limpio"
+        ]
+    }
+    return render_template('client_personalization_hub_v280.html', payload=payload)
+
+@app.route('/api/v280/client-personalization-hub/status')
+def api_v280_client_personalization_hub_status():
+    return jsonify({
+        'version': 'V280',
+        'status': 'ready',
+        'real_only': True,
+        'safe_advance': True,
+        'client_personalization_hub_ready': True,
+        'smart_preferences_prepared': True,
+        'touches_api': False,
+        'touches_live_scores': False,
+        'touches_odds': False,
+        'mensaje': 'Hub de personalización cliente preparado sin tocar datos reales, APIs, cuotas ni marcadores.'
+    })
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

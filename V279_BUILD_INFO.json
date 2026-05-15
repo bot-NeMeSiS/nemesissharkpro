@@ -1,0 +1,13 @@
+{
+  "version": "V279",
+  "name": "CLIENT PERSONALIZED ONBOARDING + PREFERENCE LAYER PRO",
+  "real_only": true,
+  "build_type": "full_build_from_v278",
+  "checks": [
+    "zip valid",
+    "app.py compiles",
+    "template included",
+    "css included",
+    "no __pycache__"
+  ]
+}

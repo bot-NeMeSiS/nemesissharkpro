@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Cliente Premium · Claridad y Decisión{% endblock %}
+{% block content %}
+<section class="v276-hero">
+  <div>
+    <span class="v276-pill">V276 · Cliente primero · REAL ONLY</span>
+    <h1>Claridad total para decidir mejor</h1>
+    <p>Una capa de experiencia pensada para que el cliente no se pierda: qué mirar ahora, qué analizar con SHARK y qué dejar en espera cuando no haya datos reales suficientes.</p>
+  </div>
+  <div class="v276-score-card">
+    <small>Estado del avance</small>
+    <strong>Seguro</strong>
+    <span>No toca APIs, cuotas, marcadores ni datos reales.</span>
+  </div>
+</section>
+
+<section class="v276-decision-grid">
+  <a class="v276-decision-card hot" href="/cliente/live-experience">
+    <b>🔴 Ver ahora</b>
+    <span>Partidos live, señales calientes y seguimiento rápido.</span>
+    <em>Ir a Live premium</em>
+  </a>
+  <a class="v276-decision-card value" href="/smart-value-detection">
+    <b>💎 Analizar value</b>
+    <span>Revisar oportunidades solo cuando haya datos suficientes.</span>
+    <em>Ir a Value Radar</em>
+  </a>
+  <a class="v276-decision-card wait" href="/cliente/discovery">
+    <b>⏳ Esperar / LOW DATA</b>
+    <span>Cuando falten datos reales, la app lo muestra claro sin inventar.</span>
+    <em>Explorar partidos</em>
+  </a>
+</section>
+
+<section class="v276-flow-panel">
+  <div class="v276-flow-head">
+    <h2>Flujo cliente recomendado</h2>
+    <p>La app debe guiar al usuario sin hacerle pensar demasiado.</p>
+  </div>
+  <div class="v276-flow-steps">
+    <div><i>1</i><b>Entrar</b><span>Briefing del día y accesos rápidos.</span></div>
+    <div><i>2</i><b>Detectar</b><span>HOT, value o LOW DATA de forma visual.</span></div>
+    <div><i>3</i><b>Analizar</b><span>SHARK, banca, estadísticas y contexto.</span></div>
+    <div><i>4</i><b>Decidir</b><span>Seguir, favorito, esperar o actuar con criterio.</span></div>
+  </div>
+</section>
+
+<section class="v276-safe-note">
+  <b>Guardia visual activa:</b> este avance mantiene una sola navegación en desktop y una bottom nav controlada en móvil. No se añaden barras flotantes grandes ni menús duplicados.
+</section>
+{% endblock %}

@@ -1,0 +1,23 @@
+/* V276 · CLIENT CLARITY LAYER + DECISION UX PRO
+   Avance seguro cliente: claridad, decisión y coherencia sin tocar datos REAL ONLY. */
+:root{--v276-bg:#061225;--v276-card:rgba(8,25,58,.86);--v276-line:rgba(83,211,255,.22);--v276-text:#eef8ff;--v276-muted:#a9bad1;--v276-cyan:#4ee7ff;--v276-gold:#f6d66d;--v276-ok:#68f0b9;--v276-warn:#ffcf6b;}
+@media(min-width:921px){.client-app-nav-v308,.bottom-mobile-nav-v283,.mobile-bottom-nav,.mobile-nav,.app-bottom-nav{display:none!important;visibility:hidden!important;max-height:0!important;overflow:hidden:hidden!important;pointer-events:none!important;}}
+.v276-hero{width:min(1180px,calc(100% - 28px));margin:18px auto 0;display:grid;grid-template-columns:1fr 260px;gap:16px;align-items:stretch;}
+.v276-hero>div{border:1px solid var(--v276-line);border-radius:28px;background:linear-gradient(135deg,rgba(12,44,98,.92),rgba(4,14,34,.96));box-shadow:0 20px 60px rgba(0,0,0,.28);color:var(--v276-text);padding:24px;}
+.v276-pill{display:inline-flex;border:1px solid rgba(78,231,255,.28);background:rgba(78,231,255,.09);color:#dffaff;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:850;}
+.v276-hero h1{margin:14px 0 8px;font-size:clamp(30px,4vw,52px);line-height:1.02;letter-spacing:-.04em;}
+.v276-hero p{margin:0;color:var(--v276-muted);line-height:1.65;max-width:790px;}
+.v276-score-card{display:flex;flex-direction:column;justify-content:center;gap:8px;}
+.v276-score-card small{color:var(--v276-muted);font-weight:800;text-transform:uppercase;letter-spacing:.08em;}
+.v276-score-card strong{font-size:34px;color:var(--v276-ok);}
+.v276-score-card span{color:var(--v276-muted);line-height:1.45;}
+.v276-decision-grid{width:min(1180px,calc(100% - 28px));margin:16px auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
+.v276-decision-card{text-decoration:none;color:var(--v276-text);border:1px solid var(--v276-line);border-radius:24px;background:linear-gradient(180deg,rgba(9,28,64,.86),rgba(5,15,36,.94));padding:18px;min-height:150px;display:flex;flex-direction:column;gap:10px;transition:.18s ease;box-shadow:0 16px 44px rgba(0,0,0,.22);}
+.v276-decision-card:hover{transform:translateY(-2px);border-color:rgba(78,231,255,.48);background:linear-gradient(180deg,rgba(12,39,88,.9),rgba(5,15,36,.96));}
+.v276-decision-card b{font-size:18px;}.v276-decision-card span{color:var(--v276-muted);line-height:1.45;flex:1;}.v276-decision-card em{font-style:normal;color:#eafcff;font-weight:850;font-size:13px;}
+.v276-decision-card.hot{box-shadow:0 16px 44px rgba(0,140,255,.18);}.v276-decision-card.value{box-shadow:0 16px 44px rgba(246,214,109,.14);}.v276-decision-card.wait{box-shadow:0 16px 44px rgba(104,240,185,.10);}
+.v276-flow-panel,.v276-safe-note{width:min(1180px,calc(100% - 28px));margin:0 auto 16px;border:1px solid var(--v276-line);border-radius:28px;background:rgba(6,20,48,.84);color:var(--v276-text);padding:20px;box-shadow:0 16px 48px rgba(0,0,0,.22);}
+.v276-flow-head{display:flex;justify-content:space-between;gap:18px;align-items:end;margin-bottom:14px;}.v276-flow-head h2{margin:0;font-size:24px;}.v276-flow-head p{margin:0;color:var(--v276-muted);}
+.v276-flow-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;}.v276-flow-steps div{border:1px solid rgba(83,211,255,.18);border-radius:20px;background:rgba(255,255,255,.05);padding:14px;}.v276-flow-steps i{font-style:normal;width:30px;height:30px;border-radius:12px;display:grid;place-items:center;background:rgba(78,231,255,.14);margin-bottom:10px;font-weight:900;}.v276-flow-steps b{display:block;margin-bottom:4px;}.v276-flow-steps span{color:var(--v276-muted);font-size:13px;line-height:1.35;}
+.v276-safe-note{color:var(--v276-muted);line-height:1.55;}.v276-safe-note b{color:#fff;}
+@media(max-width:920px){.v276-hero{grid-template-columns:1fr;width:calc(100% - 18px);}.v276-decision-grid{grid-template-columns:1fr;width:calc(100% - 18px);}.v276-flow-panel,.v276-safe-note{width:calc(100% - 18px);padding:17px;border-radius:22px;}.v276-flow-head{display:block;}.v276-flow-head p{margin-top:6px;}.v276-flow-steps{grid-template-columns:1fr;}.v276-hero>div{padding:18px;border-radius:22px;}}

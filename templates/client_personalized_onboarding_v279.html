@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Cliente · Onboarding Inteligente V279{% endblock %}
+{% block content %}
+<main class="v279-shell">
+  <section class="v279-hero">
+    <div class="v279-hero-copy">
+      <span class="v279-pill">V279 · Cliente primero · avance seguro</span>
+      <h1>Entrada guiada para que el cliente sepa qué hacer en 10 segundos</h1>
+      <p>Una capa de onboarding premium que ordena el primer contacto del usuario: estado del día, tipo de cliente, accesos recomendados y guardias REAL ONLY sin inventar datos.</p>
+      <div class="v279-quick-actions" aria-label="Accesos principales del cliente">
+        <a href="/cliente/today-command">Ver briefing</a>
+        <a href="/cliente/live-experience">Ir al live</a>
+        <a href="/cliente/discovery">Buscar partidos</a>
+        <a href="/cliente/app-feel">App feel</a>
+      </div>
+    </div>
+    <aside class="v279-safe-card">
+      <strong>Modo seguro activo</strong>
+      <span>No toca APIs · No toca cuotas · No toca marcadores</span>
+      <small>Mejora UX cliente sin romper datos reales.</small>
+    </aside>
+  </section>
+
+  <section class="v279-path-grid">
+    <article class="v279-path-card v279-hot">
+      <span>01</span>
+      <h2>¿Qué mirar primero?</h2>
+      <p>El usuario entra y tiene rutas claras hacia live, partidos de hoy, value y SHARK sin tener que pensar demasiado.</p>
+      <a href="/cliente/daily-command">Abrir comando diario</a>
+    </article>
+    <article class="v279-path-card">
+      <span>02</span>
+      <h2>¿Hay datos suficientes?</h2>
+      <p>Los estados LOW DATA se presentan como una decisión inteligente: esperar, seguir o analizar mejor.</p>
+      <a href="/cliente/claridad">Ver claridad</a>
+    </article>
+    <article class="v279-path-card">
+      <span>03</span>
+      <h2>¿Qué acción tomar?</h2>
+      <p>El cliente recibe una estructura simple: observar, analizar, guardar favorito o consultar SHARK.</p>
+      <a href="/cliente/experiencia-guiada">Experiencia guiada</a>
+    </article>
+  </section>
+
+  <section class="v279-preferences">
+    <div>
+      <span class="v279-pill muted">Perfil de uso preparado</span>
+      <h2>Base para personalización futura</h2>
+      <p>Esta versión deja preparada la experiencia para preferencias de cliente: deportes favoritos, ligas favoritas, nivel de riesgo, enfoque live/value y estilo de alertas.</p>
+    </div>
+    <div class="v279-tags">
+      <span>Deportes favoritos</span>
+      <span>Riesgo bajo / medio / alto</span>
+      <span>Alertas HOT</span>
+      <span>Value Radar</span>
+      <span>Live Intelligence</span>
+      <span>SHARK contextual</span>
+    </div>
+  </section>
+
+  <section class="v279-guardrail">
+    <h2>Guard rail REAL ONLY</h2>
+    <p>Si faltan datos reales, la app debe comunicarlo de forma premium y útil, nunca inventar partidos, cuotas, marcador, minuto, escudos, presión o momentum.</p>
+  </section>
+</main>
+{% endblock %}

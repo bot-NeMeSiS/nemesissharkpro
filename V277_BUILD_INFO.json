@@ -1,0 +1,15 @@
+{
+  "version": "V277",
+  "name": "CLIENT_GUIDED_EXPERIENCE_LAYER_PRO",
+  "real_only": true,
+  "safe_advance": true,
+  "routes": [
+    "/client-guided-experience",
+    "/cliente/guided-experience",
+    "/cliente/experiencia-guiada",
+    "/api/v277/client-guided-experience/status"
+  ],
+  "touches_api": false,
+  "touches_odds": false,
+  "touches_live_scores": false
+}
