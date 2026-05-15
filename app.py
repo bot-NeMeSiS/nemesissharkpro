@@ -10445,5 +10445,55 @@ def api_v280_client_personalization_hub_status():
         'mensaje': 'Hub de personalización cliente preparado sin tocar datos reales, APIs, cuotas ni marcadores.'
     })
 
+
+@app.route('/client-premium-motion')
+@app.route('/cliente/microinteractions')
+@app.route('/cliente/app-feel-motion')
+def client_premium_motion_v281():
+    """V281 · Client Microinteractions + Premium Motion Pro.
+    Safe client motion layer. No API calls, no odds/live mutation.
+    """
+    payload = {
+        "version": "V281",
+        "title": "CLIENT MICROINTERACTIONS + PREMIUM MOTION PRO",
+        "focus": "Subir app feel, fluidez visual y confianza del cliente sin tocar datos reales ni APIs",
+        "real_only": True,
+        "safe_advance": True,
+        "touches_api": False,
+        "touches_odds": False,
+        "touches_live_scores": False,
+        "modules": [
+            "microinteracciones en cards cliente",
+            "feedback visual en botones",
+            "skeletons y loaders premium",
+            "transiciones suaves entre bloques",
+            "motion seguro sin duplicar navegación",
+            "app feel móvil más natural"
+        ],
+        "guards": [
+            "no tocar fuentes reales",
+            "no inventar partidos ni cuotas",
+            "no duplicar header ni bottom nav",
+            "desktop limpio",
+            "bottom nav solo móvil",
+            "CSS encapsulado en clases v281"
+        ]
+    }
+    return render_template('client_premium_motion_v281.html', payload=payload)
+
+@app.route('/api/v281/client-premium-motion/status')
+def api_v281_client_premium_motion_status():
+    return jsonify({
+        'version': 'V281',
+        'status': 'ready',
+        'real_only': True,
+        'safe_advance': True,
+        'client_motion_layer_ready': True,
+        'touches_api': False,
+        'touches_live_scores': False,
+        'touches_odds': False,
+        'mensaje': 'Capa de microinteracciones premium preparada sin tocar APIs, cuotas, marcadores ni datos reales.'
+    })
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))
