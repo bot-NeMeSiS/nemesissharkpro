@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NeMeSiS SHARK PRO · Smart Live Hub V313</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v313_client_live_hub.css') }}">
+</head>
+<body class="v313-body">
+  <main class="v313-shell">
+    <section class="v313-hero">
+      <div class="v313-hero-copy">
+        <span class="v313-pill">V313 · SMART LIVE HUB</span>
+        <h1>Home inteligente conectada al live real</h1>
+        <p>Convierte momentum, triggers y salud de datos en una experiencia cliente clara: qué mirar, qué esperar y dónde actuar.</p>
+        <div class="v313-hero-actions">
+          <a href="/cliente/live-engine-real">Motor V312</a>
+          <a href="/clientes">Mi cuenta</a>
+        </div>
+      </div>
+      <aside class="v313-focus" id="v313Focus">
+        <small>Foco actual</small>
+        <strong>Cargando...</strong>
+        <span>Smart Live Hub preparando señales.</span>
+      </aside>
+    </section>
+
+    <section class="v313-cards" id="v313Cards"></section>
+
+    <section class="v313-layout">
+      <div class="v313-panel v313-actions">
+        <div class="v313-head">
+          <h2>Acciones inteligentes</h2>
+          <p id="v313Headline">Analizando continuidad del cliente...</p>
+        </div>
+        <div id="v313Actions" class="v313-action-list"></div>
+      </div>
+      <div class="v313-panel">
+        <div class="v313-head">
+          <h2>Estado de datos</h2>
+          <p>El sistema protege al cliente de señales flojas.</p>
+        </div>
+        <div class="v313-data-state" id="v313DataState">Cargando salud de datos...</div>
+      </div>
+    </section>
+
+    <section class="v313-panel">
+      <div class="v313-head">
+        <h2>Match Center inteligente</h2>
+        <p>Mini ecosistema por partido: estado, momentum, decisión, pick y acción recomendada.</p>
+      </div>
+      <div class="v313-match-grid" id="v313Matches"></div>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='js/v313_client_live_hub.js') }}" defer></script>
+</body>
+</html>

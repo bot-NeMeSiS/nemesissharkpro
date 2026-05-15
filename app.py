@@ -10796,5 +10796,249 @@ def client_post_match_recap_loop_v309():
 # ===== END V309 =====
 
 
+
+# ===== V310 ROUTE FIX · CLIENT SMART DAILY LOOP ENGINE PRO =====
+@app.route("/client-smart-daily-loop-engine")
+@app.route("/cliente/smart-daily-loop")
+@app.route("/cliente/daily-loop")
+def client_smart_daily_loop_engine_v310():
+    return render_template("client_smart_daily_loop_engine_v310.html")
+# ===== END V310 ROUTE FIX =====
+
+
+# ===== V312 · LIVE ENGINE REAL MOMENTUM + SNAPSHOT PRO =====
+def _v312_safe_float(value, default=0.0):
+    try:
+        if value in (None, ""):
+            return default
+        return float(value)
+    except Exception:
+        return default
+
+
+def _v312_fetch_live_candidates(limit=12):
+    """Lee partidos/picks reales cacheados en SQLite. No llama APIs externas."""
+    try:
+        conn = get_db()
+        cur = conn.cursor()
+        cur.execute("""
+            SELECT id, sport, league, title, pick, cuota, ev, score, premium,
+                   live_status, live_score, live_minute, kickoff_time,
+                   external_event_id, source, odds_bookmaker, odds_market
+            FROM picks
+            WHERE COALESCE(active,1)=1
+              AND COALESCE(title,'')!=''
+            ORDER BY
+              CASE UPPER(COALESCE(live_status,''))
+                WHEN 'EN DIRECTO' THEN 1
+                WHEN 'LIVE' THEN 1
+                WHEN '1H' THEN 1
+                WHEN '2H' THEN 1
+                WHEN 'DESCANSO' THEN 2
+                WHEN 'HT' THEN 2
+                WHEN 'PROGRAMADO' THEN 3
+                ELSE 4
+              END,
+              CAST(COALESCE(score,0) AS INTEGER) DESC,
+              COALESCE(kickoff_time,'') ASC,
+              id DESC
+            LIMIT ?
+        """, (limit * 3,))
+        rows = cur.fetchall()
+        conn.close()
+        out = []
+        for r in rows:
+            title = r["title"] or ""
+            try:
+                if is_demo_pick_row(title):
+                    continue
+            except Exception:
+                pass
+            out.append({
+                "id": r["id"],
+                "sport": r["sport"] or "",
+                "league": r["league"] or "",
+                "title": title,
+                "pick": r["pick"] or "",
+                "cuota": r["cuota"] or "",
+                "ev": _v312_safe_float(r["ev"], 0),
+                "score": int(_v312_safe_float(r["score"], 0)),
+                "premium": int(_v312_safe_float(r["premium"], 0)),
+                "live_status": r["live_status"] or "PROGRAMADO",
+                "live_score": r["live_score"] or "",
+                "live_minute": r["live_minute"] or "",
+                "kickoff_time": r["kickoff_time"] or "",
+                "external_event_id": r["external_event_id"] or "",
+                "source": r["source"] or "",
+                "bookmaker": r["odds_bookmaker"] or "",
+                "market": r["odds_market"] or "",
+            })
+            if len(out) >= limit:
+                break
+        return out
+    except Exception:
+        return []
+
+
+@app.route("/api/v312/live-engine/status")
+def api_v312_live_engine_status():
+    rows = _v312_fetch_live_candidates(limit=12)
+    try:
+        from live_engine.v312_momentum_engine import build_live_engine_snapshot_v312
+        payload = build_live_engine_snapshot_v312(rows)
+    except Exception as exc:
+        payload = {
+            "ok": True,
+            "version": "V312",
+            "mode": "safe-fallback",
+            "touches_api": False,
+            "error": str(exc)[:120],
+            "matches": rows,
+            "summary": {
+                "headline": "Live Engine seguro activo con datos cacheados.",
+                "data_health": "LOW DATA" if not rows else "OK",
+                "momentum_avg": 0,
+                "hot_count": 0,
+                "watch_count": len(rows),
+            },
+            "timeline": []
+        }
+    return jsonify(payload)
+
+
+@app.route("/client-live-engine-real")
+@app.route("/cliente/live-engine-real")
+@app.route("/cliente/momentum-live")
+def client_live_engine_real_v312():
+    return render_template("client_live_engine_real_momentum_v312.html")
+# ===== END V312 =====
+
+
+# ===== V313 · CLIENT SMART LIVE HUB BRIDGE PRO =====
+@app.route("/api/v313/client-live-hub")
+def api_v313_client_live_hub():
+    """Smart Home + Match Center bridge sobre V312. Cache-first, sin llamadas API."""
+    rows = _v312_fetch_live_candidates(limit=12)
+    try:
+        from live_engine.v312_momentum_engine import build_live_engine_snapshot_v312
+        from live_engine.v313_client_live_hub_engine import build_client_live_hub_v313
+        v312_payload = build_live_engine_snapshot_v312(rows)
+        payload = build_client_live_hub_v313(v312_payload)
+    except Exception as exc:
+        payload = {
+            "ok": True,
+            "version": "V313",
+            "mode": "safe-fallback",
+            "touches_api": False,
+            "error": str(exc)[:120],
+            "headline": "Smart Live Hub seguro activo.",
+            "focus": {
+                "label": "SAFE",
+                "title": "Modo seguro",
+                "subtitle": "La pantalla no rompe la app.",
+                "momentum": 0,
+                "action": "Volver a mi cuenta o revisar V312."
+            },
+            "home_cards": [],
+            "actions": [],
+            "match_center": [],
+            "data_state": {"level": "SAFE", "text": "Fallback activo sin llamadas externas."}
+        }
+    return jsonify(payload)
+
+
+@app.route("/client-smart-live-hub")
+@app.route("/cliente/smart-live-hub")
+@app.route("/cliente/home-live-inteligente")
+def client_smart_live_hub_v313():
+    return render_template("client_live_hub_smart_home_bridge_v313.html")
+# ===== END V313 =====
+
+
+# ===== V314 · PREMIUM MATCH CENTER ECOSYSTEM PRO =====
+@app.route("/api/v314/match-center-premium")
+def api_v314_match_center_premium():
+    """Match Center premium por partido sobre V312/V313. Cache-first, sin llamadas API."""
+    rows = _v312_fetch_live_candidates(limit=12)
+    try:
+        from live_engine.v312_momentum_engine import build_live_engine_snapshot_v312
+        from live_engine.v313_client_live_hub_engine import build_client_live_hub_v313
+        from live_engine.v314_match_center_engine import build_match_center_premium_v314
+        v312_payload = build_live_engine_snapshot_v312(rows)
+        v313_payload = build_client_live_hub_v313(v312_payload)
+        payload = build_match_center_premium_v314(v313_payload)
+    except Exception as exc:
+        payload = {
+            "ok": True,
+            "version": "V314",
+            "mode": "safe-fallback",
+            "touches_api": False,
+            "error": str(exc)[:140],
+            "headline": "Match Center Premium seguro activo.",
+            "summary": {"total_centers": 0, "hot": 0, "value": 0, "watch": 0, "low_data": 0, "momentum_avg": 0},
+            "centers": [],
+            "client_loop": ["Smart Home", "Live Engine", "Match Center", "Acción segura"],
+            "empty_state": {"title": "Modo seguro", "text": "La pantalla no rompe la app.", "action": "Volver al hub live o cargar partidos reales."}
+        }
+    return jsonify(payload)
+
+
+@app.route("/client-match-center-premium")
+@app.route("/cliente/match-center-premium")
+@app.route("/cliente/match-center-v314")
+def client_match_center_premium_v314():
+    return render_template("client_match_center_premium_v314.html")
+# ===== END V314 =====
+
+
+# ===== V315 · SHARK MEMORY SNAPSHOT ENGINE PRO =====
+@app.route("/api/v315/shark-memory")
+def api_v315_shark_memory():
+    """Memoria persistente sobre V314. Cache-first, sin llamadas API externas."""
+    rows = _v312_fetch_live_candidates(limit=12)
+    try:
+        from live_engine.v312_momentum_engine import build_live_engine_snapshot_v312
+        from live_engine.v313_client_live_hub_engine import build_client_live_hub_v313
+        from live_engine.v314_match_center_engine import build_match_center_premium_v314
+        from live_engine.v315_shark_memory_engine import build_shark_memory_v315
+        v312_payload = build_live_engine_snapshot_v312(rows)
+        v313_payload = build_client_live_hub_v313(v312_payload)
+        v314_payload = build_match_center_premium_v314(v313_payload)
+        payload = build_shark_memory_v315(v314_payload, persist=True)
+    except Exception as exc:
+        payload = {
+            "ok": True,
+            "version": "V315",
+            "mode": "safe-fallback",
+            "touches_api": False,
+            "error": str(exc)[:160],
+            "headline": "SHARK Memory seguro activo, sin romper la app.",
+            "summary": {"stored_matches": 0, "stored_snapshots": 0, "avg_momentum": 0, "memory_health": "SAFE"},
+            "memory_cards": [],
+            "timeline": [],
+            "ml_ready": {"enabled": True, "message": "Preparado para snapshots cuando haya datos cacheados."},
+        }
+    return jsonify(payload)
+
+
+@app.route("/api/v315/live-history")
+def api_v315_live_history():
+    """Histórico ligero guardado por SHARK Memory. No toca APIs externas."""
+    try:
+        from live_engine.v315_shark_memory_engine import build_live_history_v315
+        payload = build_live_history_v315(limit=30)
+    except Exception as exc:
+        payload = {"ok": True, "version": "V315", "touches_api": False, "error": str(exc)[:160], "summary": {}, "recent_matches": [], "snapshots": []}
+    return jsonify(payload)
+
+
+@app.route("/client-shark-memory")
+@app.route("/cliente/shark-memory")
+@app.route("/cliente/memoria-shark")
+def client_shark_memory_v315():
+    return render_template("client_shark_memory_v315.html")
+# ===== END V315 =====
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

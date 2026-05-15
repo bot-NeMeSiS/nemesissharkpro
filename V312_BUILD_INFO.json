@@ -1,0 +1,14 @@
+{
+  "version": "V312",
+  "name": "LIVE_ENGINE_REAL_MOMENTUM_SNAPSHOT_PRO",
+  "safe": true,
+  "touches_api": false,
+  "routes": [
+    "/cliente/live-engine-real",
+    "/cliente/momentum-live",
+    "/api/v312/live-engine/status"
+  ],
+  "fixes": [
+    "V310 route connected"
+  ]
+}

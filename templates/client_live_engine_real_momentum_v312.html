@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NeMeSiS SHARK PRO · Live Engine Real V312</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v312_live_engine_real_momentum.css') }}">
+</head>
+<body class="v312-live-body">
+  <main class="v312-shell">
+    <section class="v312-hero">
+      <div>
+        <span class="v312-pill">V312 · LIVE ENGINE REAL</span>
+        <h1>Centro live inteligente</h1>
+        <p>Momentum, triggers, snapshots y salud de datos desde partidos reales cacheados. No gasta API al abrir esta pantalla.</p>
+      </div>
+      <div class="v312-nav"><a class="v312-back" href="/cliente/smart-live-hub">Smart Live Hub V313</a><a class="v312-back" href="/clientes">← Mi cuenta</a></div>
+    </section>
+
+    <section class="v312-summary" id="v312Summary">
+      <article><strong>Momentum</strong><span>--</span><small>Media live</small></article>
+      <article><strong>HOT</strong><span>--</span><small>Prioridad máxima</small></article>
+      <article><strong>WATCH</strong><span>--</span><small>Seguimiento</small></article>
+      <article><strong>Data Health</strong><span>--</span><small>Calidad del dato</small></article>
+    </section>
+
+    <section class="v312-panel">
+      <div class="v312-panel-head">
+        <h2>Radar de partidos</h2>
+        <p id="v312Headline">Cargando motor live...</p>
+      </div>
+      <div class="v312-grid" id="v312Matches"></div>
+    </section>
+
+    <section class="v312-panel v312-timeline-panel">
+      <div class="v312-panel-head">
+        <h2>Timeline inteligente</h2>
+        <p>Eventos accionables para que el cliente sepa qué mirar y qué esperar.</p>
+      </div>
+      <div class="v312-timeline" id="v312Timeline"></div>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='js/v312_live_engine_real_momentum.js') }}" defer></script>
+</body>
+</html>

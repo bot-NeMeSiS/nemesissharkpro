@@ -1,0 +1,12 @@
+{
+  "version": "V314.0",
+  "name": "PREMIUM_MATCH_CENTER_ECOSYSTEM_PRO",
+  "base": "V313.0",
+  "routes": [
+    "/cliente/match-center-premium",
+    "/api/v314/match-center-premium"
+  ],
+  "touches_api": false,
+  "render_ready": true,
+  "github_clean": true
+}

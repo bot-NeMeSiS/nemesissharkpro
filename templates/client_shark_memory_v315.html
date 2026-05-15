@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SHARK Memory · NeMeSiS SHARK PRO</title>
+  <style>
+    :root{--bg:#06111f;--card:#0b1d33;--card2:#0f2946;--text:#eef7ff;--muted:#9fb7cf;--line:rgba(255,255,255,.10);--blue:#3bb8ff;--gold:#ffd166;--hot:#ff4d6d;--ok:#4ade80}
+    *{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at top,#123b66 0,#06111f 42%,#030814 100%);font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;color:var(--text)}
+    .wrap{max-width:1180px;margin:0 auto;padding:24px}.top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:18px}.brand{display:flex;flex-direction:column;gap:5px}.eyebrow{color:var(--blue);font-weight:800;letter-spacing:.14em;font-size:12px;text-transform:uppercase}.title{font-size:34px;line-height:1.05;font-weight:900}.sub{color:var(--muted);font-size:15px}.nav{display:flex;gap:10px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--text);padding:10px 13px;border-radius:14px;text-decoration:none;font-weight:800}.btn:hover{border-color:var(--blue)}
+    .hero{border:1px solid var(--line);background:linear-gradient(135deg,rgba(59,184,255,.18),rgba(255,209,102,.10));border-radius:26px;padding:22px;box-shadow:0 20px 70px rgba(0,0,0,.28)}.headline{font-size:22px;font-weight:900;margin:0 0 10px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:16px}.metric{background:rgba(5,14,28,.62);border:1px solid var(--line);border-radius:20px;padding:16px}.metric b{font-size:26px;display:block}.metric span{color:var(--muted);font-size:13px;font-weight:700}.section{margin-top:22px}.section h2{font-size:20px;margin:0 0 12px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:rgba(11,29,51,.86);border:1px solid var(--line);border-radius:22px;padding:16px}.tag{display:inline-flex;padding:6px 9px;border-radius:999px;background:rgba(59,184,255,.14);color:#bfeaff;font-size:12px;font-weight:900;margin-bottom:10px}.tag.hot{background:rgba(255,77,109,.16);color:#ffd1da}.tag.value{background:rgba(255,209,102,.16);color:#ffe4a3}.name{font-size:17px;font-weight:900;margin-bottom:5px}.league{color:var(--muted);font-size:13px}.bar{height:8px;background:rgba(255,255,255,.08);border-radius:99px;margin:12px 0;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--gold));border-radius:99px}.row{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:10px;margin-top:10px}.timeline{display:grid;gap:10px}.tick{display:flex;justify-content:space-between;gap:12px;align-items:center;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:16px;padding:12px;color:var(--muted)}.empty{color:var(--muted);padding:22px;border:1px dashed var(--line);border-radius:20px;background:rgba(255,255,255,.04)}
+    @media(max-width:900px){.top{align-items:flex-start;flex-direction:column}.grid,.cards{grid-template-columns:1fr}.title{font-size:28px}.wrap{padding:16px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="top">
+      <div class="brand">
+        <div class="eyebrow">NeMeSiS SHARK PRO · V315</div>
+        <div class="title">SHARK Memory Snapshot Engine</div>
+        <div class="sub">Memoria live persistente para continuidad, tendencias y ML futuro. No gasta API al abrir.</div>
+      </div>
+      <nav class="nav">
+        <a class="btn" href="/cliente/smart-live-hub">Smart Live Hub</a>
+        <a class="btn" href="/cliente/match-center-premium">Match Center</a>
+        <a class="btn" href="/cliente">Mi cuenta</a>
+      </nav>
+    </div>
+
+    <section class="hero">
+      <p class="headline" id="headline">Cargando SHARK Memory…</p>
+      <div class="sub" id="mode">Preparando snapshots persistentes.</div>
+      <div class="grid">
+        <div class="metric"><b id="mMatches">0</b><span>partidos en memoria</span></div>
+        <div class="metric"><b id="mShots">0</b><span>snapshots guardados</span></div>
+        <div class="metric"><b id="mAvg">0</b><span>momentum medio</span></div>
+        <div class="metric"><b id="mHealth">—</b><span>salud memoria</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Focos con memoria</h2>
+      <div class="cards" id="cards"></div>
+    </section>
+
+    <section class="section">
+      <h2>Timeline de snapshots</h2>
+      <div class="timeline" id="timeline"></div>
+    </section>
+  </main>
+<script>
+const qs = (x)=>document.querySelector(x);
+function tagClass(signal){ if(signal==='HOT') return 'tag hot'; if(signal==='VALUE') return 'tag value'; return 'tag'; }
+async function load(){
+  try{
+    const r = await fetch('/api/v315/shark-memory');
+    const data = await r.json();
+    qs('#headline').textContent = data.headline || 'SHARK Memory activo';
+    qs('#mode').textContent = `${data.mode || 'cache-first'} · API externa: ${data.touches_api ? 'sí' : 'no'} · ${data.storage?.persistent_ready ? 'persistencia /data' : 'persistencia local'}`;
+    const s = data.summary || {};
+    qs('#mMatches').textContent = s.stored_matches ?? 0;
+    qs('#mShots').textContent = s.stored_snapshots ?? 0;
+    qs('#mAvg').textContent = s.avg_momentum ?? 0;
+    qs('#mHealth').textContent = s.memory_health || '—';
+    const cards = data.memory_cards || [];
+    qs('#cards').innerHTML = cards.length ? cards.map(c=>`
+      <article class="card">
+        <span class="${tagClass(c.signal)}">${c.signal} · ${c.trend}</span>
+        <div class="name">${c.title}</div>
+        <div class="league">${c.league}</div>
+        <div class="bar"><div class="fill" style="width:${Math.max(0,Math.min(100,c.momentum||0))}%"></div></div>
+        <div class="row"><strong>Momentum</strong><span>${c.previous_momentum} → ${c.momentum} (${c.delta>=0?'+':''}${c.delta})</span></div>
+        <div class="row"><strong>Memoria</strong><span>${c.memory_status}</span></div>
+        <div class="row"><strong>Decisión</strong><span>${c.decision}</span></div>
+      </article>`).join('') : '<div class="empty">Todavía no hay partidos cacheados para construir memoria. Carga partidos reales o abre Match Center primero.</div>';
+    const tl = data.timeline || [];
+    qs('#timeline').innerHTML = tl.length ? tl.map(t=>`<div class="tick"><span>${new Date(t.time).toLocaleString('es-ES')}</span><strong>${t.label}</strong><span>HOT ${t.hot} · suben ${t.rising}</span></div>`).join('') : '<div class="empty">Aún no hay timeline suficiente.</div>';
+  }catch(e){ qs('#headline').textContent='SHARK Memory no pudo cargar'; qs('#mode').textContent=e.message; }
+}
+load();
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "version": "V313.0",
+  "name": "CLIENT_SMART_LIVE_HUB_BRIDGE_PRO",
+  "base": "V312.0 LIVE_ENGINE_REAL_MOMENTUM_SNAPSHOT_PRO",
+  "routes": ["/cliente/smart-live-hub", "/client-smart-live-hub", "/api/v313/client-live-hub"],
+  "touches_api": false,
+  "status": "compiled_ok"
+}
