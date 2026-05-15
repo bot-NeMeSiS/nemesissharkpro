@@ -1,0 +1,27 @@
+
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_live_storytelling_v286.css') }}">
+<div class="v286-shell">
+  <div class="hero">
+    <span class="badge">V286 · Live Storytelling</span>
+    <h1>Live más claro, más visual y más premium</h1>
+    <p>El cliente entiende rápido qué partido importa y por qué.</p>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>HOT MATCH</h2>
+      <p>Partidos calientes destacados visualmente.</p>
+    </div>
+    <div class="card">
+      <h2>Momentum</h2>
+      <p>Contexto live preparado para overlays premium.</p>
+    </div>
+    <div class="card">
+      <h2>Focus</h2>
+      <p>Menos ruido visual y más claridad.</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

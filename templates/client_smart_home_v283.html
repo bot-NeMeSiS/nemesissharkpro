@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Cliente · Smart Home V283{% endblock %}
+{% block content %}
+<main class="v283-shell">
+  <section class="v283-hero">
+    <div class="v283-hero-main">
+      <span class="v283-pill">V283 · Smart Home · prioridad live</span>
+      <h1>Tu home debe decirte qué merece atención ahora</h1>
+      <p>Una evolución segura de la experiencia cliente: contenido prioritario, HOT matches, Value, alertas y continuidad del recorrido sin tocar APIs, cuotas, marcadores ni datos reales.</p>
+      <div class="v283-actions">
+        <a class="v283-primary" href="/cliente/today-command">Briefing de hoy</a>
+        <a href="/cliente/live-experience">Live</a>
+        <a href="/cliente/discovery">Descubrir partidos</a>
+        <a href="/client-smart-home">Smart Home</a>
+      </div>
+    </div>
+    <aside class="v283-signal-card">
+      <span>Prioridad cliente</span>
+      <strong>Live · Value · Alertas</strong>
+      <p>Primero lo importante. Si no hay datos reales suficientes, LOW DATA premium limpio.</p>
+    </aside>
+  </section>
+
+  <section class="v283-priority-strip">
+    <article>
+      <b>1</b>
+      <span>HOT primero</span>
+      <p>La home prioriza partidos vivos, relevantes o con señal suficiente.</p>
+    </article>
+    <article>
+      <b>2</b>
+      <span>Value visible</span>
+      <p>Acceso rápido a oportunidades, sin inventar cuotas ni señales.</p>
+    </article>
+    <article>
+      <b>3</b>
+      <span>Continuar</span>
+      <p>El cliente retoma su flujo sin perderse entre pantallas.</p>
+    </article>
+  </section>
+
+  <section class="v283-grid">
+    {% for item in payload.modules %}
+    <article class="v283-card">
+      <span>{{ item.badge }}</span>
+      <h2>{{ item.title }}</h2>
+      <p>{{ item.text }}</p>
+      <a href="{{ item.href }}">Abrir</a>
+    </article>
+    {% endfor %}
+  </section>
+
+  <section class="v283-guard">
+    <div>
+      <span class="v283-pill muted">Avance seguro</span>
+      <h2>Más experiencia premium, cero riesgo para datos reales</h2>
+      <p>Este avance no toca The Odds API, Telegram, cuotas, marcadores, resultados ni base de datos. Solo mejora la capa cliente y la prioridad visual.</p>
+    </div>
+    <ul>
+      {% for guard in payload.guards %}<li>{{ guard }}</li>{% endfor %}
+    </ul>
+  </section>
+</main>
+{% endblock %}

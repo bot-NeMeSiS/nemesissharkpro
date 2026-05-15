@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Action Center Cliente · NeMeSiS SHARK PRO{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_action_center_v285.css') }}">
+
+<section class="v285-shell">
+  <div class="v285-top">
+    <div>
+      <span class="v285-badge">V285 · Fast Return</span>
+      <h1>Action Center Cliente</h1>
+      <p>Una pantalla para volver rápido a lo importante: live, value, favoritos, alertas y SHARK AI sin perderse por la app.</p>
+    </div>
+    <div class="v285-status">
+      <strong>REAL ONLY</strong>
+      <span>Sin inventar partidos, cuotas ni señales.</span>
+    </div>
+  </div>
+
+  <div class="v285-actions">
+    <a href="/cliente/smart-home" class="v285-action main">
+      <span>Inicio inteligente</span>
+      <strong>Volver al cerebro de la app</strong>
+      <small>Resumen rápido + prioridad del día</small>
+    </a>
+    <a href="/cliente/live-experience" class="v285-action">
+      <span>Live</span>
+      <strong>Partidos en directo</strong>
+      <small>HOT / WATCH / LOW DATA</small>
+    </a>
+    <a href="/client-smart-discovery" class="v285-action">
+      <span>Discovery</span>
+      <strong>Encontrar partidos útiles</strong>
+      <small>Menos ruido, más claridad</small>
+    </a>
+    <a href="/smart-value-detection" class="v285-action">
+      <span>Value</span>
+      <strong>Señales con control</strong>
+      <small>Calidad, riesgo y banca</small>
+    </a>
+    <a href="/cliente/personalization-hub" class="v285-action">
+      <span>Preferencias</span>
+      <strong>Personalización</strong>
+      <small>Base para experiencia propia</small>
+    </a>
+    <a href="/cliente/shark-ai-pro" class="v285-action">
+      <span>SHARK</span>
+      <strong>IA contextual</strong>
+      <small>Explicaciones y ayuda premium</small>
+    </a>
+  </div>
+
+  <div class="v285-note">
+    <h2>Qué mejora este avance</h2>
+    <p>Reduce pasos innecesarios, mejora el retorno rápido y hace que el cliente tenga siempre un centro claro desde donde decidir qué hacer.</p>
+  </div>
+</section>
+{% endblock %}

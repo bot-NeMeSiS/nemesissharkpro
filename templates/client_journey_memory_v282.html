@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Cliente · Journey Memory V282{% endblock %}
+{% block content %}
+<main class="v282-shell">
+  <section class="v282-hero">
+    <div>
+      <span class="v282-pill">V282 · Journey Memory · cliente primero</span>
+      <h1>Continúa donde lo dejaste, sin perderte entre pantallas</h1>
+      <p>Una capa de experiencia para ordenar el recorrido del cliente: último punto de interés, accesos inteligentes, preferencias y siguientes acciones. No toca APIs, cuotas, marcadores ni datos reales.</p>
+      <div class="v282-actions">
+        <a class="v282-primary" href="/cliente/today-command">Ver briefing</a>
+        <a href="/cliente/live-experience">Live</a>
+        <a href="/cliente/discovery">Discovery</a>
+        <a href="/cliente/preferencias-pro">Preferencias</a>
+      </div>
+    </div>
+    <aside class="v282-status-card">
+      <span>Estado cliente</span>
+      <strong>Recorrido guiado</strong>
+      <p>Menos pantallas sueltas. Más sensación de producto conectado.</p>
+    </aside>
+  </section>
+
+  <section class="v282-grid">
+    {% for item in payload.modules %}
+    <article class="v282-card">
+      <span>{{ loop.index }}</span>
+      <h2>{{ item.title }}</h2>
+      <p>{{ item.text }}</p>
+    </article>
+    {% endfor %}
+  </section>
+
+  <section class="v282-roadmap">
+    <div>
+      <span class="v282-pill muted">Decisión rápida</span>
+      <h2>El cliente debe saber qué hacer en 10 segundos</h2>
+      <p>Entrar, ver lo importante, entender si hay datos suficientes y moverse al análisis correcto sin saltos raros.</p>
+    </div>
+    <div class="v282-steps">
+      <b>1 · Mirar briefing</b>
+      <b>2 · Revisar HOT / Value</b>
+      <b>3 · Analizar con SHARK</b>
+      <b>4 · Guardar o esperar</b>
+    </div>
+  </section>
+</main>
+{% endblock %}

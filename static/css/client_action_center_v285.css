@@ -1,0 +1,18 @@
+
+.v285-shell{width:min(1180px,calc(100% - 32px));margin:30px auto 96px;color:#edf6ff}
+.v285-top{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:18px;padding:28px;border-radius:28px;background:linear-gradient(135deg,rgba(8,22,45,.97),rgba(3,10,22,.98));border:1px solid rgba(95,190,255,.18);box-shadow:0 24px 70px rgba(0,0,0,.35)}
+.v285-badge{display:inline-flex;padding:8px 12px;border-radius:999px;background:rgba(42,180,255,.13);border:1px solid rgba(42,180,255,.25);color:#91e5ff;font-weight:900;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+.v285-top h1{margin:16px 0 8px;font-size:clamp(2rem,5vw,4.4rem);line-height:.92}
+.v285-top p{max-width:760px;color:#aabbd3;font-size:1.03rem}
+.v285-status{border-radius:22px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.11);padding:20px;display:flex;flex-direction:column;justify-content:center;gap:8px}
+.v285-status strong{font-size:1.45rem;color:#9ee8ff}.v285-status span{color:#9cadc6}
+.v285-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+.v285-action{min-height:170px;text-decoration:none;color:#eaf6ff;padding:22px;border-radius:24px;background:linear-gradient(180deg,rgba(16,37,67,.94),rgba(7,16,31,.94));border:1px solid rgba(255,255,255,.09);box-shadow:0 18px 44px rgba(0,0,0,.24);display:flex;flex-direction:column;gap:9px;transition:transform .2s ease,border-color .2s ease}
+.v285-action:hover{transform:translateY(-3px);border-color:rgba(87,203,255,.38)}
+.v285-action.main{background:radial-gradient(circle at top left,rgba(35,142,255,.24),transparent 35%),linear-gradient(180deg,rgba(18,45,82,.96),rgba(7,16,31,.96))}
+.v285-action span{color:#89dcff;font-weight:900;text-transform:uppercase;font-size:.76rem;letter-spacing:.04em}
+.v285-action strong{font-size:1.2rem}.v285-action small{color:#9fb0c9;line-height:1.45}
+.v285-note{margin-top:18px;padding:22px;border-radius:24px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09)}
+.v285-note h2{margin:0 0 8px}.v285-note p{margin:0;color:#aabbd3}
+@media(max-width:900px){.v285-top{grid-template-columns:1fr}.v285-actions{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.v285-shell{width:min(100% - 18px,1180px);margin-top:18px}.v285-actions{grid-template-columns:1fr}.v285-top{padding:22px}}

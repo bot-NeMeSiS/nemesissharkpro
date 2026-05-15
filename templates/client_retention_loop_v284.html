@@ -1,0 +1,62 @@
+{% extends "base.html" if false else "base.html" %}
+{% block title %}Rutina Premium Cliente · NeMeSiS SHARK PRO{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_retention_loop_v284.css') }}">
+
+<section class="v284-shell">
+  <div class="v284-hero">
+    <div>
+      <span class="v284-kicker">V284 · Hábito diario premium</span>
+      <h1>Tu rutina inteligente para entrar, revisar y decidir mejor</h1>
+      <p>
+        Un flujo pensado para que el cliente no tenga que perderse: primero resumen,
+        después live, luego value y finalmente alertas. Todo con sistema REAL ONLY.
+      </p>
+    </div>
+    <div class="v284-score-card">
+      <span>Estado del día</span>
+      <strong>Modo análisis</strong>
+      <small>Señales reales o fallback limpio si faltan datos.</small>
+    </div>
+  </div>
+
+  <div class="v284-grid">
+    <article class="v284-card">
+      <span class="v284-step">01</span>
+      <h2>Briefing del día</h2>
+      <p>Vista rápida de partidos relevantes, señales pendientes y zonas LOW DATA.</p>
+      <a href="/cliente/daily-command">Abrir briefing</a>
+    </article>
+
+    <article class="v284-card">
+      <span class="v284-step">02</span>
+      <h2>Live prioritario</h2>
+      <p>Primero los partidos con más cobertura real, intensidad o seguimiento.</p>
+      <a href="/cliente/live-experience">Ver live</a>
+    </article>
+
+    <article class="v284-card">
+      <span class="v284-step">03</span>
+      <h2>Value & banca</h2>
+      <p>Señales ordenadas por calidad, riesgo y utilidad para el cliente.</p>
+      <a href="/smart-value-detection">Revisar value</a>
+    </article>
+
+    <article class="v284-card">
+      <span class="v284-step">04</span>
+      <h2>Alertas útiles</h2>
+      <p>Preparado para PWA/Telegram sin spam y con filtros por membresía.</p>
+      <a href="/real-alert-delivery-bridge">Ver alertas</a>
+    </article>
+  </div>
+
+  <div class="v284-bottom">
+    <div>
+      <h3>Objetivo</h3>
+      <p>Que NeMeSiS SHARK PRO se use a diario como una app premium, no como un panel suelto.</p>
+    </div>
+    <a class="v284-main-action" href="/cliente/smart-home">Volver a Smart Home</a>
+  </div>
+</section>
+{% endblock %}

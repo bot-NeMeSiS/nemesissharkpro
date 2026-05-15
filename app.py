@@ -10495,5 +10495,130 @@ def api_v281_client_premium_motion_status():
         'mensaje': 'Capa de microinteracciones premium preparada sin tocar APIs, cuotas, marcadores ni datos reales.'
     })
 
+
+@app.route('/client-journey-memory')
+@app.route('/cliente/journey-memory')
+@app.route('/cliente/continuar')
+def client_journey_memory_v282():
+    """V282 · Client Journey Memory + Continue Flow Pro.
+    Safe client experience layer. No API calls, no odds/live mutation.
+    """
+    payload = {
+        "version": "V282",
+        "title": "CLIENT JOURNEY MEMORY + CONTINUE FLOW PRO",
+        "focus": "Ayudar al cliente a continuar, decidir y navegar sin sentirse perdido entre módulos",
+        "real_only": True,
+        "safe_advance": True,
+        "touches_api": False,
+        "touches_odds": False,
+        "touches_live_scores": False,
+        "modules": [
+            {"title": "Continuar donde estabas", "text": "Base visual para retomar briefing, live, discovery o preferencias sin saltos raros."},
+            {"title": "Siguiente acción clara", "text": "Ver, analizar, guardar o esperar según datos reales disponibles y contexto cliente."},
+            {"title": "Menos sensación de panel", "text": "El cliente no debe explorar menús infinitos: debe sentir un camino guiado."},
+            {"title": "Guardia REAL ONLY", "text": "No se inventan datos; si falta cobertura, se muestra LOW DATA premium y limpio."}
+        ],
+        "guards": [
+            "no tocar APIs ni base de datos",
+            "no modificar cuotas, marcadores ni resultados",
+            "no duplicar navegación",
+            "desktop limpio y bottom nav solo móvil",
+            "CSS encapsulado en clases v282"
+        ]
+    }
+    return render_template('client_journey_memory_v282.html', payload=payload)
+
+@app.route('/api/v282/client-journey-memory/status')
+def api_v282_client_journey_memory_status():
+    return jsonify({
+        'version': 'V282',
+        'status': 'ready',
+        'real_only': True,
+        'safe_advance': True,
+        'client_journey_memory_ready': True,
+        'touches_api': False,
+        'touches_live_scores': False,
+        'touches_odds': False,
+        'mensaje': 'Capa de recorrido cliente preparada sin tocar APIs, cuotas, marcadores ni datos reales.'
+    })
+
+
+@app.route('/client-smart-home')
+@app.route('/cliente/smart-home')
+@app.route('/cliente/live-priority')
+def client_smart_home_v283():
+    """V283 · Client Smart Home Evolution + Live Priority Pro.
+    Safe client experience layer. No API calls, no odds/live mutation.
+    """
+    payload = {
+        "version": "V283",
+        "title": "CLIENT SMART HOME EVOLUTION + LIVE PRIORITY PRO",
+        "focus": "Convertir la home cliente en el cerebro visual: live, value, alertas y continuidad",
+        "real_only": True,
+        "safe_advance": True,
+        "touches_api": False,
+        "touches_odds": False,
+        "touches_live_scores": False,
+        "modules": [
+            {"badge": "HOT", "title": "Partidos importantes primero", "text": "Prioridad visual para live, hoy y partidos con mejor cobertura real disponible.", "href": "/cliente/live-experience"},
+            {"badge": "VALUE", "title": "Radar de oportunidades", "text": "Acceso directo a value y banca sin inventar cuotas ni recomendaciones falsas.", "href": "/smart-value-detection"},
+            {"badge": "SHARK", "title": "Análisis contextual", "text": "Entrada rápida al análisis con SHARK cuando el cliente necesita explicación y contexto.", "href": "/cliente/shark-ai-pro"},
+            {"badge": "CONTINUAR", "title": "Retomar recorrido", "text": "Conecta con Journey Memory para que el usuario no se pierda entre módulos.", "href": "/cliente/continuar"}
+        ],
+        "guards": [
+            "no tocar APIs ni base de datos",
+            "no modificar cuotas, marcadores ni resultados",
+            "no duplicar navegación",
+            "desktop limpio y bottom nav solo móvil",
+            "CSS encapsulado en clases v283"
+        ]
+    }
+    return render_template('client_smart_home_v283.html', payload=payload)
+
+@app.route('/api/v283/client-smart-home/status')
+def api_v283_client_smart_home_status():
+    return jsonify({
+        'version': 'V283',
+        'status': 'ready',
+        'real_only': True,
+        'safe_advance': True,
+        'client_smart_home_ready': True,
+        'touches_api': False,
+        'touches_live_scores': False,
+        'touches_odds': False,
+        'mensaje': 'Smart Home cliente preparada sin tocar APIs, cuotas, marcadores ni datos reales.'
+    })
+
+
+
+# ===== V284 · CLIENT RETENTION LOOP + PREMIUM DAILY HABIT PRO =====
+@app.route("/client-retention-loop")
+@app.route("/cliente/retention-loop")
+@app.route("/cliente/rutina-premium")
+def client_retention_loop_v284():
+    return render_template("client_retention_loop_v284.html")
+# ===== END V284 =====
+
+
+
+
+# ===== V285 · CLIENT ACTION CENTER + FAST RETURN PRO =====
+@app.route("/client-action-center")
+@app.route("/cliente/action-center")
+@app.route("/cliente/centro-accion")
+def client_action_center_v285():
+    return render_template("client_action_center_v285.html")
+# ===== END V285 =====
+
+
+
+
+@app.route("/client-live-storytelling")
+@app.route("/cliente/live-story")
+@app.route("/cliente/match-focus")
+def client_live_storytelling_v286():
+    return render_template("client_live_storytelling_v286.html")
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))
