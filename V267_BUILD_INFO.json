@@ -1,0 +1,8 @@
+{
+  "version": "V267.0",
+  "name": "CLIENT HOME + NAVIGATION APP FEEL PRO",
+  "real_only": true,
+  "focus": ["cliente", "navegacion", "app feel", "uniformidad visual"],
+  "routes_added": ["/client-home-navigation", "/cliente/home-pro", "/admin/client-home-navigation"],
+  "safe_for_render": true
+}

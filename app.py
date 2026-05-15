@@ -9894,5 +9894,24 @@ def client_experience_unification_v266():
     }
     return render_template('client_experience_unification_v266.html', payload=payload)
 
+
+@app.route('/client-home-navigation')
+@app.route('/cliente/home-pro')
+@app.route('/admin/client-home-navigation')
+def client_home_navigation_appfeel_v267():
+    """V267 · Cliente home + navigation app feel.
+    Safe visual/product route: no external API calls and no fake sports data.
+    """
+    payload = {
+        "version": "V267",
+        "name": "CLIENT HOME + NAVIGATION APP FEEL PRO",
+        "focus": "Experiencia cliente, accesos rápidos y navegación uniforme",
+        "real_only": True,
+        "data_logic_changed": False,
+        "customer_priority": True,
+        "next_target": "Migrar más pantallas cliente antiguas a una estructura de cards común",
+    }
+    return render_template('client_home_navigation_appfeel_v267.html', payload=payload)
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

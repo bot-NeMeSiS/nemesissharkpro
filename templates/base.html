@@ -67,6 +67,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v263_global_design_system_unification.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v265_route_safety_visual_guard.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v266_client_experience_unification.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v267_client_home_navigation_appfeel.css') }}">
 </head>
 {% set public_clean_paths = ['/', '/inicio', '/planes', '/membresias', '/pricing', '/cliente-login', '/registro', '/admin-login'] %}
 {% set is_public_clean = request.path in public_clean_paths %}
@@ -204,5 +205,6 @@
   <script src="{{ url_for('static', filename='js/v193_app_feel_ultra_premium.js') }}"></script>
   <script src="{{ url_for('static', filename='js/v203_session_mobile_rebuild.js') }}"></script>
   <script defer src="{{ url_for('static', filename='js/v266_client_experience_unification.js') }}"></script>
+  <script defer src="{{ url_for('static', filename='js/v267_client_home_navigation_appfeel.js') }}"></script>
 </body>
 </html>
