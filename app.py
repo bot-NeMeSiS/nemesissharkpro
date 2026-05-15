@@ -10133,5 +10133,45 @@ def api_v272_client_live_experience_status():
         'mensaje': 'Experiencia live cliente preparada sin inventar partidos, cuotas, marcadores, minutos ni escudos.'
     })
 
+
+@app.route('/client-ui-recovery')
+@app.route('/cliente/ui-recovery')
+@app.route('/admin/client-ui-recovery')
+def client_ui_recovery_v274():
+    """V274 · Client UI recovery.
+    Emergency visual fix: prevents duplicated navigation and broken desktop/mobile layout.
+    REAL ONLY is untouched because this route and CSS do not alter data, odds, scores or APIs.
+    """
+    payload = {
+        "version": "V274",
+        "name": "CLIENT UI RECOVERY + NAV FIX PRO",
+        "focus": "Reparar navegación duplicada, barras gigantes y coherencia visual cliente",
+        "real_only": True,
+        "data_logic_changed": False,
+        "fixed": [
+            "client-app-nav gigante en escritorio",
+            "doble barra de navegación",
+            "bottom nav visible solo en móvil",
+            "header estable y uniforme",
+            "PWA banner menos invasivo",
+            "cards cliente normalizadas"
+        ],
+        "mensaje": "Corrección visual urgente aplicada sin tocar APIs ni datos reales."
+    }
+    return render_template('client_ui_recovery_v274.html', payload=payload)
+
+@app.route('/api/v274/client-ui-recovery/status')
+def api_v274_client_ui_recovery_status():
+    return jsonify({
+        'version': 'V274',
+        'name': 'CLIENT UI RECOVERY + NAV FIX PRO',
+        'real_only': True,
+        'data_logic_changed': False,
+        'desktop_nav_fixed': True,
+        'mobile_nav_single': True,
+        'duplicate_nav_guard': True,
+        'mensaje': 'UI cliente reparada: navegación duplicada eliminada y barra móvil controlada.'
+    })
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

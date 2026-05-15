@@ -70,6 +70,11 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v267_client_home_navigation_appfeel.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v268_client_match_experience_hub.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/v269_client_premium_flow_system.css') }}">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v270_client_intelligence_dashboard.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v271_client_daily_command_center.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v272_client_live_experience_hot_match_feed.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v274_client_ui_recovery.css') }}">
 </head>
 {% set public_clean_paths = ['/', '/inicio', '/planes', '/membresias', '/pricing', '/cliente-login', '/registro', '/admin-login'] %}
 {% set is_public_clean = request.path in public_clean_paths %}
@@ -101,18 +106,9 @@
       {% endif %}
     </nav>
   </header>
-{% if session.get('user') and not is_public_clean %}
-<nav class="client-app-nav-v308">
-  <a href="/clientes"><span>Inicio</span></a>
-  <a href="/picks"><span>Picks</span></a>
-  <a href="/partidos"><span>Live</span></a>
-  <a href="/clasificaciones"><span>Clasificación</span></a>
-  <a href="/alertas"><span>Alertas</span></a>
-  <a href="/favoritos"><span>Favoritos</span></a>
-  <a href="/clientes#bankroll-v30"><span>Banca</span></a>
-  <button type="button" onclick="document.getElementById('sharkOpen')?.click()"><span>SHARK</span></button>
-</nav>
-{% endif %}
+
+{# V274: client-app-nav-v308 desactivada. Se conserva solo bottom-mobile-nav en móvil para evitar duplicados. #}
+
 
 
   {% if session.get('user') and not is_public_clean %}
@@ -160,6 +156,8 @@
     </form>
   </section>
 <script src="{{ url_for('static', filename='js/shark_score_v274.js') }}"></script>
+{% if session.get('user') and not is_public_clean %}
+{# V274 bottom mobile: única barra inferior visible solo en móvil #}
 <nav class="bottom-mobile-nav-v283">
   <a href="/clientes"><span>Inicio</span></a>
   <a href="/picks"><span>Picks</span></a>
@@ -169,6 +167,7 @@
   <a href="/favoritos"><span>Favoritos</span></a>
   <button type="button" onclick="document.getElementById('sharkOpen')?.click()"><span>SHARK</span></button>
 </nav>
+{% endif %}
   <script src="/static/js/v70_premium_ui.js"></script>
 <script src="/static/js/v74_retention.js"></script>
 <script src="/static/js/v75_personalization.js"></script>

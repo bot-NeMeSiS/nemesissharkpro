@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <span class="badge">V274 · Reparación cliente</span>
+  <h1>UI cliente recuperada</h1>
+  <p class="lead">Se ha corregido la navegación duplicada, la barra gigante en escritorio y el comportamiento móvil sin tocar datos reales ni APIs.</p>
+</section>
+<section class="grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));">
+  {% for item in payload.fixed %}
+  <article class="card"><h3>{{ item }}</h3><p>Corregido en la capa visual global.</p></article>
+  {% endfor %}
+</section>
+{% endblock %}

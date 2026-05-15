@@ -1,0 +1,7 @@
+{
+  "version": "V274",
+  "name": "CLIENT UI RECOVERY + NAV FIX PRO",
+  "real_only": true,
+  "data_logic_changed": false,
+  "fix": "desktop/mobile navigation recovery"
+}
