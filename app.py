@@ -11496,3 +11496,35 @@ def api_client_experience_v325():
 def client_smart_match_flow_v325():
     return render_template("client_smart_match_flow_v325.html")
 # ===== END V325 =====
+
+# ===== V326 · SHARK COMBI 1X2 BUILDER REAL =====
+@app.route("/api/v326/combi-1x2")
+def api_shark_combi_1x2_v326():
+    try:
+        from services.shark_combi_1x2_service_v326 import build_shark_combi_1x2
+        partidos = request.args.get("partidos") or request.args.get("n") or request.args.get("count") or 9
+        stake = request.args.get("stake") or 0.10
+        riesgo = request.args.get("riesgo") or request.args.get("risk") or "equilibrado"
+        dia = request.args.get("dia") or request.args.get("day") or "hoy"
+        payload = build_shark_combi_1x2(count=partidos, stake=stake, risk=riesgo, day=dia)
+    except Exception as exc:
+        payload = {
+            "ok": True,
+            "version": "V326",
+            "touches_api": False,
+            "headline": "SHARK Combi 1X2 en modo seguro",
+            "subheadline": "La función está activa, pero no pudo leer datos guardados todavía.",
+            "data_health": {"label":"MODO SEGURO","tone":"watch","text":str(exc)[:180]},
+            "summary": {"total_odds":0,"stake":0.10,"possible_return":0,"possible_profit":0,"avg_score":0,"risk_label":"Sin datos"},
+            "selections": [],
+            "copy_text": "Sin combinada disponible todavía.",
+            "warnings": ["Carga cuotas/partidos 1X2 y vuelve a construir la combinada.", "No se hacen llamadas API desde esta pantalla."],
+        }
+    return jsonify(payload)
+
+@app.route("/cliente/combinadas")
+@app.route("/cliente/combi-1x2")
+@app.route("/cliente/shark-combi")
+def client_shark_combi_1x2_v326():
+    return render_template("client_combi_1x2_v326.html")
+# ===== END V326 =====

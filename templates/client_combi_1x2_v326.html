@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SHARK Combi 1X2 · NeMeSiS</title>
+  <style>
+    :root{--bg:#07111f;--panel:#0d1b2f;--panel2:#102642;--line:rgba(125,211,252,.18);--text:#eaf6ff;--muted:#9fb8d7;--hot:#22d3ee;--gold:#facc15;--risk:#fb7185;--safe:#34d399}
+    *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;background:radial-gradient(circle at 20% 0%,#123d68 0,#07111f 42%,#030712 100%);color:var(--text);min-height:100vh}.wrap{max-width:1180px;margin:0 auto;padding:22px}.top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:18px}.back{color:#bfe9ff;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:10px 14px;background:rgba(255,255,255,.04)}h1{font-size:clamp(28px,4vw,48px);margin:8px 0 4px;letter-spacing:-.04em}.sub{color:var(--muted);max-width:820px;line-height:1.5}.hero{border:1px solid var(--line);background:linear-gradient(135deg,rgba(34,211,238,.13),rgba(250,204,21,.07),rgba(255,255,255,.04));box-shadow:0 24px 70px rgba(0,0,0,.38);border-radius:28px;padding:24px;margin-bottom:18px}.controls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}.field{background:rgba(3,7,18,.42);border:1px solid var(--line);border-radius:18px;padding:12px}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}input,select{width:100%;background:#061427;color:var(--text);border:1px solid rgba(148,163,184,.22);border-radius:12px;padding:11px}button{cursor:pointer;border:0;border-radius:16px;padding:13px 16px;background:linear-gradient(135deg,#22d3ee,#2563eb);color:white;font-weight:800;box-shadow:0 12px 30px rgba(34,211,238,.2)}.grid{display:grid;grid-template-columns:1.35fr .65fr;gap:16px}.panel{background:rgba(13,27,47,.82);border:1px solid var(--line);border-radius:24px;padding:18px;backdrop-filter:blur(10px)}.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}.metric{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:18px;padding:13px}.metric b{font-size:22px;display:block}.metric span{font-size:12px;color:var(--muted)}.pick{border:1px solid var(--line);border-radius:20px;padding:15px;margin:10px 0;background:linear-gradient(135deg,rgba(255,255,255,.055),rgba(34,211,238,.035))}.picktop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.tag{border-radius:999px;padding:7px 10px;background:rgba(34,211,238,.12);border:1px solid rgba(34,211,238,.25);color:#bff5ff;font-size:12px;font-weight:800}.result{font-size:22px;font-weight:900;color:var(--gold);margin:8px 0}.muted{color:var(--muted)}.why{font-size:13px;line-height:1.45;color:#cfe8ff}.warn{border-left:3px solid var(--gold);padding:10px 12px;background:rgba(250,204,21,.08);border-radius:12px;margin:8px 0;color:#feeeb0}.copybox{white-space:pre-wrap;background:#020817;border:1px solid var(--line);border-radius:18px;padding:13px;color:#dbeafe;font-size:13px;max-height:360px;overflow:auto}.empty{padding:18px;border:1px dashed rgba(251,113,133,.45);border-radius:20px;background:rgba(251,113,133,.08)}@media(max-width:900px){.grid,.controls{grid-template-columns:1fr}.top{display:block}.summary{grid-template-columns:repeat(2,1fr)}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a class="back" href="/cliente/dashboard">← Volver a mi cuenta</a><span class="tag">V326 · Solo 1X2 · API extra 0</span></div>
+  <section class="hero">
+    <h1>SHARK Combi 1X2</h1>
+    <p class="sub">Constructor de combinadas para resultados <b>1 / X / 2</b>. Elige cuántos partidos quieres y stake pequeño; SHARK filtra las mejores selecciones guardadas del día sin prometer aciertos ni gastar API extra.</p>
+    <div class="controls">
+      <div class="field"><label>Partidos</label><input id="partidos" type="number" min="2" max="20" value="9"></div>
+      <div class="field"><label>Stake (€)</label><input id="stake" type="number" min="0.01" step="0.01" value="0.10"></div>
+      <div class="field"><label>Riesgo</label><select id="riesgo"><option value="conservador">Conservador</option><option value="equilibrado" selected>Equilibrado</option><option value="agresivo">Agresivo</option></select></div>
+      <div class="field"><label>&nbsp;</label><button onclick="loadCombi()">Construir combinada</button></div>
+    </div>
+  </section>
+  <div class="grid">
+    <main class="panel">
+      <h2 id="headline">Preparando combinada…</h2>
+      <p id="sub" class="muted"></p>
+      <div class="summary" id="summary"></div>
+      <div id="picks"></div>
+    </main>
+    <aside class="panel">
+      <h3>Copiar para la casa</h3>
+      <p class="muted">Copia la lista y métela manualmente en tu casa de apuestas.</p>
+      <button style="width:100%;margin-bottom:10px" onclick="copyCombi()">Copiar combinada</button>
+      <div id="copy" class="copybox">Cargando…</div>
+      <h3>Avisos</h3>
+      <div id="warnings"></div>
+    </aside>
+  </div>
+</div>
+<script>
+let lastCopy = '';
+function euro(v){return Number(v||0).toFixed(2)+' €'}
+function esc(s){return String(s ?? '').replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]))}
+async function loadCombi(){
+  const n=document.getElementById('partidos').value||9;
+  const stake=document.getElementById('stake').value||0.10;
+  const riesgo=document.getElementById('riesgo').value||'equilibrado';
+  const url=`/api/v326/combi-1x2?partidos=${encodeURIComponent(n)}&stake=${encodeURIComponent(stake)}&riesgo=${encodeURIComponent(riesgo)}`;
+  const res=await fetch(url,{cache:'no-store'}); const data=await res.json();
+  document.getElementById('headline').textContent=data.headline||'SHARK Combi 1X2';
+  document.getElementById('sub').textContent=(data.subheadline||'')+' · Salud de datos: '+(data.data_health?.label||'-');
+  const s=data.summary||{};
+  document.getElementById('summary').innerHTML=`
+    <div class="metric"><b>${esc(s.total_odds||0)}</b><span>Cuota total estimada</span></div>
+    <div class="metric"><b>${euro(s.stake||0)}</b><span>Stake</span></div>
+    <div class="metric"><b>${euro(s.possible_return||0)}</b><span>Retorno posible</span></div>
+    <div class="metric"><b>${esc(s.risk_label||'-')}</b><span>Riesgo global</span></div>`;
+  const picks=data.selections||[];
+  document.getElementById('picks').innerHTML=picks.length?picks.map((p,i)=>`
+    <article class="pick">
+      <div class="picktop"><div><b>${i+1}. ${esc(p.title)}</b><div class="muted">${esc(p.league)} · ${esc(p.kickoff_time||'Horario no fijado')}</div></div><span class="tag">Score ${esc(p.score)}/100</span></div>
+      <div class="result">${esc(p.result_label)}</div>
+      <div class="why"><b>Cuota:</b> ${esc(p.odds)} · <b>Casa:</b> ${esc(p.bookmaker)}</div>
+      <div class="why"><b>Por qué entra:</b> ${esc(p.why)}</div>
+      <div class="why muted"><b>Riesgo:</b> ${esc(p.why_not)}</div>
+    </article>`).join(''):`<div class="empty"><b>No hay datos 1X2 suficientes.</b><br>${esc(data.data_health?.text||'Carga partidos/cuotas primero y vuelve a intentarlo.')}</div>`;
+  lastCopy=data.copy_text||''; document.getElementById('copy').textContent=lastCopy||'Sin combinada disponible todavía.';
+  document.getElementById('warnings').innerHTML=(data.warnings||[]).map(w=>`<div class="warn">${esc(w)}</div>`).join('');
+}
+async function copyCombi(){ if(!lastCopy) return; await navigator.clipboard.writeText(lastCopy); alert('Combinada copiada'); }
+loadCombi();
+</script>
+</body>
+</html>
