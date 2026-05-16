@@ -1,0 +1,15 @@
+{
+  "version": "V322",
+  "name": "SHARK AI LIVE COPILOT PRO",
+  "base": "V321",
+  "complete_build": true,
+  "render_ready": true,
+  "github_ready": true,
+  "touches_api_on_view": false,
+  "routes": [
+    "/cliente/shark-copilot",
+    "/cliente/shark-live",
+    "/cliente/copiloto-shark",
+    "/api/v322/shark-copilot"
+  ]
+}
