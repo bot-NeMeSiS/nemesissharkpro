@@ -1,0 +1,1 @@
+class SharkCombiIntelligence: pass
