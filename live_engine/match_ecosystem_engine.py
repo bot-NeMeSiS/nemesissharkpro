@@ -1,3 +1,0 @@
-
-class MatchEcosystemEngine:
-    pass
