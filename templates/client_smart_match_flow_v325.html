@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NeMeSiS SHARK PRO · Smart Match Flow V325</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/v325_smart_match_flow.css') }}">
+</head>
+<body class="v325-body">
+  <main class="v325-shell">
+    <section class="v325-hero">
+      <div>
+        <p class="eyebrow">V325 · Smart Client Match Flow</p>
+        <h1>Tu día deportivo, ordenado por inteligencia.</h1>
+        <p id="subtitle">Cargando experiencia cliente...</p>
+      </div>
+      <div class="score-card"><span id="score">--</span><small>Client feel</small></div>
+    </section>
+
+    <section class="grid" id="focusGrid"></section>
+
+    <section class="panel">
+      <h2>Recorrido recomendado</h2>
+      <div id="flowSteps" class="steps"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Acciones inteligentes</h2>
+      <div id="actions" class="actions"></div>
+    </section>
+
+    <section class="panel shark">
+      <h2>Briefing SHARK</h2>
+      <p id="briefing">Preparando briefing contextual...</p>
+      <ul id="insights"></ul>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='js/v325_smart_match_flow.js') }}"></script>
+</body>
+</html>

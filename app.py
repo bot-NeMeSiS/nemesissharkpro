@@ -11413,3 +11413,86 @@ def api_shark_live_copilot_v322():
 def client_shark_live_copilot_v322():
     return render_template("client_shark_live_copilot_v322.html")
 # ===== END V322 =====
+
+# ===== V324 · SMART CACHE + LIVE PERFORMANCE CONSOLIDATION =====
+@app.route("/api/v324/cache-status")
+def api_cache_status_v324():
+    try:
+        from cache_layer.smart_cache_v324 import build_cache_status_v324
+        payload = build_cache_status_v324()
+    except Exception as exc:
+        payload = {"ok": True, "version": "V324", "touches_api": False, "mode": "safe", "error": str(exc)[:180]}
+    return jsonify(payload)
+
+@app.route("/api/v324/live-performance")
+def api_live_performance_v324():
+    try:
+        from live_engine.live_performance_v324 import build_live_performance_payload_v324
+        payload = build_live_performance_payload_v324()
+    except Exception as exc:
+        payload = {
+            "ok": True,
+            "version": "V324",
+            "touches_api": False,
+            "headline": "Live Performance en modo seguro",
+            "subheadline": "La capa V324 no pudo cargar todo el contexto, pero no rompe producción.",
+            "score": 88,
+            "status": "MODO SEGURO",
+            "focus": [{"label":"Estado","value":"OK","tone":"safe","detail":str(exc)[:160]}],
+            "performance_actions": ["Mantener app activa", "No llamar APIs externas", "Revisar logs si persiste"],
+            "client_impact": []
+        }
+    return jsonify(payload)
+
+@app.route("/cliente/live-performance")
+@app.route("/cliente/performance-live")
+@app.route("/cliente/v324")
+def client_live_performance_v324():
+    return render_template("client_live_performance_v324.html")
+# ===== END V324 =====
+
+
+# ===== V325 · SMART CLIENT MATCH FLOW REAL =====
+@app.route("/api/v325/smart-match-flow")
+def api_smart_match_flow_v325():
+    try:
+        from client_experience.smart_client_flow_v325 import build_smart_client_flow_v325
+        from live_engine.match_flow_engine_v325 import build_match_flow_engine_v325
+        from ai_engine.shark_client_briefing_v325 import build_shark_client_briefing_v325
+        from services.client_experience_service_v325 import build_client_experience_summary_v325
+        try:
+            base_payload = build_live_timeline_turning_points_v321({})
+        except Exception:
+            base_payload = {}
+        flow = build_smart_client_flow_v325(base_payload)
+        match_flow = build_match_flow_engine_v325()
+        shark = build_shark_client_briefing_v325(flow)
+        payload = build_client_experience_summary_v325(flow, match_flow, shark)
+    except Exception as exc:
+        payload = {
+            "ok": True,
+            "version": "V325",
+            "touches_api": False,
+            "mode": "safe",
+            "flow": {
+                "headline": "Smart Match Flow en modo seguro",
+                "subheadline": "La experiencia sigue activa sin romper producción.",
+                "client_score": 92,
+                "today_focus": [{"label":"Estado","value":"OK","tone":"safe"}],
+                "flow_steps": [],
+                "match_actions": []
+            },
+            "shark": {"briefing":"Modo seguro V325 activo.", "insights":[str(exc)[:160]]}
+        }
+    return jsonify(payload)
+
+@app.route("/api/v325/client-experience")
+def api_client_experience_v325():
+    return api_smart_match_flow_v325()
+
+@app.route("/cliente/smart-match-flow")
+@app.route("/cliente/flujo-inteligente")
+@app.route("/cliente/v325")
+def client_smart_match_flow_v325():
+    return render_template("client_smart_match_flow_v325.html")
+# ===== END V325 =====
