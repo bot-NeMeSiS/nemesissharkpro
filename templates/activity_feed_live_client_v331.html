@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Activity Feed V331 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/activity_feed_live_client_v331.css') }}">
+<script defer src="{{ url_for('static', filename='js/activity_feed_live_client_v331.js') }}"></script>
+
+<section class="v331-shell">
+  <div class="v331-hero">
+    <div>
+      <span class="v331-badge">V331 · Activity Feed Live Client</span>
+      <h1>Inicio más vivo y útil</h1>
+      <p>Feed de actividad recomendada para que el cliente sepa qué revisar ahora: Live, 1X2, Match Center y favoritos.</p>
+    </div>
+    <div class="v331-status"><strong>APP VIVA</strong><span>Más uso diario · menos vacío</span></div>
+  </div>
+
+  <div class="v331-grid">
+    <article class="v331-card"><span>🔥</span><h2>Live</h2><p>Acceso directo a lo que está pasando.</p><a href="/cliente/live-central">Abrir</a></article>
+    <article class="v331-card"><span>👑</span><h2>1X2</h2><p>Combis rápidas en una acción.</p><a href="/cliente/1x2">Abrir</a></article>
+    <article class="v331-card"><span>📊</span><h2>Match Center</h2><p>Ficha premium de partido.</p><a href="/cliente/match-center-premium">Abrir</a></article>
+    <article class="v331-card"><span>⭐</span><h2>Favoritos</h2><p>Seguimiento personalizado.</p><a href="/cliente/favorites-following">Abrir</a></article>
+  </div>
+</section>
+{% endblock %}

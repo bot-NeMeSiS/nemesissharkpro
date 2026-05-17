@@ -1,0 +1,12 @@
+{
+  "version": "V333",
+  "name": "CLIENT_PERFORMANCE_CACHE_READINESS_PRO",
+  "base": "V332",
+  "features": [
+    "visual performance strip",
+    "cache status table",
+    "skeleton state",
+    "api saving readiness"
+  ],
+  "real_only": true
+}

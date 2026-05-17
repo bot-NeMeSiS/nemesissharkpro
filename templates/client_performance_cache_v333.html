@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Performance Cache V333 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_performance_cache_v333.css') }}">
+<script defer src="{{ url_for('static', filename='js/client_performance_cache_v333.js') }}"></script>
+<section class="v333-shell">
+  <div class="v333-hero">
+    <div><span class="v333-badge">V333 · Performance & Cache</span><h1>Más velocidad visual y base de caché</h1><p>Preparación para que cliente, live, 1X2 y Match Center se sientan más rápidos y consuman menos API.</p></div>
+    <div class="v333-status"><strong>CACHE READY</strong><span>Velocidad · ahorro · estabilidad</span></div>
+  </div>
+  <div class="v333-grid">
+    <article class="v333-card"><span>⚡</span><h2>UX rápida</h2><p>Mejor sensación mientras cargan datos reales.</p><a href="/cliente/pro">Cliente</a></article>
+    <article class="v333-card"><span>💾</span><h2>Cache base</h2><p>Tabla y estado para cachear módulos clave.</p><a href="/api/client/performance-cache/status-v333">Status</a></article>
+    <article class="v333-card"><span>🔥</span><h2>Live preparado</h2><p>Base para reducir llamadas de live.</p><a href="/cliente/live-central">Live</a></article>
+    <article class="v333-card"><span>👑</span><h2>1X2 fluido</h2><p>Preparado para reutilizar datos de cuotas.</p><a href="/cliente/1x2">1X2</a></article>
+  </div>
+</section>
+{% endblock %}
