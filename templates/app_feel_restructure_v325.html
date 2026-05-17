@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}App Feel V325 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/app_feel_restructure_v325.css') }}">
+<script defer src="{{ url_for('static', filename='js/app_feel_restructure_v325.js') }}"></script>
+<section class="v325-shell">
+ <div class="v325-hero"><div><span class="v325-badge">V325 · App Feel Restructure</span><h1>Navegación tipo app para cliente</h1><p>Menos peso arriba, navegación inferior premium, 1X2 visible y acceso rápido a lo que más usa el cliente.</p></div><div class="v325-status"><strong>APP FEEL</strong><span>Más limpio · más vendible</span></div></div>
+ <div class="v325-grid">
+  <article class="v325-card"><span>UX</span><h2>Menos ruido arriba</h2><p>La acción principal pasa a la barra inferior.</p><a href="/cliente/pro">Probar cliente</a></article>
+  <article class="v325-card"><span>1X2</span><h2>Combis prioritarias</h2><p>1X2 como acceso principal del cliente.</p><a href="/cliente/1x2">Abrir 1X2</a></article>
+  <article class="v325-card"><span>LIVE</span><h2>Live rápido</h2><p>Acceso directo al live.</p><a href="/cliente/live-central">Abrir Live</a></article>
+  <article class="v325-card"><span>OK</span><h2>Estado</h2><p>Se mantienen fixes anteriores.</p><a href="/api/stability/full-status-v321">Status</a></article>
+ </div>
+</section>
+{% endblock %}

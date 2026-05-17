@@ -1,0 +1,21 @@
+{
+  "version": "V325",
+  "name": "APP_FEEL_RESTRUCTURE_CLIENT_NAV_PRO",
+  "base": "V324",
+  "main_nav": [
+    "Inicio",
+    "Picks",
+    "Partidos",
+    "1X2",
+    "Live",
+    "Favoritos",
+    "SHARK"
+  ],
+  "keeps": [
+    "scroll",
+    "telegram",
+    "live",
+    "1x2",
+    "stability"
+  ]
+}

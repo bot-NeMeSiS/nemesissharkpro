@@ -11116,5 +11116,14 @@ def client_pro_polish_v324():
 # ===== END V324 =====
 
 
+
+# ===== V325 · APP FEEL RESTRUCTURE CLIENT NAV PRO =====
+@app.route("/app-feel-v325")
+@app.route("/cliente/app-feel")
+def app_feel_restructure_v325():
+    return render_template("app_feel_restructure_v325.html")
+# ===== END V325 =====
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))
