@@ -1,0 +1,23 @@
+{
+  "version": "V330",
+  "name": "LAUNCH_READY_COMMERCIAL_PACK_PRO",
+  "base": "V329",
+  "birthday_build": true,
+  "commercial_state": "beta premium controlada",
+  "features": [
+    "launch center",
+    "commercial checklist",
+    "client beta banner",
+    "status endpoint"
+  ],
+  "keeps": [
+    "client nav",
+    "1x2",
+    "live",
+    "match center",
+    "telegram",
+    "favorites",
+    "trust clarity"
+  ],
+  "real_only": true
+}

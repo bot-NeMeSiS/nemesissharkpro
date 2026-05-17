@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Launch Ready V330 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/launch_ready_commercial_v330.css') }}">
+<script defer src="{{ url_for('static', filename='js/launch_ready_commercial_v330.js') }}"></script>
+
+<section class="v330-shell">
+  <div class="v330-hero">
+    <div>
+      <span class="v330-launch-badge">V330 · Launch Ready Commercial Pack</span>
+      <h1>NeMeSiS SHARK PRO listo para beta comercial</h1>
+      <p>
+        Pack especial de puesta en marcha: reúne cliente, navegación tipo app, Live,
+        1X2, Match Center, Favoritos, Telegram y estabilidad para enseñar/vender de forma controlada.
+      </p>
+    </div>
+    <div class="v330-status">
+      <strong>Beta vendible</strong>
+      <span>No masiva todavía · sí presentable</span>
+    </div>
+  </div>
+
+  <div class="v330-grid">
+    <article class="v330-card ready">
+      <span>✅</span>
+      <h2>Cliente presentable</h2>
+      <p>Navegación tipo app, accesos rápidos y experiencia más limpia.</p>
+      <a href="/cliente/pro">Abrir cliente</a>
+    </article>
+    <article class="v330-card gold">
+      <span>👑</span>
+      <h2>Combis 1X2</h2>
+      <p>Acceso visible y motor REAL ONLY con LOW DATA si faltan cuotas.</p>
+      <a href="/cliente/1x2">Abrir 1X2</a>
+    </article>
+    <article class="v330-card">
+      <span>🔥</span>
+      <h2>Live + Match Center</h2>
+      <p>Marcador/minuto/escudos con centro de partido premium.</p>
+      <a href="/cliente/match-center-premium">Match Center</a>
+    </article>
+    <article class="v330-card">
+      <span>📨</span>
+      <h2>Telegram</h2>
+      <p>Webhook, linking, scheduler y envío automático preparados.</p>
+      <a href="/admin/telegram-webhook">Telegram</a>
+    </article>
+  </div>
+
+  <div class="v330-checklist">
+    <h2>Checklist de puesta en marcha</h2>
+    <ol>
+      <li>Comprobar <strong>/api/launch/status-v330</strong>.</li>
+      <li>Entrar como cliente y revisar navegación inferior.</li>
+      <li>Probar <strong>/cliente/1x2</strong>.</li>
+      <li>Probar <strong>/cliente/match-center-premium</strong>.</li>
+      <li>Configurar Telegram con <strong>/api/telegram/set-webhook-v318</strong>.</li>
+      <li>Mandar <strong>/start</strong> al bot y revisar <strong>/api/telegram/linked-chats-v317</strong>.</li>
+      <li>Vender/enseñar como <strong>beta premium controlada</strong>, no lanzamiento masivo todavía.</li>
+    </ol>
+  </div>
+</section>
+{% endblock %}
