@@ -5,7 +5,6 @@
   <a class="membership-badge badge-pro" href="/cliente/menu">Menú cliente</a>
   <a class="membership-badge badge-pro" href="/cliente/cuenta">Mi cuenta</a>
   <a class="membership-badge badge-free" href="/cliente/partidos?filtro=hoy">Partidos de hoy</a>
-  <a class="membership-badge badge-elite" href="/cliente/combi-inteligente">SHARK Combi 1X2</a>
   <a class="membership-badge badge-elite" href="/en-directo">Live</a>
   <a class="membership-badge badge-admin" href="/logout">Cerrar sesión</a>
 </div>
@@ -30,7 +29,6 @@
       <a class="active" href="/clientes">Inicio</a>
       <a href="/picks?date=today">Picks hoy</a>
       <a href="/partidos?date=today">Partidos hoy</a>
-      <a href="/cliente/combi-inteligente">Combinadas 1X2</a>
       <a href="/partidos?q=live">En directo</a>
       <a href="/clasificaciones">Clasificación</a>
       <a href="/alertas">Telegram</a>
@@ -51,7 +49,6 @@
       <div class="hero-actions-v52">
         <a href="/picks?date=today">Ver picks</a>
         <a href="/partidos?date=today">Partidos hoy</a>
-        <a href="/cliente/combi-inteligente">Crear combinada 1X2</a>
         <button type="button" onclick="document.getElementById('sharkOpen')?.click()">Preguntar a SHARK</button>
       </div>
     </section>
@@ -65,7 +62,6 @@
 
     <section class="metrics-v52">
       <a href="/picks"><small>Picks hoy</small><b>{{ picks|length }}</b><span>Disponibles</span></a>
-      <a href="/cliente/combi-inteligente"><small>Combi 1X2</small><b>NEW</b><span>Constructor SHARK</span></a>
       <a href="#rendimiento"><small>ROI</small><b class="{{ 'positive' if (roi.roi or 0) >= 0 else 'negative' }}">{{ roi.roi or 0 }}%</b><span>Rendimiento</span></a>
       <a href="#rendimiento"><small>Winrate</small><b>{{ roi.winrate or 0 }}%</b><span>Acertados</span></a>
       <a href="/alertas"><small>Telegram</small><b>{{ 'ON' if real_user and real_user.telegram_chat_id else 'OFF' }}</b><span>{{ 'Conectado' if real_user and real_user.telegram_chat_id else 'Pendiente' }}</span></a>
@@ -108,12 +104,6 @@
             <a class="btn-mini-v52" href="/partidos?date=today">Ver próximos</a>
           {% endfor %}
         </article>
-        <article class="card-v52 combi-v328-card" style="border:1px solid rgba(0,229,255,.24);background:linear-gradient(135deg,rgba(0,229,255,.10),rgba(255,184,0,.08));box-shadow:0 20px 60px rgba(0,0,0,.22);">
-          <h2>🦈 SHARK Combi 1X2</h2>
-          <p>Construye combinadas del día solo con resultados: <b>1</b>, <b>X</b> o <b>2</b>. Elige partidos, stake y riesgo.</p>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;font-size:12px;opacity:.9"><span>0,10€</span><span>Conservador</span><span>Balanceado</span><span>Agresivo</span></div>
-          <a href="/cliente/combi-inteligente">Abrir constructor</a>
-        </article>
         <article class="card-v52 telegram-v52 {{ 'ok' if real_user and real_user.telegram_chat_id else '' }}">
           <h2>Telegram</h2>
           <p>{{ 'Recibes señales según tu plan.' if real_user and real_user.telegram_chat_id else 'Conecta Telegram para recibir avisos.' }}</p>
@@ -132,7 +122,6 @@
     </section>
 
     <section class="quick-v52">
-      <a href="/cliente/combi-inteligente"><b>SHARK Combi 1X2</b><span>Combinadas del día</span></a>
       <a href="/partidos?date=today"><b>Partidos hoy</b><span>Horario España/Madrid</span></a>
       <a href="/partidos?date=tomorrow"><b>Mañana</b><span>Próximos partidos</span></a>
       <a href="/clasificaciones"><b>Clasificación</b><span>Ligas y posiciones</span></a>

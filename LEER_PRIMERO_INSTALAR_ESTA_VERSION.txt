@@ -1,9 +1,3 @@
-NeMeSiS SHARK PRO V315 · SHARK MEMORY SNAPSHOT ENGINE PRO
-
-Build completo listo para GitHub y Render.
-Ruta nueva: /cliente/shark-memory
-API nueva: /api/v315/shark-memory
-
 ============================================================
 INSTALAR ESTA VERSION - NeMeSiS SHARK PRO V204 FINAL FIX
 ============================================================
@@ -28,6 +22,3 @@ NO dejar archivos viejos dentro.
 
 Este paquete incluye requirements.txt en la raiz para que Render pueda instalar dependencias.
 ============================================================
-
-
-V319 añadido: /cliente/app-os y /api/v319/unified-experience-system. Experiencia cliente unificada, sin consumo extra de API.

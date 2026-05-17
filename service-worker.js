@@ -1,57 +1,73 @@
-// NeMeSiS SHARK PRO - Safe PWA Service Worker Fix
-// Version: V323_REAL_PWA_FIX
-const CACHE_NAME = 'nemesis-shark-pro-v323-pwa-fix';
-const ASSET_CACHE = [
-  '/',
-  '/manifest.json'
-];
+const CACHE_NAME = 'nemesis-shark-pro-v179-pwa-reliable';
+const CORE_ASSETS = ['/', '/manifest.json', '/static/manifest.json', '/static/icons/icon-192.png', '/static/icons/icon-512.png'];
 
 self.addEventListener('install', (event) => {
+  event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(CORE_ASSETS)).catch(() => null));
   self.skipWaiting();
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSET_CACHE).catch(() => null))
-  );
 });
 
 self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((keys) => Promise.all(
-      keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))
-    )).then(() => self.clients.claim())
-  );
+  event.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key)))));
+  self.clients.claim();
 });
 
 self.addEventListener('fetch', (event) => {
-  const req = event.request;
-  const url = new URL(req.url);
+  if (event.request.method !== 'GET') return;
+  const url = new URL(event.request.url);
+  if (url.pathname.startsWith('/api/')) return;
+  event.respondWith(fetch(event.request).then((response) => {
+    const copy = response.clone();
+    if (response.ok && (url.origin === self.location.origin)) {
+      caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy)).catch(() => null);
+    }
+    return response;
+  }).catch(() => caches.match(event.request).then((cached) => cached || caches.match('/') || new Response('NeMeSiS SHARK PRO offline', {status: 200}))));
+});
 
-  // Do not cache dynamic/API/auth/admin calls.
-  if (
-    req.method !== 'GET' ||
-    url.pathname.startsWith('/api/') ||
-    url.pathname.includes('login') ||
-    url.pathname.includes('logout') ||
-    url.pathname.startsWith('/admin') ||
-    url.pathname.startsWith('/telegram') ||
-    url.pathname.startsWith('/webhook')
-  ) {
-    return;
-  }
+self.addEventListener('push', function(event) {
+  let data = {};
+  try { data = event.data ? event.data.json() : {}; } catch(e) { data = {title:'NeMeSiS SHARK PRO', body:'Nueva alerta SHARK disponible'}; }
+  const title = data.title || 'NeMeSiS SHARK PRO';
+  const options = {
+    body: data.body || 'Nueva señal real disponible.',
+    icon: '/static/icons/icon-192.png',
+    badge: '/static/icons/icon-192.png',
+    data: { url: data.url || data.action_url || '/cliente/pro' },
+    tag: data.tag || 'nemesis-shark-alert',
+    renotify: false
+  };
+  event.waitUntil(self.registration.showNotification(title, options));
+});
 
-  // Static assets: cache first with network fallback.
-  if (url.pathname.startsWith('/static/') || url.pathname === '/manifest.json' || url.pathname === '/service-worker.js') {
-    event.respondWith(
-      caches.match(req).then((cached) => cached || fetch(req).then((res) => {
-        const copy = res.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(req, copy)).catch(() => null);
-        return res;
-      }).catch(() => cached))
-    );
-    return;
-  }
+self.addEventListener('notificationclick', function(event) {
+  event.notification.close();
+  const url = (event.notification && event.notification.data && event.notification.data.url) || '/cliente/pro';
+  event.waitUntil(clients.openWindow(url));
+});
 
-  // Pages: network first, no hard failure if offline.
-  event.respondWith(
-    fetch(req).catch(() => caches.match(req).then((cached) => cached || caches.match('/')))
-  );
+
+/* NeMeSiS SHARK PRO V182 · Push real foundation */
+self.addEventListener('push', function(event) {
+  let data = {};
+  try { data = event.data ? event.data.json() : {}; } catch(e) { data = {title:'NeMeSiS SHARK PRO', body: event.data ? event.data.text() : 'Nueva alerta SHARK'}; }
+  const title = data.title || '🦈 NeMeSiS SHARK PRO';
+  const options = {
+    body: data.body || 'Nueva alerta premium disponible.',
+    icon: data.icon || '/static/icons/icon-192.png',
+    badge: data.badge || '/static/icons/icon-192.png',
+    data: { url: data.url || '/cliente/pro' },
+    requireInteraction: false
+  };
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+
+self.addEventListener('notificationclick', function(event) {
+  event.notification.close();
+  const url = (event.notification.data && event.notification.data.url) || '/cliente/pro';
+  event.waitUntil(clients.matchAll({type:'window', includeUncontrolled:true}).then(function(clientList) {
+    for (const client of clientList) {
+      if ('focus' in client) return client.focus();
+    }
+    if (clients.openWindow) return clients.openWindow(url);
+  }));
 });

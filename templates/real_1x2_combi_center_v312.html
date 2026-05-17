@@ -1,0 +1,89 @@
+
+{% extends "base.html" %}
+{% block title %}1X2 Combi Center · NeMeSiS SHARK PRO{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/real_1x2_combi_center_v312.css') }}">
+
+<section class="v312-shell">
+  <div class="v312-hero">
+    <div>
+      <span class="v312-badge">V312 · REAL 1X2 CENTER</span>
+      <h1>Combis 1X2 inteligentes</h1>
+      <p>
+        Centro cliente para preparar combinadas simples 1X2 de forma rápida,
+        clara y enfocada a partidos del día.
+      </p>
+    </div>
+    <div class="v312-status">
+      <strong>1X2 ONLY</strong>
+      <span>Simple · rápido · claro</span>
+    </div>
+  </div>
+
+  <div class="v312-grid">
+    <article class="v312-card">
+      <span>🔥</span>
+      <h2>Favoritos fuertes</h2>
+      <p>Partidos donde el favorito tiene contexto sólido y mejor estabilidad.</p>
+      <a href="/cliente/live-central">Abrir live</a>
+    </article>
+
+    <article class="v312-card">
+      <span>⚖️</span>
+      <h2>Partidos equilibrados</h2>
+      <p>Detectar encuentros donde puede existir value en empate o sorpresa.</p>
+      <a href="/cliente/ficha-decision">Ver decisión</a>
+    </article>
+
+    <article class="v312-card">
+      <span>🦈</span>
+      <h2>SHARK Context</h2>
+      <p>Consultar rápidamente el contexto del partido antes de añadirlo a combi.</p>
+      <a href="/cliente/shark-ai-pro">Abrir SHARK</a>
+    </article>
+  </div>
+
+  <div class="v312-combi-box">
+    <h3>Constructor rápido de combi</h3>
+
+    <div class="v312-row">
+      <div class="v312-pick">
+        <strong>Partido 1</strong>
+        <div class="v312-buttons">
+          <button>1</button>
+          <button>X</button>
+          <button>2</button>
+        </div>
+      </div>
+
+      <div class="v312-pick">
+        <strong>Partido 2</strong>
+        <div class="v312-buttons">
+          <button>1</button>
+          <button>X</button>
+          <button>2</button>
+        </div>
+      </div>
+
+      <div class="v312-pick">
+        <strong>Partido 3</strong>
+        <div class="v312-buttons">
+          <button>1</button>
+          <button>X</button>
+          <button>2</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="v312-footer">
+      <div>
+        <span>Objetivo:</span>
+        <strong>combis rápidas y fáciles para cliente</strong>
+      </div>
+
+      <a href="/cliente/bucle-diario">Volver al Daily Loop</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

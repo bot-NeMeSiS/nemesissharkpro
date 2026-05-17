@@ -1,14 +1,5 @@
 {
   "version": "V312",
-  "name": "LIVE_ENGINE_REAL_MOMENTUM_SNAPSHOT_PRO",
-  "safe": true,
-  "touches_api": false,
-  "routes": [
-    "/cliente/live-engine-real",
-    "/cliente/momentum-live",
-    "/api/v312/live-engine/status"
-  ],
-  "fixes": [
-    "V310 route connected"
-  ]
+  "name": "REAL_1X2_COMBI_CENTER_PRO",
+  "focus": "cliente 1x2 combis"
 }

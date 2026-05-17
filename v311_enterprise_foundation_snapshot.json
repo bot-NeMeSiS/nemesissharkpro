@@ -1,0 +1,15 @@
+{
+  "version": "V311",
+  "name": "ENTERPRISE FOUNDATION LAYER PRO",
+  "goal": "Preparar modularización enterprise sin romper el core actual",
+  "layers": [
+    "core",
+    "engines",
+    "services",
+    "live_engine",
+    "ai_engine",
+    "notification_engine",
+    "snapshots"
+  ],
+  "status": "foundation_ready"
+}
