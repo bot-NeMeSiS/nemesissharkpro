@@ -11561,3 +11561,30 @@ def api_shark_combi_intelligence_v327():
 def client_shark_combi_intelligence_v327():
     return render_template("client_shark_combi_intelligence_v327.html")
 # ===== END V327 =====
+
+
+# ===== V328 · SHARK COMBI VISIBILITY FIX =====
+@app.route("/cliente/combi")
+@app.route("/cliente/constructor-combi")
+@app.route("/cliente/combinada-perfecta")
+def client_shark_combi_visible_v328():
+    return render_template("client_shark_combi_intelligence_v327.html")
+
+@app.route("/api/v328/combi-visible-status")
+def api_shark_combi_visible_status_v328():
+    return jsonify({
+        "ok": True,
+        "version": "V328",
+        "feature": "SHARK COMBI 1X2 visible en panel cliente",
+        "touches_api": False,
+        "routes": [
+            "/cliente/combinadas",
+            "/cliente/combi-1x2",
+            "/cliente/shark-combi",
+            "/cliente/combi-inteligente",
+            "/cliente/combi",
+            "/cliente/constructor-combi",
+            "/cliente/combinada-perfecta"
+        ]
+    })
+# ===== END V328 =====
