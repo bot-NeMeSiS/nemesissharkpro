@@ -1,0 +1,14 @@
+{
+  "version": "V324",
+  "name": "CLIENT_PRO_POLISH_CONSOLIDATION",
+  "base": "V323",
+  "focus": "pulido visual, manejabilidad cliente, 1X2 limpio, scroll y coherencia",
+  "keeps": [
+    "Telegram",
+    "Live Reliability",
+    "1X2 Engine",
+    "Scroll Fix",
+    "Stability Center"
+  ],
+  "next_recommended": "Match Center Premium"
+}

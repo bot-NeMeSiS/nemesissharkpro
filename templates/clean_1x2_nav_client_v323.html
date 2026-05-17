@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Clean 1X2 Nav V323 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/clean_1x2_nav_client_v323.css') }}">
+<script defer src="{{ url_for('static', filename='js/clean_1x2_nav_client_v323.js') }}"></script>
+
+<section class="v323-shell">
+  <div class="v323-hero">
+    <span class="v323-badge">V323 · Clean 1X2 Nav</span>
+    <h1>Combis 1X2 limpio y sin duplicados</h1>
+    <p>Corrección para que solo aparezca un botón Combis 1X2, bien integrado en la navegación cliente.</p>
+  </div>
+
+  <div class="v323-grid">
+    <article class="v323-card">
+      <h2>Cliente</h2>
+      <p>Volver al panel y comprobar que solo sale un 1X2.</p>
+      <a href="/cliente/pro">Probar cliente</a>
+    </article>
+    <article class="v323-card">
+      <h2>1X2</h2>
+      <p>Entrar directo a la pantalla de combis.</p>
+      <a href="/cliente/1x2">Abrir 1X2</a>
+    </article>
+    <article class="v323-card">
+      <h2>Estado</h2>
+      <p>Ver estabilidad completa.</p>
+      <a href="/api/stability/full-status-v321">Status</a>
+    </article>
+  </div>
+</section>
+{% endblock %}

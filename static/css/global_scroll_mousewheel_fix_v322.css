@@ -1,0 +1,14 @@
+
+html,body{min-height:100%!important;height:auto!important;overflow-y:auto!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch!important;overscroll-behavior-y:auto!important}
+body.no-scroll,body.modal-open,html.no-scroll,html.modal-open{overflow-y:auto!important;height:auto!important;position:static!important}
+main,.app,.page,.container,.content,.dashboard,.client-dashboard,.cliente-dashboard,.client-page,.cliente-page,.layout,.wrapper{min-height:auto!important;height:auto!important;max-height:none!important;overflow:visible!important}
+.scroll-lock,.lock-scroll,.prevent-scroll,.disable-scroll{overflow:visible!important;height:auto!important;max-height:none!important}
+.overlay.hidden,.modal.hidden,.backdrop.hidden,.drawer.hidden,[aria-hidden="true"].overlay,[aria-hidden="true"].modal,[aria-hidden="true"].backdrop{pointer-events:none!important;display:none!important}
+body::after{content:"";display:block;height:72px}
+@media(max-width:700px){body::after{height:110px}}
+.v322-shell{width:min(1180px,calc(100% - 28px));margin:28px auto 96px;color:#eef7ff}
+.v322-hero{padding:32px;border-radius:30px;background:linear-gradient(135deg,#07182e,#030b17);border:1px solid rgba(95,200,255,.22)}
+.v322-hero h1{font-size:clamp(2rem,5vw,4rem);margin:12px 0}.v322-badge{display:inline-flex;padding:9px 13px;border-radius:999px;background:rgba(0,188,255,.13);color:#9ee7ff;font-weight:900}
+.v322-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px}.v322-card{padding:22px;border-radius:24px;background:rgba(15,35,64,.96);border:1px solid rgba(255,255,255,.09)}
+.v322-card a{display:inline-flex;text-decoration:none;color:#06111f;background:linear-gradient(135deg,#7ee8ff,#398dff);padding:10px 13px;border-radius:14px;font-weight:900}
+@media(max-width:900px){.v322-grid{grid-template-columns:1fr}.v322-shell{width:min(100% - 18px,1180px)}}

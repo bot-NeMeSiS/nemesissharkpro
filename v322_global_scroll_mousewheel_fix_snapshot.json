@@ -1,0 +1,17 @@
+{
+  "version": "V322",
+  "name": "GLOBAL_SCROLL_MOUSEWHEEL_CLIENT_UX_FIX_PRO",
+  "base": "V321",
+  "fixes": [
+    "html/body overflow unlock",
+    "no-scroll/modal-open removal",
+    "layout overflow visible",
+    "mobile bottom space"
+  ],
+  "keeps": [
+    "1X2",
+    "live reliability",
+    "telegram scheduler/webhook",
+    "stability center"
+  ]
+}

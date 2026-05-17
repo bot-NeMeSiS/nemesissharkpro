@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Scroll Fix V322 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/global_scroll_mousewheel_fix_v322.css') }}">
+<script defer src="{{ url_for('static', filename='js/global_scroll_mousewheel_fix_v322.js') }}"></script>
+<section class="v322-shell">
+  <div class="v322-hero">
+    <span class="v322-badge">V322 · Scroll Fix</span>
+    <h1>Scroll y rueda del ratón recuperados</h1>
+    <p>Fix global para desbloquear overflow en cliente, live, 1X2 y dashboards.</p>
+  </div>
+  <div class="v322-grid">
+    <article class="v322-card"><h2>Cliente</h2><a href="/cliente/pro">Probar</a></article>
+    <article class="v322-card"><h2>Live</h2><a href="/cliente/live-central">Probar</a></article>
+    <article class="v322-card"><h2>1X2</h2><a href="/cliente/1x2">Probar</a></article>
+    <article class="v322-card"><h2>Estado</h2><a href="/api/stability/full-status-v321">Status</a></article>
+  </div>
+</section>
+{% endblock %}

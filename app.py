@@ -11089,5 +11089,32 @@ def api_full_stability_status_v321():
 # ===== END V321 =====
 
 
+
+# ===== V322 · GLOBAL SCROLL MOUSEWHEEL CLIENT UX FIX PRO =====
+@app.route("/scroll-fix-v322")
+@app.route("/cliente/scroll-fix")
+def global_scroll_mousewheel_fix_v322():
+    return render_template("global_scroll_mousewheel_fix_v322.html")
+# ===== END V322 =====
+
+
+
+# ===== V323 · CLEAN 1X2 NAV CLIENT NEXT UX PRO =====
+@app.route("/clean-1x2-nav-v323")
+@app.route("/cliente/clean-1x2")
+def clean_1x2_nav_client_v323():
+    return render_template("clean_1x2_nav_client_v323.html")
+# ===== END V323 =====
+
+
+
+# ===== V324 · CLIENT PRO POLISH CONSOLIDATION =====
+@app.route("/client-pro-polish-v324")
+@app.route("/cliente/pulido-pro")
+def client_pro_polish_v324():
+    return render_template("client_pro_polish_center_v324.html")
+# ===== END V324 =====
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

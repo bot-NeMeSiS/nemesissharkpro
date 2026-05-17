@@ -5,7 +5,7 @@
   <a class="v263-shell-brand" href="/clientes"><strong>NeMeSiS</strong><small>SHARK PRO</small></a>
   <nav class="v263-shell-nav">
     <a href="/clientes">Inicio</a><a href="/picks">Picks</a><a href="/fixtures/today-pro">Hoy</a><a href="/live-command-center">Live</a>
-<a href="/cliente/1x2" class="v320-1x2-tab">Combis 1X2</a><a href="/match-center-unified">Match Center</a><a href="/smart-value-detection">Value</a><a href="/shark-ai">SHARK AI</a>
+<a href="/match-center-unified">Match Center</a><a href="/smart-value-detection">Value</a><a href="/shark-ai">SHARK AI</a>
   </nav>
 </div>
 <main class="nsp-shell" style="padding:24px 0 40px;"><section class="nsp-hero"><span class="nsp-eyebrow">🦈 Real Only</span><h1 class="nsp-title">Hola, bienvenido</h1><p class="nsp-subtitle">Panel limpio: solo datos reales validados.</p><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;"><a class="nsp-btn" href="/partidos?force=true">Partidos reales</a><a class="nsp-btn secondary" href="/picks?force=true">Picks reales</a><a class="nsp-btn secondary" href="/admin/legacy-kill">V90 check</a></div></section>{% if not feed.ok %}<div class="v90-alert"><strong>No hay partidos reales ahora mismo.</strong><br>No se muestran demos ni partidos antiguos.{% if feed.error %}<br><small>{{ feed.error }}</small>{% endif %}</div>{% endif %}</main><script defer src="{{ url_for('static', filename='js/v266_client_experience_unification.js') }}"></script>

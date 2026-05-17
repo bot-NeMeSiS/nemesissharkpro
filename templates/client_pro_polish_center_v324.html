@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Client Pro Polish V324 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_pro_polish_v324.css') }}">
+<script defer src="{{ url_for('static', filename='js/client_pro_polish_v324.js') }}"></script>
+
+<section class="v324-shell">
+  <div class="v324-hero">
+    <div>
+      <span class="v324-badge">V324 · Client Pro Polish</span>
+      <h1>Pulido profesional del cliente</h1>
+      <p>
+        Consolidación visual y de manejabilidad: menos ruido, mejor navegación,
+        1X2 limpio, scroll estable y experiencia más premium.
+      </p>
+    </div>
+    <div class="v324-status">
+      <strong>PRO UX</strong>
+      <span>Beta vendible más cerca</span>
+    </div>
+  </div>
+
+  <div class="v324-grid">
+    <article class="v324-card">
+      <span>UX</span>
+      <h2>Navegación limpia</h2>
+      <p>Refuerza un único acceso 1X2 y reduce duplicados visuales.</p>
+      <a href="/cliente/pro">Probar cliente</a>
+    </article>
+    <article class="v324-card">
+      <span>LIVE</span>
+      <h2>Live usable</h2>
+      <p>Mantiene fixes de marcador, minuto, escudos y scroll.</p>
+      <a href="/cliente/live-central">Probar live</a>
+    </article>
+    <article class="v324-card">
+      <span>1X2</span>
+      <h2>Combis cliente</h2>
+      <p>Acceso limpio a Combis 1X2 con motor REAL ONLY.</p>
+      <a href="/cliente/1x2">Abrir 1X2</a>
+    </article>
+    <article class="v324-card">
+      <span>OK</span>
+      <h2>Estado</h2>
+      <p>Comprueba estabilidad global del sistema.</p>
+      <a href="/api/stability/full-status-v321">Status</a>
+    </article>
+  </div>
+
+  <div class="v324-footer">
+    <h2>Siguiente bloque recomendado</h2>
+    <p>
+      Después de este pulido, el siguiente paso debería ser Match Center Premium:
+      una ficha de partido más bonita, clara y útil para cliente con live, 1X2, SHARK y alertas.
+    </p>
+  </div>
+</section>
+{% endblock %}
