@@ -1,0 +1,15 @@
+{
+  "version": "V313",
+  "name": "CLIENT EASY MODE + NAVIGATION PRO",
+  "base": "V312",
+  "focus": "facilidad, manejabilidad y acceso rápido del cliente",
+  "real_only": true,
+  "client_flow": [
+    "qué mirar",
+    "partidos hoy",
+    "combis 1x2",
+    "live",
+    "SHARK",
+    "alertas"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "version": "V314",
+  "name": "LIVE SCORE + CRESTS + VAPID CLIENT FIX PRO",
+  "base": "V313",
+  "fixes": [
+    "live score/minute normalizer",
+    "crest field normalization",
+    "client VAPID warning hidden",
+    "live reliability status endpoint"
+  ],
+  "real_only": true
+}

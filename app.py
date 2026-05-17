@@ -17,7 +17,7 @@ except Exception:
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
-from flask import Flask, render_template, request, redirect, session, jsonify, send_from_directory, Response
+from flask import Flask, Response, jsonify, redirect, render_template, request, send_from_directory, session
 
 APP_VERSION = "NeMeSiS_SHARK_PRO_V265_0_ROUTE_SAFETY_VISUAL_CONSISTENCY_GUARD_PRO_RENDER_READY"
 APP_NAME = "NeMeSiS SHARK PRO"
@@ -10805,6 +10805,149 @@ def client_post_match_recap_loop_v309():
 def real_1x2_combi_center_v312():
     return render_template("real_1x2_combi_center_v312.html")
 # ===== END V312 =====
+
+
+
+
+# ===== V313 · CLIENT EASY MODE + NAVIGATION PRO =====
+@app.route("/client-easy-mode")
+@app.route("/cliente/easy-mode")
+@app.route("/cliente/modo-facil")
+def client_easy_mode_navigation_v313():
+    return render_template("client_easy_mode_navigation_v313.html")
+# ===== END V313 =====
+
+
+
+
+# ===== V314 · LIVE SCORE + CRESTS + VAPID CLIENT FIX PRO =====
+@app.route("/client-live-reliability-center")
+@app.route("/cliente/live-reliability")
+@app.route("/cliente/reparacion-live")
+def client_live_reliability_center_v314():
+    return render_template("client_live_reliability_center_v314.html")
+
+@app.route("/api/live-reliability-status")
+def api_live_reliability_status_v314():
+    try:
+        from services.live_normalizer_v314 import client_vapid_state
+        vapid = client_vapid_state()
+    except Exception:
+        vapid = {"configured": False, "hide_warning_for_client": True}
+    return jsonify({
+        "ok": True,
+        "version": "V314",
+        "live_contract": {
+            "score_fields": ["home_score", "away_score", "score.home", "score.away"],
+            "minute_fields": ["minute", "elapsed", "time", "status_minute"],
+            "crest_fields": ["crest", "logo", "badge", "image", "team_logo"],
+            "real_only": True
+        },
+        "vapid": vapid
+    })
+# ===== END V314 =====
+
+
+
+
+# ===== V315 · TELEGRAM DELIVERY RECOVERY PRO =====
+@app.route("/telegram-delivery-recovery")
+@app.route("/admin/telegram-delivery")
+@app.route("/admin/telegram-recovery")
+def telegram_delivery_recovery_v315():
+    return render_template("telegram_delivery_recovery_v315.html")
+
+@app.route("/api/telegram/status-v315")
+def api_telegram_status_v315():
+    try:
+        from services.telegram_delivery_v315 import telegram_config_status, try_db_connection
+        return jsonify({"ok": True, "config": telegram_config_status(), "db": try_db_connection()})
+    except Exception as exc:
+        return jsonify({"ok": False, "error": str(exc)}), 500
+
+@app.route("/api/telegram/test-admin-v315")
+def api_telegram_test_admin_v315():
+    try:
+        from services.telegram_delivery_v315 import send_admin_test
+        result = send_admin_test()
+        return jsonify(result)
+    except Exception as exc:
+        return jsonify({"ok": False, "error": str(exc)}), 500
+
+@app.route("/api/telegram/known-chats-v315")
+def api_telegram_known_chats_v315():
+    try:
+        from services.telegram_delivery_v315 import discover_telegram_chats
+        chats = discover_telegram_chats()
+        return jsonify({"ok": True, "count": len(chats), "chats": chats})
+    except Exception as exc:
+        return jsonify({"ok": False, "error": str(exc)}), 500
+
+@app.route("/api/telegram/send-v315", methods=["POST"])
+def api_telegram_send_v315():
+    try:
+        from services.telegram_delivery_v315 import send_message
+        data = request.get_json(silent=True) or request.form or {}
+        chat_id = str(data.get("chat_id", "")).strip()
+        text = str(data.get("text", "")).strip()
+        result = send_message(chat_id, text)
+        return jsonify(result)
+    except Exception as exc:
+        return jsonify({"ok": False, "error": str(exc)}), 500
+
+@app.route("/api/telegram/broadcast-test-v315")
+def api_telegram_broadcast_test_v315():
+    try:
+        from services.telegram_delivery_v315 import broadcast_to_known_chats, build_daily_client_message
+        result = broadcast_to_known_chats(build_daily_client_message(), max_count=25)
+        return jsonify(result)
+    except Exception as exc:
+        return jsonify({"ok": False, "error": str(exc)}), 500
+# ===== END V315 =====
+
+
+
+
+# ===== V316 · TELEGRAM AUTO BROADCAST SCHEDULER PRO =====
+@app.route("/telegram-auto-scheduler")
+@app.route("/admin/telegram-auto")
+@app.route("/admin/telegram-scheduler")
+def telegram_auto_scheduler_v316():
+    try:
+        from services.telegram_scheduler_v316 import start_scheduler_once
+        start_scheduler_once()
+    except Exception:
+        pass
+    return render_template("telegram_auto_scheduler_v316.html")
+
+@app.route("/api/telegram/auto-status-v316")
+def api_telegram_auto_status_v316():
+    try:
+        from services.telegram_scheduler_v316 import start_scheduler_once, status
+        start_scheduler_once()
+        return jsonify(status())
+    except Exception as exc:
+        return jsonify({"ok": False, "error": str(exc)}), 500
+
+@app.route("/api/telegram/auto-run-v316")
+def api_telegram_auto_run_v316():
+    try:
+        from services.telegram_scheduler_v316 import run_once
+        return jsonify(run_once(reason="manual"))
+    except Exception as exc:
+        return jsonify({"ok": False, "error": str(exc)}), 500
+# ===== END V316 =====
+
+
+
+
+# ===== V316 AUTOSTART TELEGRAM SCHEDULER =====
+try:
+    from services.telegram_scheduler_v316 import start_scheduler_once
+    start_scheduler_once()
+except Exception as _telegram_scheduler_error:
+    pass
+# ===== END V316 AUTOSTART =====
 
 
 if __name__ == "__main__":

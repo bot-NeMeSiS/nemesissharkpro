@@ -1,0 +1,18 @@
+{
+  "version": "V316",
+  "name": "TELEGRAM AUTO BROADCAST SCHEDULER PRO",
+  "base": "V315",
+  "features": [
+    "scheduler interno automático",
+    "intervalo configurable",
+    "anti-spam mínimo 5 minutos",
+    "manual run endpoint",
+    "status endpoint",
+    "Render Cron compatible"
+  ],
+  "env": {
+    "TELEGRAM_AUTO_BROADCAST_ENABLED": "true",
+    "TELEGRAM_AUTO_BROADCAST_INTERVAL_SECONDS": "3600",
+    "TELEGRAM_AUTO_BROADCAST_MAX_CHATS": "50"
+  }
+}

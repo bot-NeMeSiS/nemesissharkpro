@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Modo Fácil Cliente · NeMeSiS SHARK PRO{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_easy_mode_navigation_v313.css') }}">
+<script defer src="{{ url_for('static', filename='js/client_easy_mode_navigation_v313.js') }}"></script>
+
+<section class="v313-shell">
+  <div class="v313-hero">
+    <div>
+      <span class="v313-badge">V313 · Modo Fácil Cliente</span>
+      <h1>Todo lo importante en una pantalla</h1>
+      <p>
+        Una vista pensada para que el cliente no se pierda: partidos de hoy,
+        live, combis 1X2, alertas, SHARK AI y favoritos con acceso rápido.
+      </p>
+    </div>
+    <div class="v313-status">
+      <strong>Fácil</strong>
+      <span>Entrar · mirar · decidir</span>
+    </div>
+  </div>
+
+  <div class="v313-main-actions">
+    <a href="/fixtures/today-pro" class="v313-action primary">
+      <span>01</span>
+      <strong>Partidos de hoy</strong>
+      <small>Ver rápido qué se juega hoy</small>
+    </a>
+
+    <a href="/cliente/live-central" class="v313-action hot">
+      <span>02</span>
+      <strong>Live ahora</strong>
+      <small>Partidos en directo y seguimiento</small>
+    </a>
+
+    <a href="/cliente/combis" class="v313-action combi">
+      <span>03</span>
+      <strong>Combis 1X2</strong>
+      <small>Crear combinadas simples</small>
+    </a>
+
+    <a href="/cliente/centro-avisos" class="v313-action alert">
+      <span>04</span>
+      <strong>Alertas</strong>
+      <small>Avisos útiles sin ruido</small>
+    </a>
+
+    <a href="/cliente/shark-ai-pro" class="v313-action shark">
+      <span>05</span>
+      <strong>SHARK AI</strong>
+      <small>Preguntar antes de decidir</small>
+    </a>
+
+    <a href="/cliente/favoritos" class="v313-action">
+      <span>06</span>
+      <strong>Favoritos</strong>
+      <small>Equipos y partidos seguidos</small>
+    </a>
+  </div>
+
+  <div class="v313-guide">
+    <div>
+      <h2>Flujo recomendado para cliente</h2>
+      <p>
+        1) Mira partidos de hoy · 2) Revisa live · 3) Elige 1X2 si procede ·
+        4) Pregunta a SHARK · 5) Activa alertas si quieres seguir el partido.
+      </p>
+    </div>
+    <div class="v313-guide-actions">
+      <a href="/cliente/v300">Core cliente</a>
+      <a href="/cliente/bucle-diario">Daily Loop</a>
+      <a href="/cliente/estado-partido">Estado partido</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

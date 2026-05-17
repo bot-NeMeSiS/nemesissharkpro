@@ -1,0 +1,18 @@
+{
+  "version": "V315",
+  "name": "TELEGRAM DELIVERY RECOVERY PRO",
+  "base": "V314",
+  "fixes": [
+    "Telegram Bot API sender service",
+    "admin test endpoint",
+    "known chat discovery from DB",
+    "broadcast test endpoint",
+    "diagnostic panel"
+  ],
+  "env_required": [
+    "TELEGRAM_BOT_TOKEN",
+    "TELEGRAM_ADMIN_CHAT_ID optional but recommended",
+    "DATABASE_PATH/DB_PATH optional"
+  ],
+  "important": "Para enviar a clientes reales, deben tener chat_id guardado en DB o haber vinculado Telegram."
+}

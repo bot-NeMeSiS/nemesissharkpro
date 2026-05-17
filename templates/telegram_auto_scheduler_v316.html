@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Telegram Auto Scheduler · NeMeSiS SHARK PRO{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/telegram_auto_scheduler_v316.css') }}">
+<script defer src="{{ url_for('static', filename='js/telegram_auto_scheduler_v316.js') }}"></script>
+
+<section class="v316-shell">
+  <div class="v316-hero">
+    <div>
+      <span class="v316-badge">V316 · Telegram Auto Scheduler</span>
+      <h1>Mensajes automáticos Telegram</h1>
+      <p>
+        Recupera el envío automático cada cierto tiempo: partidos, avisos de sistema,
+        acceso a Live, combis 1X2 y SHARK AI para clientes vinculados.
+      </p>
+    </div>
+    <div class="v316-status">
+      <strong>AUTO ON</strong>
+      <span>Intervalo configurable · anti-spam</span>
+    </div>
+  </div>
+
+  <div class="v316-grid">
+    <article class="v316-card">
+      <span>01</span>
+      <h2>Scheduler interno</h2>
+      <p>Arranca automáticamente con la app si TELEGRAM_AUTO_BROADCAST_ENABLED está activo.</p>
+      <a href="/api/telegram/auto-status-v316">Ver estado</a>
+    </article>
+
+    <article class="v316-card">
+      <span>02</span>
+      <h2>Enviar ahora</h2>
+      <p>Ejecuta un envío inmediato a clientes con chat_id conocido.</p>
+      <a href="/api/telegram/auto-run-v316">Enviar ahora</a>
+    </article>
+
+    <article class="v316-card">
+      <span>03</span>
+      <h2>Clientes vinculados</h2>
+      <p>Comprueba qué clientes tienen Telegram chat_id guardado.</p>
+      <a href="/api/telegram/known-chats-v315">Ver chats</a>
+    </article>
+
+    <article class="v316-card warn">
+      <span>04</span>
+      <h2>Render Cron recomendado</h2>
+      <p>Para máxima fiabilidad, crear Cron Job apuntando a /api/telegram/auto-run-v316.</p>
+      <a href="/api/telegram/status-v315">Diagnóstico</a>
+    </article>
+  </div>
+
+  <div class="v316-footer">
+    <div>
+      <h3>Variables recomendadas</h3>
+      <p>
+        TELEGRAM_BOT_TOKEN, TELEGRAM_ADMIN_CHAT_ID,
+        TELEGRAM_AUTO_BROADCAST_ENABLED=true,
+        TELEGRAM_AUTO_BROADCAST_INTERVAL_SECONDS=3600.
+      </p>
+    </div>
+    <a href="/admin/telegram-recovery">Panel Telegram</a>
+  </div>
+</section>
+{% endblock %}
