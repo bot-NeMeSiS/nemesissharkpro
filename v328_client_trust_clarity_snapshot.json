@@ -1,0 +1,12 @@
+{
+  "version": "V328",
+  "name": "CLIENT_TRUST_CLARITY_LAYER_PRO",
+  "base": "V327",
+  "features": [
+    "trust strip",
+    "real only clarity",
+    "low data explanations",
+    "decision guidance"
+  ],
+  "real_only": true
+}

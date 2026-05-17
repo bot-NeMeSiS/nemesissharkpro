@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Trust & Clarity V328 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_trust_clarity_v328.css') }}">
+<script defer src="{{ url_for('static', filename='js/client_trust_clarity_v328.js') }}"></script>
+<section class="v328-shell">
+  <div class="v328-hero">
+    <div><span class="v328-badge">V328 · Trust & Clarity</span><h1>Más confianza y claridad para cliente</h1><p>Capa comercial para que el cliente entienda rápido cuándo mirar, decidir o esperar sin que parezca demo ni señales inventadas.</p></div>
+    <div class="v328-status"><strong>REAL ONLY</strong><span>Confianza · claridad · decisión</span></div>
+  </div>
+  <div class="v328-grid">
+    <article class="v328-card"><span>✅</span><h2>Datos reales</h2><p>Refuerza el mensaje de que no se inventan señales.</p><a href="/api/stability/full-status-v321">Status</a></article>
+    <article class="v328-card"><span>⏳</span><h2>LOW DATA claro</h2><p>Cuando falten datos, se explica que toca esperar.</p><a href="/cliente/live-central">Live</a></article>
+    <article class="v328-card"><span>👑</span><h2>1X2 simple</h2><p>La decisión 1/X/2 queda más entendible para cliente.</p><a href="/cliente/1x2">1X2</a></article>
+    <article class="v328-card"><span>🦈</span><h2>SHARK como guía</h2><p>El cliente sabe cuándo preguntar antes de apostar.</p><a href="/cliente/shark-ai-pro">SHARK</a></article>
+  </div>
+</section>
+{% endblock %}

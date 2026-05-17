@@ -1,0 +1,11 @@
+{
+  "version": "V326",
+  "name": "MATCH_CENTER_PREMIUM_CLIENT_PRO",
+  "base": "V325",
+  "features": [
+    "premium match card",
+    "live/1x2/shark/alerts hub",
+    "bottom nav match access"
+  ],
+  "real_only": true
+}

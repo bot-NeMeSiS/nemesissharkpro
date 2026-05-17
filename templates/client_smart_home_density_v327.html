@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Smart Home Density V327 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_smart_home_density_v327.css') }}">
+<script defer src="{{ url_for('static', filename='js/client_smart_home_density_v327.js') }}"></script>
+<section class="v327-shell">
+  <div class="v327-hero">
+    <div><span class="v327-badge">V327 · Smart Home Density</span><h1>Inicio cliente más útil y compacto</h1><p>Menos espacio vacío y más accesos útiles: partidos, live, 1X2 y Match Center siempre a mano.</p></div>
+    <div class="v327-status"><strong>DENSITY PRO</strong><span>Más contenido · menos ruido</span></div>
+  </div>
+  <div class="v327-grid">
+    <article class="v327-card"><span>📅</span><h2>Partidos hoy</h2><p>Entrada rápida a lo que se juega hoy.</p><a href="/fixtures/today-pro">Abrir</a></article>
+    <article class="v327-card"><span>🔥</span><h2>Live</h2><p>Marcador, minuto y señales reales.</p><a href="/cliente/live-central">Abrir</a></article>
+    <article class="v327-card"><span>👑</span><h2>1X2</h2><p>Combis visibles y rápidas.</p><a href="/cliente/1x2">Abrir</a></article>
+    <article class="v327-card"><span>📊</span><h2>Match Center</h2><p>Centro premium de partido.</p><a href="/cliente/match-center-premium">Abrir</a></article>
+  </div>
+</section>
+{% endblock %}

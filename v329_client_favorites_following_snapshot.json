@@ -1,0 +1,13 @@
+{
+  "version": "V329",
+  "name": "CLIENT_FAVORITES_FOLLOWING_PRO",
+  "base": "V328",
+  "features": [
+    "favorites tables",
+    "following matches table",
+    "home follow strip",
+    "follow buttons",
+    "telegram future personalization"
+  ],
+  "real_only": true
+}

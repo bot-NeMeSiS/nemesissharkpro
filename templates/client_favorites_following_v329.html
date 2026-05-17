@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Favoritos y Seguimiento · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_favorites_following_v329.css') }}">
+<script defer src="{{ url_for('static', filename='js/client_favorites_following_v329.js') }}"></script>
+<section class="v329-shell">
+  <div class="v329-hero">
+    <div>
+      <span class="v329-badge">V329 · Favorites & Following</span>
+      <h1>Favoritos y seguimiento del cliente</h1>
+      <p>Base para que cada cliente tenga equipos, partidos y alertas más personales conectadas con Live, 1X2, Match Center y Telegram.</p>
+    </div>
+    <div class="v329-status"><strong>PERSONAL</strong><span>Mis equipos · Mis partidos</span></div>
+  </div>
+  <div class="v329-grid">
+    <article class="v329-card gold"><span>⭐</span><h2>Mis favoritos</h2><p>Equipos o ligas que el cliente quiere tener siempre a mano.</p><a href="/api/client/favorites/list-v329">Ver lista</a></article>
+    <article class="v329-card"><span>📊</span><h2>Partidos seguidos</h2><p>Base para seguimiento live y alertas personalizadas.</p><a href="/cliente/match-center-premium">Match Center</a></article>
+    <article class="v329-card"><span>🔥</span><h2>Live personalizado</h2><p>Más adelante mostrará primero lo que el cliente sigue.</p><a href="/cliente/live-central">Live</a></article>
+    <article class="v329-card"><span>📨</span><h2>Telegram futuro</h2><p>Base para mensajes automáticos según favoritos.</p><a href="/api/telegram/auto-status-v316">Telegram</a></article>
+  </div>
+</section>
+{% endblock %}

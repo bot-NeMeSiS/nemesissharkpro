@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Match Center Premium · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/match_center_premium_v326.css') }}">
+<script defer src="{{ url_for('static', filename='js/match_center_premium_v326.js') }}"></script>
+
+<section class="v326-shell">
+  <div class="v326-hero">
+    <div>
+      <span class="v326-badge">V326 · MATCH CENTER PREMIUM</span>
+      <h1>Centro premium del partido</h1>
+      <p>Una ficha clara para el cliente: estado, live, 1X2, SHARK, alertas y decisión sin saltar entre mil pantallas.</p>
+    </div>
+    <div class="v326-status">
+      <strong>REAL ONLY</strong>
+      <span>Si faltan datos, LOW DATA</span>
+    </div>
+  </div>
+
+  <div class="v326-match-card">
+    <div class="v326-match-head">
+      <div>
+        <span class="v326-pill">Partido seleccionado</span>
+        <h2>Match Center</h2>
+        <p>Cuando haya partido real seleccionado, aquí se conectará marcador, minuto, cuotas, 1X2 y contexto SHARK.</p>
+      </div>
+      <div class="v326-score">
+        <strong>LOW DATA</strong>
+        <small>Esperando datos reales</small>
+      </div>
+    </div>
+
+    <div class="v326-panels">
+      <article><span>🔥</span><h3>Live</h3><p>Marcador, minuto y señales reales.</p><a href="/cliente/live-central">Abrir Live</a></article>
+      <article><span>👑</span><h3>1X2</h3><p>Local, empate o visitante con cuotas reales.</p><a href="/cliente/1x2">Abrir 1X2</a></article>
+      <article><span>🦈</span><h3>SHARK</h3><p>Contexto y explicación antes de decidir.</p><a href="/cliente/shark-ai-pro">Preguntar</a></article>
+      <article><span>🔔</span><h3>Alertas</h3><p>Seguir el partido sin mirar cada minuto.</p><a href="/cliente/centro-avisos">Alertas</a></article>
+    </div>
+  </div>
+
+  <div class="v326-footer">
+    <div>
+      <h2>Qué mejora este avance</h2>
+      <p>Reduce saltos, mejora manejabilidad y prepara una ficha real de partido mucho más comercial y fácil para el cliente.</p>
+    </div>
+    <a href="/api/match-center/status-v326">Ver status</a>
+  </div>
+</section>
+{% endblock %}

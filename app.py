@@ -11125,5 +11125,106 @@ def app_feel_restructure_v325():
 # ===== END V325 =====
 
 
+
+# ===== V326 · MATCH CENTER PREMIUM CLIENT PRO =====
+@app.route("/match-center-premium-v326")
+@app.route("/cliente/match-center-premium")
+@app.route("/cliente/match-center-pro")
+def match_center_premium_v326():
+    return render_template("match_center_premium_v326.html")
+
+@app.route("/api/match-center/status-v326")
+def api_match_center_status_v326():
+    try:
+        from services.match_center_premium_v326 import status
+        return jsonify(status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V326","error":str(exc)}),500
+# ===== END V326 =====
+
+
+
+# ===== V327 · CLIENT SMART HOME DENSITY PRO =====
+@app.route("/client-smart-home-density-v327")
+@app.route("/cliente/smart-home-density")
+def client_smart_home_density_v327():
+    return render_template("client_smart_home_density_v327.html")
+
+@app.route("/api/client/home-density/status-v327")
+def api_client_home_density_status_v327():
+    try:
+        from services.client_smart_home_density_v327 import status
+        return jsonify(status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V327","error":str(exc)}),500
+# ===== END V327 =====
+
+
+
+# ===== V328 · CLIENT TRUST CLARITY LAYER PRO =====
+@app.route("/client-trust-clarity-v328")
+@app.route("/cliente/trust-clarity")
+def client_trust_clarity_v328():
+    return render_template("client_trust_clarity_v328.html")
+
+@app.route("/api/client/trust-clarity/status-v328")
+def api_client_trust_clarity_status_v328():
+    try:
+        from services.client_trust_clarity_v328 import status
+        return jsonify(status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V328","error":str(exc)}),500
+# ===== END V328 =====
+
+
+
+# ===== V329 · CLIENT FAVORITES FOLLOWING PRO =====
+@app.route("/client-favorites-following-v329")
+@app.route("/cliente/favorites-following")
+@app.route("/cliente/favoritos")
+def client_favorites_following_v329():
+    try:
+        from services.client_favorites_following_v329 import ensure_tables
+        ensure_tables()
+    except Exception:
+        pass
+    return render_template("client_favorites_following_v329.html")
+
+@app.route("/api/client/favorites/status-v329")
+def api_client_favorites_status_v329():
+    try:
+        from services.client_favorites_following_v329 import status
+        return jsonify(status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V329","error":str(exc)}),500
+
+@app.route("/api/client/favorites/list-v329")
+def api_client_favorites_list_v329():
+    try:
+        from services.client_favorites_following_v329 import list_demo_safe
+        return jsonify(list_demo_safe())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V329","error":str(exc)}),500
+# ===== END V329 =====
+
+
+
+# ===== V330 · LAUNCH READY COMMERCIAL PACK PRO =====
+@app.route("/launch-ready-v330")
+@app.route("/admin/launch-ready")
+@app.route("/cliente/launch-ready")
+def launch_ready_commercial_v330():
+    return render_template("launch_ready_commercial_v330.html")
+
+@app.route("/api/launch/status-v330")
+def api_launch_status_v330():
+    try:
+        from services.launch_ready_commercial_v330 import launch_status
+        return jsonify(launch_status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V330","error":str(exc)}),500
+# ===== END V330 =====
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

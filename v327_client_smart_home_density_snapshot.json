@@ -1,0 +1,11 @@
+{
+  "version": "V327",
+  "name": "CLIENT_SMART_HOME_DENSITY_PRO",
+  "base": "V326",
+  "features": [
+    "compact home strip",
+    "less empty space",
+    "quick access live/1x2/match center"
+  ],
+  "real_only": true
+}
