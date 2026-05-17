@@ -1,0 +1,6 @@
+
+(function(){function hide(){['.vapid-warning','.vapid-alert','.push-warning','.push-config-warning','[data-vapid-warning="true"]'].forEach(function(s){document.querySelectorAll(s).forEach(function(e){e.style.display='none';});});}
+function x2(){var existing=document.querySelector('a[href="/cliente/1x2"],a[href="/cliente/combis"]');if(existing){existing.classList.add('v321-force-1x2');if(!existing.textContent.trim())existing.textContent='Combis 1X2';}
+var containers=[];document.querySelectorAll('nav,header,.client-tabs,.dashboard-tabs,.nav-tabs,.bottom-nav,.mobile-bottom-nav,.app-bottom-nav,.v313-main-actions,.panel,.card').forEach(function(el){var t=(el.textContent||'').toLowerCase();if(t.includes('picks')||t.includes('partidos')||t.includes('directo')||t.includes('inicio')||t.includes('live'))containers.push(el);});
+containers.slice(0,8).forEach(function(c){if(c.querySelector('[data-v321-1x2]'))return;var a=document.createElement('a');a.href='/cliente/1x2';a.textContent='Combis 1X2';a.dataset.v3211x2='1';a.className='v321-force-1x2';c.appendChild(a);});}
+function boot(){hide();x2();document.documentElement.classList.add('v321-full-stability-ready');}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();})();

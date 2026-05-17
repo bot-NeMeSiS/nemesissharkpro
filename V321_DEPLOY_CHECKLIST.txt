@@ -1,0 +1,18 @@
+NeMeSiS SHARK PRO · V321 FULL STABILITY FINAL
+
+COMPROBAR:
+1. /api/stability/full-status-v321
+2. /cliente/1x2
+3. /cliente/reparacion-live
+4. /api/live-reliability-status
+5. /api/telegram/set-webhook-v318
+6. Mandar /start al bot privado
+7. /api/telegram/linked-chats-v317
+8. /api/telegram/auto-run-v316
+
+VARIABLES:
+TELEGRAM_BOT_TOKEN
+TELEGRAM_ADMIN_CHAT_ID
+TELEGRAM_AUTO_BROADCAST_ENABLED=true
+TELEGRAM_AUTO_BROADCAST_INTERVAL_SECONDS=3600
+PUBLIC_BASE_URL=https://TUAPP.onrender.com

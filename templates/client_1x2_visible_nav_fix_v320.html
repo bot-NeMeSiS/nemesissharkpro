@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}1X2 Visible Fix · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_1x2_visible_nav_fix_v320.css') }}">
+<script defer src="{{ url_for('static', filename='js/client_1x2_visible_nav_fix_v320.js') }}"></script>
+
+<section class="v320-shell">
+  <div class="v320-hero">
+    <div>
+      <span class="v320-badge">V320 · 1X2 Visible Fix</span>
+      <h1>Combis 1X2 visibles para cliente</h1>
+      <p>
+        Corrección para que el acceso a 1X2 aparezca fijo en navegación cliente,
+        dashboard móvil y botones principales, no solo por ruta oculta.
+      </p>
+    </div>
+    <div class="v320-status">
+      <strong>VISIBLE</strong>
+      <span>Cliente · móvil · dashboard</span>
+    </div>
+  </div>
+
+  <div class="v320-actions">
+    <a href="/cliente/1x2">Abrir Combis 1X2</a>
+    <a href="/cliente/combis">Abrir Combis</a>
+    <a href="/api/client/1x2/recommendations-v319">Ver datos 1X2</a>
+    <a href="/cliente/pro">Volver cliente</a>
+  </div>
+</section>
+{% endblock %}

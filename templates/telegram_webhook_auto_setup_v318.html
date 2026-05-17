@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Telegram Webhook Auto Setup · NeMeSiS SHARK PRO{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/telegram_webhook_auto_setup_v318.css') }}">
+<script defer src="{{ url_for('static', filename='js/telegram_webhook_auto_setup_v318.js') }}"></script>
+
+<section class="v318-shell">
+  <div class="v318-hero">
+    <div>
+      <span class="v318-badge">V318 · Webhook Auto Setup</span>
+      <h1>Reparación del webhook Telegram</h1>
+      <p>
+        Si escribes /start y el bot no responde, Telegram no está llegando a Render.
+        Esta versión permite configurar el webhook real hacia /telegram/webhook desde la propia app.
+      </p>
+    </div>
+    <div class="v318-status">
+      <strong>WEBHOOK FIX</strong>
+      <span>setWebhook · info · deleteWebhook</span>
+    </div>
+  </div>
+
+  <div class="v318-grid">
+    <article class="v318-card">
+      <span>01</span>
+      <h2>Ver webhook actual</h2>
+      <p>Comprueba a qué URL está apuntando Telegram ahora mismo.</p>
+      <a href="/api/telegram/webhook-info-v318">Ver info</a>
+    </article>
+
+    <article class="v318-card">
+      <span>02</span>
+      <h2>Configurar webhook</h2>
+      <p>Apunta automáticamente Telegram a /telegram/webhook de tu app Render.</p>
+      <a href="/api/telegram/set-webhook-v318">Configurar</a>
+    </article>
+
+    <article class="v318-card warn">
+      <span>03</span>
+      <h2>Borrar webhook viejo</h2>
+      <p>Útil si Telegram estaba apuntando a una URL antigua o rota.</p>
+      <a href="/api/telegram/delete-webhook-v318">Borrar</a>
+    </article>
+
+    <article class="v318-card">
+      <span>04</span>
+      <h2>Chats vinculados</h2>
+      <p>Después de mandar /start, aquí debe aparecer tu chat_id.</p>
+      <a href="/api/telegram/linked-chats-v317">Ver chats</a>
+    </article>
+  </div>
+
+  <div class="v318-footer">
+    <div>
+      <h3>Orden correcto</h3>
+      <p>
+        1) Configurar webhook · 2) mandar /start al bot privado ·
+        3) revisar linked-chats · 4) ejecutar auto-run.
+      </p>
+    </div>
+    <a href="/api/telegram/auto-run-v316">Probar envío</a>
+  </div>
+</section>
+{% endblock %}

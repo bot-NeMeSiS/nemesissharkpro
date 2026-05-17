@@ -10950,5 +10950,144 @@ except Exception as _telegram_scheduler_error:
 # ===== END V316 AUTOSTART =====
 
 
+
+
+# ===== V317 · TELEGRAM CHAT LINKING WEBHOOK FIX PRO =====
+@app.route("/telegram-chat-linking")
+@app.route("/admin/telegram-linking")
+@app.route("/admin/telegram-chat-linking")
+def telegram_chat_linking_v317():
+    try:
+        from services.telegram_linking_v317 import ensure_telegram_tables
+        ensure_telegram_tables()
+    except Exception:
+        pass
+    return render_template("telegram_chat_linking_v317.html")
+
+@app.route("/api/telegram/linking-status-v317")
+def api_telegram_linking_status_v317():
+    try:
+        from services.telegram_linking_v317 import ensure_telegram_tables, count_linked_chats, DB_PATH
+        ensure_telegram_tables()
+        return jsonify({"ok": True, "version": "V317", "db_path": DB_PATH, "linked_count": count_linked_chats()})
+    except Exception as exc:
+        return jsonify({"ok": False, "error": str(exc)}), 500
+
+@app.route("/api/telegram/linked-chats-v317")
+def api_telegram_linked_chats_v317():
+    try:
+        from services.telegram_linking_v317 import list_linked_chats
+        chats = list_linked_chats()
+        return jsonify({"ok": True, "count": len(chats), "chats": chats})
+    except Exception as exc:
+        return jsonify({"ok": False, "error": str(exc)}), 500
+
+@app.route("/telegram/webhook", methods=["GET", "POST"])
+@app.route("/telegram-webhook", methods=["GET", "POST"])
+@app.route("/api/telegram/webhook", methods=["GET", "POST"])
+def telegram_webhook_v317():
+    try:
+        if request.method == "GET":
+            return jsonify({"ok": True, "message": "Telegram webhook V317 activo"})
+        update = request.get_json(silent=True) or {}
+        from services.telegram_linking_v317 import save_chat_from_update, should_reply_to_text, build_start_reply
+        from services.telegram_delivery_v315 import send_message
+        saved = save_chat_from_update(update)
+        if saved.get("ok"):
+            chat = saved.get("chat", {})
+            text = chat.get("last_text", "")
+            if should_reply_to_text(text):
+                send_message(chat.get("chat_id"), build_start_reply())
+        return jsonify({"ok": True, "saved": saved})
+    except Exception as exc:
+        return jsonify({"ok": False, "error": str(exc)}), 500
+# ===== END V317 =====
+
+
+
+
+# ===== V318 · TELEGRAM WEBHOOK AUTO SETUP PRO =====
+@app.route("/telegram-webhook-auto-setup")
+@app.route("/admin/telegram-webhook")
+@app.route("/admin/telegram-webhook-setup")
+def telegram_webhook_auto_setup_v318():
+    return render_template("telegram_webhook_auto_setup_v318.html")
+
+@app.route("/api/telegram/webhook-info-v318")
+def api_telegram_webhook_info_v318():
+    try:
+        from services.telegram_webhook_setup_v318 import webhook_setup_status
+        return jsonify(webhook_setup_status(request.host_url))
+    except Exception as exc:
+        return jsonify({"ok": False, "error": str(exc)}), 500
+
+@app.route("/api/telegram/set-webhook-v318")
+def api_telegram_set_webhook_v318():
+    try:
+        from services.telegram_webhook_setup_v318 import configure_webhook
+        return jsonify(configure_webhook(request.host_url))
+    except Exception as exc:
+        return jsonify({"ok": False, "error": str(exc)}), 500
+
+@app.route("/api/telegram/delete-webhook-v318")
+def api_telegram_delete_webhook_v318():
+    try:
+        from services.telegram_webhook_setup_v318 import delete_webhook
+        return jsonify(delete_webhook())
+    except Exception as exc:
+        return jsonify({"ok": False, "error": str(exc)}), 500
+# ===== END V318 =====
+
+
+
+# ===== V319 · SMART 1X2 CLIENT INTEGRATION PRO =====
+@app.route("/smart-1x2-client")
+@app.route("/cliente/1x2")
+@app.route("/cliente/combis-1x2")
+@app.route("/cliente/combis")
+def smart_1x2_client_integration_v319():
+    return render_template("smart_1x2_client_integration_v319.html")
+
+@app.route("/api/client/1x2/recommendations-v319")
+def api_client_1x2_recommendations_v319():
+    try:
+        from services.smart_1x2_engine_v319 import discover_real_1x2_matches, build_combi_summary
+        data = discover_real_1x2_matches(limit=20)
+        data["combi"] = build_combi_summary(data.get("matches", []))
+        data["version"] = "V319"
+        data["real_only"] = True
+        return jsonify(data)
+    except Exception as exc:
+        return jsonify({"ok": False, "error": str(exc), "version": "V319", "real_only": True}), 500
+# ===== END V319 =====
+
+
+
+# ===== V320 · 1X2 VISIBLE CLIENT NAV FIX PRO =====
+@app.route("/client-1x2-visible-fix")
+@app.route("/cliente/1x2-visible")
+def client_1x2_visible_fix_v320():
+    return render_template("client_1x2_visible_nav_fix_v320.html")
+# ===== END V320 =====
+
+
+
+# ===== V321 · FULL STABILITY CLIENT/LIVE/TELEGRAM/1X2 FINAL =====
+@app.route("/stability-center-v321")
+@app.route("/admin/stability-v321")
+@app.route("/cliente/stability-v321")
+def full_stability_control_center_v321():
+    return render_template("full_stability_control_center_v321.html")
+
+@app.route("/api/stability/full-status-v321")
+def api_full_stability_status_v321():
+    try:
+        from services.full_stability_v321 import full_status
+        return jsonify(full_status())
+    except Exception as exc:
+        return jsonify({"ok": False, "version": "V321", "error": str(exc)}), 500
+# ===== END V321 =====
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

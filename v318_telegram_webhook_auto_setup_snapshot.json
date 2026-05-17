@@ -1,0 +1,20 @@
+{
+  "version": "V318",
+  "name": "TELEGRAM WEBHOOK AUTO SETUP PRO",
+  "base": "V317",
+  "fixes": [
+    "getWebhookInfo endpoint",
+    "setWebhook endpoint",
+    "deleteWebhook endpoint",
+    "panel de reparación webhook"
+  ],
+  "after_deploy": [
+    "open /api/telegram/set-webhook-v318",
+    "send /start to bot",
+    "open /api/telegram/linked-chats-v317",
+    "open /api/telegram/auto-run-v316"
+  ],
+  "recommended_env": {
+    "PUBLIC_BASE_URL": "https://TUAPP.onrender.com"
+  }
+}

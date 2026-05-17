@@ -1,0 +1,18 @@
+{
+  "version": "V317",
+  "name": "TELEGRAM CHAT LINKING WEBHOOK FIX PRO",
+  "base": "V316",
+  "fixes": [
+    "telegram_chats table",
+    "save chat_id from webhook",
+    "reply to /start",
+    "linked chats admin endpoint",
+    "scheduler now discovers telegram_chats"
+  ],
+  "after_deploy": [
+    "Open bot and send /start",
+    "Open group/channel and send /start if bot is member/admin",
+    "Check /api/telegram/linked-chats-v317",
+    "Run /api/telegram/auto-run-v316"
+  ]
+}

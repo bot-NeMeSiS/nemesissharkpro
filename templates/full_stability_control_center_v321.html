@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}V321 Stability Center · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/full_stability_pack_v321.css') }}">
+<script defer src="{{ url_for('static', filename='js/full_stability_pack_v321.js') }}"></script>
+<section class="v321-shell">
+ <div class="v321-hero"><div><span class="v321-badge">V321 · FULL STABILITY PACK</span><h1>Cliente, Live, Telegram y 1X2 consolidados</h1><p>Versión estable para seguir desde casa: 1X2 visible, live con marcador/minuto/escudos, Telegram webhook/linking/scheduler y panel de comprobación.</p></div><div class="v321-status"><strong>READY</strong><span>GitHub · Render · Cliente</span></div></div>
+ <div class="v321-grid">
+  <article class="v321-card gold"><span>1X2</span><h2>Combis visibles</h2><p>Botón para cliente, constructor visual y endpoint real con LOW DATA.</p><a href="/cliente/1x2">Abrir Combis 1X2</a></article>
+  <article class="v321-card live"><span>LIVE</span><h2>Marcador/minuto/escudos</h2><p>Normalización live y fallback limpio sin inventar resultados.</p><a href="/cliente/reparacion-live">Centro Live</a></article>
+  <article class="v321-card telegram"><span>TG</span><h2>Telegram real</h2><p>Webhook setup, /start, chat_id, scheduler y envío manual.</p><a href="/admin/telegram-webhook">Webhook Telegram</a></article>
+  <article class="v321-card"><span>OK</span><h2>Estado del sistema</h2><p>Comprueba DB, Telegram, Live y 1X2.</p><a href="/api/stability/full-status-v321">Ver JSON</a></article>
+ </div>
+ <div class="v321-checklist"><h2>Comprobación Render</h2><ol><li>/api/stability/full-status-v321</li><li>/cliente/1x2</li><li>/api/telegram/set-webhook-v318</li><li>Mandar /start al bot</li><li>/api/telegram/linked-chats-v317</li><li>/api/telegram/auto-run-v316</li></ol></div>
+</section>
+{% endblock %}

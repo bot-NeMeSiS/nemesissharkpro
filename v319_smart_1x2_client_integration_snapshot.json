@@ -1,0 +1,10 @@
+{
+  "version": "V319",
+  "name": "SMART 1X2 CLIENT INTEGRATION PRO",
+  "routes": [
+    "/cliente/1x2",
+    "/cliente/combis",
+    "/api/client/1x2/recommendations-v319"
+  ],
+  "real_only": true
+}

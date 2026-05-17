@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Combis 1X2 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/smart_1x2_client_integration_v319.css') }}">
+<script defer src="{{ url_for('static', filename='js/smart_1x2_client_integration_v319.js') }}"></script>
+<section class="v319-shell">
+  <div class="v319-hero">
+    <div><span class="v319-badge">V319 · 1X2 CLIENT READY</span><h1>Combis 1X2 inteligentes</h1><p>Sección visible para cliente: partidos de hoy, picks 1X2, combi rápida, riesgo y SHARK AI.</p></div>
+    <div class="v319-status"><strong>1X2</strong><span>Local · Empate · Visitante</span></div>
+  </div>
+  <div class="v319-client-tabs">
+    <a href="/cliente/pro">Inicio</a><a href="/picks">Picks hoy</a><a href="/fixtures/today-pro">Partidos hoy</a><a href="/cliente/live-central">En directo</a><a class="active" href="/cliente/1x2">Combis 1X2</a>
+  </div>
+  <div class="v319-grid">
+    <article class="v319-card gold"><span>👑</span><h2>Combi rápida del día</h2><p>Generada solo si existen partidos/cuotas 1X2 reales.</p><a href="/api/client/1x2/recommendations-v319">Ver datos reales</a></article>
+    <article class="v319-card"><span>1</span><h2>Local</h2><p>Victoria local dentro del mercado 1X2.</p><a href="/fixtures/today-pro">Partidos hoy</a></article>
+    <article class="v319-card"><span>X</span><h2>Empate</h2><p>Mercado empate para partidos equilibrados.</p><a href="/cliente/ficha-decision">Ficha decisión</a></article>
+    <article class="v319-card"><span>2</span><h2>Visitante</h2><p>Victoria visitante conectada con SHARK.</p><a href="/cliente/shark-ai-pro">Preguntar a SHARK</a></article>
+  </div>
+  <div class="v319-builder">
+    <div class="v319-builder-head"><div><h2>Constructor visual 1X2</h2><p>Fácil para cliente: 1 / X / 2 y sin inventar datos.</p></div><a href="/api/client/1x2/recommendations-v319">Actualizar</a></div>
+    <div class="v319-picks"><div class="v319-pick"><strong>Partido 1</strong><div><button>1</button><button>X</button><button>2</button></div></div><div class="v319-pick"><strong>Partido 2</strong><div><button>1</button><button>X</button><button>2</button></div></div><div class="v319-pick"><strong>Partido 3</strong><div><button>1</button><button>X</button><button>2</button></div></div></div>
+    <div class="v319-note"><strong>REAL ONLY:</strong> si faltan cuotas reales, se muestra LOW DATA y no se inventa ninguna combi.</div>
+  </div>
+</section>
+{% endblock %}
