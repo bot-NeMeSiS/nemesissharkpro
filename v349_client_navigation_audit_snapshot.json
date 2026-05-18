@@ -1,0 +1,24 @@
+{
+  "version": "V349",
+  "name": "CLIENT_NAVIGATION_AUDIT_UX_FIX_PRO",
+  "base": "V348",
+  "features": [
+    "single stable bottom nav",
+    "dedupe old injected links",
+    "mobile safe area",
+    "tap target safety",
+    "scroll unlock",
+    "overlay click unblock",
+    "navigation audit endpoint"
+  ],
+  "nav_items": [
+    "Inicio",
+    "Partidos",
+    "Picks",
+    "1X2",
+    "Live",
+    "Match",
+    "Favs"
+  ],
+  "real_only": true
+}

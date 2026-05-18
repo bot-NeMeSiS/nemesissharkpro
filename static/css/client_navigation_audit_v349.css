@@ -1,0 +1,168 @@
+
+/* V349 · Client Navigation Audit & UX Fix */
+:root{
+  --v349-bg:#050d19;
+  --v349-card:rgba(8,18,35,.92);
+  --v349-border:rgba(126,232,255,.16);
+  --v349-text:#eef7ff;
+  --v349-muted:#a8b9d1;
+  --v349-gold:#ffe0a0;
+  --v349-green:#a8ffd3;
+}
+
+/* Scroll and layout safety */
+html,body{
+  min-height:100%!important;
+  height:auto!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  -webkit-overflow-scrolling:touch!important;
+  overscroll-behavior-y:auto!important;
+}
+body.no-scroll,body.modal-open,html.no-scroll,html.modal-open{
+  overflow-y:auto!important;
+  height:auto!important;
+  position:static!important;
+}
+main,.app,.page,.container,.content,.dashboard,.client-dashboard,.cliente-dashboard,.client-page,.cliente-page,.layout,.wrapper{
+  max-width:100%!important;
+}
+
+/* Remove old/aggressive injected nav leftovers */
+.v319-quick-injected,.v320-1x2-tab,.v321-force-1x2,
+[data-v319-1x2],[data-v320-1x2],[data-v321-1x2],
+[data-v319-floating-1x2],[data-v320-floating-1x2],
+.v323-1x2-clean-link:not(.v349-allow){
+  display:none!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+
+/* Prevent hidden overlays from blocking navigation */
+.overlay.hidden,.modal.hidden,.backdrop.hidden,.drawer.hidden,
+[aria-hidden="true"].overlay,[aria-hidden="true"].modal,[aria-hidden="true"].backdrop,
+[hidden]{
+  pointer-events:none!important;
+}
+
+/* Tap target safety */
+a,button,[role="button"],.btn,.button{
+  min-height:42px;
+  touch-action:manipulation;
+}
+
+/* Client top nav becomes light, bottom nav owns primary movement */
+body.v349-client-nav-ready header nav a,
+body.v349-client-nav-ready .top-nav a,
+body.v349-client-nav-ready .navbar a,
+body.v349-client-nav-ready .main-nav a{
+  white-space:nowrap;
+}
+
+/* New stable bottom app nav */
+.v349-bottom-nav{
+  position:fixed;
+  left:50%;
+  bottom:calc(10px + env(safe-area-inset-bottom,0px));
+  transform:translateX(-50%);
+  z-index:2147483000;
+  width:min(980px,calc(100% - 18px));
+  display:grid;
+  grid-template-columns:repeat(7,minmax(0,1fr));
+  gap:7px;
+  padding:8px;
+  border-radius:24px;
+  background:rgba(5,12,24,.92);
+  border:1px solid rgba(126,232,255,.22);
+  box-shadow:0 18px 48px rgba(0,0,0,.46), inset 0 1px 0 rgba(255,255,255,.08);
+  backdrop-filter:blur(16px);
+}
+.v349-bottom-nav a{
+  min-width:0;
+  min-height:54px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  padding:7px 4px;
+  border-radius:16px;
+  text-decoration:none;
+  color:#dceaff;
+  font-weight:900;
+  font-size:.68rem;
+  line-height:1;
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.055);
+}
+.v349-bottom-nav a span{font-size:1rem;line-height:1}
+.v349-bottom-nav a small{font-size:.66rem;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.v349-bottom-nav a.v349-primary{
+  background:linear-gradient(135deg,#ffe0a0,#ffad32);
+  color:#07111f;
+  border-color:rgba(244,200,106,.7);
+  box-shadow:0 8px 22px rgba(255,173,50,.18);
+}
+.v349-bottom-nav a.v349-active{
+  outline:2px solid rgba(126,232,255,.32);
+}
+
+/* Ensure content is not hidden behind nav */
+body::after{
+  content:"";
+  display:block;
+  height:calc(138px + env(safe-area-inset-bottom,0px))!important;
+}
+.client-dashboard,.cliente-dashboard,.dashboard,.client-page,.cliente-page,main,.content{
+  padding-bottom:calc(142px + env(safe-area-inset-bottom,0px))!important;
+}
+
+/* Compact duplicate strips if many layers exist */
+.v330-launch-strip,.v329-follow-strip,.v328-trust-strip,.v327-home-strip,.v331-feed,.v332-decision-flow,.v333-perf-strip,.v334-onboarding,.v335-intel-strip,.v336-personal-strip,.v337-live-command,.v340-commercial-strip,.v346-data-strip,.v347-data-strip,.v348-ui-strip{
+  max-width:min(1180px,calc(100% - 28px))!important;
+}
+
+/* V349 page */
+.v349-shell{width:min(1180px,calc(100% - 28px));margin:28px auto 160px;color:var(--v349-text)}
+.v349-hero{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:18px;padding:32px;border-radius:30px;background:radial-gradient(circle at top left,rgba(126,232,255,.18),transparent 35%),linear-gradient(135deg,#07182e,#030b17);border:1px solid rgba(126,232,255,.20);box-shadow:0 24px 70px rgba(0,0,0,.36)}
+.v349-badge{display:inline-flex;padding:9px 13px;border-radius:999px;background:rgba(126,232,255,.13);border:1px solid rgba(126,232,255,.25);color:#9ee7ff;font-weight:900;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
+.v349-hero h1{margin:16px 0 10px;font-size:clamp(2rem,5vw,4.1rem);line-height:.92}
+.v349-hero p{max-width:790px;color:var(--v349-muted);font-size:1.04rem}
+.v349-status{border-radius:24px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);padding:22px;display:flex;flex-direction:column;justify-content:center;gap:8px}
+.v349-status strong{font-size:1.45rem;color:#9ee7ff}
+.v349-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:18px}
+.v349-card{min-height:230px;padding:22px;border-radius:24px;background:linear-gradient(180deg,rgba(15,35,64,.96),rgba(7,16,31,.96));border:1px solid rgba(255,255,255,.09);box-shadow:0 18px 44px rgba(0,0,0,.25);display:flex;flex-direction:column;gap:10px}
+.v349-card.green{background:radial-gradient(circle at top left,rgba(22,220,134,.16),transparent 36%),linear-gradient(180deg,rgba(13,48,45,.96),rgba(7,16,31,.96))}
+.v349-card.gold{background:radial-gradient(circle at top left,rgba(244,200,106,.18),transparent 36%),linear-gradient(180deg,rgba(42,36,18,.96),rgba(7,16,31,.96))}
+.v349-card span{font-size:1.55rem}
+.v349-card p{color:var(--v349-muted);line-height:1.5;flex:1}
+.v349-card a{display:inline-flex;text-decoration:none;color:#06111f;background:linear-gradient(135deg,#7ee8ff,#398dff);padding:10px 13px;border-radius:14px;font-weight:900;font-size:.9rem}
+.v349-card.green a{background:linear-gradient(135deg,#a8ffd3,#7ee8ff)}
+.v349-card.gold a{background:linear-gradient(135deg,#ffe0a0,#ffad32)}
+.v349-checklist{margin-top:18px;padding:22px;border-radius:24px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09)}
+.v349-checklist li{margin:8px 0;color:#c8d6e8}
+
+@media(max-width:980px){
+  .v349-grid{grid-template-columns:1fr 1fr}
+  .v349-hero{grid-template-columns:1fr}
+}
+@media(max-width:720px){
+  .v349-bottom-nav{
+    width:calc(100% - 10px);
+    bottom:calc(6px + env(safe-area-inset-bottom,0px));
+    border-radius:20px;
+    gap:4px;
+    padding:6px;
+  }
+  .v349-bottom-nav a{
+    min-height:50px;
+    font-size:.62rem;
+    padding:6px 2px;
+  }
+  .v349-bottom-nav a span{font-size:.95rem}
+  .v349-bottom-nav a small{font-size:.60rem}
+}
+@media(max-width:620px){
+  .v349-grid{grid-template-columns:1fr}
+  .v349-shell{width:min(100% - 18px,1180px)}
+}

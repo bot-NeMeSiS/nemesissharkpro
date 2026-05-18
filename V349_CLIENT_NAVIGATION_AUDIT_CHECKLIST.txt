@@ -1,0 +1,20 @@
+NeMeSiS SHARK PRO · V349 CLIENT NAVIGATION AUDIT UX FIX
+
+Revisar:
+1. /cliente/pro
+2. /cliente/1x2
+3. /cliente/live-command-center
+4. /cliente/match-center-premium
+5. /cliente/favorites-following
+6. /cliente/membresia
+7. /api/client/navigation-audit/status-v349
+
+Cambios:
+- Barra inferior única reforzada.
+- Elimina barras antiguas duplicadas.
+- Oculta inyecciones viejas de 1X2.
+- Deduplica enlaces repetidos molestos.
+- Refuerza scroll.
+- Añade espacio inferior móvil.
+- Evita overlays ocultos bloqueando clicks.
+- Tap targets más cómodos.

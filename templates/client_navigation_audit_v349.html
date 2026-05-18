@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Navigation Audit V349 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_navigation_audit_v349.css') }}">
+<script defer src="{{ url_for('static', filename='js/client_navigation_audit_v349.js') }}"></script>
+
+<section class="v349-shell">
+  <div class="v349-hero">
+    <div>
+      <span class="v349-badge">V349 · Client Navigation Audit</span>
+      <h1>Navegación cliente revisada y reforzada</h1>
+      <p>Pasada completa para que botones, barras, enlaces, scroll, barra inferior y zonas táctiles no se molesten entre sí y el cliente se mueva claro.</p>
+    </div>
+    <div class="v349-status">
+      <strong>NAV UX OK</strong>
+      <span>Botones · barras · móvil</span>
+    </div>
+  </div>
+
+  <div class="v349-grid">
+    <article class="v349-card green">
+      <span>🧭</span>
+      <h2>Barra inferior única</h2>
+      <p>Inicio, Partidos, Picks, 1X2, Live, Match y Favoritos bien colocados.</p>
+      <a href="/cliente/pro">Probar cliente</a>
+    </article>
+    <article class="v349-card">
+      <span>🧹</span>
+      <h2>Sin duplicados molestos</h2>
+      <p>Oculta inyecciones antiguas y limpia enlaces repetidos de alto impacto.</p>
+      <a href="/api/client/navigation-audit/status-v349">Ver audit</a>
+    </article>
+    <article class="v349-card gold">
+      <span>👑</span>
+      <h2>1X2 prioritario</h2>
+      <p>Combis 1X2 queda destacado sin tapar otras funciones.</p>
+      <a href="/cliente/1x2">Abrir 1X2</a>
+    </article>
+    <article class="v349-card">
+      <span>📱</span>
+      <h2>Móvil seguro</h2>
+      <p>Espacio inferior, tap targets y scroll reforzados para iPhone/Android.</p>
+      <a href="/cliente/live-command-center">Probar Live</a>
+    </article>
+  </div>
+
+  <div class="v349-checklist">
+    <h2>Checklist navegación cliente</h2>
+    <ol>
+      <li>Entrar en <strong>/cliente/pro</strong> y confirmar que solo hay una barra inferior principal.</li>
+      <li>Probar <strong>Inicio, Partidos, Picks, 1X2, Live, Match y Favoritos</strong>.</li>
+      <li>Confirmar que el botón SHARK no tapa la barra inferior.</li>
+      <li>Confirmar que se puede hacer scroll hasta el final.</li>
+      <li>Confirmar que no quedan botones 1X2 duplicados en medio de cards.</li>
+      <li>Revisar <strong>/api/client/navigation-audit/status-v349</strong>.</li>
+    </ol>
+  </div>
+</section>
+{% endblock %}

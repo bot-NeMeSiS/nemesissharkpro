@@ -11485,5 +11485,41 @@ def api_real_data_ui_binding_status_v348():
 # ===== END V348 =====
 
 
+
+# ===== V349 · CLIENT NAVIGATION AUDIT UX FIX PRO =====
+@app.route("/cliente/navigation-audit")
+@app.route("/admin/navigation-audit")
+@app.route("/navigation-audit-v349")
+def client_navigation_audit_v349():
+    return render_template("client_navigation_audit_v349.html")
+
+@app.route("/api/client/navigation-audit/status-v349")
+def api_client_navigation_audit_status_v349():
+    try:
+        from services.client_navigation_audit_v349 import nav_audit_status
+        return jsonify(nav_audit_status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V349","error":str(exc)}),500
+# ===== END V349 =====
+
+
+
+# ===== V350 · CLIENT EXPERIENCE FINAL CONSOLIDATION PRO =====
+@app.route("/cliente/experience-final")
+@app.route("/admin/client-experience-final")
+@app.route("/client-experience-final-v350")
+def client_experience_final_v350():
+    return render_template("client_experience_final_v350.html")
+
+@app.route("/api/client/experience-final/status-v350")
+def api_client_experience_final_status_v350():
+    try:
+        from services.client_experience_final_v350 import client_experience_status
+        return jsonify(client_experience_status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V350","error":str(exc)}),500
+# ===== END V350 =====
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))
