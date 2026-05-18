@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Personalized SHARK Experience V336{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/personalized_shark_experience_v336.css') }}">
+<script defer src="{{ url_for('static', filename='js/personalized_shark_experience_v336.js') }}"></script>
+
+<section class="v336-shell">
+<div class="v336-hero">
+<div>
+<span class="v336-title">V336 · Personalized SHARK Experience</span>
+<h1>La app empieza a conocerte</h1>
+<p>Adaptación inteligente según favoritos, ligas, uso reciente y estilo de apuestas para crear una experiencia más premium y personal.</p>
+</div>
+<div>
+<strong style="font-size:1.4rem;color:#a8ffd3;">PERSONAL MODE</strong><br>
+<span style="color:#aabbd3;">Feed · alertas · perfiles</span>
+</div>
+</div>
+</section>
+{% endblock %}

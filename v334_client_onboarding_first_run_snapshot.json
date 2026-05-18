@@ -1,0 +1,12 @@
+{
+  "version": "V334",
+  "name": "CLIENT_ONBOARDING_FIRST_RUN_PRO",
+  "base": "V333",
+  "features": [
+    "first-run guide",
+    "dismissible onboarding",
+    "clear app route",
+    "client education"
+  ],
+  "real_only": true
+}

@@ -1,0 +1,13 @@
+{
+  "version": "V335",
+  "name": "REAL_MATCH_INTELLIGENCE_HUB_PRO",
+  "base": "V334",
+  "features": [
+    "match intelligence",
+    "momentum states",
+    "pressure analysis",
+    "shark analyst mode",
+    "smart interpretation"
+  ],
+  "real_only": true
+}

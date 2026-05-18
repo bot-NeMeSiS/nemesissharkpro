@@ -1,0 +1,11 @@
+{
+  "version": "V331",
+  "name": "ACTIVITY_FEED_LIVE_CLIENT_PRO",
+  "base": "V330",
+  "features": [
+    "activity feed",
+    "live/1x2/match/favorites actions",
+    "home feels alive"
+  ],
+  "real_only": true
+}

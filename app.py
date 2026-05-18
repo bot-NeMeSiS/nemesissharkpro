@@ -11226,5 +11226,124 @@ def api_launch_status_v330():
 # ===== END V330 =====
 
 
+
+# ===== V331 · ACTIVITY FEED LIVE CLIENT PRO =====
+@app.route("/activity-feed-v331")
+@app.route("/cliente/activity-feed")
+def activity_feed_live_client_v331():
+    return render_template("activity_feed_live_client_v331.html")
+
+@app.route("/api/client/activity-feed/status-v331")
+def api_activity_feed_status_v331():
+    try:
+        from services.activity_feed_live_client_v331 import feed_status
+        return jsonify(feed_status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V331","error":str(exc)}),500
+# ===== END V331 =====
+
+
+
+# ===== V332 · SMART BETTING DECISION FLOW PRO =====
+@app.route("/smart-decision-flow-v332")
+@app.route("/cliente/decision-flow")
+def smart_betting_decision_flow_v332():
+    return render_template("smart_betting_decision_flow_v332.html")
+
+@app.route("/api/client/decision-flow/status-v332")
+def api_smart_betting_decision_flow_status_v332():
+    try:
+        from services.smart_betting_decision_flow_v332 import decision_status
+        return jsonify(decision_status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V332","error":str(exc)}),500
+# ===== END V332 =====
+
+
+
+# ===== V333 · CLIENT PERFORMANCE CACHE READINESS PRO =====
+@app.route("/client-performance-cache-v333")
+@app.route("/cliente/performance-cache")
+def client_performance_cache_v333():
+    return render_template("client_performance_cache_v333.html")
+
+@app.route("/api/client/performance-cache/status-v333")
+def api_client_performance_cache_status_v333():
+    try:
+        from services.client_performance_cache_v333 import status
+        return jsonify(status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V333","error":str(exc)}),500
+# ===== END V333 =====
+
+
+
+# ===== V334 · CLIENT ONBOARDING FIRST RUN PRO =====
+@app.route("/client-onboarding-v334")
+@app.route("/cliente/onboarding")
+def client_onboarding_first_run_v334():
+    return render_template("client_onboarding_first_run_v334.html")
+
+@app.route("/api/client/onboarding/status-v334")
+def api_client_onboarding_status_v334():
+    try:
+        from services.client_onboarding_first_run_v334 import status
+        return jsonify(status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V334","error":str(exc)}),500
+# ===== END V334 =====
+
+
+
+# ===== V335 · REAL MATCH INTELLIGENCE HUB PRO =====
+@app.route("/real-match-intelligence-v335")
+@app.route("/cliente/intelligence-hub")
+def real_match_intelligence_hub_v335():
+    return render_template("real_match_intelligence_hub_v335.html")
+
+@app.route("/api/client/intelligence-hub/status-v335")
+def api_real_match_intelligence_hub_status_v335():
+    try:
+        from services.real_match_intelligence_hub_v335 import intelligence_status
+        return jsonify(intelligence_status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V335","error":str(exc)}),500
+# ===== END V335 =====
+
+
+
+# ===== V336 · PERSONALIZED SHARK EXPERIENCE PRO =====
+@app.route("/personalized-shark-v336")
+@app.route("/cliente/personalized-shark")
+def personalized_shark_experience_v336():
+    return render_template("personalized_shark_experience_v336.html")
+
+@app.route("/api/client/personalized-shark/status-v336")
+def api_personalized_shark_status_v336():
+    try:
+        from services.personalized_shark_experience_v336 import personalized_status
+        return jsonify(personalized_status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V336","error":str(exc)}),500
+# ===== END V336 =====
+
+
+
+# ===== V337 · LIVE COMMAND CENTER PRO =====
+@app.route("/live-command-center-v337")
+@app.route("/cliente/live-command-center")
+def live_command_center_v337():
+    return render_template("live_command_center_v337.html")
+
+@app.route("/api/client/live-command-center/status-v337")
+def api_live_command_center_status_v337():
+    try:
+        from services.live_command_center_v337 import live_command_status
+        return jsonify(live_command_status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V337","error":str(exc)}),500
+# ===== END V337 =====
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

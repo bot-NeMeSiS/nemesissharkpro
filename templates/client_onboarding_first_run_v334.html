@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Onboarding Cliente V334 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_onboarding_first_run_v334.css') }}">
+<script defer src="{{ url_for('static', filename='js/client_onboarding_first_run_v334.js') }}"></script>
+<section class="v334-shell">
+  <div class="v334-hero">
+    <div><span class="v334-badge">V334 · Client Onboarding</span><h1>Primer uso más claro para clientes</h1><p>Una guía rápida para que cualquier cliente entienda cómo usar la app desde el primer minuto.</p></div>
+    <div class="v334-status"><strong>FIRST RUN</strong><span>Menos dudas · más uso</span></div>
+  </div>
+  <div class="v334-grid">
+    <article class="v334-card"><span>🧭</span><h2>Ruta clara</h2><p>Partidos → Live → 1X2 → Match Center → SHARK.</p><a href="/cliente/pro">Cliente</a></article>
+    <article class="v334-card"><span>👑</span><h2>1X2 explicado</h2><p>El usuario sabe dónde está y para qué sirve.</p><a href="/cliente/1x2">1X2</a></article>
+    <article class="v334-card"><span>🦈</span><h2>SHARK como guía</h2><p>La IA aparece como apoyo antes de decidir.</p><a href="/cliente/shark-ai-pro">SHARK</a></article>
+  </div>
+</section>
+{% endblock %}

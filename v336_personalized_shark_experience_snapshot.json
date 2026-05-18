@@ -1,0 +1,13 @@
+{
+  "version": "V336",
+  "name": "PERSONALIZED_SHARK_EXPERIENCE_PRO",
+  "base": "V335",
+  "features": [
+    "adaptive home",
+    "smart feed",
+    "betting profiles",
+    "intelligent alerts",
+    "personalized shark mode"
+  ],
+  "real_only": true
+}

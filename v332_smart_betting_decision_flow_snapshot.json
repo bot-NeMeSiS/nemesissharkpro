@@ -1,0 +1,12 @@
+{
+  "version": "V332",
+  "name": "SMART_BETTING_DECISION_FLOW_PRO",
+  "base": "V331",
+  "features": [
+    "decision guidance",
+    "confidence bars",
+    "momentum layer",
+    "guided CTA"
+  ],
+  "real_only": true
+}

@@ -1,0 +1,13 @@
+{
+  "version": "V337",
+  "name": "LIVE_COMMAND_CENTER_PRO",
+  "base": "V336",
+  "features": [
+    "live command center",
+    "timeline live",
+    "smart live alerts",
+    "priority engine",
+    "shark live mode"
+  ],
+  "real_only": true
+}
