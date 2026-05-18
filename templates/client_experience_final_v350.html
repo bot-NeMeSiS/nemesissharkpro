@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Client Experience Final V350 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_experience_final_v350.css') }}">
+<script defer src="{{ url_for('static', filename='js/client_experience_final_v350.js') }}"></script>
+
+<section class="v350-shell">
+  <div class="v350-hero">
+    <div>
+      <span class="v350-badge">V350 · Client Experience Final Consolidation</span>
+      <h1>Ruta cliente limpia y completa</h1>
+      <p>Un hub final para revisar que el cliente entiende dónde ir, qué tocar y cómo usar la app sin perderse.</p>
+    </div>
+    <div class="v350-status">
+      <strong>CLIENT FLOW</strong>
+      <span>Inicio · Live · 1X2 · SHARK</span>
+    </div>
+  </div>
+
+  <div class="v350-flow">
+    <a class="v350-step green" href="/cliente/pro"><span class="icon">🏠</span><h2>Inicio</h2><p>Entrada principal limpia con actividad y accesos clave.</p><span class="go">Abrir</span></a>
+    <a class="v350-step" href="/fixtures/today-pro"><span class="icon">📅</span><h2>Partidos</h2><p>Agenda rápida para empezar desde lo que se juega hoy.</p><span class="go">Abrir</span></a>
+    <a class="v350-step gold" href="/cliente/1x2"><span class="icon">👑</span><h2>Combis 1X2</h2><p>La función clave para cliente, visible y prioritaria.</p><span class="go">Abrir</span></a>
+    <a class="v350-step" href="/cliente/live-command-center"><span class="icon">🔥</span><h2>Live</h2><p>Centro de partidos vivos, alertas y ritmo del juego.</p><span class="go">Abrir</span></a>
+    <a class="v350-step" href="/cliente/match-center-premium"><span class="icon">📊</span><h2>Match Center</h2><p>Ficha premium para ver contexto y decisión.</p><span class="go">Abrir</span></a>
+    <a class="v350-step" href="/cliente/favorites-following"><span class="icon">⭐</span><h2>Favoritos</h2><p>Equipos y partidos seguidos para personalización.</p><span class="go">Abrir</span></a>
+    <a class="v350-step gold" href="/cliente/membresia"><span class="icon">💳</span><h2>Membresía</h2><p>FREE, PRO y ELITE claros para conversión comercial.</p><span class="go">Abrir</span></a>
+    <a class="v350-step green" href="/cliente/shark-ai-pro"><span class="icon">🦈</span><h2>SHARK</h2><p>Asistente/analista para resolver dudas y decidir mejor.</p><span class="go">Abrir</span></a>
+  </div>
+
+  <div class="v350-summary">
+    <div class="v350-panel">
+      <h2>Checklist cliente</h2>
+      <ol>
+        <li>El cliente entra por Inicio.</li>
+        <li>Ve partidos o Live.</li>
+        <li>Revisa 1X2.</li>
+        <li>Abre Match Center si quiere más contexto.</li>
+        <li>Pregunta a SHARK si duda.</li>
+        <li>Guarda favoritos o sube de membresía.</li>
+      </ol>
+    </div>
+    <div class="v350-panel">
+      <h2>Estado V350</h2>
+      <ol>
+        <li>Navegación auditada en V349.</li>
+        <li>Datos visuales conectados en V348.</li>
+        <li>Normalizador live en V347.</li>
+        <li>Pipeline real en V346.</li>
+        <li>Base comercial y admin mantenidos.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+{% endblock %}

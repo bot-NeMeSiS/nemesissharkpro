@@ -1,0 +1,18 @@
+NeMeSiS SHARK PRO · V350 CLIENT EXPERIENCE FINAL CONSOLIDATION
+
+Revisar:
+1. /cliente/experience-final
+2. /api/client/experience-final/status-v350
+3. /cliente/pro
+4. /cliente/1x2
+5. /cliente/live-command-center
+6. /cliente/match-center-premium
+7. /cliente/favorites-following
+8. /cliente/membresia
+9. /cliente/shark-ai-pro
+
+Objetivo:
+- Una ruta clara para el cliente.
+- Menos pérdida entre pantallas.
+- 1X2, Live, Match, Favoritos y SHARK conectados.
+- Base lista para enseñar y vender como beta premium controlada.

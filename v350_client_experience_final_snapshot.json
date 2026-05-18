@@ -1,0 +1,13 @@
+{
+  "version": "V350",
+  "name": "CLIENT_EXPERIENCE_FINAL_CONSOLIDATION_PRO",
+  "base": "V349",
+  "features": [
+    "client experience hub",
+    "core customer flow",
+    "navigation route corrections",
+    "commercial beta checklist",
+    "final client flow status"
+  ],
+  "real_only": true
+}
