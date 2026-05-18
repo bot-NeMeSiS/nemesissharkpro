@@ -1,0 +1,14 @@
+{
+  "version": "V346",
+  "name": "REAL_DATA_LIVE_API_PIPELINE_CONSOLIDATION_PRO",
+  "base": "V345",
+  "features": [
+    "api key diagnostics",
+    "cache table",
+    "data table discovery",
+    "live field contract",
+    "1x2 diagnostics",
+    "render checklist"
+  ],
+  "real_only": true
+}

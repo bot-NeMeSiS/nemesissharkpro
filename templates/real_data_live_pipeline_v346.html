@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Real Data Pipeline V346 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/real_data_live_pipeline_v346.css') }}">
+<script defer src="{{ url_for('static', filename='js/real_data_live_pipeline_v346.js') }}"></script>
+
+<section class="v346-shell">
+  <div class="v346-hero">
+    <div>
+      <span class="v346-badge">V346 · Real Data / Live API Pipeline</span>
+      <h1>Datos reales, live y caché bajo control</h1>
+      <p>Centro para diagnosticar API keys, tablas de partidos, caché, live/minuto/marcador/escudos y 1X2 antes de vender fuerte.</p>
+    </div>
+    <div class="v346-status">
+      <strong>REAL DATA</strong>
+      <span>API · DB · Caché · Live</span>
+    </div>
+  </div>
+
+  <div class="v346-grid">
+    <article class="v346-card green">
+      <span>📡</span>
+      <h2>Pipeline status</h2>
+      <p>Comprueba variables, DB, tablas detectadas, caché y diagnóstico real.</p>
+      <a href="/api/real-data/pipeline/status-v346">Ver status</a>
+    </article>
+    <article class="v346-card">
+      <span>💾</span>
+      <h2>Caché</h2>
+      <p>Base de caché para live, fixtures, 1X2, Telegram y Match Center.</p>
+      <a href="/api/real-data/cache/status-v346">Ver caché</a>
+    </article>
+    <article class="v346-card gold">
+      <span>👑</span>
+      <h2>1X2 real</h2>
+      <p>Revisión de cuotas y fallback LOW DATA si faltan datos reales.</p>
+      <a href="/api/client/1x2/recommendations-v319">Ver 1X2</a>
+    </article>
+    <article class="v346-card red">
+      <span>🔥</span>
+      <h2>Live real</h2>
+      <p>Contrato de campos para marcador, minuto, escudos y señales live.</p>
+      <a href="/cliente/live-command-center">Abrir Live</a>
+    </article>
+  </div>
+
+  <div class="v346-checklist">
+    <h2>Checklist Render / datos reales</h2>
+    <ol>
+      <li>Comprobar <strong>/api/real-data/pipeline/status-v346</strong>.</li>
+      <li>Confirmar que <strong>THE_ODDS_API_KEY</strong> aparece como presente.</li>
+      <li>Confirmar que la DB detecta tablas de partidos/cache/live.</li>
+      <li>Comprobar <strong>/api/client/1x2/recommendations-v319</strong>.</li>
+      <li>Comprobar live/minuto/escudos desde <strong>/cliente/live-command-center</strong>.</li>
+      <li>Si falta algo, mirar la lista <strong>diagnosis</strong> del JSON V346.</li>
+    </ol>
+  </div>
+</section>
+{% endblock %}

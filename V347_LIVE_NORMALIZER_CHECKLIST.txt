@@ -1,0 +1,16 @@
+NeMeSiS SHARK PRO · V347 LIVE DATA NORMALIZER & CRESTS ENGINE
+
+Comprobar:
+1. /api/live/normalizer/status-v347
+2. /api/live/normalizer/sample-v347
+3. /cliente/live-normalizer
+4. /cliente/live-command-center
+5. /cliente/match-center-premium
+6. /cliente/1x2
+
+Qué mejora:
+- Nombres de equipos limpios.
+- Marcador y minuto normalizados.
+- Escudos con fallback premium si falta logo.
+- Cuotas 1/X/2 en formato común.
+- Base para Live, Match Center y SHARK usando la misma estructura.

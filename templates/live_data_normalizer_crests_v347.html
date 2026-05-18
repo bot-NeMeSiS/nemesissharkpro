@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Live Normalizer V347 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/live_data_normalizer_crests_v347.css') }}">
+<script defer src="{{ url_for('static', filename='js/live_data_normalizer_crests_v347.js') }}"></script>
+
+<section class="v347-shell">
+  <div class="v347-hero">
+    <div>
+      <span class="v347-badge">V347 · Live Data Normalizer & Crests</span>
+      <h1>Partidos más reales, limpios y consistentes</h1>
+      <p>Normaliza equipos, marcador, minuto, liga, escudos y cuotas 1X2 para que Live, Match Center, SHARK y Combis hablen el mismo idioma.</p>
+    </div>
+    <div class="v347-status">
+      <strong>NORMALIZED</strong>
+      <span>Live · Score · Crest · 1X2</span>
+    </div>
+  </div>
+
+  <div class="v347-grid">
+    <article class="v347-card green">
+      <span>🧩</span>
+      <h2>Normalizador</h2>
+      <p>Convierte datos distintos de API/DB en formato único para la app.</p>
+      <a href="/api/live/normalizer/status-v347">Ver status</a>
+    </article>
+    <article class="v347-card">
+      <span>🛡️</span>
+      <h2>Escudos fallback</h2>
+      <p>Si falta logo, se muestra inicial premium en vez de imagen rota.</p>
+      <a href="/api/live/normalizer/sample-v347">Ver muestra</a>
+    </article>
+    <article class="v347-card gold">
+      <span>👑</span>
+      <h2>1X2 limpio</h2>
+      <p>Unifica cuotas 1/X/2 para Combis, Match Center y SHARK.</p>
+      <a href="/cliente/1x2">Abrir 1X2</a>
+    </article>
+    <article class="v347-card">
+      <span>🔥</span>
+      <h2>Live coherente</h2>
+      <p>Marcador y minuto con contrato estable en toda la app.</p>
+      <a href="/cliente/live-command-center">Abrir Live</a>
+    </article>
+  </div>
+
+  <div class="v347-preview">
+    <h2>Vista normalizada</h2>
+    <div class="v347-match">
+      <div class="v347-crest">RM</div>
+      <strong>Real Madrid</strong>
+      <div>
+        <div class="v347-score">2-1</div>
+        <div class="v347-minute">72'</div>
+      </div>
+      <strong class="away-name">Barcelona</strong>
+      <div class="v347-crest away-crest">FCB</div>
+    </div>
+  </div>
+</section>
+{% endblock %}

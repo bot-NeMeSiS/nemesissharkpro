@@ -11414,5 +11414,76 @@ def api_product_hardening_status_v345():
 # ===== END V345 =====
 
 
+
+# ===== V346 · REAL DATA LIVE API PIPELINE CONSOLIDATION PRO =====
+@app.route("/cliente/real-data-pipeline")
+@app.route("/admin/real-data-pipeline")
+@app.route("/real-data-pipeline-v346")
+def real_data_live_pipeline_v346():
+    return render_template("real_data_live_pipeline_v346.html")
+
+@app.route("/api/real-data/pipeline/status-v346")
+def api_real_data_pipeline_status_v346():
+    try:
+        from services.real_data_live_pipeline_v346 import real_data_pipeline_status
+        return jsonify(real_data_pipeline_status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V346","error":str(exc)}),500
+
+@app.route("/api/real-data/cache/status-v346")
+def api_real_data_cache_status_v346():
+    try:
+        from services.real_data_live_pipeline_v346 import cache_summary
+        return jsonify(cache_summary())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V346","error":str(exc)}),500
+# ===== END V346 =====
+
+
+
+# ===== V347 · LIVE DATA NORMALIZER CRESTS ENGINE PRO =====
+@app.route("/cliente/live-normalizer")
+@app.route("/admin/live-normalizer")
+@app.route("/live-normalizer-v347")
+def live_data_normalizer_crests_v347():
+    return render_template("live_data_normalizer_crests_v347.html")
+
+@app.route("/api/live/normalizer/status-v347")
+def api_live_normalizer_status_v347():
+    try:
+        from services.live_data_normalizer_crests_v347 import normalizer_status
+        return jsonify(normalizer_status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V347","error":str(exc)}),500
+
+@app.route("/api/live/normalizer/sample-v347")
+def api_live_normalizer_sample_v347():
+    try:
+        from services.live_data_normalizer_crests_v347 import sample_normalized_matches
+        limit = int(request.args.get("limit", 12))
+        return jsonify(sample_normalized_matches(limit=max(1, min(limit, 50))))
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V347","error":str(exc)}),500
+# ===== END V347 =====
+
+
+
+# ===== V348 · REAL DATA UI BINDING PRO =====
+@app.route("/cliente/real-data-ui")
+@app.route("/admin/real-data-ui")
+@app.route("/real-data-ui-v348")
+def real_data_ui_binding_v348():
+    return render_template("real_data_ui_binding_v348.html")
+
+@app.route("/api/client/real-data-ui/status-v348")
+def api_real_data_ui_binding_status_v348():
+    try:
+        from services.real_data_ui_binding_v348 import ui_binding_status
+        return jsonify(ui_binding_status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V348","error":str(exc)}),500
+# ===== END V348 =====
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

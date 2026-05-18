@@ -1,0 +1,14 @@
+{
+  "version": "V347",
+  "name": "LIVE_DATA_NORMALIZER_CRESTS_ENGINE_PRO",
+  "base": "V346",
+  "features": [
+    "team name cleanup",
+    "score/minute normalization",
+    "crest fallback engine",
+    "1x2 odds normalization",
+    "sample normalized endpoint",
+    "live/match center/shark shared contract"
+  ],
+  "real_only": true
+}

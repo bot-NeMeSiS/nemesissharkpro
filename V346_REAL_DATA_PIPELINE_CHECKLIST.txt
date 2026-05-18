@@ -1,0 +1,20 @@
+NeMeSiS SHARK PRO · V346 REAL DATA / LIVE API PIPELINE CONSOLIDATION
+
+Comprobar en Render:
+1. /api/real-data/pipeline/status-v346
+2. /api/real-data/cache/status-v346
+3. /api/client/1x2/recommendations-v319
+4. /cliente/real-data-pipeline
+5. /cliente/live-command-center
+6. /api/stability/full-status-v321
+
+Variables críticas:
+- THE_ODDS_API_KEY u ODDS_API_KEY
+- TELEGRAM_BOT_TOKEN
+- PUBLIC_BASE_URL o RENDER_EXTERNAL_URL
+
+Si no salen partidos/minuto/escudos:
+- revisar "missing_critical"
+- revisar "possible_data_tables"
+- revisar "diagnosis"
+- confirmar que la ingesta/cache tiene datos reales.
