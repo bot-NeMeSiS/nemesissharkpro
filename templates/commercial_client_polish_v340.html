@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Commercial Polish V340 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/commercial_client_polish_v340.css') }}">
+<script defer src="{{ url_for('static', filename='js/commercial_client_polish_v340.js') }}"></script>
+
+<section class="v340-shell">
+  <div class="v340-hero">
+    <div>
+      <span class="v340-badge">V340 · Commercial Client Polish</span>
+      <h1>Experiencia cliente más limpia y vendible</h1>
+      <p>Pasada final de pulido comercial: menos ruido técnico, estados más premium y lenguaje más claro para enseñar la app a clientes.</p>
+    </div>
+    <div>
+      <strong style="font-size:1.4rem;color:#a8ffd3;">COMMERCIAL</strong><br>
+      <span style="color:#aabbd3;">Beta premium controlada</span>
+    </div>
+  </div>
+
+  <div class="v340-grid">
+    <article class="v340-card"><span>🧼</span><h2>Menos ruido</h2><p>Oculta avisos técnicos y limpia textos de prueba.</p><a href="/cliente/pro">Cliente</a></article>
+    <article class="v340-card"><span>✅</span><h2>Estados premium</h2><p>LOW DATA y vacíos se muestran como espera de datos reales.</p><a href="/api/client/commercial-polish/status-v340">Status</a></article>
+    <article class="v340-card"><span>🦈</span><h2>SHARK claro</h2><p>La app transmite sistema premium, no panel técnico.</p><a href="/cliente/shark-ai-pro">SHARK</a></article>
+    <article class="v340-card"><span>🚀</span><h2>Beta vendible</h2><p>Lista para enseñar con una experiencia más limpia.</p><a href="/launch-ready-v330">Launch</a></article>
+  </div>
+</section>
+{% endblock %}

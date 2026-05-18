@@ -1,0 +1,12 @@
+{
+  "version": "V340",
+  "name": "COMMERCIAL_CLIENT_POLISH_FINAL_PASS_PRO",
+  "base": "V339",
+  "features": [
+    "hide technical noise",
+    "premium empty states",
+    "cleaner commercial language",
+    "beta ready polish"
+  ],
+  "real_only": true
+}

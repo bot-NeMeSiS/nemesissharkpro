@@ -11345,5 +11345,22 @@ def api_live_command_center_status_v337():
 # ===== END V337 =====
 
 
+
+# ===== V340 · COMMERCIAL CLIENT POLISH FINAL PASS PRO =====
+@app.route("/cliente/v340-commercial-polish")
+@app.route("/commercial-polish-v340")
+def commercial_client_polish_v340():
+    return render_template("commercial_client_polish_v340.html")
+
+@app.route("/api/client/commercial-polish/status-v340")
+def api_commercial_client_polish_status_v340():
+    try:
+        from services.commercial_client_polish_v340 import commercial_polish_status
+        return jsonify(commercial_polish_status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V340","error":str(exc)}),500
+# ===== END V340 =====
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

@@ -1,0 +1,160 @@
+
+/* V340 · Commercial Client Polish Final Pass */
+:root{
+  --v340-bg:#050d19;
+  --v340-card:rgba(8,18,35,.92);
+  --v340-border:rgba(126,232,255,.16);
+  --v340-text:#eef7ff;
+  --v340-muted:#a8b9d1;
+  --v340-gold:#ffe0a0;
+  --v340-green:#a8ffd3;
+}
+
+/* Oculta ruido técnico para cliente */
+.debug,.debug-panel,.dev-note,.technical-note,.api-debug,.json-debug,
+[data-debug="true"],[data-dev="true"],.vapid-warning,.push-config-warning{
+  display:none!important;
+}
+
+/* Copy/estados más comerciales */
+.low-data,.empty-state,.no-data{
+  border-radius:20px!important;
+  border:1px solid rgba(244,200,106,.26)!important;
+  background:linear-gradient(180deg,rgba(244,200,106,.08),rgba(255,255,255,.035))!important;
+  color:#ffe0a0!important;
+}
+
+.low-data::after,.empty-state::after,.no-data::after{
+  content:"Esperando datos reales";
+  display:inline-flex;
+  margin-left:8px;
+  padding:4px 8px;
+  border-radius:999px;
+  background:rgba(244,200,106,.12);
+  border:1px solid rgba(244,200,106,.28);
+  font-size:.70rem;
+  font-weight:900;
+}
+
+/* Tarjetas más vendibles */
+.card,.panel,.widget,.match-card,.live-card,.dashboard-card{
+  border-radius:22px!important;
+  border:1px solid rgba(255,255,255,.085)!important;
+  box-shadow:0 16px 42px rgba(0,0,0,.22)!important;
+}
+
+.v340-commercial-strip{
+  width:min(1180px,calc(100% - 28px));
+  margin:12px auto;
+  padding:16px;
+  border-radius:24px;
+  background:linear-gradient(135deg,rgba(22,220,134,.10),rgba(0,188,255,.08));
+  border:1px solid rgba(126,232,255,.18);
+  box-shadow:0 14px 34px rgba(0,0,0,.20);
+  color:var(--v340-text);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+}
+
+.v340-commercial-strip strong{
+  color:var(--v340-green);
+}
+
+.v340-commercial-strip small{
+  display:block;
+  color:var(--v340-muted);
+  margin-top:4px;
+}
+
+.v340-commercial-strip a{
+  display:inline-flex;
+  text-decoration:none;
+  color:#06111f;
+  background:linear-gradient(135deg,#a8ffd3,#7ee8ff);
+  padding:10px 13px;
+  border-radius:14px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.v340-shell{
+  width:min(1180px,calc(100% - 28px));
+  margin:28px auto 160px;
+  color:#eef7ff;
+}
+
+.v340-hero{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 280px;
+  gap:18px;
+  padding:32px;
+  border-radius:30px;
+  background:radial-gradient(circle at top left,rgba(22,220,134,.18),transparent 35%),linear-gradient(135deg,#07182e,#030b17);
+  border:1px solid rgba(95,255,190,.20);
+  box-shadow:0 24px 70px rgba(0,0,0,.36);
+}
+
+.v340-badge{
+  display:inline-flex;
+  padding:9px 13px;
+  border-radius:999px;
+  background:rgba(22,220,134,.13);
+  border:1px solid rgba(22,220,134,.25);
+  color:#a8ffd3;
+  font-weight:900;
+  font-size:.78rem;
+}
+
+.v340-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:16px;
+  margin-top:18px;
+}
+
+.v340-card{
+  min-height:220px;
+  padding:22px;
+  border-radius:24px;
+  background:linear-gradient(180deg,rgba(15,35,64,.96),rgba(7,16,31,.96));
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:0 18px 44px rgba(0,0,0,.25);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.v340-card span{
+  font-size:1.55rem;
+}
+
+.v340-card p{
+  color:#a8b9d1;
+  line-height:1.5;
+  flex:1;
+}
+
+.v340-card a{
+  display:inline-flex;
+  text-decoration:none;
+  color:#06111f;
+  background:linear-gradient(135deg,#7ee8ff,#398dff);
+  padding:10px 13px;
+  border-radius:14px;
+  font-weight:900;
+  font-size:.9rem;
+}
+
+@media(max-width:980px){
+  .v340-grid{grid-template-columns:1fr 1fr}
+  .v340-hero{grid-template-columns:1fr}
+  .v340-commercial-strip{flex-direction:column;align-items:stretch}
+  .v340-commercial-strip a{justify-content:center}
+}
+
+@media(max-width:620px){
+  .v340-grid{grid-template-columns:1fr}
+  .v340-shell,.v340-commercial-strip{width:min(100% - 18px,1180px)}
+}
