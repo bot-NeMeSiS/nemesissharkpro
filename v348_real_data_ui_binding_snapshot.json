@@ -1,0 +1,14 @@
+{
+  "version": "V348",
+  "name": "REAL_DATA_UI_BINDING_PRO",
+  "base": "V347",
+  "features": [
+    "normalized match UI card",
+    "live score minute crest binding",
+    "1x2 odds visual binding",
+    "low data UI state",
+    "home/client injection",
+    "status endpoint"
+  ],
+  "real_only": true
+}

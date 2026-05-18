@@ -1,0 +1,15 @@
+NeMeSiS SHARK PRO · V348 REAL DATA UI BINDING PRO
+
+Comprobar:
+1. /cliente/real-data-ui
+2. /api/client/real-data-ui/status-v348
+3. /api/live/normalizer/sample-v347?limit=3
+4. /cliente/pro
+5. /cliente/live-command-center
+6. /cliente/1x2
+
+Qué mejora:
+- Card común de partido normalizado.
+- Marcador/minuto/escudos/odds en un mismo formato.
+- LOW DATA limpio si faltan datos reales.
+- Conecta visualmente V347 con cliente, live, match center y 1X2.

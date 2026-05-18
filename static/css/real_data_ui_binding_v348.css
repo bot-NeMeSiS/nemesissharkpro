@@ -1,0 +1,44 @@
+
+/* V348 · Real Data UI Binding */
+.v348-ui-strip{
+  width:min(1180px,calc(100% - 28px));
+  margin:12px auto;
+  padding:18px;
+  border-radius:28px;
+  background:radial-gradient(circle at top left,rgba(126,232,255,.14),transparent 35%),linear-gradient(180deg,rgba(15,35,64,.96),rgba(7,16,31,.96));
+  border:1px solid rgba(126,232,255,.18);
+  box-shadow:0 18px 44px rgba(0,0,0,.26);
+  color:#eef7ff;
+}
+.v348-ui-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px}
+.v348-ui-head h2{margin:0;font-size:1.18rem}
+.v348-badge{display:inline-flex;padding:8px 12px;border-radius:999px;background:rgba(126,232,255,.12);border:1px solid rgba(126,232,255,.24);color:#9ee7ff;font-weight:900;font-size:.75rem}
+.v348-match-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.v348-match-card{padding:16px;border-radius:22px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);display:grid;gap:12px}
+.v348-match-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.v348-league{color:#a8b9d1;font-size:.78rem;font-weight:800}
+.v348-minute{display:inline-flex;padding:6px 9px;border-radius:999px;background:rgba(255,90,90,.13);border:1px solid rgba(255,90,90,.24);color:#ffb0b0;font-weight:900;font-size:.76rem}
+.v348-teams{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center}
+.v348-crest{width:38px;height:38px;border-radius:999px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(126,232,255,.18),rgba(244,200,106,.12));border:1px solid rgba(255,255,255,.14);font-weight:900;color:#eef7ff;overflow:hidden}
+.v348-crest img{width:100%;height:100%;object-fit:contain}
+.v348-team-name{font-weight:900;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.v348-score{font-size:1.28rem;font-weight:1000;color:#ffe0a0;text-align:center;padding:4px 8px;border-radius:12px;background:rgba(244,200,106,.08);border:1px solid rgba(244,200,106,.16)}
+.v348-odds{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.v348-odd{padding:9px;border-radius:13px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);text-align:center}
+.v348-odd strong{display:block;color:#9ee7ff}
+.v348-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.v348-actions a{display:flex;justify-content:center;text-decoration:none;color:#06111f;background:linear-gradient(135deg,#7ee8ff,#398dff);padding:10px;border-radius:14px;font-weight:900;font-size:.84rem}
+.v348-actions a.gold{background:linear-gradient(135deg,#ffe0a0,#ffad32)}
+.v348-low-data{padding:16px;border-radius:22px;background:rgba(244,200,106,.08);border:1px dashed rgba(244,200,106,.30);color:#ffe0a0}
+.v348-shell{width:min(1180px,calc(100% - 28px));margin:28px auto 160px;color:#eef7ff}
+.v348-hero{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:18px;padding:32px;border-radius:30px;background:radial-gradient(circle at top left,rgba(126,232,255,.18),transparent 35%),linear-gradient(135deg,#07182e,#030b17);border:1px solid rgba(126,232,255,.20);box-shadow:0 24px 70px rgba(0,0,0,.36)}
+.v348-hero h1{margin:16px 0 10px;font-size:clamp(2rem,5vw,4.1rem);line-height:.92}
+.v348-hero p{max-width:790px;color:#aabbd3;font-size:1.04rem}
+.v348-status{border-radius:24px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);padding:22px;display:flex;flex-direction:column;justify-content:center;gap:8px}
+.v348-status strong{font-size:1.45rem;color:#9ee7ff}
+.v348-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:18px}
+.v348-card{min-height:230px;padding:22px;border-radius:24px;background:linear-gradient(180deg,rgba(15,35,64,.96),rgba(7,16,31,.96));border:1px solid rgba(255,255,255,.09);box-shadow:0 18px 44px rgba(0,0,0,.25);display:flex;flex-direction:column;gap:10px}
+.v348-card p{color:#a8b9d1;line-height:1.5;flex:1}
+.v348-card a{display:inline-flex;text-decoration:none;color:#06111f;background:linear-gradient(135deg,#7ee8ff,#398dff);padding:10px 13px;border-radius:14px;font-weight:900;font-size:.9rem}
+@media(max-width:980px){.v348-match-grid,.v348-grid{grid-template-columns:1fr 1fr}.v348-hero{grid-template-columns:1fr}}
+@media(max-width:640px){.v348-match-grid,.v348-grid{grid-template-columns:1fr}.v348-shell,.v348-ui-strip{width:min(100% - 18px,1180px)}.v348-ui-head{flex-direction:column;align-items:flex-start}}

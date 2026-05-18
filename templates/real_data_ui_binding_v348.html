@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Real Data UI Binding V348 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/real_data_ui_binding_v348.css') }}">
+<script defer src="{{ url_for('static', filename='js/real_data_ui_binding_v348.js') }}"></script>
+
+<section class="v348-shell">
+  <div class="v348-hero">
+    <div>
+      <span class="v348-badge">V348 · Real Data UI Binding</span>
+      <h1>Los datos normalizados ya se ven en cliente</h1>
+      <p>Card común de partido para conectar V347 con Home, Live, Match Center, 1X2, favoritos y SHARK con marcador, minuto, escudos y odds.</p>
+    </div>
+    <div class="v348-status">
+      <strong>UI BINDING</strong>
+      <span>Normalizador → Cliente</span>
+    </div>
+  </div>
+
+  <div class="v348-grid">
+    <article class="v348-card"><h2>Home cliente</h2><p>Muestra partidos normalizados o LOW DATA limpio.</p><a href="/cliente/pro">Cliente</a></article>
+    <article class="v348-card"><h2>Live</h2><p>Marcador, minuto y escudos con formato común.</p><a href="/cliente/live-command-center">Live</a></article>
+    <article class="v348-card"><h2>1X2</h2><p>Cuotas 1/X/2 visibles y conectadas a la card.</p><a href="/cliente/1x2">1X2</a></article>
+    <article class="v348-card"><h2>Status</h2><p>Comprueba binding visual y normalizador.</p><a href="/api/client/real-data-ui/status-v348">Status</a></article>
+  </div>
+</section>
+{% endblock %}
