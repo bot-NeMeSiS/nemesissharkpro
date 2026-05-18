@@ -1,0 +1,17 @@
+NeMeSiS SHARK PRO · V352 LIVE DATA STABILITY & REFRESH ENGINE
+
+Revisar:
+1. /cliente/live-stability
+2. /api/live/refresh/status-v352
+3. /api/live/refresh/ping-v352?group=live
+4. /api/live/refresh/ping-v352?group=fixtures
+5. /api/live/refresh/ping-v352?group=odds_1x2
+6. /api/live/normalizer/status-v347
+7. /api/live/normalizer/sample-v347
+8. /api/real-data/pipeline/status-v346
+
+Objetivo:
+- Subir el área más débil: datos reales/live.
+- Saber si live/fixtures/1X2 están frescos o caducados.
+- Dar diagnóstico claro para Render.
+- Preparar siguiente paso: conectar refresco real a proveedor/API.

@@ -1,0 +1,18 @@
+NeMeSiS SHARK PRO · V351 PRODUCTION READINESS QA CENTER
+
+Revisar:
+1. /admin/production-readiness
+2. /api/production-readiness/status-v351
+3. /cliente/pro
+4. /cliente/1x2
+5. /cliente/live-command-center
+6. /cliente/match-center-premium
+7. /cliente/membresia
+8. /api/real-data/pipeline/status-v346
+9. /api/live/normalizer/status-v347
+10. /api/telegram/linked-chats-v317
+
+Objetivo:
+- Dejar una checklist clara antes de vender.
+- Saber qué funciona y qué revisar.
+- Preparar siguiente Release Candidate limpio.

@@ -1,0 +1,15 @@
+{
+  "version": "V352",
+  "name": "LIVE_DATA_STABILITY_REFRESH_ENGINE_PRO",
+  "base": "V351",
+  "features": [
+    "live freshness state",
+    "refresh TTLs",
+    "refresh ping endpoints",
+    "api key diagnosis",
+    "live pulse UI",
+    "LOW DATA diagnosis",
+    "render live checklist"
+  ],
+  "real_only": true
+}

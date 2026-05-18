@@ -1,0 +1,14 @@
+{
+  "version": "V353",
+  "name": "REAL_PROVIDER_CONNECTOR_AUTO_REFRESH_PRO",
+  "base": "V352",
+  "features": [
+    "the odds api connector",
+    "provider cache",
+    "odds refresh endpoint",
+    "cached odds endpoint",
+    "LOW DATA fallback",
+    "render checklist"
+  ],
+  "real_only": true
+}

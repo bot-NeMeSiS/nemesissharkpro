@@ -1,0 +1,13 @@
+{
+  "version": "V351",
+  "name": "PRODUCTION_READINESS_QA_CENTER_PRO",
+  "base": "V350",
+  "features": [
+    "production QA center",
+    "client route checklist",
+    "data/live/telegram checks",
+    "manual testing checklist",
+    "release candidate preparation"
+  ],
+  "real_only": true
+}

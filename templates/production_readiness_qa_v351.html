@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Production Readiness V351 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/production_readiness_qa_v351.css') }}">
+<script defer src="{{ url_for('static', filename='js/production_readiness_qa_v351.js') }}"></script>
+
+<section class="v351-shell">
+  <div class="v351-hero">
+    <div>
+      <span class="v351-badge">V351 · Production Readiness QA</span>
+      <h1>Centro de revisión antes de vender fuerte</h1>
+      <p>Checklist final para cliente, navegación, datos reales, normalizador, 1X2, membresías, Telegram y launch.</p>
+    </div>
+    <div class="v351-status">
+      <strong>QA CENTER</strong>
+      <span>Beta premium controlada</span>
+    </div>
+  </div>
+
+  <div class="v351-grid">
+    <article class="v351-check"><strong>Cliente</strong><small>/cliente/pro</small><a href="/cliente/pro">Revisar</a></article>
+<article class="v351-check"><strong>Navegación</strong><small>/api/client/navigation-audit/status-v349</small><a href="/api/client/navigation-audit/status-v349">Revisar</a></article>
+<article class="v351-check"><strong>Experiencia</strong><small>/api/client/experience-final/status-v350</small><a href="/api/client/experience-final/status-v350">Revisar</a></article>
+<article class="v351-check"><strong>Datos</strong><small>/api/real-data/pipeline/status-v346</small><a href="/api/real-data/pipeline/status-v346">Revisar</a></article>
+<article class="v351-check"><strong>Normalizador</strong><small>/api/live/normalizer/status-v347</small><a href="/api/live/normalizer/status-v347">Revisar</a></article>
+<article class="v351-check"><strong>UI Datos</strong><small>/api/client/real-data-ui/status-v348</small><a href="/api/client/real-data-ui/status-v348">Revisar</a></article>
+<article class="v351-check"><strong>1X2</strong><small>/cliente/1x2</small><a href="/cliente/1x2">Revisar</a></article>
+<article class="v351-check"><strong>Membresía</strong><small>/cliente/membresia</small><a href="/cliente/membresia">Revisar</a></article>
+<article class="v351-check"><strong>Telegram</strong><small>/api/telegram/linked-chats-v317</small><a href="/api/telegram/linked-chats-v317">Revisar</a></article>
+<article class="v351-check"><strong>Launch</strong><small>/api/launch/status-v330</small><a href="/api/launch/status-v330">Revisar</a></article>
+  </div>
+
+  <div class="v351-panel">
+    <h2>Pruebas manuales necesarias</h2>
+    <ol>
+      <li>Login cliente y registro nuevo.</li>
+      <li>Flujo móvil desde iPhone.</li>
+      <li>1X2 con API real activa.</li>
+      <li>Telegram con /start y chats enlazados.</li>
+      <li>Render variables y DB persistente.</li>
+      <li>Live/minuto/escudos y fallback LOW DATA.</li>
+    </ol>
+  </div>
+</section>
+{% endblock %}

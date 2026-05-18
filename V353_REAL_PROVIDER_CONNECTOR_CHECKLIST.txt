@@ -1,0 +1,22 @@
+NeMeSiS SHARK PRO · V353 REAL PROVIDER CONNECTOR & AUTO REFRESH
+
+Rutas:
+1. /cliente/provider-connector
+2. /api/provider/status-v353
+3. /api/provider/refresh/odds-v353
+4. /api/provider/cache/odds-v353
+5. /api/live/refresh/status-v352
+6. /api/live/normalizer/status-v347
+
+Variables:
+- THE_ODDS_API_KEY u ODDS_API_KEY
+- ODDS_DEFAULT_SPORT opcional, ejemplo soccer_epl
+- ODDS_REGIONS opcional, ejemplo eu,uk
+- ODDS_MARKETS opcional, h2h
+
+Circuito:
+API -> provider_cache_v353 -> normalizador/UI -> cliente
+
+Si falla API:
+- se intenta leer caché
+- si no hay caché, LOW DATA limpio

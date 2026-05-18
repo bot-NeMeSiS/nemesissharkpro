@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Live Stability V352 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/live_data_stability_refresh_v352.css') }}">
+<script defer src="{{ url_for('static', filename='js/live_data_stability_refresh_v352.js') }}"></script>
+
+<section class="v352-shell">
+  <div class="v352-hero">
+    <div>
+      <span class="v352-badge">V352 · Live Data Stability & Refresh</span>
+      <h1>El punto débil: live y datos reales más estables</h1>
+      <p>Control de refresco, frescura de caché, API keys, estado live, 1X2, fixtures y diagnóstico claro si marcador/minuto/escudos no aparecen.</p>
+    </div>
+    <div class="v352-status">
+      <strong>LIVE STABLE</strong>
+      <span>Refresh · TTL · LOW DATA</span>
+    </div>
+  </div>
+
+  <div class="v352-grid">
+    <article class="v352-card green">
+      <span>🔥</span>
+      <h2>Live refresh</h2>
+      <p>Comprueba si live está fresco o caducado según TTL.</p>
+      <a href="/api/live/refresh/status-v352">Status</a>
+    </article>
+    <article class="v352-card">
+      <span>⏱️</span>
+      <h2>Ping live</h2>
+      <p>Registra un refresh OK para probar estado y DB.</p>
+      <a href="/api/live/refresh/ping-v352?group=live">Ping</a>
+    </article>
+    <article class="v352-card gold">
+      <span>👑</span>
+      <h2>1X2 refresh</h2>
+      <p>Control de frescura para cuotas y combis.</p>
+      <a href="/api/live/refresh/ping-v352?group=odds_1x2">Ping 1X2</a>
+    </article>
+    <article class="v352-card">
+      <span>🛡️</span>
+      <h2>Normalizador</h2>
+      <p>Conecta con V347 para minuto, marcador y escudos.</p>
+      <a href="/api/live/normalizer/status-v347">V347</a>
+    </article>
+  </div>
+
+  <div class="v352-panel">
+    <h2>Checklist live real</h2>
+    <ol>
+      <li>Comprobar <strong>/api/live/refresh/status-v352</strong>.</li>
+      <li>Hacer ping en <strong>/api/live/refresh/ping-v352?group=live</strong>.</li>
+      <li>Confirmar que <strong>THE_ODDS_API_KEY</strong> aparece presente.</li>
+      <li>Revisar <strong>/api/live/normalizer/sample-v347</strong>.</li>
+      <li>Entrar en <strong>/cliente/live-command-center</strong>.</li>
+      <li>Si algo falla, mirar el bloque <strong>diagnosis</strong> del JSON V352.</li>
+    </ol>
+  </div>
+</section>
+{% endblock %}

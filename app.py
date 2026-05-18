@@ -11521,5 +11521,88 @@ def api_client_experience_final_status_v350():
 # ===== END V350 =====
 
 
+
+# ===== V351 · PRODUCTION READINESS QA CENTER PRO =====
+@app.route("/admin/production-readiness")
+@app.route("/cliente/production-readiness")
+@app.route("/production-readiness-v351")
+def production_readiness_qa_v351():
+    return render_template("production_readiness_qa_v351.html")
+
+@app.route("/api/production-readiness/status-v351")
+def api_production_readiness_status_v351():
+    try:
+        from services.production_readiness_qa_v351 import qa_status
+        return jsonify(qa_status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V351","error":str(exc)}),500
+# ===== END V351 =====
+
+
+
+# ===== V352 · LIVE DATA STABILITY REFRESH ENGINE PRO =====
+@app.route("/cliente/live-stability")
+@app.route("/admin/live-stability")
+@app.route("/live-stability-v352")
+def live_data_stability_refresh_v352():
+    return render_template("live_data_stability_refresh_v352.html")
+
+@app.route("/api/live/refresh/status-v352")
+def api_live_refresh_status_v352():
+    try:
+        from services.live_data_stability_refresh_v352 import live_refresh_status
+        return jsonify(live_refresh_status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V352","error":str(exc)}),500
+
+@app.route("/api/live/refresh/ping-v352")
+def api_live_refresh_ping_v352():
+    try:
+        from services.live_data_stability_refresh_v352 import ping_group
+        group = request.args.get("group", "live")
+        return jsonify(ping_group(group))
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V352","error":str(exc)}),500
+# ===== END V352 =====
+
+
+
+# ===== V353 · REAL PROVIDER CONNECTOR AUTO REFRESH PRO =====
+@app.route("/cliente/provider-connector")
+@app.route("/admin/provider-connector")
+@app.route("/provider-connector-v353")
+def real_provider_connector_v353():
+    return render_template("real_provider_connector_v353.html")
+
+@app.route("/api/provider/status-v353")
+def api_provider_status_v353():
+    try:
+        from services.real_provider_connector_v353 import provider_status
+        return jsonify(provider_status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V353","error":str(exc)}),500
+
+@app.route("/api/provider/refresh/odds-v353")
+def api_provider_refresh_odds_v353():
+    try:
+        from services.real_provider_connector_v353 import fetch_odds
+        sport = request.args.get("sport")
+        regions = request.args.get("regions")
+        markets = request.args.get("markets")
+        return jsonify(fetch_odds(sport=sport, regions=regions, markets=markets))
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V353","error":str(exc)}),500
+
+@app.route("/api/provider/cache/odds-v353")
+def api_provider_cache_odds_v353():
+    try:
+        from services.real_provider_connector_v353 import cached_odds
+        sport = request.args.get("sport")
+        return jsonify(cached_odds(sport=sport))
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V353","error":str(exc)}),500
+# ===== END V353 =====
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Provider Connector V353 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/real_provider_connector_v353.css') }}">
+<script defer src="{{ url_for('static', filename='js/real_provider_connector_v353.js') }}"></script>
+
+<section class="v353-shell">
+  <div class="v353-hero">
+    <div>
+      <span class="v353-badge">V353 · Real Provider Connector</span>
+      <h1>API → caché → normalizador → cliente</h1>
+      <p>Conector central para The Odds API, refresco de cuotas/1X2, guardado en caché y fallback LOW DATA si la API falla.</p>
+    </div>
+    <div class="v353-status">
+      <strong>CONNECTOR</strong>
+      <span>The Odds API · Caché · 1X2</span>
+    </div>
+  </div>
+
+  <div class="v353-grid">
+    <article class="v353-card green">
+      <h2>Provider status</h2>
+      <p>Comprueba API key, caché y últimos eventos del proveedor.</p>
+      <a href="/api/provider/status-v353">Status</a>
+    </article>
+    <article class="v353-card">
+      <h2>Refresh odds</h2>
+      <p>Ejecuta refresco de cuotas 1X2 desde proveedor real.</p>
+      <a href="/api/provider/refresh/odds-v353">Refrescar</a>
+    </article>
+    <article class="v353-card gold">
+      <h2>Caché odds</h2>
+      <p>Lee últimas cuotas guardadas aunque falle la API.</p>
+      <a href="/api/provider/cache/odds-v353">Ver caché</a>
+    </article>
+    <article class="v353-card">
+      <h2>Live stability</h2>
+      <p>Conecta con V352 para frescura y diagnóstico live.</p>
+      <a href="/api/live/refresh/status-v352">V352</a>
+    </article>
+  </div>
+
+  <div class="v353-panel">
+    <h2>Checklist V353</h2>
+    <ol>
+      <li>Confirmar <strong>THE_ODDS_API_KEY</strong> en Render.</li>
+      <li>Probar <strong>/api/provider/status-v353</strong>.</li>
+      <li>Ejecutar <strong>/api/provider/refresh/odds-v353</strong>.</li>
+      <li>Revisar <strong>/api/provider/cache/odds-v353</strong>.</li>
+      <li>Confirmar que 1X2 y UI muestran datos o LOW DATA limpio.</li>
+    </ol>
+  </div>
+</section>
+{% endblock %}
