@@ -11658,5 +11658,32 @@ def api_match_center_binding_status_v355():
 # ===== END V355 =====
 
 
+
+# ===== V356 · SHARK REAL DATA ANALYST BINDING PRO =====
+@app.route("/cliente/shark-real-analyst")
+@app.route("/admin/shark-real-analyst")
+@app.route("/shark-real-analyst-v356")
+def shark_real_data_analyst_v356():
+    return render_template("shark_real_data_analyst_v356.html")
+
+@app.route("/api/shark/real-analysis-v356")
+def api_shark_real_analysis_v356():
+    try:
+        from services.shark_real_data_analyst_v356 import shark_real_analysis
+        limit = int(request.args.get("limit", 6))
+        return jsonify(shark_real_analysis(limit=max(1,min(limit,50))))
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V356","error":str(exc)}),500
+
+@app.route("/api/shark/real-binding-status-v356")
+def api_shark_real_binding_status_v356():
+    try:
+        from services.shark_real_data_analyst_v356 import shark_binding_status
+        return jsonify(shark_binding_status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V356","error":str(exc)}),500
+# ===== END V356 =====
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

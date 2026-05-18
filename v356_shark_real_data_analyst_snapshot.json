@@ -1,0 +1,12 @@
+{
+  "version": "V356",
+  "name": "SHARK_REAL_DATA_ANALYST_BINDING_PRO",
+  "base": "V355",
+  "features": [
+    "shark reads real match center",
+    "1x2 contextual explanation",
+    "confidence/risk analysis",
+    "LOW DATA fallback"
+  ],
+  "real_only": true
+}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}SHARK Real Analyst V356 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/shark_real_data_analyst_v356.css') }}">
+<script defer src="{{ url_for('static', filename='js/shark_real_data_analyst_v356.js') }}"></script>
+<section class="v356-shell">
+  <div class="v356-hero">
+    <div><span class="v356-badge">V356 · SHARK Real Data Analyst</span><h1>SHARK conectado a datos reales</h1><p>El analista SHARK ahora usa el mismo circuito real: proveedor V353, 1X2 V354 y Match Center V355.</p></div>
+    <div class="v356-status"><strong>SHARK REAL</strong><span>Proveedor · 1X2 · Match</span></div>
+  </div>
+  <div class="v356-low">Para análisis real: ejecuta <strong>/api/provider/refresh/odds-v353</strong> y revisa <strong>/api/shark/real-analysis-v356</strong>.</div>
+  <div class="v356-grid" id="v356-grid"></div>
+</section>
+<script>
+fetch('/api/shark/real-analysis-v356',{cache:'no-store'}).then(r=>r.json()).then(d=>{
+ const grid=document.getElementById('v356-grid'); const rows=d.analyses||[];
+ if(!rows.length){grid.innerHTML='<div class="v356-low">LOW DATA: SHARK espera datos reales del proveedor.</div>';return;}
+ grid.innerHTML=rows.slice(0,8).map(x=>`<article class="v356-card"><div class="v356-top"><div><div class="v356-title">${x.title||'Partido'}</div><div class="v356-league">${x.league||'Competición'} · ${x.minute||'Pre'} · ${x.score||'vs'}</div></div><span class="v356-pill">${x.recommended_1x2||'LOW_DATA'}</span></div><div class="v356-analysis">🦈 ${x.analysis||'Sin lectura disponible.'}</div><div class="v356-meta"><div><strong>${x.confidence||0}/100</strong><small>Confianza</small></div><div><strong>${x.risk_label||'--'}</strong><small>Riesgo</small></div><div><strong>${x.recommended_1x2||'--'}</strong><small>1X2</small></div></div><div class="v356-actions"><a class="gold" href="/cliente/1x2-real-cache">1X2</a><a href="/cliente/match-center-real">Match</a><a href="/cliente/shark-ai-pro">Chat</a></div></article>`).join('');
+}).catch(()=>{document.getElementById('v356-grid').innerHTML='<div class="v356-low">LOW DATA: no se pudo leer SHARK real.</div>'});
+</script>
+{% endblock %}

@@ -1,0 +1,13 @@
+NeMeSiS SHARK PRO · V356 SHARK REAL DATA ANALYST
+
+Revisar:
+1. /api/provider/refresh/odds-v353
+2. /api/client/match-center/real-data-v355
+3. /api/shark/real-analysis-v356
+4. /cliente/shark-real-analyst
+5. /cliente/shark-ai-pro
+
+Objetivo:
+- SHARK usa circuito real/cacheado.
+- Explicación contextual basada en 1X2 y Match Center.
+- LOW DATA limpio si no hay proveedor/caché.
