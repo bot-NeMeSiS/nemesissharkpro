@@ -11362,5 +11362,57 @@ def api_commercial_client_polish_status_v340():
 # ===== END V340 =====
 
 
+
+# ===== V343 · CLIENT REVENUE MEMBERSHIP SALES FLOW PRO =====
+@app.route("/cliente/revenue-membership")
+@app.route("/cliente/membresia")
+def client_revenue_membership_v343():
+    return render_template("client_revenue_membership_v343.html")
+
+@app.route("/api/client/revenue/status-v343")
+def api_client_revenue_status_v343():
+    try:
+        from services.client_revenue_membership_v343 import revenue_status
+        return jsonify(revenue_status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V343","error":str(exc)}),500
+# ===== END V343 =====
+
+
+
+# ===== V344 · ADMIN COMMERCIAL CONTROL CENTER PRO =====
+@app.route("/admin/commercial-control")
+@app.route("/admin/v344-commercial-control")
+def admin_commercial_control_v344():
+    return render_template("admin_commercial_control_v344.html")
+
+@app.route("/api/admin/commercial-control/status-v344")
+def api_admin_commercial_control_status_v344():
+    try:
+        from services.admin_commercial_control_v344 import admin_control_status
+        return jsonify(admin_control_status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V344","error":str(exc)}),500
+# ===== END V344 =====
+
+
+
+# ===== V345 · PRODUCT HARDENING CLEANUP PRO =====
+@app.route("/product-hardening-v345")
+@app.route("/admin/product-hardening")
+@app.route("/cliente/product-hardening")
+def product_hardening_cleanup_v345():
+    return render_template("product_hardening_cleanup_v345.html")
+
+@app.route("/api/product/hardening/status-v345")
+def api_product_hardening_status_v345():
+    try:
+        from services.product_hardening_cleanup_v345 import hardening_status
+        return jsonify(hardening_status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V345","error":str(exc)}),500
+# ===== END V345 =====
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

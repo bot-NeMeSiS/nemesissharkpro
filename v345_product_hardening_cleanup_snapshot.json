@@ -1,0 +1,15 @@
+{
+  "version": "V345",
+  "name": "PRODUCT_HARDENING_CLEANUP_PRO",
+  "base": "V344",
+  "features": [
+    "cleanup old injections",
+    "hide technical noise",
+    "route health checklist",
+    "scroll stability",
+    "commercial stable base",
+    "stable base readme"
+  ],
+  "next_recommended": "Real data/live/API pipeline consolidation",
+  "real_only": true
+}

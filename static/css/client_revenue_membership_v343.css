@@ -1,0 +1,94 @@
+
+/* V343 · Client Revenue & Membership Sales Flow */
+.v343-sales-strip{
+  width:min(1180px,calc(100% - 28px));
+  margin:12px auto;
+  padding:18px;
+  border-radius:26px;
+  background:radial-gradient(circle at top left,rgba(244,200,106,.15),transparent 35%),linear-gradient(180deg,rgba(15,35,64,.96),rgba(7,16,31,.96));
+  border:1px solid rgba(244,200,106,.18);
+  box-shadow:0 18px 44px rgba(0,0,0,.24);
+  color:#eef7ff;
+}
+.v343-sales-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:16px;
+}
+.v343-sales-head h2{margin:0}
+.v343-badge{
+  display:inline-flex;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(244,200,106,.12);
+  border:1px solid rgba(244,200,106,.25);
+  color:#ffe0a0;
+  font-weight:900;
+  font-size:.75rem;
+}
+.v343-tier-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+.v343-tier{
+  padding:16px;
+  border-radius:22px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.08);
+}
+.v343-tier.pro{
+  background:radial-gradient(circle at top left,rgba(0,188,255,.17),transparent 36%),rgba(255,255,255,.045);
+}
+.v343-tier.elite{
+  background:radial-gradient(circle at top left,rgba(244,200,106,.20),transparent 36%),rgba(255,255,255,.045);
+  border-color:rgba(244,200,106,.22);
+}
+.v343-tier strong{
+  display:block;
+  font-size:1.05rem;
+  margin-bottom:8px;
+}
+.v343-tier ul{
+  margin:10px 0 0;
+  padding-left:18px;
+  color:#a8b9d1;
+}
+.v343-upgrade-btn{
+  display:inline-flex;
+  margin-top:14px;
+  text-decoration:none;
+  color:#06111f;
+  background:linear-gradient(135deg,#ffe0a0,#ffad32);
+  padding:10px 13px;
+  border-radius:14px;
+  font-weight:900;
+}
+.v343-soft-lock{
+  position:relative;
+  border-radius:20px!important;
+  overflow:hidden;
+}
+.v343-soft-lock::after{
+  content:"PRO";
+  position:absolute;
+  top:10px;
+  right:10px;
+  padding:5px 8px;
+  border-radius:999px;
+  background:rgba(244,200,106,.16);
+  border:1px solid rgba(244,200,106,.28);
+  color:#ffe0a0;
+  font-weight:900;
+  font-size:.68rem;
+}
+.v343-shell{width:min(1180px,calc(100% - 28px));margin:28px auto 160px;color:#eef7ff}
+.v343-hero{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:18px;padding:32px;border-radius:30px;background:radial-gradient(circle at top left,rgba(244,200,106,.18),transparent 35%),linear-gradient(135deg,#07182e,#030b17);border:1px solid rgba(244,200,106,.20);box-shadow:0 24px 70px rgba(0,0,0,.36)}
+.v343-title{display:inline-flex;padding:9px 13px;border-radius:999px;background:rgba(244,200,106,.13);border:1px solid rgba(244,200,106,.25);color:#ffe0a0;font-weight:900;font-size:.78rem}
+.v343-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:18px}
+.v343-card{min-height:220px;padding:22px;border-radius:24px;background:linear-gradient(180deg,rgba(15,35,64,.96),rgba(7,16,31,.96));border:1px solid rgba(255,255,255,.09);box-shadow:0 18px 44px rgba(0,0,0,.25);display:flex;flex-direction:column;gap:10px}
+.v343-card p{color:#a8b9d1;line-height:1.5;flex:1}
+.v343-card a{display:inline-flex;text-decoration:none;color:#06111f;background:linear-gradient(135deg,#7ee8ff,#398dff);padding:10px 13px;border-radius:14px;font-weight:900;font-size:.9rem}
+@media(max-width:980px){.v343-tier-grid,.v343-cards{grid-template-columns:1fr}.v343-hero{grid-template-columns:1fr}.v343-sales-head{flex-direction:column;align-items:flex-start}}

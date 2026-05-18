@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Admin Commercial Control V344 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin_commercial_control_v344.css') }}">
+<script defer src="{{ url_for('static', filename='js/admin_commercial_control_v344.js') }}"></script>
+
+<section class="v344-shell">
+  <div class="v344-hero">
+    <div>
+      <span class="v344-badge">V344 · Admin Commercial Control</span>
+      <h1>Centro comercial y operativo</h1>
+      <p>Panel para controlar puesta en marcha, membresías, Telegram, estabilidad, venta beta y salud general del ecosistema.</p>
+    </div>
+    <div class="v344-status">
+      <strong>CONTROL PRO</strong>
+      <span>Clientes · ventas · sistema</span>
+    </div>
+  </div>
+
+  <div class="v344-kpis">
+    <div class="v344-kpi"><strong>FREE</strong><small>Entrada / prueba</small></div>
+    <div class="v344-kpi"><strong>PRO</strong><small>Conversión principal</small></div>
+    <div class="v344-kpi"><strong>ELITE</strong><small>Máximo valor</small></div>
+    <div class="v344-kpi"><strong>BETA</strong><small>Venta controlada</small></div>
+  </div>
+
+  <div class="v344-grid">
+    <article class="v344-card gold">
+      <span>💳</span>
+      <h2>Membresías</h2>
+      <p>Revisar flujo FREE / PRO / ELITE y cómo lo ve el cliente.</p>
+      <a href="/cliente/membresia">Ver cliente</a>
+    </article>
+    <article class="v344-card">
+      <span>🚀</span>
+      <h2>Launch Ready</h2>
+      <p>Comprobar estado de puesta en marcha comercial.</p>
+      <a href="/api/launch/status-v330">Status launch</a>
+    </article>
+    <article class="v344-card green">
+      <span>📨</span>
+      <h2>Telegram</h2>
+      <p>Comprobar chats, webhook y automatización de mensajes.</p>
+      <a href="/api/telegram/linked-chats-v317">Chats</a>
+    </article>
+    <article class="v344-card">
+      <span>🛡️</span>
+      <h2>Estabilidad</h2>
+      <p>Revisión global de DB, Telegram, Live y 1X2.</p>
+      <a href="/api/stability/full-status-v321">Status</a>
+    </article>
+  </div>
+</section>
+{% endblock %}

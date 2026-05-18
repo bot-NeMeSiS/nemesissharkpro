@@ -1,0 +1,13 @@
+{
+  "version": "V344",
+  "name": "ADMIN_COMMERCIAL_CONTROL_CENTER_PRO",
+  "base": "V343",
+  "features": [
+    "admin commercial control",
+    "membership overview",
+    "launch status",
+    "telegram checks",
+    "stability links"
+  ],
+  "commercial_ready": true
+}

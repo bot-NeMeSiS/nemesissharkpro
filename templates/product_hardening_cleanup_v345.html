@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Product Hardening V345 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/product_hardening_cleanup_v345.css') }}">
+<script defer src="{{ url_for('static', filename='js/product_hardening_cleanup_v345.js') }}"></script>
+
+<section class="v345-shell">
+  <div class="v345-hero">
+    <div>
+      <span class="v345-badge">V345 · Product Hardening</span>
+      <h1>Base estable, limpia y lista para seguir</h1>
+      <p>Consolidación para reducir duplicados, ocultar ruido técnico, reforzar scroll, estabilizar rutas clave y dejar una versión más ordenada.</p>
+    </div>
+    <div class="v345-status">
+      <strong>STABLE BASE</strong>
+      <span>Cliente · Admin · Comercial</span>
+    </div>
+  </div>
+
+  <div class="v345-grid">
+    <article class="v345-card green">
+      <span>🧹</span>
+      <h2>Limpieza visual</h2>
+      <p>Reduce restos de versiones antiguas, duplicados y ruido técnico en cliente.</p>
+      <a href="/cliente/pro">Probar cliente</a>
+    </article>
+    <article class="v345-card">
+      <span>🛡️</span>
+      <h2>Health check</h2>
+      <p>Estado consolidado de DB, rutas clave y base comercial.</p>
+      <a href="/api/product/hardening/status-v345">Ver status</a>
+    </article>
+    <article class="v345-card gold">
+      <span>💳</span>
+      <h2>Venta estable</h2>
+      <p>Conserva membresías, launch ready y flujo comercial cliente.</p>
+      <a href="/cliente/membresia">Membresías</a>
+    </article>
+    <article class="v345-card">
+      <span>⚙️</span>
+      <h2>Admin control</h2>
+      <p>Acceso rápido al centro comercial y operativo admin.</p>
+      <a href="/admin/commercial-control">Admin</a>
+    </article>
+  </div>
+
+  <div class="v345-checklist">
+    <h2>Checklist V345</h2>
+    <ol>
+      <li>Comprobar <strong>/api/product/hardening/status-v345</strong>.</li>
+      <li>Revisar cliente móvil y confirmar que no hay duplicados molestos.</li>
+      <li>Revisar <strong>/cliente/membresia</strong> y flujo FREE / PRO / ELITE.</li>
+      <li>Revisar <strong>/admin/commercial-control</strong>.</li>
+      <li>Siguiente paso recomendado: consolidar datos reales/live/API.</li>
+    </ol>
+  </div>
+</section>
+{% endblock %}

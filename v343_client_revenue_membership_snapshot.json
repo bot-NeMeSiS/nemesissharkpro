@@ -1,0 +1,12 @@
+{
+  "version": "V343",
+  "name": "CLIENT_REVENUE_MEMBERSHIP_SALES_FLOW_PRO",
+  "base": "V342",
+  "features": [
+    "membership sales strip",
+    "FREE PRO ELITE clarity",
+    "soft premium locks",
+    "upgrade CTA"
+  ],
+  "commercial_ready": true
+}

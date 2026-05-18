@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Revenue Membership V343{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/client_revenue_membership_v343.css') }}">
+<script defer src="{{ url_for('static', filename='js/client_revenue_membership_v343.js') }}"></script>
+<section class="v343-shell">
+  <div class="v343-hero">
+    <div>
+      <span class="v343-title">V343 · Revenue & Membership Flow</span>
+      <h1>La experiencia empieza a vender mejor</h1>
+      <p style="color:#a8b9d1;">Planes claros, beneficios visibles y llamadas suaves para convertir clientes FREE en PRO o ELITE.</p>
+    </div>
+    <div><strong style="font-size:1.4rem;color:#ffe0a0;">SALES READY</strong><br><span style="color:#aabbd3;">FREE · PRO · ELITE</span></div>
+  </div>
+  <div class="v343-cards">
+    <article class="v343-card"><h2>FREE</h2><p>Entrada para probar la plataforma.</p><a href="/cliente/pro">Ver</a></article>
+    <article class="v343-card"><h2>PRO</h2><p>El plan ideal para usar 1X2, Match Center y SHARK.</p><a href="/cliente/membresia">Subir</a></article>
+    <article class="v343-card"><h2>ELITE</h2><p>Máxima experiencia premium con alertas y live avanzado.</p><a href="/cliente/membresia">Ver</a></article>
+    <article class="v343-card"><h2>Estado</h2><p>Comprueba capa comercial.</p><a href="/api/client/revenue/status-v343">Status</a></article>
+  </div>
+</section>
+{% endblock %}
