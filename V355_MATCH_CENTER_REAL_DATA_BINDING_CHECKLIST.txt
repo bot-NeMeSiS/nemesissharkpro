@@ -1,0 +1,13 @@
+NeMeSiS SHARK PRO · V355 MATCH CENTER REAL DATA BINDING
+
+Revisar:
+1. /api/provider/refresh/odds-v353
+2. /api/client/1x2/real-cache-v354
+3. /api/client/match-center/real-data-v355
+4. /cliente/match-center-real
+5. /cliente/match-center-premium
+
+Objetivo:
+- Match Center conectado a datos/caché real.
+- Ver cuotas, recomendación 1X2, confianza y riesgo.
+- LOW DATA si no hay caché del proveedor.

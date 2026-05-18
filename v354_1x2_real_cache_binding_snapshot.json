@@ -1,0 +1,12 @@
+{
+  "version": "V354",
+  "name": "1X2_REAL_CACHE_BINDING_PRO",
+  "base": "V353",
+  "features": [
+    "1x2 reads provider cache",
+    "real odds recommendations",
+    "LOW DATA fallback",
+    "client UI page"
+  ],
+  "real_only": true
+}

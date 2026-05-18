@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}1X2 Real Cache V354 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/one_x2_real_cache_binding_v354.css') }}">
+<script defer src="{{ url_for('static', filename='js/one_x2_real_cache_binding_v354.js') }}"></script>
+<section class="v354-shell">
+  <div class="v354-hero">
+    <div><span class="v354-badge">V354 · 1X2 Real Cache Binding</span><h1>Combis 1X2 enlazadas al proveedor real</h1><p>Lee cuotas desde el caché V353, recomienda solo con datos reales y muestra LOW DATA si falta información.</p></div>
+    <div class="v354-status"><strong>1X2 REAL</strong><span>Proveedor · Caché · Cliente</span></div>
+  </div>
+  <div class="v354-low">Para cargar datos reales: primero ejecuta <strong>/api/provider/refresh/odds-v353</strong>. Después revisa <strong>/api/client/1x2/real-cache-v354</strong>.</div>
+  <div class="v354-grid" id="v354-grid"></div>
+</section>
+<script>
+fetch('/api/client/1x2/real-cache-v354',{cache:'no-store'}).then(r=>r.json()).then(d=>{
+ const grid=document.getElementById('v354-grid');
+ const recs=d.recommendations||[];
+ if(!recs.length){ grid.innerHTML='<div class="v354-low">LOW DATA: sin cuotas cacheadas. Ejecuta /api/provider/refresh/odds-v353.</div>'; return; }
+ grid.innerHTML=recs.slice(0,9).map(r=>{
+ const o=r.odds_1x2||{};
+ return `<article class="v354-pick"><div class="v354-teams"><span>${r.home||'Local'}</span><span>${r.away||'Visitante'}</span></div><div class="v354-league">${r.league||'Competición'} · ${r.minute||'Pre'} · ${r.score||'vs'}</div><div class="v354-choice"><span>Recomendación</span><span>${r.recommended||'LOW_DATA'} · ${r.confidence||0}/100</span></div><div class="v354-odds"><div class="v354-odd"><strong>1</strong><small>${o["1"]||'--'}</small></div><div class="v354-odd"><strong>X</strong><small>${o["X"]||'--'}</small></div><div class="v354-odd"><strong>2</strong><small>${o["2"]||'--'}</small></div></div><div class="v354-actions"><a class="gold" href="/cliente/1x2">1X2</a><a href="/cliente/match-center-premium">Detalle</a></div></article>`;
+ }).join('');
+}).catch(()=>{document.getElementById('v354-grid').innerHTML='<div class="v354-low">LOW DATA: no se pudo leer el caché 1X2.</div>'});
+</script>
+{% endblock %}

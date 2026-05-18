@@ -11604,5 +11604,59 @@ def api_provider_cache_odds_v353():
 # ===== END V353 =====
 
 
+
+# ===== V354 · 1X2 REAL CACHE BINDING PRO =====
+@app.route("/cliente/1x2-real-cache")
+@app.route("/admin/1x2-real-cache")
+@app.route("/1x2-real-cache-v354")
+def one_x2_real_cache_binding_v354():
+    return render_template("one_x2_real_cache_binding_v354.html")
+
+@app.route("/api/client/1x2/real-cache-v354")
+def api_one_x2_real_cache_v354():
+    try:
+        from services.one_x2_real_cache_binding_v354 import build_1x2_recommendations
+        limit = int(request.args.get("limit", 12))
+        return jsonify(build_1x2_recommendations(limit=max(1,min(limit,50))))
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V354","error":str(exc)}),500
+
+@app.route("/api/client/1x2/binding-status-v354")
+def api_one_x2_binding_status_v354():
+    try:
+        from services.one_x2_real_cache_binding_v354 import one_x2_binding_status
+        return jsonify(one_x2_binding_status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V354","error":str(exc)}),500
+# ===== END V354 =====
+
+
+
+# ===== V355 · MATCH CENTER REAL DATA BINDING PRO =====
+@app.route("/cliente/match-center-real")
+@app.route("/admin/match-center-real")
+@app.route("/match-center-real-v355")
+def match_center_real_data_binding_v355():
+    return render_template("match_center_real_data_binding_v355.html")
+
+@app.route("/api/client/match-center/real-data-v355")
+def api_match_center_real_data_v355():
+    try:
+        from services.match_center_real_data_binding_v355 import match_center_cards
+        limit = int(request.args.get("limit", 8))
+        return jsonify(match_center_cards(limit=max(1,min(limit,50))))
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V355","error":str(exc)}),500
+
+@app.route("/api/client/match-center/binding-status-v355")
+def api_match_center_binding_status_v355():
+    try:
+        from services.match_center_real_data_binding_v355 import match_center_binding_status
+        return jsonify(match_center_binding_status())
+    except Exception as exc:
+        return jsonify({"ok":False,"version":"V355","error":str(exc)}),500
+# ===== END V355 =====
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", "5000")))

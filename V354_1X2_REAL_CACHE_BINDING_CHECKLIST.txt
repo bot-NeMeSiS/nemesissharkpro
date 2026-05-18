@@ -1,0 +1,13 @@
+NeMeSiS SHARK PRO · V354 1X2 REAL CACHE BINDING
+
+Revisar:
+1. /api/provider/refresh/odds-v353
+2. /api/provider/cache/odds-v353
+3. /api/client/1x2/real-cache-v354
+4. /cliente/1x2-real-cache
+5. /cliente/1x2
+
+Objetivo:
+- Cerrar circuito V353 hacia 1X2.
+- Usar cuotas reales cacheadas.
+- LOW DATA limpio si no hay proveedor/caché.

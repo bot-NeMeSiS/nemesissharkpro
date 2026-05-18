@@ -1,0 +1,13 @@
+{
+  "version": "V355",
+  "name": "MATCH_CENTER_REAL_DATA_BINDING_PRO",
+  "base": "V354",
+  "features": [
+    "match center reads 1x2 cache",
+    "real odds cards",
+    "shark read context",
+    "LOW DATA fallback",
+    "client page"
+  ],
+  "real_only": true
+}

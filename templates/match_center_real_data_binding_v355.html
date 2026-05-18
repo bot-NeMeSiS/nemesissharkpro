@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Match Center Real V355 · NeMeSiS SHARK PRO{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/match_center_real_data_binding_v355.css') }}">
+<script defer src="{{ url_for('static', filename='js/match_center_real_data_binding_v355.js') }}"></script>
+<section class="v355-shell">
+  <div class="v355-hero">
+    <div><span class="v355-badge">V355 · Match Center Real Data Binding</span><h1>Match Center conectado a datos reales</h1><p>Usa el circuito V353/V354 para mostrar partido, cuotas 1X2, confianza, riesgo y acceso directo a Live/1X2/SHARK.</p></div>
+    <div class="v355-status"><strong>MATCH REAL</strong><span>Caché · 1X2 · SHARK</span></div>
+  </div>
+  <div class="v355-low">Para cargar datos: ejecuta <strong>/api/provider/refresh/odds-v353</strong> y revisa <strong>/api/client/match-center/real-data-v355</strong>.</div>
+  <div class="v355-grid" id="v355-grid"></div>
+</section>
+<script>
+fetch('/api/client/match-center/real-data-v355',{cache:'no-store'}).then(r=>r.json()).then(d=>{
+ const grid=document.getElementById('v355-grid'); const cards=d.cards||[];
+ if(!cards.length){ grid.innerHTML='<div class="v355-low">LOW DATA: sin datos reales cacheados para Match Center.</div>'; return; }
+ grid.innerHTML=cards.slice(0,8).map(c=>{
+ const o=c.odds||{};
+ return `<article class="v355-card"><div class="v355-top"><div><div class="v355-title">${c.title||'Partido'}</div><div class="v355-league">${c.league||'Competición'}</div></div><span class="v355-minute">${c.minute||'Pre'}</span></div><div class="v355-score">${c.score||'vs'}</div><div class="v355-read">🦈 ${c.shark_read||'Contexto pendiente'}</div><div class="v355-choice"><span>1X2</span><span>${c.recommended_1x2||'LOW_DATA'} · ${c.confidence||0}/100</span></div><div class="v355-odds"><div class="v355-odd"><strong>1</strong><small>${o["1"]||'--'}</small></div><div class="v355-odd"><strong>X</strong><small>${o["X"]||'--'}</small></div><div class="v355-odd"><strong>2</strong><small>${o["2"]||'--'}</small></div></div><div class="v355-actions"><a class="gold" href="/cliente/1x2-real-cache">1X2</a><a href="/cliente/live-command-center">Live</a><a href="/cliente/shark-ai-pro">SHARK</a></div></article>`;
+ }).join('');
+}).catch(()=>{document.getElementById('v355-grid').innerHTML='<div class="v355-low">LOW DATA: no se pudo leer Match Center real.</div>'});
+</script>
+{% endblock %}
