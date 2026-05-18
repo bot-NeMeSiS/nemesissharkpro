@@ -1,0 +1,20 @@
+{# V329 UPDATE PACK · bloque opcional para dashboard cliente · no toca app.py #}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/v329_mobile_combi_quick_access.css') }}">
+<section class="shark-v329-mobile-shell">
+  <div class="shark-v329-combi-hero">
+    <div class="shark-v329-combi-badge">🔥 SHARK COMBI 1X2</div>
+    <h2>Constructor de combinadas inteligentes</h2>
+    <p>Elige número de partidos, stake y riesgo. NeMeSiS prioriza selecciones 1X2 con mejor equilibrio entre cuota, datos y confianza.</p>
+    <div class="shark-v329-combi-actions">
+      <a class="shark-v329-btn shark-v329-btn-primary" href="/cliente/combi-inteligente">Crear combinada inteligente</a>
+      <a class="shark-v329-btn shark-v329-btn-secondary" href="/cliente/combi-1x2">Ver modo 1X2</a>
+      <a class="shark-v329-btn shark-v329-btn-secondary" href="/cliente/combinadas">Mis combinadas</a>
+    </div>
+    <div class="shark-v329-grid">
+      <div class="shark-v329-card"><strong>Conservador</strong><span>Más estabilidad y cuotas controladas.</span></div>
+      <div class="shark-v329-card"><strong>Balanceado</strong><span>Equilibrio entre cuota total y confianza.</span></div>
+      <div class="shark-v329-card"><strong>Agresivo</strong><span>Busca más cuota evitando selecciones basura.</span></div>
+    </div>
+  </div>
+</section>
+<script src="{{ url_for('static', filename='js/v329_mobile_combi_quick_access.js') }}" defer></script>

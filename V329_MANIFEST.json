@@ -1,0 +1,13 @@
+{
+  "version": "V329",
+  "type": "UPDATE_PACK_SAFE",
+  "touches_app_py": false,
+  "files": [
+    "README_V329_UPDATE_PACK.md",
+    "docs/INSTALACION_IPHONE_WORKING_COPY_V329.md",
+    "static/css/v329_mobile_combi_quick_access.css",
+    "static/js/v329_mobile_combi_quick_access.js",
+    "templates/client/v329_combi_quick_access_block.html",
+    "templates/client/v329_combi_preview.html"
+  ]
+}

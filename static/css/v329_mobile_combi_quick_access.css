@@ -1,0 +1,20 @@
+/* NeMeSiS SHARK PRO · V329 UPDATE PACK · no toca app.py */
+:root{--shark-bg:#07111f;--shark-card:rgba(12,24,44,.86);--shark-border:rgba(0,217,255,.22);--shark-gold:#f7c948;--shark-text:#f4f8ff;--shark-muted:rgba(244,248,255,.72)}
+.shark-v329-mobile-shell{max-width:1180px;margin:0 auto;padding:18px}
+.shark-v329-combi-hero{position:relative;overflow:hidden;border:1px solid var(--shark-border);background:radial-gradient(circle at 15% 10%,rgba(0,217,255,.22),transparent 28%),radial-gradient(circle at 85% 0%,rgba(247,201,72,.14),transparent 30%),linear-gradient(135deg,rgba(8,20,38,.96),rgba(5,10,20,.96));border-radius:24px;padding:22px;box-shadow:0 0 32px rgba(0,217,255,.09);color:var(--shark-text)}
+.shark-v329-combi-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(247,201,72,.35);background:rgba(247,201,72,.10);color:var(--shark-gold);border-radius:999px;padding:7px 12px;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.shark-v329-combi-hero h2{margin:14px 0 8px;font-size:clamp(24px,5vw,42px);line-height:1.05}
+.shark-v329-combi-hero p{margin:0;color:var(--shark-muted);font-size:15px;max-width:760px}
+.shark-v329-combi-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.shark-v329-btn{border:0;text-decoration:none;border-radius:16px;padding:13px 16px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;transition:transform .18s ease,box-shadow .18s ease,opacity .18s ease}
+.shark-v329-btn:active{transform:scale(.98)}
+.shark-v329-btn-primary{color:#04101c;background:linear-gradient(135deg,#00d9ff,#f7c948);box-shadow:0 12px 28px rgba(0,217,255,.18)}
+.shark-v329-btn-secondary{color:var(--shark-text);border:1px solid var(--shark-border);background:rgba(255,255,255,.06)}
+.shark-v329-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:16px}
+.shark-v329-card{border:1px solid rgba(255,255,255,.10);background:var(--shark-card);border-radius:20px;padding:16px;color:var(--shark-text)}
+.shark-v329-card strong{display:block;font-size:15px;margin-bottom:6px}
+.shark-v329-card span{color:var(--shark-muted);font-size:13px}
+.shark-v329-bottom-nav{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:9999;display:none;grid-template-columns:repeat(4,1fr);gap:8px;border:1px solid rgba(0,217,255,.18);background:rgba(4,10,20,.88);backdrop-filter:blur(18px);border-radius:22px;padding:8px;box-shadow:0 16px 50px rgba(0,0,0,.35)}
+.shark-v329-bottom-nav a{color:rgba(244,248,255,.76);text-decoration:none;font-size:11px;font-weight:800;text-align:center;padding:9px 5px;border-radius:15px}
+.shark-v329-bottom-nav a.active,.shark-v329-bottom-nav a:hover{color:#04101c;background:linear-gradient(135deg,#00d9ff,#f7c948)}
+@media(max-width:780px){body{padding-bottom:84px!important}.shark-v329-mobile-shell{padding:12px}.shark-v329-grid{grid-template-columns:1fr}.shark-v329-combi-actions{display:grid;grid-template-columns:1fr}.shark-v329-btn{width:100%}.shark-v329-bottom-nav{display:grid}}
